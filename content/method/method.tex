@@ -10,6 +10,21 @@
 \end{figure}
 
 \section{Materials and Methods}\label{sec:method}
+\todo[inline]{In my opinion this section should contain a description of the things we use in a generic manner. Describe the data, all the blocks in the figure but not their relations}
+
+\subsection{Datasets}
+
+In this work, we validated our classification framework using two different datasets.
+
+\begin{description}
+
+\item[SERI]- datasets were acquired by Singapore Eye Research Institute (SERI), using CIRRUS TM (Carl Zeiss Meditec, Inc., Dublin, CA) \ac{sdoct} device. The datasets consist of 32 \ac{oct} volumes (16 \ac{dme} and 16 normal cases). Each volume contains 128 B-sane with  dimension of 512 $\times$ 1024 pixels.  All \ac{sdoct} images are read and assessed by trained graders and identifies as normal or \ac{dme} cases based on evaluation of retinal thickening, hard exudates, intraretinal cystoid space formation and subretinal fluid.
+
+\item[Duke] - datasets published by Srinivasan et al. \cite{Srinivasan2014} were acquired in Institutional Review Board-approved protocols using Spectralis \ac{sdoct} (Heidelberg Engineering Inc., Heidelberg, Germany) imaging at Duke University, Harvard University and the University of Michigan. This datasets consist of 45 \ac{oct} volumes (15 \ac{amd}, 15 \ac{dme} and 15 normal). In this study we only consider a subset of the original data containing 15 \ac{dme} and 15 normal \ac{oct} volumes.
+
+\end{description}
+
+\subsection{Experimental Framework description}
 
 The proposed method, as well as, its experimental set-up for \ac{oct} volume classification are outlined in Fig.\,\ref{fig:ML-scheme}.
 The methodology is formulated as a standard classification procedure.
@@ -44,6 +59,7 @@ A \ac{rf} classifier has been selected to perform the classification of the \ac{
 % \color{red}{The duc dataset blabla bla...}\color{black}
 
 \subsection{Image pre-processing}\label{subsec:prepro}
+\todo{describe the new preprocessing strategies. They should all be explained as independent stuff, and in experimentation we'll describe which are we using for each experiment scenario.}
 
 \Ac{oct} images are known to be affected by a speckle noise~\cite{schmitt1999speckle}.
 Subsequently, \ac{nlm}~\cite{buades2005non} filtering has been successfully used in \ac{us} images to filter similar noise~\cite{Coupe2009} and is used in our framework to denoise each B-scan (i.e. each $x-z$ slice) of the \ac{oct} volumes (see in Fig.\,\ref{subfig:vol}).

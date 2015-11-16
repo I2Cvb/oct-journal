@@ -24,6 +24,8 @@ Many of the previous works on \ac{oct} image analysis have focused on the proble
 Few works have addressed the specific problem of \ac{dme} and its associated features detection from \ac{oct} images. 
 Quellec\,\textit{et al.} proposed a method for the identification of fluid-filled regions in \ac{sdoct} images of the macula based on texture features extracted in the pre-segmented retinal layers~\cite{Quellec2010}.
 
+\begin{changebar}
+\todo{this is survey}
 The authors in~\cite{Srinivasan2014} proposed a classification method to distinguish \ac{dme}, \ac{amd} and normal \ac{sdoct} volumes.
 %The authors in~\cite{Srinivasan2014} proposed a classification method for the detection of \ac{dme} versus \ac{amd} and normal \ac{oct} images.
 The \ac{oct} images are pre-processed by reducing the speckle noise by enhancing the sparsity in a transform-domain and flattening the retinal curvature to reduce the inter-patient variations.
@@ -42,6 +44,7 @@ The most similar work to ours is the work of Liu\,\textit{et al.} who proposed a
 The method starts by aligning and flattening the images, then a $3$-level multi-scale spatial pyramid is created and edge and \ac{lbp} histograms are extracted in each block at every level of the pyramid. 
 All obtained histograms are concatenated into a global descriptor whose dimensions are reduced using \ac{pca}. Finally a \ac{svm} is used as classifier. 
 The method achieved good results in detection \ac{oct} scan containing different pathology such as \ac{dme} or \ac{amd}, with an \ac{auc} of $0.93$ using a dataset of $326$ \ac{oct} scans.  
+\end{changebar}
 
 In this paper, we propose a method for automatic identification of patients with \ac{dme} versus normal subjects by classifying the \ac{oct} volumes. Our method is based on \ac{lbp} features to describe the texture of \ac{oct} images and dictionary learning using the \ac{bow} models~\cite{Sivic2003}.
 However, our method do not rely on keypoints detection as opposed to the work of Venhuizen\,\textit{et al.} who also employed the \ac{bow} models~\cite{Venhuizen2015}. We rather divide the images into local patches and extract a dense set of \ac{lbp} descriptors.
