@@ -20,16 +20,28 @@ Therefore, fundus photography cannot always identify the clinical signs of \ac{d
 Recently, \ac{oct} has been widely used as a valuable diagnosis tool for \ac{dme} detection.
 \ac{oct} is based on optical reflectivity and produces cross-sectional and three-dimensional images of the central retina, thus allowing quantitative retinal thickness and structure measurements.
 The new generation of \ac{oct} imaging, namely \ac{sdoct} offers higher resolution and faster image acquisition over conventional time domain \ac{oct}. \Ac{sdoct} can produce $27,000$ to $40,000$ A-scans/seconds with an axial resolution ranging from \SIrange{3.5}{6}{\micro \metre}~\cite{Chen2005}. 
-Many of the previous works on \ac{oct} image analysis have focused on the problem of retinal layers segmentation, which is a necessary step for retinal thickness measurements~\cite{Chiu2010,Kafieh2013}.
-Few works have addressed the specific problem of \ac{dme} and its associated features detection from \ac{oct} images. 
 
+\begin{changebar}
+  \todo{I don't think thats the way to introduce it}
+Many of the previous works on \ac{oct} image analysis have focused on the
+problem of retinal layers segmentation, which is a necessary step for retinal
+thickness measurements~\cite{Chiu2010,Kafieh2013}, \deleted[id=sik, remark={however}]{and} few have addressed the
+specific problem of \ac{dme} and its associated features detection from
+\ac{oct} images.
+\end{changebar}
 
-In this paper, we propose a method for automatic identification of patients with \ac{dme} versus normal subjects by classifying the \ac{oct} volumes. Our method is based on \ac{lbp} features to describe the texture of \ac{oct} images and dictionary learning using the \ac{bow} models~\cite{Sivic2003}.
-However, our method do not rely on keypoints detection as opposed to the work of Venhuizen\,\textit{et al.} who also employed the \ac{bow} models~\cite{Venhuizen2015}. We rather divide the images into local patches and extract a dense set of \ac{lbp} descriptors.
-We also use the entire \ac{oct} volume and extract 3D-\ac{lbp} features to describe the volume, which is different from the work of Liu\,\textit{et al.} who classified only the foveal scan for each patient~\cite{Liu2011}.
-%We will show in the experiments, Sect.\,\ref{sec:method}, that using the 3D-\ac{lbp} descriptor provides better classification performances than extraction \ac{lbp} in each individual B-scan.
+In this research we focus on the latter problem and propose an automatic framework for identification of \ac{dme} patients versus normal subjects using \ac{oct} volumes.
+The proposed method is based on \ac{lbp} features to describe the texture of \ac{oct} images and dictionary learning using the \ac{bow} models~\cite{Sivic2003}.
+We propose to extract 2D and 3D \ac{lbp} features from \ac{oct} images and volumes, respectively.
+The \ac{lbp} descriptors are further extracted from the entire sample or local patches within individual samples.
+In this research beside the comparison of 2D and 3D features, we also compare the effects of common pre-processing steps for \ac{oct} data, and different classifiers.
 
-This paper is organized as follows. Section~\ref{sec:method} describes the features extraction methodology and the classification approach based on the \ac{bow} models. Experiments and results are discussed in Sect.\,\ref{sec:exp}. Conclusions and avenue for future directions are drawn in Sect.\,\ref{sec:con}.
+In the following of this paper, fist in Sect.\,\ref{sec:rw} a summary of the related studies is presented.
+
+This paper is organized as follows, Section~\ref{sec:rw} presents a summary of the related studies.
+The proposed framework is explained in Sect.\,\ref{sec:method}, while the experiments and results are discussed in Sect.\,\ref{sec:exp}.
+Finally, the conclusion and avenue for future directions are drawn in Sect.\,\ref{sec:con}.
+
 
 %----------
 

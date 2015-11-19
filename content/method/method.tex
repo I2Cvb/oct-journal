@@ -12,26 +12,19 @@
   \label{fig:ML-scheme}
 \end{figure}
 
-\subsection{Experimental Framework description}
+%\subsection{Experimental Framework description}
 
 The proposed method, as well as, its experimental set-up for \ac{oct} volume classification are outlined in Fig.\,\ref{fig:ML-scheme}.
-The methodology is formulated as a standard classification procedure.
-% The available dataset with its acompaining \ac{gt} are divided into training $(S1,l1)$ and testing $(S2,l2)$. 
-% The final goal is to represent $S1$ and $S2$ in the feature space $F$ by supplying $(sxF,l1)$ as a training to a classifier, using the trained classifier to estimate $l2$ from $S2xF$ and comparing the estimation with the \ac{gt}.
+%The methodology is formulated as a standard classification procedure.
+The methodology is formulated as a standard classification procedure, through 5 steps which are explained in the following.
 First, the \ac{oct} volumes are pre-processed as presented in details in Sect.\,\ref{subsec:prepro}.
-% This algorithm preserve important details and textures of the original image, while reducing the noise.
 The mapping stage is used to determine a discrete set of elements (or structures) which is used for representing the \ac{oct} volume.
 Thereafter, two mapping strategies are defined: (i) \emph{global} and (ii) \emph{local} mapping.
 In the global mapping approach, a single structure is computed for the image/volume while in the local mapping, a set of structures is defined by sliding a window through the image/volume.
 Then, a descriptor is computed for each structure.
-The feature extraction and representation are presented in depth in Sect.\,\ref{subsec:feaext} and Sect.\,\ref{subsec:fearep}.
-% The feature detection stage correspond to measurements done in $G(Z)$ used for representing $s$ in terms of $ZxG$. 
-% This mapping and feature detection steps can be found as a single-steps in the literature.
-% The feature extraction procedure combines the elements in $Z$ and its measurements $G(Z)$ to create the final feature space $F$ and project $s$ on it.
-A \ac{rf} classifier has been selected to perform the classification of the \ac{oct} volume~\cite{breiman2001random}.
-% The design choices are all illustrated in Fig.\,\ref{fig:ML-scheme} and discussed further in this section. The work here presented does not discuss in detail neither the mapping, nor the adopted classifier, further than this lines.
-% As a possible mappings, for representing the volumes, 2D image slices of the volume and \color{red}{7x7x7}\color{black} sliding volumes, have been considered. 
-% As a classifier, a \color{red}{Random Forest}\color{black} using 100 trees, has been considered.
+The feature extraction and representation are presented in depth in Sect.\,\ref{subsec:feaext} and Sect.\,\ref{subsec:fearep}, respectively.
+Finally the classification step is presented in Sect.\,\ref{subsec:cls}.
+%A \ac{rf} classifier has been selected to perform the classification of the \ac{oct} volume~\cite{breiman2001random}.
 
 % \subsection{Data}
 % \color{red}{
@@ -43,8 +36,6 @@ A \ac{rf} classifier has been selected to perform the classification of the \ac{
 
 % For evaluation purposes, the results have been cross-validated, by splitting the data in training and testing using a \ac{lopo} strategy. In this manner for each round a pair \color{red}{dce,normal} has been selected to be used as the round test set, while the rest of the dataset has been used as a training. \color{red}{Doing the cross validation in this manner, has the limitation that despite the fact that the results are robust due to the cross validation, no results variance can be reported. However, and despite this limitation, \ac{lopo} has been choose due to the reduced amount of \ac{oct} volumes available.}\color{black}
 
-% \color{red}{The dataset blablablabal...}\color{black}
-% \color{red}{The duc dataset blabla bla...}\color{black}
 
 \subsection{Image pre-processing}\label{subsec:prepro}
 \todo{describe the new preprocessing strategies. They should all be explained as independent stuff, and in experimentation we'll describe which are we using for each experiment scenario.}
@@ -108,14 +99,18 @@ Each \ac{oct} volume can be described by its texture and we employed two strateg
 \begin{description}
 
 \item[Low-level representation] The texture descriptor of an \ac{oct} volume is defined as the concatenation of the \ac{lbp} histograms. Regarding the \ac{lbptop}, the feature descriptor is computed through the concatenation of the \ac{lbp} histograms of the three orthogonal planes. 
-Furthermore, the size of this entire feature vector is defined according to the mapping strategy chosen (see Fig.\,\ref{fig:ML-scheme}).
+{\color{red}Furthermore, the size of this entire feature vector is defined according to the mapping strategy chosen (see Fig.\,\ref{fig:ML-scheme}).|}
 
 \item[High-level representation] According to the chosen mapping strategy, the low-level representation can lead to a high dimensional feature space. 
 High-level representation simplifies this high dimensional feature space into a more discriminant lower space. 
-\Ac{pca} and \ac{bow} among other methods, are used for this purpose~\cite{Sivic2003}. 
-Although \ac{pca} maps the data according to their variance, \ac{bow} models represent the features by creating a visual dictionary, or ``codebook'', from the set of low-level features.
-The set of low-level features is clustered using \textit{k}-means to create the codebook with \textit{k} defining the number of visual words.
-After creating the codebook, each of the training example is represented as a histogram of size \textit{k} obtained by calculating the frequency of occurrences of each of the \textit{k} words in the features extracted from the training example. 
+\ac{bow} approach is used for this purpose~\cite{Sivic2003}.
+This model represents the features by creating a visual dictionary or ``codebook'', from the set of low-level features.
+The set of low-level features are clustered using \textit{k}-means to create the codebook with \textit{k} defining the number of visual words.
+After creating the codebook, each of the training example is represented as a histogram of size \textit{k} obtained by calculating the frequency of occurrences of each of the \textit{k} words in the extracted features from the training example. 
+%\Ac{pca} and \ac{bow} among other methods, are used for this purpose~\cite{Sivic2003}. 
+%Although \ac{pca} maps the data according to their variance, \ac{bow} models represent the features by creating a visual dictionary, or ``codebook'', from the set of low-level features.
+%The set of low-level features is clustered using \textit{k}-means to create the codebook with \textit{k} defining the number of visual words.
+%After creating the codebook, each of the training example is represented as a histogram of size \textit{k} obtained by calculating the frequency of occurrences of each of the \textit{k} words in the features extracted from the training example. 
 
 \end{description}
 
@@ -144,14 +139,84 @@ After creating the codebook, each of the training example is represented as a hi
 % Note that in the 2D case, each slice is divided into patches of size $N\times N$ and we extract 2D-LBP from each patch, while in the 3D case, the volume is divided into $N \times N \times N$ patches and 3D-LBP histograms are computed. In our experiments in Section 3, we set $N=7$, and vary the size of the codebook $K$ in the range $\{2, 4, 8, 16, 32, 64, 100 \}$.
 % % \input{./content/method/BoFFramework.tex}
 
-% \subsection{Classification}
+\subsection{Classification}\label{subsec:cls}
+Classification is a supervised learning method which intends to find a mapping $f(.)$ which relates a set of input $x$ to a set of categorical outputs $y$.
+The learning is comprehended using a training set, which contains a set of $N$ samples with their associated labels~\cite{murphy2012machine}.
 
-% Random Forest is an ensemble of decision trees and was introduced by~\cite{breiman2001random}.
-% The ensemble uses each tree to predict an output and finalize the ultimate prediction by aggregating the outputs of all tress. 
-% This classifier learns the data by training multiple decision trees on bootstrap samples of the original data. 
-% Each bootstrap of D dimension is used for training one decision tree and at each node, the best split among randomly ($d << D$) selected subset of descriptors is chosen. 
-% Each tree is grown to its maximum length without any pruning. 
-% In the prediction stage a sample is voted by each tree and it is labeled by considering the majority of the votes.
+In this study we compare the performance of different classifiers including: \ac{rf}, \ac{gb}, \ac{svm}, \ac{lr}, and $k$-\ac{nn}.
+
+\begin{description}
+\item[\acl{rf}] is an ensemble of decision trees and was introduced by~\cite{breiman2001random}.
+The ensemble uses each tree to predict an output and finalizes the ultimate prediction by aggregating the outputs of all tress. 
+This classifier learns the data by training multiple decision trees on bootstrap samples of the original data. 
+Each bootstrap of $D$ dimension is used for training one decision tree and at each node, the best split among randomly ($d << D$) selected subset of descriptors is chosen. 
+Each tree is grown to its maximum length without any pruning. 
+In the prediction stage a sample is voted by each tree and it is labeled by considering the majority of the votes.\\
+%% Another explanation from BIOIMAGING:
+%is an ensemble of decision trees~\cite{breiman2001random} which generalizes the classification process by applying two types of randomization: at the tree level, each tree is fed by a bootstrap made of $S'$ samples which are built from the original data of size $S$ such that  $S=S'$, and at the node level, a subset of feature dimensions $m$ is randomly selected from the original dimension $M$ such that $m=\sqrt{M}$. 
+%The trees in \ac{rf} are grown to their maximum length without any pruning.
+%Figure~\ref{fig:rftrain} shows the training stage of \ac{rf} ensemble. 
+%In the testing stage, each tree in the ensemble casts a unit vote in the final prediction and the final prediction is based on combination of all the votes.
+
+\item[\acl{gb}] is a generalization form of \ac{adb}, which is able to use real-value weak learners and minimizes different loss functions~\cite{zheng2007general}.
+\ac{gb} builds the ensemble in a greedy manner. 
+It iteratively selects the best pair of real-valued weak learners and adjust their weights so that they minimize a given differentiable loss function.
+%\begin{subequations}
+%\begin{align}
+%\varphi(x) & = \sum\limits_{j = 1}^{M} \alpha_{j} h_{j}(x)\\
+%\mathcal{L} & = \sum\limits_{i = 1}^{N} L(y_{i}, \varphi(x_{i})) 
+%\end{align}
+%\end{subequations}
+%\noindent Here $h_{j}(.)$ is the weak learner and $\alpha_{j}$ is the real value weight and the aim is to minimize $\mathcal{L}$. 
+Common choice for the weak learner is decision stumps or regression trees while the loss function is generally an exponential loss or a logarithmic loss~\cite{becker2013supervised}. 
+%\begin{subequations}
+%\begin{align}
+%\text{Exponential loss } \qquad L &= e^{-y_{i}\varphi(x_{i})} \label{eq:exploss} \\ 
+%\text{Log loss } \qquad L &= \log(1+e^{-2y_{i}\varphi(x_{i})})
+%\end{align}
+%\end{subequations}
+This minimization is carried out via gradient descent or quadratic approximation.\\
+
+\item[\acl{svm}]~\cite{vapnik1963generalized} is a sparse kernel method which aims to separate two classes by finding the best hyperplane which maximizes the margin between the two classes. 
+Maximizing the margin is equivalent to minimizing the norm of the normal vector of the hyperplane: 
+\begin{equation}
+\min\limits_{\mathbf{w}, \omega_{0}} \frac{1}{2} \Vert \mathbf{w}\Vert^{2} \qquad \text{s.t. } \quad  y_{i}(\mathbf{w}^{T}\mathbf{x_{i}} + \omega_{0}) \geq 1, i = 1: N
+\label{eq:svmsm}
+\end{equation}
+\noindent This constraint intends to force all the point to be in the correct side of the decision boundary (hyperplane) with a minimum distance of 1. 
+This assumption is only valid if the data is linearly separable. 
+Thus for general cases a slack variable $\xi_{i} \geq 0 $ is introduced, which is $\xi_{i} = 0 $, if the points are on/or inside the correct margin boundary, is $0 < \xi_{i} \leq 1 $ if the points are inside the margin but in the correct side of the decision boundary and otherwise if they lie in the wrong side of decision boundary is $\xi_{i} > 1 $. 
+This assumption introduce the \textit{soft margin constraints}.
+
+\begin{align}
+ & \min\limits_{\mathbf{w},\omega_{0}, \mathbf{\xi}} \frac{1}{2} \Vert \mathbf{w} \Vert^{2} + C \sum\limits_{i = 1}^{N} \xi_{i} \nonumber \\ 
+\text{s.t. } & \quad \xi_{i} \geq 0, \quad y_{i}(x_{i}^{T}\mathbf{w} + \omega_{0}) \geq 1 - \xi_{i}, i = 1:N 
+\label{eq:svmop}
+\end{align}
+In this regard, the $\sum_{i} \xi_{i}$ term in Eq.~\ref{eq:svmop}, describes the upper bound on the number of misclassified points and $C$ is the regularization parameter that controls the tolerance of the classifiers on the number of errors~\cite{murphy2012machine}. \\
+
+\item[\acl{lr}]~\cite{cox1958regression} is another supervised learning which can provide associated probability of each prediction.
+As the name suggests, this classifier uses a logistic function, to estimate the probabilities.
+By defining the posterior probability for one of the classes, using logistic function (see Eq.~\ref{eq:ppc1lr}), the probability of other class is defined as $p(c_{2}|x_{i}) = 1 - p(c_{1}|x_{i})$.
+\begin{equation} \label{eq:ppc1lr}
+p(c_{1}|x_{i}) = \frac{1}{1+\exp(-w^{T}x_{i})}
+\end{equation}
+\noindent Here $w$ is a vector of regression parameters, which allows to obtain a linear combination of the input feature vector $x_{i}$.
+Using this model the unlabeled sample is assigned to the class which maximizes the posterior probability. 
+\begin{equation}
+C(x_{i}) =  \text{arg}\max\limits_{k} p(C = k| x_{i})
+\end{equation}
+In this method, finding an optimal set of parameters for $w$ is essential.
+The vectors of parameters $w$ can be inferred by finding the maximum likelihood estimates via optimization methods such as quasi-Newton method~\cite{byrd1994representations}.\\
+ 
+\item[$k$-\acl{nn}] is one the simplest supervised machine learning classification methods.
+In this method a new unlabeled vector is assigned to the most represented class from $k$ nearest-neighbors in the features space.
+In order to avoid a tie case, the parameter $k$ is usually an odd number.
+
+\end{description}
+
+
+% Random Forest 
 
 
 %%% Local Variables: 
