@@ -16,6 +16,10 @@
 %  installations. 
 \usepackage[]{graphicx}
 
+% Document structure package
+%
+\usepackage{standalone}
+
 % In order to include files without having a clear page using \include*, 
 % the newclude package is required
 \usepackage{newclude}
@@ -24,7 +28,7 @@
 
 % Required for acronyms
 % use \acresetall to reset the acroyms counter
-\usepackage{acro}
+\usepackage[macros=true]{acro}
 
 % Managing TODOES and unfinished figures
 \usepackage{todonotes}
@@ -35,6 +39,7 @@
 
 % Package for nice table
 \usepackage{booktabs}
+\usepackage{datatool}
 
 % Mathematics extra symols and commands
 \usepackage{amssymb, amsmath}

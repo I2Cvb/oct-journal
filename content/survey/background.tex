@@ -3,7 +3,11 @@
 
 \section{Background}
 \todo[inline]{review, add previous version of the paper}
-The authors in~\cite{Srinivasan2014} proposed a classification method to distinguish \ac{dme}, \ac{amd} and normal \ac{sdoct} volumes.
+\deleted[id=sik, remark={Isn't this out of focus?}]{Quellec\,\textit{et al.} proposed a method for the identification of fluid-filled regions in \ac{sdoct} images of the macula based on texture features extracted in the pre-segmented retinal layers~\cite{Quellec2010}.}
+
+This section reviews up to our knowledge the works straightly addressing the problem of classifying \oct volume classification as normal or abnormal. A summary can be found in \Cref{tab:survey}.
+
+Srinivasan\,\textit{et al.}~\cite{Srinivasan2014} proposed a classification method to distinguish \ac{dme}, \ac{amd} and normal \ac{sdoct} volumes.
 %The authors in~\cite{Srinivasan2014} proposed a classification method for the detection of \ac{dme} versus \ac{amd} and normal \ac{oct} images.
 The \ac{oct} images are pre-processed by reducing the speckle noise by enhancing the sparsity in a transform-domain and flattening the retinal curvature to reduce the inter-patient variations.
 %The method is based on pre-processing to reduce the speckle noise in \ac{oct} images and flattening of the images to reduce the variation of retinal curvature among patients. 
@@ -17,7 +21,33 @@ All extracted feature vectors are used to create a codebook using \textit{k}-mea
 Finally, this histogram is used as feature vector to train a \ac{rf} with a maximum of $100$ trees.
 The method was used to classify \ac{oct} volumes between \ac{amd} and normal cases and achieved an \ac{auc} of $0.984$ with a dataset of $384$ \ac{oct} volumes. 
 
-The most similar work to ours is the work of Liu\,\textit{et al.} who proposed a method for macular pathology detection in \ac{oct} images using \ac{lbp} and gradient information as attributes~\cite{Liu2011}.
+Liu\,\textit{et al.} proposes a methodology for detecting macular pathology in \ac{oct} images using \ac{lbp} and gradient information as attributes~\cite{Liu2011}.
 The method starts by aligning and flattening the images, then a $3$-level multi-scale spatial pyramid is created and edge and \ac{lbp} histograms are extracted in each block at every level of the pyramid. 
 All obtained histograms are concatenated into a global descriptor whose dimensions are reduced using \ac{pca}. Finally a \ac{svm} is used as classifier. 
 The method achieved good results in detection \ac{oct} scan containing different pathology such as \ac{dme} or \ac{amd}, with an \ac{auc} of $0.93$ using a dataset of $326$ \ac{oct} scans.  
+
+
+\DTLloaddb[keys={ID,Name,Score}]{scores}{./content/survey/tables/survey.csv}
+
+% \DTLloaddb[keys={ task, srinivasan, venhuizen, liu,
+%                   lemaintre}]
+%           {survey}{./content/survey/tables/survey.csv}
+
+
+% \begin{table}
+%   \caption{Other methodologies overview}
+%   \centering
+%   % \newcommand{\tablecsv}{./content/survey/tables/survey.csv}
+%   \input{./content/survey/tables/survey.tex}
+% \begin{table}
+
+
+\begin{table}
+  \caption{Other methodologies overview}
+  \centering
+  \input{./content/survey/tables/survey.tex}
+  \label{tab:survey}
+\end{table}
+
+
+
