@@ -9,13 +9,13 @@
 \usepackage{booktabs}
 \usepackage{subfigure}
 
-\DTLloaddb[keys={ID,Name,Score}]{scores}{survey.csv}
+\DTLloaddb[keys={task,Name,Score}]{survey}{survey.csv}
 
 \begin{document}
   \begin{tabular} {clr}
     \toprule
     \textbf{ID} & \textbf{Name} & \textbf{Score}
-    \DTLforeach{scores}{\id=ID,\name=Name,\score=Score}{%
+    \DTLforeach{survey}{\id=task,\name=other,\score=Score}{%
     \\ \id & \name & \score}
   \end{tabular}
 \end{document}
