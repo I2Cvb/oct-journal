@@ -9,13 +9,19 @@
 \usepackage{booktabs}
 \usepackage{subfigure}
 
-\DTLloaddb[keys={task,Name,Score}]{survey}{survey.csv}
-
+\DTLloaddb[keys={task,Srinivasan,Venhuizen,Liu,Lemaitre}]{survey}{survey.csv}
+task,srinivasan,venhuizen,liu,lemaintre
 \begin{document}
-  \begin{tabular} {clr}
+  \begin{tabular} {ccccc}
     \toprule
-    \textbf{ID} & \textbf{Name} & \textbf{Score}
-    \DTLforeach{survey}{\id=task,\name=other,\score=Score}{%
-    \\ \id & \name & \score}
+    &
+    \textbf{Srinivasan} &
+    \textbf{Venhuizen} &
+    \textbf{Liu} &
+    \textbf{Lemaitre}
+
+    \DTLforeach{survey}{\task=task,\srini=Srinivasan,\venhu=Venhuizen,
+                        \liu=Liu, \lemaitre=Lemaitre}{%
+    \\ \task & \srini & \venhu & \liu & \lemaitre}
   \end{tabular}
 \end{document}
