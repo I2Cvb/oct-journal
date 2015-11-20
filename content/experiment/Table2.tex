@@ -1,0 +1,18 @@
+\begin{tiny}
+  \begin{table}[t]
+\caption{Obtained results using Duke datasets.}% using \ac{rf} with 100 trees. High-level features with \ac{bow} are obtained with $K$ = 32 visual-words.}
+\centering
+\begin{tabular}{lcclcclcccclcclcccclcclc}
+\toprule
+Features 	& & &\multicolumn{4}{c}{$8^{riu2}$}&	 & & & &\multicolumn{4}{c}{$16^{riu2}$}& & & & &\multicolumn{4}{c}{$24^{riu2}$} &\\
+  \cmidrule(l){2-8}  \cmidrule(l){10-16}  \cmidrule(l){18-24}
+	       & & & SE & & & SP & & & & & SE & & & SP & & & & & SE & & & SP & \\
+\midrule
+ 	\ac{lbptop}				& & & 80.00& & & 93.33 & & & & & 73.33 & & & 86.67 & & & & & 73.33 & & & 86.67 & \\
+	\ac{lbp}+\ac{bow}+\acs{sw}		& & & 80.00 & & & 86.67 & & & & & 86.67 & & & 100 & & & & &93.33 & & & 86.67 & \\
+	\ac{lbptop}+\ac{bow}+\acs{sw}		& & & 80.00 & & & 86.67 & & & & & 86.67 & & & 86.67 & & & & & 60.00 & & & 80.00 & \\
+\bottomrule
+\end{tabular}
+\label{tab:Table2}
+\end{table}
+\end{tiny}

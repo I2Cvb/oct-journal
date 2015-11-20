@@ -98,8 +98,8 @@ Each \ac{oct} volume can be described by its texture and we employed two strateg
 
 \begin{description}
 
-\item[Low-level representation] The texture descriptor of an \ac{oct} volume is defined as the concatenation of the \ac{lbp} histograms. Regarding the \ac{lbptop}, the feature descriptor is computed through the concatenation of the \ac{lbp} histograms of the three orthogonal planes. 
-{\color{red}Furthermore, the size of this entire feature vector is defined according to the mapping strategy chosen (see Fig.\,\ref{fig:ML-scheme}).|}
+\item[Low-level representation] The texture descriptor of an \ac{oct} volume is defined as the concatenation of the \ac{lbp} histograms.
+Therefore, for the \ac{lbptop}, the feature descriptor is computed through the concatenation of the \ac{lbp} histograms of the three orthogonal planes and for the \ac{lbp}, the descriptor is defined either through concatenation of the \ac{lbp} histograms per each B-scan (\emph{gocal}-mapping), or per each \ac{sw} (\emph{global}-mapping).
 
 \item[High-level representation] According to the chosen mapping strategy, the low-level representation can lead to a high dimensional feature space. 
 High-level representation simplifies this high dimensional feature space into a more discriminant lower space. 

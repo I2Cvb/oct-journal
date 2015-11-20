@@ -15,100 +15,80 @@ In this work, we validated our classification framework using two different data
 
 \end{description}
 
-\begin{tiny}
-  \begin{table}[b]
-\caption{Obtained results using SERI datasets.}% using \ac{rf} with 100 trees. High-level features with \ac{bow} are obtained with $K$ = 32 visual-words.}
-\centering
-\begin{tabular}{lcclcclcccclcclcccclcclc}
-\toprule
-Features 	& & &\multicolumn{4}{c}{$8^{riu2}$}&	 & & & &\multicolumn{4}{c}{$16^{riu2}$}& & & & &\multicolumn{4}{c}{$24^{riu2}$} &\\
-  \cmidrule(l){2-8}  \cmidrule(l){10-16}  \cmidrule(l){18-24}
-	       & & & SE & & & SP & & & & & SE & & & SP & & & & & SE & & & SP & \\
-\midrule
-  	\ac{lbp}					& & & 43.75 & & & 43.75 & & & & & 37.50 & & & 50.00 & & & & & 50.00 & & & 62.50 & \\
- 	\ac{lbptop}				& & & 56.25 & & & 62.50 & & & & & \textbf{87.50} & & & \textbf{75.00} & & & & & 68.75 & & & 68.75 & \\
-	\ac{lbp}+\ac{pca}		& & & 50.00 & & & 62.50 & & & & & 56.25 & & & 37.50 & & & & & 68.75 & & & 68.75 & \\
-	\ac{lbp}+\ac{bow}		& & & 50.00 & & & 81.25 & & & & & 57.50 & & & 68.75 & & & & & 50.00 & & & 50.00 & \\
-	\ac{lbp}+\ac{bow}+\acs{sw}		& & & 75.00 & & & 87.50 & & & & & \textbf{81.25} & & & \textbf{75.00} & & & & & 68.75 & & & 62.5 & \\
-	\ac{lbptop}+\ac{bow}+\acs{sw}		& & & 62.50 & & & 68.75 & & & & & 56.25 & & & 37.50 & & & & & 37.50 & & & 43.75 & \\
-\bottomrule
-\end{tabular}
-\label{tab:SERI-data}
-\end{table}
-\end{tiny}
-
-\begin{tiny}
-  \begin{table}[t]
-\caption{Obtained results using Duke datasets.}% using \ac{rf} with 100 trees. High-level features with \ac{bow} are obtained with $K$ = 32 visual-words.}
-\centering
-\begin{tabular}{lcclcclcccclcclcccclcclc}
-\toprule
-Features 	& & &\multicolumn{4}{c}{$8^{riu2}$}&	 & & & &\multicolumn{4}{c}{$16^{riu2}$}& & & & &\multicolumn{4}{c}{$24^{riu2}$} &\\
-  \cmidrule(l){2-8}  \cmidrule(l){10-16}  \cmidrule(l){18-24}
-	       & & & SE & & & SP & & & & & SE & & & SP & & & & & SE & & & SP & \\
-\midrule
- 	\ac{lbptop}				& & & 80.00& & & 93.33 & & & & & 73.33 & & & 86.67 & & & & & 73.33 & & & 86.67 & \\
-	\ac{lbp}+\ac{bow}+\acs{sw}		& & & 80.00 & & & 86.67 & & & & & 86.67 & & & 100 & & & & &93.33 & & & 86.67 & \\
-	\ac{lbptop}+\ac{bow}+\acs{sw}		& & & 80.00 & & & 86.67 & & & & & 86.67 & & & 86.67 & & & & & 60.00 & & & 80.00 & \\
-\bottomrule
-\end{tabular}
-\label{tab:Duke-data}
-\end{table}
-\end{tiny}
-
-\begin{tiny}
-\begin{table}[t]
-\caption{Comparing the proposed method by \cite{Venhuizen2015} on SERI and Duke datasets.}% with the \textbf{our two} best proposed methods. $K$ = 32 and \ac{rf} is trained using 100 tress}
-\centering
-\begin{tabular}{lcclcclcccclcclc}
-\toprule
-Data sets 	& & &\multicolumn{4}{c}{SERI}& & & & &\multicolumn{4}{c}{Duke} & \\
-  \cmidrule(l){2-8}  \cmidrule(l){10-16}
-	         & & & SE & & & SP & & & & & SE & & & SP & \\
-\midrule
-Venhuizen~\textit{et al.} \cite{Venhuizen2015} 		& & & 61.53 & & & 58.82 & & & & & 71.42 & & & 68.75 & \\
-\{\ac{lbp}+\ac{bow}+\ac{sw}\},$16^{riu2}$ 	& & & 81.25 & & & 75.00 & & & & & 86.67 & & & 100.00 &  \\
-\{\ac{lbptop}\},$16^{riu2}$				& & & 87.50 & & & 75.00 & & & & & 73.33 & & & 86.76 &  \\
-
-
-\bottomrule
-\end{tabular}
-\label{tab:ComparisonRefandOurs}
-\end{table}
-
-\end{tiny}
 
 \subsection{Experiments \& Results}
+To evaluate the effects and influence of different stages of our framework, we perform various tests.
+Majority of the experiments are performed on SERI dataset and for the sake of comparison, the optimal configurations are evaluated on Duke dataset.
+For all the experiments, \ac{lbp} and \ac{lbptop} features are extracted for different sampling points of 8, 16 and 24 for radius of 1, 2 and 3, respectively.
+As previously mentioned, two different mapping strategies, \emph{local} and \emph{global}, are used.
 
-Both datasets are filtered to attenuate the effect of speckle noise.
-SIRE dataset is processed using \ac{nlm} as stated in Sect.\,\ref{subsec:prepro}.
-The different parameters were empirically tested and fixed such that the patch size, the search window and the filtering parameter were set to $(15 \times 15)$, $(35 \times 35)$ and $0.4$, respectively.
-However, Duke dataset is already filtered using BM3D method~\cite{Srinivasan2014}.
-For both datasets, \ac{lbp} and \ac{lbptop} features are extracted for different sampling points of 8, 16 and 24 for radius of 1, 2 and 3, respectively.
-Two different mapping strategies are used: (i) \emph{global} mapping corresponding to the 2D B-scan for \ac{lbp} or the 3D volume for \ac{lbptop} and (ii) \emph{local} mapping considering to a set of 2D \ac{sw} of size $(7 \times 7)$ for \ac{lbp} or the 3D sub-volume for \ac{lbptop} of size $(7 \times 7 \times 7)$.
-For the high-level representation, when \ac{pca} is applied, the eigenvectors associated with the largest $99\%$ cumulative eigenvalues are selected to reduce the number of dimensions. In \ac{bow} approach, an empirical search was performed to find the optimal number of visual words which is finally fixed to 32.
-The number of trees for each \ac{rf} classifier was fixed to 100.
+\emph{Global} mapping considers to extract the features from the 2D B-scans for \ac{lbp} and 3D volume for \ac{lbptop}. 
+Therefore for a volume with $d$ B-scans, the \emph{global}-\ac{lbp} feature leads to a final descriptor of size $d \times \ac{lbp}_{hist}$ and \emph{global}-\ac{lbptop} feature returns the final descriptor of size $3 \times \ac{lbp}_{hist}$.
+Here $\ac{lbp}_{hist}$ refers to the size of uniform and rotation invariant \ac{lbp} histogram which it's number of bins depends on the number of sampling points in a given neighborhood. 
 
-For evaluation purposes, all the results are expressed in terms of \ac{se} and \ac{sp} using a \ac{lopocv} strategy.
-Thus, at each round a pair \ac{dme}-normal volume is selected for testing while the rest are used for training.
-The use of \ac{lopocv} implies that no variance in \ac{se} and \ac{sp} can be reported.
-However, and despite this limitation, \ac{lopocv} has been employed due to the small size of the datasets. 
-%Performing \ac{lopo} cross validation has the limitation that despite achieving robust results due to the cross validation, no variance in \ac{se} or \ac{sp}, can be reported.
-%For evaluation purposes, the results are cross-validated, by splitting the data in training and testing using a \ac{lopo} strategy. 
-%In this manner for each round a pair of \ac{dme} and normal \ac{oct} volume is selected to be used as the round test set, while the rest of the datasets are used for training. 
-%Performing \ac{lopo} cross validation has the limitation that despite achieving results are robust due to the cross validation, no variance in results can be reported. 
-%The classification performances are reported in terms of \ac{se} and specificity \ac{sp}.
-%A larger testing set can not be used here, due to the limited amount of available \ac{oct} volumes.
+In \emph{local} mapping, the features are extracted from a set of 2D patches for \ac{lbp} and a set of sub-volumes for \ac{lbptop}.
+In this research we consider a ($7 \times 7$) \ac{sw} for 2D \ac{lbp} and ($ 7 \times 7 \times 7$)  sub-volume for \ac{lbptop}. 
+Using these elements, the \emph{local}-\ac{lbp} approach provides a ($d \times N \times \ac{lbp}_{hist}$) final descriptor while \emph{local}-\ac{lbptop} results in a ($\frac{d}{7} \times N \times 3 \times \ac{lbp}_{hist}$) final descriptor.
+Here $N$ is the total number of elements in each B-scan, and 3D volume, respectively.
+
+The \emph{global} and \emph{local} extracted features are then presented with low or high representation.
+As previously mentioned, \ac{bow} approach is used for high-level representation.
+In this regard, to find the optimal number of ``visual-words'' ($k$), we perform a preliminary classification 
+
+Using \ac{bow} approach to find the optimal number of ``visual-words'' ($k$), we perform a preliminary classification where different number of words randomly are selected.
+In this setup, the words are randomly selected using $k$-means++ algorithm~\cite{arthur2007k}.
+This test is performed for all the high-level feature sets considering different pre-processing steps.
+The obtained results of this test is represented in experiment~\#1.
+Beside this experiment, three other experiments are performed which are explained in the following.
+
+The pipeline in each experiment is evaluated using \ac{lopocv} strategy.
+In this validation, at each round a pair \ac{dme}-normal volume is selected for testing while the rest of the volumes are used for training.
+The use of this method implies that no variance in terms of \ac{se} and \ac{sp} can be reported.
+However, and despite this limitation, \ac{lopocv} has been employed due to the small size of the dataset.
+%%Both datasets are filtered to attenuate the effect of speckle noise.
+%%SIRE dataset is processed using \ac{nlm} as stated in Sect.\,\ref{subsec:prepro}.
+%%The different parameters were empirically tested and fixed such that the patch size, the search window and the filtering parameter were set to $(15 \times 15)$, $(35 \times 35)$ and $0.4$, respectively.
+%%However, Duke dataset is already filtered using BM3D method~\cite{Srinivasan2014}.
+%%For both datasets, \ac{lbp} and \ac{lbptop} features are extracted for different sampling points of 8, 16 and 24 for radius of 1, 2 and 3, respectively.
+%%Two different mapping strategies are used: (i) \emph{global} mapping corresponding to the 2D B-scan for \ac{lbp} or the 3D volume for \ac{lbptop} and (ii) \emph{local} mapping considering to a set of 2D \ac{sw} of size $(7 \times 7)$ for \ac{lbp} or the 3D sub-volume for \ac{lbptop} of size $(7 \times 7 \times 7)$.
 
 \begin{description}
 
-\item[Experiment \#1] is carried out on SERI dataset. Both low and high level feature representation are extracted and tested. The results are reported in Table~\ref{tab:SERI-data}.
+\item[Experiment \#1] is carried on SERI dataset.
+This experiment is conducted to find the optimal number of words for \ac{bow} high-level feature representation.
+\emph{Global} and \emph{local}-\ac{lbp} and \emph{local}-\ac{lbptop} feature descriptors are re-represented using \ac{bow} approach.
+In this experiment, the \ac{bow} algorithm is performed using various number of words in the range of $\{10, 20, 30, \cdots,$
+ $100, 200, \cdots, 1000, 2000,3000\}$.
+The words are randomly selected using $k$-means++ algorithm and the features are mapped to their nearest word to create the final clusters.
+In this experiment in order to asses the effect of number of words, simple classifier such as $k$-\ac{nn} is used.
+Table~\ref{tab:table1} shows the obtained results of this experiment.
+The optimum number of words and the achieved \ac{se} and \ac{sp} with $k$-\ac{nn} classifier for different configurations are listed in this table.\\
 
-\item[Experiment \#2] is carried out on the Duke dataset~\cite{Srinivasan2014}. The \ac{oct} volumes provided by this dataset are cropped, with different sizes.
-Subsequently, the experiments involving the mapping using 2D B-scan do not comply with these requirements and thus are not carried out.
-The obtained results for this experiment are shown in Table~\ref{tab:Duke-data}.
 
-\item[Experiment \#3] presents a comparison of our best approaches with the method reported in~\cite{Venhuizen2015} in-house implemented and are expressed in Table~\ref{tab:ComparisonRefandOurs}.
+
+
+
+ 
+\item[Experiment \#2] is performed for high-level features on SERI dataset as well. 
+In this experiment using the optimum number of words which are obtained from the previous experiment, the low-level feature sets with regards to different pre-processing configurations are re-represented using \ac{bow} and $k$-means clustering approach and are classified using $k$-\ac{nn} classifier.
+% local and global \ac{lbp} and local \ac{lbptop}
+Table~\ref{tab:table2} shows the obtained results from this experiment.\\
+
+
+\item[Experiment \#3] is dedicated to compare the performance of different classifiers.
+This experiment is also performed on SERI dataset and for high-level features.
+The {\color{red} best configurations} of feature set and pre-processing based on the previous experiment is classified with different classifiers such as \ac{rf}, \ac{gb}, \ac{svm}, \ac{lr} and $k$-\ac{nn}.
+The obtained results of this experiment is listed in Table.~\ref{tab:tab3}.\\
+
+
+\item[Experiment \#4] is conducted for low-level features.
+The \emph{global} \ac{lbp} and \ac{lbptop} features are classified using the same classifiers as previous experiments.
+The obtained results from this experiment is listed in Table.~\ref{tab:table4}.\\
+ 
+\item[Experiment \#5] is performed to evaluate the performance of our proposed framework considering different dataset.
+In this regards, the best configuration in terms of low-level or high-level representations, number of words and classifiers obtained from the previous experiments are performed on Duke dataset.
+A comparison of the obtained results from SERI and Duke datasets are presented in Table.~\ref{tab:table5}.
+  
 
 \end{description}
 % The SERI datasets are provided in complete \ac{oct} volumes by 512$\times$1024$\times$128 dimensions. Using this datasets, first the three low-level features such as \ac{lbp}, \ac{lbp}+\ac{pca} and \ac{lbptop} are extracted. The rotation invariant uniform ($riu2$) descriptors are calculated with the $P$ number of 8, 16 and 24 for the radius if 1, 2 and 3 respectively. The features are classified using RF with 100 tress. Table \ref{tab:LbPTopVolumeResult} shows the relative results for $8riu2$, $16riu2$, $24riu2$ and their combination $8riu2 + 16riu2 + 24riu2$. The results are presented in terms of \ac{se} and \ac{sp} percentages.
