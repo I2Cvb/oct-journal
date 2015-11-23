@@ -159,6 +159,10 @@ In the remainder of this section, we briefly summarize the supervised classifica
 
 \begin{description}
 
+\item[$k$-\acf*{nn}] is a method in which the labelling decision depends of its 
+is one the simplest supervised machine learning classification methods.
+In this method a new unlabeled vector is assigned to the most represented class from $k$ nearest-neighbors in the features space.
+To avoid a tie case, the parameter $k$ is set to an odd number.\\
 
 \item[\acf*{lr}]~\cite{cox1958regression} is another supervised learning which can provide associated probability of each prediction.
 As the name suggests, this classifier uses a logistic function, to estimate the probabilities.
@@ -173,11 +177,6 @@ C(x_{i}) =  \text{arg}\max\limits_{k} p(C = k| x_{i})
 \end{equation}
 In this method, finding an optimal set of parameters for $w$ is essential.
 The vectors of parameters $w$ can be inferred by finding the maximum likelihood estimates via optimization methods such as quasi-Newton method~\cite{byrd1994representations}.\\
- 
-\item[$k$-\acf*{nn}] is one the simplest supervised machine learning classification methods.
-In this method a new unlabeled vector is assigned to the most represented class from $k$ nearest-neighbors in the features space.
-In order to avoid a tie case, the parameter $k$ is usually an odd number.
-
 
 \item[\acf*{rf}] is an ensemble of decision trees and was introduced by~\cite{breiman2001random}.
 The ensemble uses each tree to predict an output and finalizes the ultimate prediction by aggregating the outputs of all tress. 
