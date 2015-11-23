@@ -22,14 +22,15 @@ Majority of the experiments are performed on SERI dataset and for the sake of co
 For all the experiments, \ac{lbp} and \ac{lbptop} features are extracted for different sampling points of 8, 16, and 24 for radius of 1, 2, and 3, respectively.
 As previously mentioned, two different mapping strategies, \emph{local} and \emph{global}, are used.
 
-\emph{Global} mapping considers to extract the features from the 2D B-scans for \ac{lbp} and 3D volume for \ac{lbptop}. 
-Therefore for a volume with $d$ B-scans, the \emph{global}-\ac{lbp} feature leads to a final descriptor of size $d \times \ac{lbp}_{hist}$ and \emph{global}-\ac{lbptop} feature returns the final descriptor of size $3 \times \ac{lbp}_{hist}$.
-Here $\ac{lbp}_{hist}$ refers to the size of uniform and rotation invariant \ac{lbp} histogram which it's number of bins depends on the number of sampling points in a given neighborhood. 
-
-In \emph{local} mapping, the features are extracted from a set of 2D patches for \ac{lbp} and a set of sub-volumes for \ac{lbptop}.
-In this research we consider a ($7 \times 7$) \acf{sw} for 2D \ac{lbp} and ($ 7 \times 7 \times 7$)  sub-volume for \ac{lbptop}. 
-Using these elements, the \emph{local}-\ac{lbp} approach provides a final descriptor of size ($d \times N \times \ac{lbp}_{hist}$) while \emph{local}-\ac{lbptop} results in a final descriptor of size $\frac{d}{7} \times N \times 3 \times \ac{lbp}_{hist}$.
-Here $N$ is the total number of elements in each B-scan, and 3D volume, respectively.
+{\color{red} In this research we consider a ($7 \times 7$) \acf{sw} for 2D \ac{lbp} and ($ 7 \times 7 \times 7$)  sub-volume for \ac{lbptop}.}
+%\emph{Global} mapping considers to extract the features from the 2D B-scans for \ac{lbp} and 3D volume for \ac{lbptop}. 
+%Therefore for a volume with $d$ B-scans, the \emph{global}-\ac{lbp} feature leads to a final descriptor of size $d \times \ac{lbp}_{hist}$ and \emph{global}-\ac{lbptop} feature returns the final descriptor of size $3 \times \ac{lbp}_{hist}$.
+%Here $\ac{lbp}_{hist}$ refers to the size of uniform and rotation invariant \ac{lbp} histogram which it's number of bins depends on the number of sampling points in a given neighborhood. 
+%
+%In \emph{local} mapping, the features are extracted from a set of 2D patches for \ac{lbp} and a set of sub-volumes for \ac{lbptop}.
+%In this research we consider a ($7 \times 7$) \acf{sw} for 2D \ac{lbp} and ($ 7 \times 7 \times 7$)  sub-volume for \ac{lbptop}. 
+%Using these elements, the \emph{local}-\ac{lbp} approach provides a final descriptor of size ($d \times N \times \ac{lbp}_{hist}$) while \emph{local}-\ac{lbptop} results in a final descriptor of size $\frac{d}{7} \times N \times 3 \times \ac{lbp}_{hist}$.
+%Here $N$ is the total number of elements in each B-scan, and 3D volume, respectively.
 
 The \emph{global} and \emph{local} extracted features are then presented in low or high representation.
 As previously mentioned, \ac{bow} approach is used for high-level representation.
@@ -40,11 +41,59 @@ In this setup, the words are randomly selected using $k$-means++ algorithm~\cite
 This test is performed for all the high-level feature sets considering different pre-processing steps.
 The obtained results of this test is represented in experiment~\#1.
 Beside this experiment, four other experiments are performed which are explained in the following.
+For the sake of comparison all the experiment are performed using all the aforementioned classifiers.
+However only the relevant part and results related to our experiment is represented within the paper, while the rest are mentioned in the appendix.
 
 The pipeline in each experiment is evaluated using \ac{lopocv} strategy.
 In this validation, at each round a pair \ac{dme}-normal volume is selected for testing while the rest of the volumes are used for training.
 The use of this method implies that no variance in terms of \ac{se} and \ac{sp} can be reported.
 However, and despite this limitation, \ac{lopocv} has been employed due to the small size of the dataset.
+
+The obtained results of all the experiments except experiment \#1 is represented in terms of \ac{se} and \ac{sp}.
+These statistics are driven from the confusion matrix (see Fig.~\ref{fig:CM}).
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=0.4]
+      \node at (1,1){
+      \scriptsize{
+        \begin{tabular}{
+            >{\centering}m{1em} >{\centering}m{1em} >{\centering}m{1in} >{\centering\arraybackslash}m{1in}}
+          % c>{\centering}m{2em}ccc}
+          & & \multicolumn{2}{c}{ Actual}\\
+          & & A+ & A- \\
+          \cline{3-4}
+          & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}\\
+          \multirow{3}{*}{\rotatebox[origin=c]{90}{Predicted}}& \multicolumn{1}{c|}{P+} &  \multicolumn{1}{c|}{True Positive (TP)} & \multicolumn{1}{c|}{False Positive (FP)} \\
+          &\multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}& \multicolumn{1}{c|}{} \\
+          \cline{3-4}
+          & \multicolumn{1}{c|}{} &\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}\\
+          
+          & \multicolumn{1}{c|}{P-} &\multicolumn{1}{c|}{False Negative (FN)}  &\multicolumn{1}{c|}{True Negative (TN)}\\
+          & \multicolumn{1}{c|}{} &\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}\\
+          \cline{3-4}
+          \end{tabular}
+      }};
+    \end{tikzpicture}
+    \end{center}
+\caption{Confusion matrix with truly and falsely positive detected samples (\acs{tp}, \acs{fp}) in the first row, from left to right and the falsely and truly negative detected samples (\acs{fn}, \acs{tn}) in the second row, from left to right.}
+\label{fig:CM}
+\end{figure}
+The former evaluate the performance of the classifier with respect to the positive class, while the later evaluate it's performance with respect to negative class.
+These measurements are formulated as: 
+\begin{align}
+ \ac{se}  = \frac{TP}{TP+FN} \qquad \ac{sp} = \frac{TN}{TN+FP}
+\end{align}
+
+In experiment \#1 we use \ac{acc} and \ac{f1} instead.
+\acl{acc} is used to have a overall sense of classifier performance, and \ac{f1} is used to see the trade off between \ac{se} and precision.
+Equation.~\ref{eq:accf1} shows the formulation of these measurements. 
+\begin{align}
+\ac{acc} = \frac{TP+TN}{TP+TN+FP+FN} \qquad \ac{f1} = \frac{2TP}{2TP +FP+FN}
+\label{eq:accf1}
+\end{align}
+
+The performed experiments are listed in the following:\\
 %%Both datasets are filtered to attenuate the effect of speckle noise.
 %%SIRE dataset is processed using \ac{nlm} as stated in Sect.\,\ref{subsec:prepro}.
 %%The different parameters were empirically tested and fixed such that the patch size, the search window and the filtering parameter were set to $(15 \times 15)$, $(35 \times 35)$ and $0.4$, respectively.
@@ -61,12 +110,14 @@ In this experiment, the \ac{bow} algorithm is performed using various number of 
  $100, 200, \cdots, 500, 1000\}$.
 The words are randomly selected using $k$-means++ algorithm and the features are mapped to their nearest word to create the final clusters.
 In this experiment in order to asses the effect of number of words, simple linear classifier such as \ac{lr} is used.
-Table~\ref{tab:table1} shows the obtained results of this experiment.
+The number of words associated with highest \ac{acc} and \ac{f1} score, is selected as the optimum number of words.
+Table~\ref{tab:Table1} shows the obtained results of this experiment.
 The optimum number of words and the achieved \ac{acc} and \ac{f1} of \ac{lr} classifier for different configurations are listed in this table.
-\acl{acc} measure the ration of correctly classified samples in comparison to all the samples, while \ac{f1} is the statistic measure between precision and \ac{se}.
-%\input{Table1.tex}
-Figure.~\ref{fig:RBOW} shows the obtained graphs for some of the configurations. 
 
+\input{content/experiment/Table1.tex}
+
+
+Figure.~\ref{fig:RBOW} shows the obtained graphs for some of the configurations. \\
 
 
 

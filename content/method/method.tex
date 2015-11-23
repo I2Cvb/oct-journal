@@ -99,7 +99,16 @@ Each \ac{oct} volume can be described by its texture and we employed two strateg
 \begin{description}
 
 \item[Low-level representation] The texture descriptor of an \ac{oct} volume is defined as the concatenation of the \ac{lbp} histograms.
-Therefore, for the \ac{lbptop}, the feature descriptor is computed through the concatenation of the \ac{lbp} histograms of the three orthogonal planes and for the \ac{lbp}, the descriptor is defined either through concatenation of the \ac{lbp} histograms per each B-scan (\emph{gocal}-mapping), or per each \ac{sw} (\emph{local}-mapping).
+Therefore, for the \ac{lbptop}, the feature descriptor is computed through the concatenation of the \ac{lbp} histograms of the three orthogonal planes and for the \ac{lbp}, the descriptor is defined either through concatenation of the \ac{lbp} histograms per each B-scan (\emph{gocal}-mapping), or per each \ac{sw} (\emph{local}-mapping).\\
+
+{\color{red}\emph{Global} mapping considers to extract the features from the 2D B-scans for \ac{lbp} and 3D volume for \ac{lbptop}. 
+Therefore for a volume with $d$ B-scans, the \emph{global}-\ac{lbp} feature leads to a final descriptor of size $d \times \ac{lbp}_{hist}$ and \emph{global}-\ac{lbptop} feature returns the final descriptor of size $3 \times \ac{lbp}_{hist}$.
+Here $\ac{lbp}_{hist}$ refers to the size of uniform and rotation invariant \ac{lbp} histogram which it's number of bins depends on the number of sampling points in a given neighborhood. 
+
+In \emph{local} mapping, the features are extracted from a set of 2D patches for \ac{lbp} and a set of sub-volumes for \ac{lbptop}.
+Considering a ($m \times m$) \acf{sw} for 2D \ac{lbp} and ($ m \times m \times m$)  sub-volume for \ac{lbptop}. 
+Using these elements, the \emph{local}-\ac{lbp} approach provides a final descriptor of size ($d \times N \times \ac{lbp}_{hist}$) while \emph{local}-\ac{lbptop} results in a final descriptor of size $\frac{d}{m} \times N \times 3 \times \ac{lbp}_{hist}$.
+Here $N$ is the total number of elements in each B-scan, and 3D volume, respectively.\\}
 
 \item[High-level representation] According to the chosen mapping strategy, the low-level representation can lead to a high dimensional feature space. 
 High-level representation simplifies this high dimensional feature space into a more discriminant lower space. 
