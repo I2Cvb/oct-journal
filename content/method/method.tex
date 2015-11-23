@@ -150,14 +150,36 @@ The histogram is obtained by calculating the frequency of occurrences of each of
 % % \input{./content/method/BoFFramework.tex}
 
 \subsection{Classification}\label{subsec:cls}
-Classification is a supervised learning method which intends to find a mapping $f(.)$ which relates a set of input $x$ to a set of categorical outputs $y$.
-The learning is comprehended using a training set, which contains a set of $N$ samples with their associated labels~\cite{murphy2012machine}.
+% Classification is a supervised learning method which intends to find a mapping $f(.)$ which relates a set of input $x$ to a set of categorical outputs $y$.
+% The learning is comprehended using a training set, which contains a set of $N$ samples with their associated labels~\cite{murphy2012machine}.
 
-In this study we compare the performance of different classifiers including: \ac{rf}, \ac{gb}, \ac{svm}, \ac{lr}, and $k$-\ac{nn}.
-A brief description of each of these approaches is presented in the following:
+Classification corresponds to the mapping of a set of inputs $\mathbf{x}$ into a set of categorical outputs $\mathbf{y}$ using a linear or non-linear function $f(\cdot)$. 
+In supervised learning methods, this function is defined by providing a training set of $N$ samples $\mathbf{x}_{tr}$ with their associated labels $\mathbf{y}_{tr}$.
+In the remainder of this section, we briefly summarize the supervised classification methods used in the experiments.
 
 \begin{description}
-\item[\acl{rf}] is an ensemble of decision trees and was introduced by~\cite{breiman2001random}.
+
+
+\item[\acf*{lr}]~\cite{cox1958regression} is another supervised learning which can provide associated probability of each prediction.
+As the name suggests, this classifier uses a logistic function, to estimate the probabilities.
+By defining the posterior probability for one of the classes, using logistic function (see Eq.~\ref{eq:ppc1lr}), the probability of other class is defined as $p(c_{2}|x_{i}) = 1 - p(c_{1}|x_{i})$.
+\begin{equation} \label{eq:ppc1lr}
+p(c_{1}|x_{i}) = \frac{1}{1+\exp(-w^{T}x_{i})}
+\end{equation}
+\noindent Here $w$ is a vector of regression parameters, which allows to obtain a linear combination of the input feature vector $x_{i}$.
+Using this model the unlabeled sample is assigned to the class which maximizes the posterior probability. 
+\begin{equation}
+C(x_{i}) =  \text{arg}\max\limits_{k} p(C = k| x_{i})
+\end{equation}
+In this method, finding an optimal set of parameters for $w$ is essential.
+The vectors of parameters $w$ can be inferred by finding the maximum likelihood estimates via optimization methods such as quasi-Newton method~\cite{byrd1994representations}.\\
+ 
+\item[$k$-\acf*{nn}] is one the simplest supervised machine learning classification methods.
+In this method a new unlabeled vector is assigned to the most represented class from $k$ nearest-neighbors in the features space.
+In order to avoid a tie case, the parameter $k$ is usually an odd number.
+
+
+\item[\acf*{rf}] is an ensemble of decision trees and was introduced by~\cite{breiman2001random}.
 The ensemble uses each tree to predict an output and finalizes the ultimate prediction by aggregating the outputs of all tress. 
 This classifier learns the data by training multiple decision trees on bootstrap samples of the original data. 
 Each bootstrap of $D$ dimension is used for training one decision tree and at each node, the best split among randomly ($d << D$) selected subset of descriptors is chosen. 
@@ -169,7 +191,7 @@ In the prediction stage a sample is voted by each tree and it is labeled by cons
 %Figure~\ref{fig:rftrain} shows the training stage of \ac{rf} ensemble. 
 %In the testing stage, each tree in the ensemble casts a unit vote in the final prediction and the final prediction is based on combination of all the votes.
 
-\item[\acl{gb}] is a generalization form of \ac{adb}, which is able to use real-value weak learners and minimizes different loss functions~\cite{zheng2007general}.
+\item[\acf*{gb}] is a generalization form of \ac{adb}, which is able to use real-value weak learners and minimizes different loss functions~\cite{zheng2007general}.
 \ac{gb} builds the ensemble in a greedy manner. 
 It iteratively selects the best pair of real-valued weak learners and adjust their weights so that they minimize a given differentiable loss function.
 %\begin{subequations}
@@ -188,7 +210,7 @@ Common choice for the weak learner is decision stumps or regression trees while 
 %\end{subequations}
 This minimization is carried out via gradient descent or quadratic approximation.\\
 
-\item[\acl{svm}]~\cite{vapnik1963generalized} is a sparse kernel method which aims to separate two classes by finding the best hyperplane which maximizes the margin between the two classes. 
+\item[\acf*{svm}]~\cite{vapnik1963generalized} is a sparse kernel method which aims to separate two classes by finding the best hyperplane which maximizes the margin between the two classes. 
 Maximizing the margin is equivalent to minimizing the norm of the normal vector of the hyperplane: 
 \begin{equation}
 \min\limits_{\mathbf{w}, \omega_{0}} \frac{1}{2} \Vert \mathbf{w}\Vert^{2} \qquad \text{s.t. } \quad  y_{i}(\mathbf{w}^{T}\mathbf{x_{i}} + \omega_{0}) \geq 1, i = 1: N
@@ -206,24 +228,6 @@ Therefore the optimization problem of \ac{svm} classifier is presented by:
 \label{eq:svmop}
 \end{align}
 In Eq.~\ref{eq:svmop}, the $\sum_{i} \xi_{i}$ term, describes the upper bound on the number of misclassified points and $C$ is the regularization parameter that controls the tolerance of the classifiers on the number of errors~\cite{murphy2012machine}. \\
-
-\item[\acl{lr}]~\cite{cox1958regression} is another supervised learning which can provide associated probability of each prediction.
-As the name suggests, this classifier uses a logistic function, to estimate the probabilities.
-By defining the posterior probability for one of the classes, using logistic function (see Eq.~\ref{eq:ppc1lr}), the probability of other class is defined as $p(c_{2}|x_{i}) = 1 - p(c_{1}|x_{i})$.
-\begin{equation} \label{eq:ppc1lr}
-p(c_{1}|x_{i}) = \frac{1}{1+\exp(-w^{T}x_{i})}
-\end{equation}
-\noindent Here $w$ is a vector of regression parameters, which allows to obtain a linear combination of the input feature vector $x_{i}$.
-Using this model the unlabeled sample is assigned to the class which maximizes the posterior probability. 
-\begin{equation}
-C(x_{i}) =  \text{arg}\max\limits_{k} p(C = k| x_{i})
-\end{equation}
-In this method, finding an optimal set of parameters for $w$ is essential.
-The vectors of parameters $w$ can be inferred by finding the maximum likelihood estimates via optimization methods such as quasi-Newton method~\cite{byrd1994representations}.\\
- 
-\item[$k$-\acl{nn}] is one the simplest supervised machine learning classification methods.
-In this method a new unlabeled vector is assigned to the most represented class from $k$ nearest-neighbors in the features space.
-In order to avoid a tie case, the parameter $k$ is usually an odd number.
 
 \end{description}
 
