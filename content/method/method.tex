@@ -59,7 +59,7 @@ An example of filtering using \ac{nlm} filter on \ac{oct} image is depicted in F
 \end{figure}
 
 \subsection{Features extraction}\label{subsec:feaext}
-
+{\color{red}In this research we chose to extract simple and efficient \ac{lbp} texture features with regards to each \ac{oct} slice and volumes.}
 \ac{lbp} is a texture descriptor based on the signs of the differences of a central pixel with respect to its neighboring pixels~\cite{ojala2002multiresolution}. 
 %More precisely, this descriptor encodes the intensity differences of a central pixel ($g_c$) with its neighboring pixels ($g_{p}$), within in a defined neighborhood of radius $R$. 
 These differences are encoded in terms of binary patterns as in~Eq.\,\eqref{Eq:LBP}: 
@@ -99,14 +99,15 @@ Each \ac{oct} volume can be described by its texture and we employed two strateg
 \begin{description}
 
 \item[Low-level representation] The texture descriptor of an \ac{oct} volume is defined as the concatenation of the \ac{lbp} histograms.
-Therefore, for the \ac{lbptop}, the feature descriptor is computed through the concatenation of the \ac{lbp} histograms of the three orthogonal planes and for the \ac{lbp}, the descriptor is defined either through concatenation of the \ac{lbp} histograms per each B-scan (\emph{gocal}-mapping), or per each \ac{sw} (\emph{global}-mapping).
+Therefore, for the \ac{lbptop}, the feature descriptor is computed through the concatenation of the \ac{lbp} histograms of the three orthogonal planes and for the \ac{lbp}, the descriptor is defined either through concatenation of the \ac{lbp} histograms per each B-scan (\emph{gocal}-mapping), or per each \ac{sw} (\emph{local}-mapping).
 
 \item[High-level representation] According to the chosen mapping strategy, the low-level representation can lead to a high dimensional feature space. 
 High-level representation simplifies this high dimensional feature space into a more discriminant lower space. 
 \ac{bow} approach is used for this purpose~\cite{Sivic2003}.
 This model represents the features by creating a visual dictionary or ``codebook'', from the set of low-level features.
-The set of low-level features are clustered using \textit{k}-means to create the codebook with \textit{k} defining the number of visual words.
-After creating the codebook, each of the training example is represented as a histogram of size \textit{k} obtained by calculating the frequency of occurrences of each of the \textit{k} words in the extracted features from the training example. 
+The set of low-level features are clustered using \textit{k}-means to create the codebook with \textit{k} clusters or visual words.
+After creating the codebook, each of the training example is represented as a histogram of size \textit{k}. 
+The histogram is obtained by calculating the frequency of occurrences of each of the \textit{k} words in the extracted features from the training example. 
 %\Ac{pca} and \ac{bow} among other methods, are used for this purpose~\cite{Sivic2003}. 
 %Although \ac{pca} maps the data according to their variance, \ac{bow} models represent the features by creating a visual dictionary, or ``codebook'', from the set of low-level features.
 %The set of low-level features is clustered using \textit{k}-means to create the codebook with \textit{k} defining the number of visual words.
@@ -144,6 +145,7 @@ Classification is a supervised learning method which intends to find a mapping $
 The learning is comprehended using a training set, which contains a set of $N$ samples with their associated labels~\cite{murphy2012machine}.
 
 In this study we compare the performance of different classifiers including: \ac{rf}, \ac{gb}, \ac{svm}, \ac{lr}, and $k$-\ac{nn}.
+A brief description of each of these approaches is presented in the following:
 
 \begin{description}
 \item[\acl{rf}] is an ensemble of decision trees and was introduced by~\cite{breiman2001random}.
@@ -186,14 +188,15 @@ Maximizing the margin is equivalent to minimizing the norm of the normal vector 
 \noindent This constraint intends to force all the point to be in the correct side of the decision boundary (hyperplane) with a minimum distance of 1. 
 This assumption is only valid if the data is linearly separable. 
 Thus for general cases a slack variable $\xi_{i} \geq 0 $ is introduced, which is $\xi_{i} = 0 $, if the points are on/or inside the correct margin boundary, is $0 < \xi_{i} \leq 1 $ if the points are inside the margin but in the correct side of the decision boundary and otherwise if they lie in the wrong side of decision boundary is $\xi_{i} > 1 $. 
-This assumption introduce the \textit{soft margin constraints}.
+This assumption introduces the \textit{soft margin constraints}.
+Therefore the optimization problem of \ac{svm} classifier is presented by:
 
 \begin{align}
  & \min\limits_{\mathbf{w},\omega_{0}, \mathbf{\xi}} \frac{1}{2} \Vert \mathbf{w} \Vert^{2} + C \sum\limits_{i = 1}^{N} \xi_{i} \nonumber \\ 
 \text{s.t. } & \quad \xi_{i} \geq 0, \quad y_{i}(x_{i}^{T}\mathbf{w} + \omega_{0}) \geq 1 - \xi_{i}, i = 1:N 
 \label{eq:svmop}
 \end{align}
-In this regard, the $\sum_{i} \xi_{i}$ term in Eq.~\ref{eq:svmop}, describes the upper bound on the number of misclassified points and $C$ is the regularization parameter that controls the tolerance of the classifiers on the number of errors~\cite{murphy2012machine}. \\
+In Eq.~\ref{eq:svmop}, the $\sum_{i} \xi_{i}$ term, describes the upper bound on the number of misclassified points and $C$ is the regularization parameter that controls the tolerance of the classifiers on the number of errors~\cite{murphy2012machine}. \\
 
 \item[\acl{lr}]~\cite{cox1958regression} is another supervised learning which can provide associated probability of each prediction.
 As the name suggests, this classifier uses a logistic function, to estimate the probabilities.
