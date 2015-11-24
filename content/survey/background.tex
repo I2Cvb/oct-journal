@@ -1,0 +1,41 @@
+% include the figures path relative to the master file
+% \graphicspath{ {./content/survey/figures/} }
+
+\section{Background}\label{sec:rw}
+\todo[inline]{review, add previous version of the paper}
+\deleted[id=sik, remark={Isn't this out of focus?}]{Quellec\,\textit{et al.} proposed a method for the identification of fluid-filled regions in \ac{sdoct} images of the macula based on texture features extracted in the pre-segmented retinal layers~\cite{Quellec2010}.}
+
+This section reviews up to our knowledge the works straightly addressing the problem of classifying \oct volume classification as normal or abnormal. A summary can be found in \Cref{tab:survey}.
+
+Srinivasan\,\textit{et al.}~\cite{Srinivasan2014} proposed a classification method to distinguish \ac{dme}, \ac{amd} and normal \ac{sdoct} volumes.
+%The authors in~\cite{Srinivasan2014} proposed a classification method for the detection of \ac{dme} versus \ac{amd} and normal \ac{oct} images.
+The \ac{oct} images are pre-processed by reducing the speckle noise by enhancing the sparsity in a transform-domain and flattening the retinal curvature to reduce the inter-patient variations.
+%The method is based on pre-processing to reduce the speckle noise in \ac{oct} images and flattening of the images to reduce the variation of retinal curvature among patients.
+Then, \ac{hog} are extracted for each slice of a volume and a linear \ac{svm} is used for classification.
+On a dataset of 45 patients equally subdivided into the three aforementioned classes, this method leads to a correct classification rate of $100 \%$, $100 \%$ and $86.67 \%$ for normal, \ac{dme} and \ac{amd} patients, respectively.
+%On a dataset of 45 patients containing 15 normal subjects, 15 \ac{dme} patients and 15 \ac{amd} patients, the methods achieved a correct classification of $100 \%$, $100 \%$ and $86.67 \%$ for \ac{amd}, \ac{dme} and normal cases respectively.
+
+Venhuizen\,\textit{et al.} also proposed a method for \ac{oct} images classification using the \ac{bow} models~\cite{Venhuizen2015}.
+The method starts with the detection and selection of keypoints in each individual B-scan by keeping the most salient points corresponding to the top $3 \%$ of the vertical gradient values. Then, a texton of size $9 \times 9$ pixels is extracted around each keypoint, and \ac{pca} is applied to reduce the dimension of every texton to get a feature vector of size $9$.
+All extracted feature vectors are used to create a codebook using \textit{k}-means clustering, and the obtained codebook from the training is used to represent each \ac{oct} volume as a feature vector occurrence histogram.
+Finally, this histogram is used as feature vector to train a \ac{rf} with a maximum of $100$ trees.
+The method was used to classify \ac{oct} volumes between \ac{amd} and normal cases and achieved an \ac{auc} of $0.984$ with a dataset of $384$ \ac{oct} volumes.
+
+Liu\,\textit{et al.} proposes a methodology for detecting macular pathology in \ac{oct} images using \ac{lbp} and gradient information as attributes~\cite{Liu2011}.
+The method starts by aligning and flattening the images, then a $3$-level multi-scale spatial pyramid is created and edge and \ac{lbp} histograms are extracted in each block at every level of the pyramid.
+All obtained histograms are concatenated into a global descriptor whose dimensions are reduced using \ac{pca}. Finally a \ac{svm} is used as classifier.
+The method achieved good results in detection \ac{oct} scan containing different pathology such as \ac{dme} or \ac{amd}, with an \ac{auc} of $0.93$ using a dataset of $326$ \ac{oct} scans.
+
+Lema\^itre\,\textit{et al.} propose \todo{summary of previous best result}
+
+\DTLloaddb[keys={task,Srinivasan,Venhuizen,Liu,Lemaitre}]
+          {survey}{./content/survey/tables/survey.csv}
+\begin{table}
+  \caption{Other methodologies overview}
+  \centering
+  \input{./content/survey/tables/survey.tex}
+  \label{tab:survey}
+\end{table}
+
+
+

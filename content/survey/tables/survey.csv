@@ -1,0 +1,7 @@
+task           , Srinivasan             , Venhuizen                , Liu , Lemaitre
+task           , \dme vs \amd vs normal , ???                      , ??? , \dme vs normal
+data size      , 45                     , 384                      , 326 , ??             ,
+pre-processing , filtering + flatten    , ??                       , ??  , filtering
+features       , \hog                   , \bow of texton keypoints , ??  , ??
+classifier     , \svm                   , random forest            , ??  , ??             ,
+rate           , 100\% 100\% 86.7\%     , \auc 98.4\%              , ??  , ??

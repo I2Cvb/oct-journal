@@ -1,12 +1,29 @@
+%  The subcaption package allows for subfloat figure within a single float.
+%  This package substitutes the depregated subfigure and subfig packages 
+%  allowing to have subfigures within figures, or subtables within table 
+%  floats. Subfloats have their own caption, and an optional global 
+%  caption. 
+%  >> WARNING: some journal templates from Springer and IEETrans might not
+%              be compatible with this package forcing to use the 
+%              deprecated packages instead.
+% \usepackage{subcaption}
+% \usepackage{subfig}
+\usepackage{subfigure}
+
 %  The following command loads a graphics package to include images
 %  in the document. It may be necessary to specify a DVI driver option,
 %  e.g., [dvips], but that may be inappropriate for some LaTeX
 %  installations.
 \usepackage[]{graphicx}
 
+% Document structure package
+%
+\usepackage{standalone}
 % In order to include files without having a clear page using \include*,
 % the newclude package is required
 \usepackage{newclude}
+
+\usepackage{array}
 
 % Required for acronyms
 % use \acresetall to reset the acroyms counter
@@ -45,6 +62,14 @@
 \bibliographystyle{elsarticle-num}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+% Package for nice table
+\usepackage{booktabs}
+\usepackage{datatool}
+\usepackage{multirow}
+\usepackage{arydshln}
+\usepackage{tabularx}
+\usepackage{courier}
+
 % Clever cross referencing. Using cleverref, instead of writting
 % figure~\ref{...} or equation~\ref{...}, only \cref{...} is required.
 % The package interprates the references and introduces the figure, fig.,
@@ -55,5 +80,14 @@
 \usepackage{hyperref}
 \usepackage{cleveref}
 
-% To create random text use lipsum
-\usepackage{lipsum}
+% SI units
+\usepackage{siunitx}
+% Define the money way to write
+\sisetup{
+  group-four-digits = true,
+  group-separator = {,}
+}
+\DeclareSIUnit\px{px}
+
+% Package for math symbol for vector
+\usepackage{bm}
