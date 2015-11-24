@@ -75,7 +75,11 @@ This can be done in different manners:
 This process of unfolding the curvature of the retina is known as image flattening. When flattening, an estimation of the \rpe  layer is used to modify the volume by imposing that the \rpe  should be flat.
 Our implementation modifies the proposal of Liu\,\textit{et al.}~\cite{Liu2011}, as illustrated in \Cref{fig:flatten}. Othsu thresholding is used to segment the retina from the background. A line is fitted to the bottom part of the segmentation hull, since it is assumed to be parallel to the \rpe. The image is corrected based on this line.
 
-\missingfigure{Illustration of (a) orignail image, (b) segmentation, (c) feeting curve, flattening, (d) corrected image}
+\begin{figure}[t]
+  \missingfigure{Illustration of (a) orignail image, (b) segmentation, (c) feeting curve, flattening, (d) corrected image}
+  \caption{}
+  \label{fig:flatten}
+\end{figure}
 
 
 \subsubsection{Slice alignment}

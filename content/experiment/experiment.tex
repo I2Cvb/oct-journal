@@ -4,7 +4,7 @@
 \section{Experiments and Validation}\label{sec:exp}
 
 
-To evaluate the effects and influence of different stages of our framework, we perform various tests using our own dataset and sake of comparison, the optimal configurations are evaluated on a public dataset. A detailed description of both datasets can be found in \Cref{sec:exp:dataset}.
+To evaluate the effects and influence of different stages of our framework, we perform various tests using our own dataset and sake of comparison, the optimal configurations are evaluated on a public dataset. A detailed description of both datasets can be found in \Cref{sec:exp:datasets}.
 For all the experiments, \ac{lbp} and \ac{lbptop} features are extracted for different sampling points of 8, 16, and 24 for radius of 1, 2, and 3, respectively.
 As previously mentioned, two different mapping strategies, \emph{local} and \emph{global}, are used.
 
@@ -112,7 +112,7 @@ In this experiment, the \ac{bow} algorithm is performed using various number of 
 The words are randomly selected using $k$-means++ algorithm and the features are mapped to their nearest word to create the final clusters.
 In this experiment in order to asses the effect of number of words, simple linear classifier such as \ac{lr} is used.
 The number of words associated with highest \ac{acc} and \ac{f1} score, is selected as the optimum number of words.
-Table~\ref{tab:Table1} shows the obtained results of this experiment.
+Table~\ref{tab:table1} shows the obtained results of this experiment.
 The optimum number of words and the achieved \ac{acc} and \ac{f1} of \ac{lr} classifier for different configurations are listed in this table.
 
 \input{content/experiment/Table1.tex}
@@ -120,6 +120,11 @@ The optimum number of words and the achieved \ac{acc} and \ac{f1} of \ac{lr} cla
 
 Figure.~\ref{fig:RBOW} shows the obtained graphs for some of the configurations. \\
 
+\begin{figure}[t]
+  \missingfigure{fig:RBOW}
+  \caption{}
+  \label{fig:RBOW}
+\end{figure}
  
 \subsection{Experiment \#2}
 \deleted[id=sik]{Experiment \#2} is performed for high-level features on SERI dataset as well. 
