@@ -2,33 +2,35 @@
   \begin{table}[ht]
 \caption{The obtained results of experiment \#1. Optimum number of words for each configuration as a result of \ac{lr} Classification, for high-level representation of \emph{global} and \emph{local}-\ac{lbp}, and \emph{local}-\ac{lbptop} features with different pre-processing. The pre-processing includes: \ac{nf}, \ac{f}, \ac{fal}, and \ac{fac}.}
 \centering
-\scriptsize{
-\begin{tabularx}{1.02\linewidth}{ll  lcccccr	ccc	lcccccr	ccc	lcccccr}
+
+\footnotesize{
+\resizebox{1\linewidth}{!}{
+\begin{tabular}{ll  lcr	c	lcr	c lcr}
 \toprule
-Features & Pre-processing &    \multicolumn{7}{c}{$8^{riu2}$}  & & & & \multicolumn{7}{c}{$16^{riu2}$} & & & &  \multicolumn{7}{c}{$24^{riu2}$} \\
-  \cmidrule(l){3-9}  \cmidrule(l){13-19}  \cmidrule(l){23-29}
-   & &  	\ac{acc}\% &  &  & \ac{f1}\% &  &  & W\# &  &  &  & \ac{acc}\% & & & \ac{f1}\% & &  & W\# &  &  &  & \ac{acc}\% & &  & \ac{f1}\% & & & W\#\\
+Features & Pre-processing &    \multicolumn{3}{c}{$8^{riu2}$}  & & \multicolumn{3}{c}{$16^{riu2}$} & & \multicolumn{3}{c}{$24^{riu2}$} \\
+  \cmidrule(l){3-5}  \cmidrule(l){7-9}  \cmidrule(l){11-13}
+   & &  	\ac{acc}\% & \ac{f1}\% & W\# &  & \ac{acc}\% & \ac{f1}\% & W\# &  & \ac{acc}\% & \ac{f1}\% & W\#\\
 \midrule
   	\emph{global}-\ac{lbp}		\\
- 	& \acs{nf} & 81.2 &  &  & 78.5 &  &  & 500 & & & & 62.5  &  &  & 58.06 &  &  & 80 & & & & 62.5  &  &  &  62.5  &  &  & 80  \\
-	& \acs{f}  & 71.9 &  &  & 71 &  &  & 400 & & & & 68.7 &  &  & 66.7 &  &  & 300 & & & & 68.7  &  &  &  66.7 &  &  & 300	 \\
-	& \acs{fa} & 71.9 &  &  & 71 &  &  & 500 & & & & 71.9 &  &  & 71 &  &  & 200 & & & &  75 &  &  &  68.7 &  &  & 500	 \\
-	& \acs{fac}& 75 &  &  & 73.3 &  &  & 500 & & & & 78.1 &  &  & 75.8 &  &  & 500 & & & & 68.7 &  &  & 68.7 &  &  & 90	 \\
+ 	& \acs{nf} & 81.2 &  78.5 &  500 & & 62.5 & 58.06 & 80  & & 62.5  & 62.5 & 80  \\
+	& \acs{f}  & 71.9 &  71   &  400 & & 68.7 & 66.7  & 300 & & 68.7  & 66.7 & 300	 \\
+	& \acs{fa} & 71.9 &  71   &  500 & & 71.9 & 71    & 200 & & 75    & 68.7 & 500	 \\
+	& \acs{fac}& 75   &  73.3 &  500 & & 78.1 & 75.8  & 500 & & 68.7  & 68.7 & 90	 \\
 \hdashline \noalign{\vskip 3pt}
  	\emph{local}-\ac{lbp}		\\
- 	& \acs{nf} & 75   &  &  & 75   &  &  & 70 & & & & 65.6  &  &  & 64.5 &  &  & 90 & & & & 62.5  &  &  &  60  &  &  & 30  \\
-	& \acs{f}  & 75 	  &  &  & 73.3 &  &  & 30 & & & & 71.8 &  &  & 61 &  &  & 70 & & & & 62.5  &  &  &  62.5 &  &  & 100	 \\
-	& \acs{fa} & 75   &  &  & 69   &  &  & 40 & & & & 71.9  &  &  & 71 &  &  & 200 & & & &  68.7 &  &  &  66.7 &  &  & 10	 \\
-	& \acs{fac}& 68.7 &  &  & 68.7 &  &  & 300 & & & &  65.6 &  &  & 64.5 &  &  & 100 & & & & 65.6 &  &  & 64.5 &  &  & 100	 \\
+ 	& \acs{nf} & 75   & 75   & 70 & & 65.6  & 64.5 & 90 & &  62.5  & 60   & 30  \\
+	& \acs{f}  & 75 	  & 73.3 & 30 & & 71.8  & 61   & 70 & &  62.5  & 62.5 & 100	 \\
+	& \acs{fa} & 75   & 69   & 40 & & 71.9  & 71   & 200 & &  68.7 & 66.7 & 10	 \\
+	& \acs{fac}& 68.7 & 68.7 & 300 & & 65.6 & 64.5 & 100 & & 65.6  & 64.5 & 100	 \\
 \hdashline \noalign{\vskip 3pt}
  	\emph{local}-\ac{lbptop}		\\
- 	& \acs{nf}	& 68.7 &  &  & 68.7 &  &  & 400 & & & &  75 &  &  & 75  &  &  & 500 & & & & 71.9 &  &  & 71 &  &  & 60	 \\
-	& \acs{f}	& 68.7 &  &  & 68.7 &  &  & 300 & & & &  68.7 &  &  & 66.7  &  &  & 50 & & & &  75 &  &  &  76.5  &  &  & 80	 \\
-	& \acs{fal}	& 75 &  &  & 73.3 &  &  & 100 & & & & 75 &  &  & 73.3 &  &  & 90 & & & &  75  &  &  & 69 &  &  & 70	 \\
-	& \acs{fac}	& 71.9 &  &  & 69  &  &  & 400 & & & & 75  &  &  & 73.3 &  &  & 100 & & & & 75  &  &  & 73.3 &  &  & 60	 \\
+ 	& \acs{nf}	& 68.7 & 68.7 & 400 & & 75   & 75   & 500 & & 71.9 & 71 &60	 \\
+	& \acs{f}	& 68.7 & 68.7 & 300 & & 68.7 & 66.7 & 50  & & 75   & 76.5  & 80	 \\
+	& \acs{fal}	& 75   & 73.3 & 100 & & 75   & 73.3 & 90  & & 75   & 69 &  70	 \\
+	& \acs{fac}	& 71.9 & 69   & 400 & & 75   & 73.3 & 100 & & 75   & 73.3 &60	 \\
 
 \bottomrule
-\end{tabularx}}
+\end{tabular}}}
 \label{tab:Table1}
 \end{table}
 %\end{tiny}
