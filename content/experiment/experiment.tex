@@ -3,22 +3,8 @@
 
 \section{Experiments and Validation}\label{sec:exp}
 
-\subsection{Datasets}
 
-In this work, we use two different dataset. 
-Although our framework is implemented based on our dataset (SERI), we use duke dataset as well for further validation of proposed framework.
-\begin{description}
-
-\item[SERI]- datasets were acquired by Singapore Eye Research Institute (SERI), using CIRRUS TM (Carl Zeiss Meditec, Inc., Dublin, CA) \ac{sdoct} device. The datasets consist of 32 \ac{oct} volumes (16 \ac{dme} and 16 normal cases). Each volume contains 128 B-sane with  dimension of 512 $\times$ 1024 pixels.  All \ac{sdoct} images are read and assessed by trained graders and identifies as normal or \ac{dme} cases based on evaluation of retinal thickening, hard exudates, intraretinal cystoid space formation and subretinal fluid.
-
-\item[Duke] - datasets published by Srinivasan et al. \cite{Srinivasan2014} were acquired in Institutional Review Board-approved protocols using Spectralis \ac{sdoct} (Heidelberg Engineering Inc., Heidelberg, Germany) imaging at Duke University, Harvard University and the University of Michigan. This datasets consist of 45 \ac{oct} volumes (15 \ac{amd}, 15 \ac{dme} and 15 normal). In this study we only consider a subset of the original data containing 15 \ac{dme} and 15 normal \ac{oct} volumes.
-
-\end{description}
-
-
-\subsection{Experiments \& Results}
-To evaluate the effects and influence of different stages of our framework, we perform various tests.
-Majority of the experiments are performed on SERI dataset and for the sake of comparison, the optimal configurations are evaluated on Duke dataset.
+To evaluate the effects and influence of different stages of our framework, we perform various tests using our own dataset and sake of comparison, the optimal configurations are evaluated on a public dataset. A detailed description of both datasets can be found in \Cref{sec:exp:dataset}.
 For all the experiments, \ac{lbp} and \ac{lbptop} features are extracted for different sampling points of 8, 16, and 24 for radius of 1, 2, and 3, respectively.
 As previously mentioned, two different mapping strategies, \emph{local} and \emph{global}, are used.
 
@@ -94,7 +80,22 @@ Equation.~\ref{eq:accf1} shows the formulation of these measurements.
 \label{eq:accf1}
 \end{align}
 
-The performed experiments are listed in the following:\\
+
+\subsection{Datasets}\label{sec:exp:datasets}
+
+The majority of the development of our framework has been carried out using our own dataset (SERI) and to facilitate further comparison we use the Duke public dataset to evaluate our optimal configurations.
+
+\begin{description}
+
+\item[SERI]- datasets were acquired by Singapore Eye Research Institute (SERI), using CIRRUS TM (Carl Zeiss Meditec, Inc., Dublin, CA) \ac{sdoct} device. The datasets consist of 32 \ac{oct} volumes (16 \ac{dme} and 16 normal cases). Each volume contains 128 B-sane with  dimension of 512 $\times$ 1024 pixels.  All \ac{sdoct} images are read and assessed by trained graders and identifies as normal or \ac{dme} cases based on evaluation of retinal thickening, hard exudates, intraretinal cystoid space formation and subretinal fluid.
+
+\item[Duke] - datasets published by Srinivasan et al. \cite{Srinivasan2014} were acquired in Institutional Review Board-approved protocols using Spectralis \ac{sdoct} (Heidelberg Engineering Inc., Heidelberg, Germany) imaging at Duke University, Harvard University and the University of Michigan. This datasets consist of 45 \ac{oct} volumes (15 \ac{amd}, 15 \ac{dme} and 15 normal). In this study we only consider a subset of the original data containing 15 \ac{dme} and 15 normal \ac{oct} volumes.
+
+\end{description}
+
+
+% \subsection{Experiments \& Results}
+% The performed experiments are listed in the following:\\
 %%Both datasets are filtered to attenuate the effect of speckle noise.
 %%SIRE dataset is processed using \ac{nlm} as stated in Sect.\,\ref{subsec:prepro}.
 %%The different parameters were empirically tested and fixed such that the patch size, the search window and the filtering parameter were set to $(15 \times 15)$, $(35 \times 35)$ and $0.4$, respectively.
@@ -102,10 +103,9 @@ The performed experiments are listed in the following:\\
 %%For both datasets, \ac{lbp} and \ac{lbptop} features are extracted for different sampling points of 8, 16 and 24 for radius of 1, 2 and 3, respectively.
 %%Two different mapping strategies are used: (i) \emph{global} mapping corresponding to the 2D B-scan for \ac{lbp} or the 3D volume for \ac{lbptop} and (ii) \emph{local} mapping considering to a set of 2D \ac{sw} of size $(7 \times 7)$ for \ac{lbp} or the 3D sub-volume for \ac{lbptop} of size $(7 \times 7 \times 7)$.
 
-\begin{description}
 
-\item[Experiment \#1] is carried on SERI dataset.
-This experiment is conducted to find the optimal number of words for \ac{bow} high-level feature representation.
+\subsection{Experiment \#1}
+This experiment, conducted on SERI dataset, is performed to find the optimal number of words for \ac{bow} high-level feature representation.
 \emph{Global} and \emph{local}-\ac{lbp} and \emph{local}-\ac{lbptop} feature descriptors are re-represented using \ac{bow} approach.
 In this experiment, the \ac{bow} algorithm is performed using various number of words in the range of $\{10, 20, 30, \cdots,$
  $100, 200, \cdots, 500, 1000\}$.
@@ -124,29 +124,32 @@ Figure.~\ref{fig:RBOW} shows the obtained graphs for some of the configurations.
 
 
  
-\item[Experiment \#2] is performed for high-level features on SERI dataset as well. 
+\subsection{Experiment \#2}
+\deleted[id=sik]{Experiment \#2} is performed for high-level features on SERI dataset as well. 
 In this experiment using the optimum number of words which are obtained from the previous experiment, the low-level feature sets with regards to different pre-processing configurations are re-represented using \ac{bow} and $k$-means clustering approach and are classified using $k$-\ac{nn} classifier.
-{\color{red}$k$-\ac{nn} classifier was chosen since it provides a sense of} 
+\added[id=moj]{$k$-\ac{nn} classifier was chosen since it provides a sense of} 
 % local and global \ac{lbp} and local \ac{lbptop}
 Table~\ref{tab:table2} shows the obtained results from this experiment.\\
 
 
-\item[Experiment \#3] is dedicated to compare the performance of different classifiers.
+\subsection{Experiment \#3}
+\deleted[id=sik]{Experiment \#3} is dedicated to compare the performance of different classifiers.
 This experiment is also performed on SERI dataset and for high-level features.
-The {\color{red} best configurations} of feature set and pre-processing based on the previous experiment is classified with different classifiers such as \ac{rf}, \ac{gb}, \ac{svm}, \ac{lr} and $k$-\ac{nn}.
+The \added[id=moj]{best configurations} of feature set and pre-processing based on the previous experiment is classified with different classifiers such as \ac{rf}, \ac{gb}, \ac{svm}, \ac{lr} and $k$-\ac{nn}.
 The obtained results of this experiment is listed in Table.~\ref{tab:tab3}.\\
 
 
-\item[Experiment \#4] is conducted for low-level features.
+\subsection{Experiment \#4}
+\deleted[id=sik]{Experiment \#4} is conducted for low-level features.
 The \emph{global} \ac{lbp} and \ac{lbptop} features are classified using the same classifiers as previous experiments.
 The obtained results from this experiment is listed in Table.~\ref{tab:table4}.\\
  
-\item[Experiment \#5] is performed to evaluate the performance of our proposed framework considering different dataset.
+\subsection{Experiment \#5}
+\deleted[id=sik]{Experiment \#5} is performed to evaluate the performance of our proposed framework considering different dataset.
 In this regards, the best configuration in terms of low-level or high-level representations, number of words and classifiers obtained from the previous experiments are performed on Duke dataset.
 A comparison of the obtained results from SERI and Duke datasets are presented in Table.~\ref{tab:table5}.
   
 
-\end{description}
 % The SERI datasets are provided in complete \ac{oct} volumes by 512$\times$1024$\times$128 dimensions. Using this datasets, first the three low-level features such as \ac{lbp}, \ac{lbp}+\ac{pca} and \ac{lbptop} are extracted. The rotation invariant uniform ($riu2$) descriptors are calculated with the $P$ number of 8, 16 and 24 for the radius if 1, 2 and 3 respectively. The features are classified using RF with 100 tress. Table \ref{tab:LbPTopVolumeResult} shows the relative results for $8riu2$, $16riu2$, $24riu2$ and their combination $8riu2 + 16riu2 + 24riu2$. The results are presented in terms of \ac{se} and \ac{sp} percentages.
 
 % The second experiment is carried out using high-level features and \ac{bow} approach, on SERI datasets. The first high-level feature \ac{lbp}+\ac{bow} is obtained by applying \ac{bow} with 32 visual-words on the previously low-level \ac{lbp} features (applied on each B-scan). The second and third high-level descriptors are obtained using a dense approach by applying the \ac{sw} of size (7$\times$7) on each B-scan and \ac{sw} of size (7$\times$7$\times$7) to the whole volume respectively. \ac{lbp}+\ac{bow}+\ac{sw} represent the second high-level feature where the 2D-\ac{lbp} features are extracted for each sliding window on each B-scan and the visual-words are selected from the pool, consisting of their histograms. The third high-level feature, \ac{lbptop}+\ac{bow}+\ac{sw}, is defined using \ac{lbptop}. By using the sliding window the 3D-\ac{lbp} features are extracted for each patch. Same as previous experiment with low-level features, the descriptors are calculated with the $P$ number of 8, 16 and 24 for the radius if 1, 2 and 3 respectively. The obtained results of this experiment are illustrated in Tab. \ref{tab:SERIBoWResult}.
