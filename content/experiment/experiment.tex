@@ -4,29 +4,20 @@
 \section{Experiments and Validation}\label{sec:exp}
 
 
-To evaluate the effects and influence of different stages of our framework, we perform various tests using our own dataset and sake of comparison, the optimal configurations are evaluated on a public dataset. A detailed description of both datasets can be found in \Cref{sec:exp:datasets}.
+To evaluate the effects and influence of different stages of our framework, we perform various tests using our own dataset.
+% and sake of comparison, the optimal configurations are evaluated on a public dataset.
+A detailed description of the used dataset can be found in \Cref{sec:exp:datasets}.
 For all the experiments, \ac{lbp} and \ac{lbptop} features are extracted for different sampling points of 8, 16, and 24 for radius of 1, 2, and 3, respectively.
-As previously mentioned, two different mapping strategies, \emph{local} and \emph{global}, are used.
+As previously mentioned, two different mapping strategies, \emph{local} and \emph{global}, are used, where for \emph{local} mapping, we consider a ($7 \times 7$) \acf{sw} for 2D \ac{lbp} and ($ 7 \times 7 \times 7$) sub-volume for \ac{lbptop}.
 
-\added[id=moj]{
-In this research we consider a ($7 \times 7$) \acf{sw} for 2D \ac{lbp} and ($ 7 \times 7 \times 7$)  sub-volume for \ac{lbptop}.}
-%\emph{Global} mapping considers to extract the features from the 2D B-scans for \ac{lbp} and 3D volume for \ac{lbptop}. 
-%Therefore for a volume with $d$ B-scans, the \emph{global}-\ac{lbp} feature leads to a final descriptor of size $d \times \ac{lbp}_{hist}$ and \emph{global}-\ac{lbptop} feature returns the final descriptor of size $3 \times \ac{lbp}_{hist}$.
-%Here $\ac{lbp}_{hist}$ refers to the size of uniform and rotation invariant \ac{lbp} histogram which it's number of bins depends on the number of sampling points in a given neighborhood. 
-%
-%In \emph{local} mapping, the features are extracted from a set of 2D patches for \ac{lbp} and a set of sub-volumes for \ac{lbptop}.
-%In this research we consider a ($7 \times 7$) \acf{sw} for 2D \ac{lbp} and ($ 7 \times 7 \times 7$)  sub-volume for \ac{lbptop}. 
-%Using these elements, the \emph{local}-\ac{lbp} approach provides a final descriptor of size ($d \times N \times \ac{lbp}_{hist}$) while \emph{local}-\ac{lbptop} results in a final descriptor of size $\frac{d}{7} \times N \times 3 \times \ac{lbp}_{hist}$.
-%Here $N$ is the total number of elements in each B-scan, and 3D volume, respectively.
-
-The \emph{global} and \emph{local} extracted features are then presented in low or high representation.
+The \emph{global} and \emph{local} extracted features are then presented in low or high level representation.
 As previously mentioned, \ac{bow} approach is used for high-level representation.
 In this regard, to find the optimal number of ``visual-words'' ($k$), we perform a preliminary experiment. 
 
 Using \ac{bow} approach to find the optimal number of ``visual-words'' ($k$), we perform a preliminary classification where different number of words randomly are selected.
 In this setup, the words are randomly selected using $k$-means++ algorithm~\cite{arthur2007k}.
 This test is performed for all the high-level feature sets considering different pre-processing steps.
-The obtained results of this test is represented in experiment~\#1.
+The obtained results of this test is represented in experiment~\#2.
 Beside this experiment, four other experiments are performed which are explained in the following.
 For the sake of comparison all the experiment are performed using all the aforementioned classifiers.
 However only the relevant part and results related to our experiment is represented within the paper, while the rest are mentioned in the appendix.
@@ -127,7 +118,7 @@ Figure.~\ref{fig:RBOW} shows the obtained graphs for some of the configurations.
 \end{figure}
  
 \subsection{Experiment \#2}
-\deleted[id=sik]{Experiment \#2} is performed for high-level features on SERI dataset as well. 
+ is performed for high-level features on SERI dataset as well. 
 In this experiment using the optimum number of words which are obtained from the previous experiment, the low-level feature sets with regards to different pre-processing configurations are re-represented using \ac{bow} and $k$-means clustering approach and are classified using $k$-\ac{nn} classifier.
 \added[id=moj]{$k$-\ac{nn} classifier was chosen since it provides a sense of} 
 % local and global \ac{lbp} and local \ac{lbptop}
@@ -136,20 +127,20 @@ Table~\ref{tab:table2} shows the obtained results from this experiment.\\
 \input{content/experiment/Table2.tex}
 
 \subsection{Experiment \#3}
-\deleted[id=sik]{Experiment \#3} is dedicated to compare the performance of different classifiers.
+ is dedicated to compare the performance of different classifiers.
 This experiment is also performed on SERI dataset and for high-level features.
 The \added[id=moj]{best configurations} of feature set and pre-processing based on the previous experiment is classified with different classifiers such as \ac{rf}, \ac{gb}, \ac{svm}, \ac{lr} and $k$-\ac{nn}.
 The obtained results of this experiment is listed in Table.~\ref{tab:tab3}.\\
 
 
 \subsection{Experiment \#4}
-\deleted[id=sik]{Experiment \#4} is conducted for low-level features.
+is conducted for low-level features.
 The \emph{global} \ac{lbp} and \ac{lbptop} features are classified using the same classifiers as previous experiments.
 The obtained results from this experiment is listed in Table.~\ref{tab:table4}.\\
 \input{content/experiment/Table4.tex}
 
 \subsection{Experiment \#5}
-\deleted[id=sik]{Experiment \#5} is performed to evaluate the performance of our proposed framework considering different dataset.
+ is performed to evaluate the performance of our proposed framework considering different dataset.
 In this regards, the best configuration in terms of low-level or high-level representations, number of words and classifiers obtained from the previous experiments are performed on Duke dataset.
 A comparison of the obtained results from SERI and Duke datasets are presented in Table.~\ref{tab:table5}.
   
