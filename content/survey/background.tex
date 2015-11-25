@@ -2,9 +2,6 @@
 % \graphicspath{ {./content/survey/figures/} }
 
 \section{Background}\label{sec:rw}
-\todo[inline]{review, add previous version of the paper}
-\deleted[id=sik, remark={Isn't this out of focus?}]{Quellec\,\textit{et al.} proposed a method for the identification of fluid-filled regions in \ac{sdoct} images of the macula based on texture features extracted in the pre-segmented retinal layers~\cite{Quellec2010}.}
-
 This section reviews the works straightly addressing the problem of classifying \oct volumes as normal or abnormal. A summary can be found in \Cref{tab:survey}.
 %This section reviews, up to our knowledge, the works straightly addressing the problem of classifying \oct volume as normal or abnormal. A summary can be found in \Cref{tab:survey}.
 
@@ -16,27 +13,35 @@ Then, \ac{hog} are extracted for each slice of a volume and a linear \ac{svm} is
 On a dataset of 45 patients equally subdivided into the three aforementioned classes, this method leads to a correct classification rate of $100 \%$, $100 \%$ and $86.67 \%$ for normal, \ac{dme} and \ac{amd} patients, respectively.
 %On a dataset of 45 patients containing 15 normal subjects, 15 \ac{dme} patients and 15 \ac{amd} patients, the methods achieved a correct classification of $100 \%$, $100 \%$ and $86.67 \%$ for \ac{amd}, \ac{dme} and normal cases respectively.
 
-Venhuizen\,\textit{et al.} also proposed a method for \ac{oct} images classification using the \ac{bow} models~\cite{Venhuizen2015}.
-The method starts with the detection and selection of keypoints in each individual B-scan by keeping the most salient points corresponding to the top $3 \%$ of the vertical gradient values. Then, a texton of size $9 \times 9$ pixels is extracted around each keypoint, and \ac{pca} is applied to reduce the dimension of every texton to get a feature vector of size $9$.
-All extracted feature vectors are used to create a codebook using \textit{k}-means clustering, and the obtained codebook from the training is used to represent each \ac{oct} volume as a feature vector occurrence histogram.
+Venhuizen\,\textit{et al.} proposed a method for \ac{oct} images classification using the \ac{bow} models~\cite{Venhuizen2015}.
+The method starts with the detection and selection of keypoints in each individual B-scan, by keeping the most salient points corresponding to the top $3 \%$ of the vertical gradient values. Then, a texton of size $9 \times 9$ pixels is extracted around each keypoint, and \ac{pca} is applied to reduce the dimension of every texton to get a feature vector of size $9$.
+All extracted feature vectors are used to create a codebook using \textit{k}-means clustering.
+Then, the obtained codebook from the training is used to represent each \ac{oct} volume as a feature {\color{red}vector occurrence histogram}.
 Finally, this histogram is used as feature vector to train a \ac{rf} with a maximum of $100$ trees.
 The method was used to classify \ac{oct} volumes between \ac{amd} and normal cases and achieved an \ac{auc} of $0.984$ with a dataset of $384$ \ac{oct} volumes.
 
-Liu\,\textit{et al.} proposes a methodology for detecting macular pathology in \ac{oct} images using \ac{lbp} and gradient information as attributes~\cite{Liu2011}.
-The method starts by aligning and flattening the images, then a $3$-level multi-scale spatial pyramid is created and edge and \ac{lbp} histograms are extracted in each block at every level of the pyramid.
-All obtained histograms are concatenated into a global descriptor whose dimensions are reduced using \ac{pca}. Finally a \ac{svm} is used as classifier.
+Liu\,\textit{et al.} proposed a methodology for detecting macular pathology in \ac{oct} images using \ac{lbp} and gradient information as attributes~\cite{Liu2011}.
+The method starts by aligning and flattening the images and creating a $3$-level multi-scale spatial pyramid.
+The edge and \ac{lbp} histograms are then extracted from each block of every level of the pyramid.
+%is created and edge and \ac{lbp} histograms are extracted in each block at every level of the pyramid.
+All the obtained histograms are concatenated into a global descriptor whose dimensions are reduced using \ac{pca}.
+Finally a \ac{svm} is used as classifier.
 The method achieved good results in detection \ac{oct} scan containing different pathology such as \ac{dme} or \ac{amd}, with an \ac{auc} of $0.93$ using a dataset of $326$ \ac{oct} scans.
 
-Lema\^itre\,\textit{et al.} propose a standard classification procedure to differentiate between \dme and normal \sdoct volumes.
-The data is pre-processed using \nlm filtering. 
-The volumes are mapped into a discrete set of structures namely local when these structures correspond to patches, or global when the structures corresponds to volume slices or the whole volume.
-These structures are described in terms of \lbp, or \lbptop, and when necessary to represent each volume as a single feature vector, these structure sets are encoded either using histograms, \pca or \bow, to present the volumes to a \rf classifier.
+{\color{red} In our later study, }\added[id= sik]{Lema\^itre\,\textit{et al.} proposed a standard classification procedure to differentiate between \ac{dme} and normal \ac{sdoct} volumes.
+The data is pre-processed using \ac{nlm} filtering.
+The volumes are mapped into discrete set of structures namely local when these structures correspond to patches, or global when the structures correspond to volume slices or the whole volume.
+These structures are described in terms of \ac{lbp}, or \ac{lbp} from \ac{lbptop}, and when necessary to represent each volume as a single feature vector, these structures are encoded either using histogram, \ac{pca} or \ac{bow}, to present the volumes to a \ac{rf} classifeir.
+This methodology was tested against Venhuizen\,\textit{et al.}~\cite{Venhuizen2015} using public and non-public datasets showing an improvement within the results achieving a \ac{se} of 87.5\% and a \ac{sp} of 100\%.}
 
-The methodology was tested against Venhuizen\,\textit{et al.}~\cite{Venhuizen2015} using public and non-public datasets showing an improvement within the results, achieving a \ac{se} of $87.5\%$ and a \ac{sp} of $100\%$.
-
-
-
-
+\added[id = moj]{In our latest study~\cite{Lemaintre2015miccaiOCT}, we proposed a classification framework for differentiating \ac{dme} and normal \ac{sdoct} volumes.
+In this work, we proposed to pre-process the volumes using \ac{nlm} filtering and mapped them either into a set of structures, corresponding to patches from slices or volumes (local) or a single structure per slice or volume (global).
+From the considered structures we proposed to extract \ac{lbp} and \ac{lbptop} features and represent them using histogram, \ac{pca} or \ac{bow} algorithm.
+The represented features were then classified using \ac{rf} classifier.
+This methodology was tested on public and non-public dataset and the obtained results revealed improvement against Venhuizen\,\textit{et al.}~\cite{Venhuizen2015} algorithm by achieving the \ac{se} and \ac{sp} of 87.5\% and 100\%, respectively.
+As stated in previous section, this research is a continue of our previous work, where we intend to evaluate the influence of different pre-processing, \ac{bow} representation and various classifiers.
+Our proposed pipeline with detail description of each step is presented in the following section
+ }
 \DTLloaddb[keys={task,Srinivasan,Venhuizen,Liu,Lemaitre}]
           {survey}{./content/survey/tables/survey.csv}
 \begin{table}
