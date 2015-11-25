@@ -20,10 +20,13 @@
 
 %% Incldue the content without .tex extension
 \acresetall  % reset the acronyms from the abstract
-\input{content/intro/intro}          % the file wihtout .tex
-\input{content/survey/background}    % the file wihtout .tex
-\input{content/method/method}
-\input{content/experiment/experiment}
+\begingroup  % Workaround with newclude package and elsarticle class
+\let\clearpage\relax
+\include{content/intro/intro}          % the file wihtout .tex
+\include{content/survey/background}    % the file wihtout .tex
+\include{content/method/method}
+\include{content/experiment/experiment}
+\endgroup
 %\input{content/results/results}
 
 \section{Conclusions}\label{sec:con}
