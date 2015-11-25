@@ -1,36 +1,27 @@
-%\begin{tiny}
-  \begin{table}[ht]
-\caption{The obtained results of experiment \#1. Optimum number of words for each configuration as a result of \ac{lr} Classification, for high-level representation of \emph{global} and \emph{local}-\ac{lbp}, and \emph{local}-\ac{lbptop} features with different pre-processing. The pre-processing includes: \ac{nf}, \ac{f}, \ac{fal}, and \ac{fac}.}
+
+  \begin{table}[H]
+\caption{Obtained results using SERI datasets.}% using \ac{rf} with 100 trees. High-level features with \ac{bow} are obtained with $K$ = 32 visual-words.}
 \centering
-
-\footnotesize{
 \resizebox{1\linewidth}{!}{
-\begin{tabular}{ll  lcr	c	lcr	c lcr}
-\toprule
-Features & Pre-processing &    \multicolumn{3}{c}{$8^{riu2}$}  & & \multicolumn{3}{c}{$16^{riu2}$} & & \multicolumn{3}{c}{$24^{riu2}$} \\
-  \cmidrule(l){3-5}  \cmidrule(l){7-9}  \cmidrule(l){11-13}
-   & &  	\ac{acc}\% & \ac{f1}\% & W\# &  & \ac{acc}\% & \ac{f1}\% & W\# &  & \ac{acc}\% & \ac{f1}\% & W\#\\
-\midrule
-  	\emph{global}-\ac{lbp}		\\
- 	& \acs{nf} & 81.2 &  78.5 &  500 & & 62.5 & 58.06 & 80  & & 62.5  & 62.5 & 80  \\
-	& \acs{f}  & 71.9 &  71   &  400 & & 68.7 & 66.7  & 300 & & 68.7  & 66.7 & 300	 \\
-	& \acs{fal} & 71.9 &  71   &  500 & & 71.9 & 71    & 200 & & 75    & 68.7 & 500	 \\
-	%& \acs{fac}& 75   &  73.3 &  500 & & 78.1 & 75.8  & 500 & & 68.7  & 68.7 & 90	 \\
-\hdashline \noalign{\vskip 3pt}
- 	\emph{local}-\ac{lbp}		\\
- 	& \acs{nf} & 75   & 75   & 70 & & 65.6  & 64.5 & 90 & &  62.5  & 60   & 30  \\
-	& \acs{f}  & 75 	  & 73.3 & 30 & & 71.8  & 61   & 70 & &  62.5  & 62.5 & 100	 \\
-	& \acs{fal} & 75   & 69   & 40 & & 71.9  & 71   & 200 & &  68.7 & 66.7 & 10	 \\
-	%& \acs{fac}& 68.7 & 68.7 & 300 & & 65.6 & 64.5 & 100 & & 65.6  & 64.5 & 100	 \\
-\hdashline \noalign{\vskip 3pt}
- 	\emph{local}-\ac{lbptop}		\\
- 	& \acs{nf}	& 68.7 & 68.7 & 400 & & 75   & 75   & 500 & & 71.9 & 71 &60	 \\
-	& \acs{f}	& 68.7 & 68.7 & 300 & & 68.7 & 66.7 & 50  & & 75   & 76.5  & 80	 \\
-	& \acs{fal}	& 75   & 73.3 & 100 & & 75   & 73.3 & 90  & & 75   & 69 &  70	 \\
-	%& \acs{fac}	& 71.9 & 69   & 400 & & 75   & 73.3 & 100 & & 75   & 73.3 &60	 \\
 
+\begin{tabular}{l lr c lr c lr  c  lr c lr c lr}
+\toprule
+Features & \multicolumn{8}{c}{SERI dataste} & & \multicolumn{8}{c}{Duke dataset}\\
+\cmidrule(l){2-9} \cmidrule(l){11-18}
+ 	& \multicolumn{2}{c}{$8^{riu2}$}& & \multicolumn{2}{c}{$16^{riu2}$}& &\multicolumn{2}{c}{$24^{riu2}$} & & \multicolumn{2}{c}{$8^{riu2}$}& & \multicolumn{2}{c}{$16^{riu2}$}& &\multicolumn{2}{c}{$24^{riu2}$}\\
+  \cmidrule(l){2-3}  \cmidrule(l){5-6}  \cmidrule(l){8-9} \cmidrule(l){11-12}  \cmidrule(l){14-15}  \cmidrule(l){17-18}
+	       & \ac{se} & \ac{sp} & & \ac{se} & \ac{sp} & &  \ac{se} & \ac{sp} & &  \ac{se} & \ac{sp} & &  \ac{se} & \ac{sp} & &  \ac{se} & \ac{sp} \\
+\midrule
+  	%\ac{lbp}					& 43.7 & 43.7 & & 37.5 & 50.0 & & 50.00 & 62.50  \\
+ 	\emph{global}-\ac{lbptop}				       & 56.2 & 62.5 & & \textbf{87.5} & \textbf{75.0} & & 68.7 & 68.7 & & 80.0 & 93.3 & & 73.3 & 86.6 & & 73.3 & 86.6 \\
+	%\ac{lbp}+\ac{bow}		& 50.0 & 81.2 & & 57.5 & 68.7 & & 50.0 & 50.0 \\
+	\emph{local}-\ac{lbp}	   & \textbf{75.0} & \textbf{87.5} & & 81.2 & 75.0 & & 68.7 & 62.5 & & \textbf{80.0} & \textbf{86.6} & & \textbf{86.7} & \textbf{100} & & 93.3 & 86.6\\
+	\emph{local}-\ac{lbptop}   & 62.5 & 68.7 & & 56.2 & 37.5 & & 37.5 & 43.7 & & 80.0 & 86.6 & & 86.6 & 86.6 & & 60.0 & 80.0 \\
 \bottomrule
-\end{tabular}}}
-\label{tab:table1}
+\end{tabular}}
+\label{tab:table1-1}
 \end{table}
-%\end{tiny}
+
+
+
+

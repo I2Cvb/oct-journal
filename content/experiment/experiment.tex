@@ -4,23 +4,23 @@
 \section{Experiments and Validation}\label{sec:exp}
 
 
-To evaluate the effects and influence of different stages of our framework, we perform various tests using our own dataset.
+To evaluate the effects and influence of different stages of our framework, we perform various tests using two datasets.
 % and sake of comparison, the optimal configurations are evaluated on a public dataset.
-A detailed description of the used dataset can be found in \Cref{sec:exp:datasets}.
+A detailed description of the used datasets can be found in \Cref{sec:exp:datasets}.
 For all the experiments, \ac{lbp} and \ac{lbptop} features are extracted for different sampling points of 8, 16, and 24 for radius of 1, 2, and 3, respectively.
 As previously mentioned, two different mapping strategies, \emph{local} and \emph{global}, are used, where for \emph{local} mapping, we consider a ($7 \times 7$) \acf{sw} for 2D \ac{lbp} and ($ 7 \times 7 \times 7$) sub-volume for \ac{lbptop}.
 
 The \emph{global} and \emph{local} extracted features are then presented in low or high level representation.
 As previously mentioned, \ac{bow} approach is used for high-level representation.
-In this regard, to find the optimal number of ``visual-words'' ($k$), we perform a preliminary experiment. 
+% In this regard, to find the optimal number of  
 
-Using \ac{bow} approach to find the optimal number of ``visual-words'' ($k$), we perform a preliminary classification where different number of words randomly are selected.
-In this setup, the words are randomly selected using $k$-means++ algorithm~\cite{arthur2007k}.
-This test is performed for all the high-level feature sets considering different pre-processing steps.
-The obtained results of this test is represented in experiment~\#2.
-Beside this experiment, four other experiments are performed which are explained in the following.
-For the sake of comparison all the experiment are performed using all the aforementioned classifiers.
-However only the relevant part and results related to our experiment is represented within the paper, while the rest are mentioned in the appendix.
+Four experiments are presented in the reminder of this section.
+Experiment \#1 presents the obtained results from our primary study~\cite{Lemaintre2015miccaiOCT} where we the framework was tested with one pre-processing, one classifier, and fixed number of visual words. 
+In this regard in the next experiment \#2, we perform a preliminary test in a search for the optimal number of ``visual-words'' ($k$).
+In experiment \#3, using the obtained number of words, we test the performance of different classifiers with regards to different pre-processing steps for high-level represented features and finally in experiment \#4 we compare the performance of different classifiers with respect to different pre-processing for low-level represented features.
+
+Beside experiment \#1, where the primary pipeline is tested on SERI and Duke dataset, the rest of the experiment are performed only on SERI dataset and for the sake of the comparison, these three experiments are performed using all the aforementioned classifiers. 
+However only the relevant part and results related to our experiment is represented within the paper, while the rest are mentioned in online {\color{red}repository}.
 
 The pipeline in each experiment is evaluated using \ac{lopocv} strategy.
 In this validation, at each round a pair \ac{dme}-normal volume is selected for testing while the rest of the volumes are used for training.
@@ -93,20 +93,32 @@ The majority of the development of our framework has been carried out using our 
 %%However, Duke dataset is already filtered using BM3D method~\cite{Srinivasan2014}.
 %%For both datasets, \ac{lbp} and \ac{lbptop} features are extracted for different sampling points of 8, 16 and 24 for radius of 1, 2 and 3, respectively.
 %%Two different mapping strategies are used: (i) \emph{global} mapping corresponding to the 2D B-scan for \ac{lbp} or the 3D volume for \ac{lbptop} and (ii) \emph{local} mapping considering to a set of 2D \ac{sw} of size $(7 \times 7)$ for \ac{lbp} or the 3D sub-volume for \ac{lbptop} of size $(7 \times 7 \times 7)$.
-
-
 \subsection{Experiment \#1}
+As previously stated, this experiment was performed with our primary framework which is presented in \cite{Lemaintre2015miccaiOCT}.
+This experiment was performed to evaluate the effects of different features representation.
+In this experiment, the \ac{oct} volumes of our own dataset, were only de-noised using \ac{nlm} method and \ac{bow} approach was used with fix number of words ($k = 32$).
+Then the low or high level represented features were classified using \ac{rf} classifier with 100 un-pruned trees.  
+For the sake of comparison, the same classification were performed for the extracted \emph{global} and \emph{local} \ac{lbptop}, and \emph{local}-\ac{lbp} features from Duke dataste.
+As previously mentioned, this dataset is provided with cropped volumes, which vary in sizes.
+Thus it was impossible to create a descriptor based on the \emph{global}-\ac{lbp} features for this dataset.
+The obtained results from this experiment is listed in Table.~\ref{tab:table1-1}.
+\input{content/experiment/Table1.tex}
+
+Once again in order to evaluate the proposed pipeline the proposed method by Venhuizen\,\textit{et al.}~\cite{Venhuizen2015} was developed and tested on the two dataset. The comparison of the obtained results with the highest performance achieved by our framework is shown in Table.~\ref{ta:table1-2}
+\input{content/experiment/Table1-2.tex}
+
+\subsection{Experiment \#2}
 This experiment, conducted on SERI dataset, is performed to find the optimal number of words for \ac{bow} high-level feature representation.
 \emph{Global} and \emph{local}-\ac{lbp} and \emph{local}-\ac{lbptop} feature descriptors are re-represented using \ac{bow} approach.
 In this experiment, the \ac{bow} algorithm is performed using various number of words in the range of $\{10, 20, 30, \cdots,$
  $100, 200, \cdots, 500, 1000\}$.
 The words are randomly selected using $k$-means++ algorithm and the features are mapped to their nearest word to create the final clusters.
-In this experiment in order to asses the effect of number of words, simple linear classifier such as \ac{lr} is used.
+In order to asses the effect of number of words, simple linear classifier such as \ac{lr} is used.
 The number of words associated with highest \ac{acc} and \ac{f1} score, is selected as the optimum number of words.
-Table~\ref{tab:table1} shows the obtained results of this experiment.
+Table~\ref{tab:table2} shows the obtained results of this experiment.
 The optimum number of words and the achieved \ac{acc} and \ac{f1} of \ac{lr} classifier for different configurations are listed in this table.
 
-\input{content/experiment/Table1.tex}
+\input{content/experiment/Table2.tex}
 
 
 Figure.~\ref{fig:RBOW} shows the obtained graphs for some of the configurations. \\
@@ -117,32 +129,25 @@ Figure.~\ref{fig:RBOW} shows the obtained graphs for some of the configurations.
   \label{fig:RBOW}
 \end{figure}
  
-\subsection{Experiment \#2}
- is performed for high-level features on SERI dataset as well. 
-In this experiment using the optimum number of words which are obtained from the previous experiment, the low-level feature sets with regards to different pre-processing configurations are re-represented using \ac{bow} and $k$-means clustering approach and are classified using $k$-\ac{nn} classifier.
-\added[id=moj]{$k$-\ac{nn} classifier was chosen since it provides a sense of} 
-% local and global \ac{lbp} and local \ac{lbptop}
-Table~\ref{tab:table2} shows the obtained results from this experiment.\\
-
-\input{content/experiment/Table2.tex}
-
 \subsection{Experiment \#3}
- is dedicated to compare the performance of different classifiers.
-This experiment is also performed on SERI dataset and for high-level features.
-The \added[id=moj]{best configurations} of feature set and pre-processing based on the previous experiment is classified with different classifiers such as \ac{rf}, \ac{gb}, \ac{svm}, \ac{lr} and $k$-\ac{nn}.
-The obtained results of this experiment is listed in Table.~\ref{tab:tab3}.\\
+This experiment is performed for high-level features on SERI dataset. 
+Using the optimum number of words which are obtained from the previous experiment, the low-level feature sets with regards to different pre-processing configurations are re-represented using \ac{bow} and $k$-means clustering approach and are classified using different classifiers such as $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac{svm}.\
+The $k$-means algorithm is initialized using $k$-means++ method and is performed with 5 iteration for each codebook.
+The \ac{rf} and \ac{gb} classifier are trained using 100 un-pruned trees, while \ac{svm} classifier is trained with \ac{rbf} kernel. 
+The regularization and soft-margin parameters of this classifier are chosen with grid-search method.
+Finally the $k$-\ac{nn} classifier is trained by considering the 3 nearest neighbor.
+Table~\ref{tab:table3} shows the obtained results from this experiment.\\
+
+\input{content/experiment/Table3.tex}
+
 
 
 \subsection{Experiment \#4}
-is conducted for low-level features.
-The \emph{global} \ac{lbp} and \ac{lbptop} features are classified using the same classifiers as previous experiments.
+This experiment is conducted for low-level features.
+The \emph{global} \ac{lbp} and \ac{lbptop} features are classified using the same classifiers as previous experiments with the same configurations.
 The obtained results from this experiment is listed in Table.~\ref{tab:table4}.\\
 \input{content/experiment/Table4.tex}
 
-\subsection{Experiment \#5}
- is performed to evaluate the performance of our proposed framework considering different dataset.
-In this regards, the best configuration in terms of low-level or high-level representations, number of words and classifiers obtained from the previous experiments are performed on Duke dataset.
-A comparison of the obtained results from SERI and Duke datasets are presented in Table.~\ref{tab:table5}.
   
 
 % The SERI datasets are provided in complete \ac{oct} volumes by 512$\times$1024$\times$128 dimensions. Using this datasets, first the three low-level features such as \ac{lbp}, \ac{lbp}+\ac{pca} and \ac{lbptop} are extracted. The rotation invariant uniform ($riu2$) descriptors are calculated with the $P$ number of 8, 16 and 24 for the radius if 1, 2 and 3 respectively. The features are classified using RF with 100 tress. Table \ref{tab:LbPTopVolumeResult} shows the relative results for $8riu2$, $16riu2$, $24riu2$ and their combination $8riu2 + 16riu2 + 24riu2$. The results are presented in terms of \ac{se} and \ac{sp} percentages.

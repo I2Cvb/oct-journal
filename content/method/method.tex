@@ -33,11 +33,15 @@ Finally the classification step is presented in Sect.\,\ref{subsec:cls}.
 
 \subsection{Image pre-processing}\label{subsec:prepro}
 
-Here are described a set of pre-processing technologies provided by the framework that can be arbitrarily combined. Combinations of these technologies and the consequences of these combinations are reported in experimentation~\cref{sec:exp}.
+This section describes set of pre-processing techniques which are provided by our framework.
+These approaches can be arbitrarily combined.
+Combinations of these technologies and the influence of these combinations are reported in experimentation~\cref{sec:exp}.
 
 \subsubsection{\acf{nlm}}
 \Ac{oct} images are known to be affected by a speckle noise~\cite{schmitt1999speckle}.
 Subsequently, \ac{nlm}~\cite{buades2005non} filtering has been successfully used in \ac{us} images to filter similar noise~\cite{Coupe2009} and is used in our framework to denoise each B-scan (i.e. each $x-z$ slice) of the \ac{oct} volumes (see in Fig.\,\ref{subfig:vol}).
+\added[id = moj]{In this regard (For this reason, Due to this reason), we use the \ac{nlm} filtering which has been successfully used on \ac{us} images to remove similar noise~\cite{Coupe2009}.
+This filter is applied on each B-scan (i.e. each $x-z$ slice) for the \ac{oct} volumes (see in Fig.\,\ref{subfig:vol}).}
 %The pre-processing stage in the proposed methodology applies an image denoising method to reduce the speckle noise in \ac{oct} images.
 %Since image details and texture of the original image are needed by the following stages in the method, \ac{nlm} algorithm \cite{buades2005non} is used.
 \ac{nlm} filtering offers the advantage to use all the possible self-predictions that the image can provide rather than local or frequency filters such as Gaussian, anisotropic or Wiener filters~\cite{buades2005non}.

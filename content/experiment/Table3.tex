@@ -1,20 +1,151 @@
-\begin{tiny}
-\begin{table}[t]
-\caption{Comparing the proposed method by \cite{Venhuizen2015} on SERI and Duke datasets.}% with the \textbf{our two} best proposed methods. $K$ = 32 and \ac{rf} is trained using 100 tress}
+\begin{landscape}
+  \begin{table}[ht]
+\caption{The obtained results of experiment \#2. $k$-\ac{nn} and  \ac{svm} classification with \ac{bow} for the \emph{global} and \emph{local} \ac{lbp} and \emph{local} \ac{lbptop} features with different pre-processing. The optimum number of words were selected based on the previous experiment.}
 \centering
-\begin{tabular}{lcclcclcccclcclc}
-\toprule
-Data sets 	& & &\multicolumn{4}{c}{SERI}& & & & &\multicolumn{4}{c}{Duke} & \\
-  \cmidrule(l){2-8}  \cmidrule(l){10-16}
-	         & & & SE & & & SP & & & & & SE & & & SP & \\
-\midrule
-Venhuizen~\textit{et al.} \cite{Venhuizen2015} 		& & & 61.53 & & & 58.82 & & & & & 71.42 & & & 68.75 & \\
-\{\ac{lbp}+\ac{bow}+\ac{sw}\},$16^{riu2}$ 	& & & 81.25 & & & 75.00 & & & & & 86.67 & & & 100.00 &  \\
-\{\ac{lbptop}\},$16^{riu2}$				& & & 87.50 & & & 75.00 & & & & & 73.33 & & & 86.76 &  \\
 
+\scriptsize{
+\resizebox{0.9\linewidth}{!}{
+\begin{tabular}{ll  lr	c	lr	c lr c lr	c	lr	c lr}
+\toprule
+& & \multicolumn{8}{c}{$k$-\ac{nn}} & & \multicolumn{8}{c}{\ac{svm}}\\
+\cmidrule(l){3-10} \cmidrule(l){12-19}
+Features & Pre-processing &    \multicolumn{2}{c}{$8^{riu2}$}  & & \multicolumn{2}{c}{$16^{riu2}$} & & \multicolumn{2}{c}{$24^{riu2}$}  & &   \multicolumn{2}{c}{$8^{riu2}$}  & & \multicolumn{2}{c}{$16^{riu2}$} & & \multicolumn{2}{c}{$24^{riu2}$} \\
+  \cmidrule(l){3-4}  \cmidrule(l){6-7}  \cmidrule(l){9-10}   \cmidrule(l){12-13}  \cmidrule(l){15-16}  \cmidrule(l){18-19}
+   & &  	\ac{se}\% & \ac{sp}\% &  & \ac{se}\% & \ac{sp}\% &  & \ac{se}\% & \ac{sp}\%  & & 	\ac{se}\% & \ac{sp}\% &  & \ac{se}\% & \ac{sp}\% &  & \ac{se}\% & \ac{sp}\% \\
+\midrule
+  	\emph{global}-\ac{lbp}		\\
+ 	& \acs{nf} & 43.7 &  93.7 &   & 43.7 & 87.5  &  & 43.7  & 62.5  &  & 68.7 & 87.5 & & 62.5 & 62.5 & & 50.0 & 56.2 \\  
+	& \acs{f}  & 43.7 &  56.2 &   & 50.0 & 75.0  &  & 62.5  & 56.2  &  & 56.2 & 56.2 & & 56.2 & 75.0 & & 56.2 & 68.7  \\
+	& \acs{fa} & 56.2 &  62.5 &   & 43.7 & 81.2  &  & 68.7  & 56.2  &  & 56.2 & 68.7 & & 68.7 & 68.7 & & 56.2 & 75.0	 \\
+	%& \acs{fac}& 50   &  75.0 &   & 37.5 & 87.5  &  & 50.0  & 62.5 &  & 50.0 & 75.0 & & 50.0 & 75.0 & & 43.7 & 68.7 \\
+\hdashline \noalign{\vskip 3pt}
+ 	\emph{local}-\ac{lbp}		\\
+ 	& \acs{nf} & 75.0 & 87.5 & & 50.0  & 68.7 &  &  43.7  & 43.7 & & 75.0 & 93.7 & & 50.0 & 75.0 & & 56.2 & 56.2    \\
+	& \acs{f}  & 56.2 & 56.2 & & 50.0  & 50.0 &  & 50.0   & 43.7 & & 81.2 & 93.7 & & 68.7 & 68.7 & & 68.7 & 75.0 \\
+	& \acs{fa} & 56.2 & 43.7 & & 50.0  & 75.0 &  & 50.0   & 62.5 & & 75.0 & 93.75 & & 75.0 & 68.7 & & 68.7 & 68.7  \\
+	%& \acs{fac}& 37.5 & 75.0 & & 31.2 & 75.0 &  & 62.5  & 81.2 & & 62.5 & 87.5 & & 56.2 & 43.7 & & 75.0 & 56.2	 \\
+\hdashline \noalign{\vskip 3pt}
+ 	\emph{local}-\ac{lbptop}		\\
+ 	& \acs{nf}	 \\
+	& \acs{f} & 62.5 & 43.7 & & 37.5 & 68.7 & & 43.7 & 62.5 & & 81.2 & 81.2 & & 75.0 & 68.7 & & 81.2 & 68.7		 \\
+	& \acs{fal}	& 56.2 & 56.2 & & 68.7 & 50.0 & & 43.7 & 62.5 & & 62.5 & 75.0 & & 68.7 & 75.0 & & 62.5 & 81.2  \\
+	%& \acs{fac} & 43.7 & 68.7 & & 68.7 & 75.0 & & 56.2 & 81.2 & & 56.2 & 87.5 & & 87.5 & 75.0 & & 62.5 & 75.0	 	 \\
+\midrule
+& & \multicolumn{8}{c}{\ac{rf}} & & \multicolumn{8}{c}{\ac{gb}}\\
+\cmidrule(l){3-10} \cmidrule(l){12-19}
+Features & Pre-processing &    \multicolumn{2}{c}{$8^{riu2}$}  & & \multicolumn{2}{c}{$16^{riu2}$} & & \multicolumn{2}{c}{$24^{riu2}$}  & &   \multicolumn{2}{c}{$8^{riu2}$}  & & \multicolumn{2}{c}{$16^{riu2}$} & & \multicolumn{2}{c}{$24^{riu2}$} \\
+  \cmidrule(l){3-4}  \cmidrule(l){6-7}  \cmidrule(l){9-10}   \cmidrule(l){12-13}  \cmidrule(l){15-16}  \cmidrule(l){18-19}
+   & &  	\ac{se}\% & \ac{sp}\% &  & \ac{se}\% & \ac{sp}\% &  & \ac{se}\% & \ac{sp}\%  & & 	\ac{se}\% & \ac{sp}\% &  & \ac{se}\% & \ac{sp}\% &  & \ac{se}\% & \ac{sp}\% \\
+\midrule
+  	\emph{global}-\ac{lbp}		\\
+ 	& \acs{nf} & 68.7 & 93.7 & & 43.7 & 62.5 & & 50.0 & 68.7  & & 56.2 & 50.0 & & 37.5 & 31.2 & & 50.0 & 43.7\\
+	& \acs{f}  & 56.2 & 50.0 & & 56.2 & 75.0 & & 50.0 & 75.0  & & 50.0 & 56.2 & & 56.2 & 75.0 & & 43.7 & 62.5\\
+	& \acs{fa} & 68.7 & 50.0 & & 56.2 & 62.5 & & 62.5 & 56.2  & & 56.2 & 50.0 & & 68.7 & 50.0 & & 43.7 & 75.0\\
+	%& \acs{fac} & 68.7 & 68.7 & & 56.2 & 75.0 & & 50.0 & 68.7& &  50.0 & 68.7 & & 75.0 & 62.5 & & 56.2 & 81.2  \\ 
+\hdashline \noalign{\vskip 3pt}
+ 	\emph{local}-\ac{lbp}		\\
+ 	& \acs{nf} &  81.2 & 81.2 & & 62.5 & 56.2 & & 56.2 & 56.2 & & 75.0 & 62.5 & & 68.7 & 87.5 & & 50.0 & 75.0   \\
+	& \acs{f}  &  56.2 & 81.2 & & 62.5 & 68.7 & & 68.7 & 62.5 & & 68.7 & 75.0 & & 50.0 & 75.0 & & 50.0 & 62.5 \\
+	& \acs{fa} &  68.7 & 62.5 & & 62.6 & 68.7 & & 43.7 & 43.7 & & 56.2 & 50.0 & & 68.7 & 56.2 & & 50.0 & 50.0 \\
+	%& \acs{fac}&  62.5 & 68.7 & & 68.7 & 68.7 & & 68.7 & 56.2 & &  56.2 & 50.0 & & 56.2 & 68.7 & & 62.5 & 68.7  \\
+\hdashline \noalign{\vskip 3pt}
+ 	\emph{local}-\ac{lbptop}		\\
+ 	& \acs{nf}	 \\
+	& \acs{f} & 50.0 & 62.5 & & 62.5 & 62.5 & & 43.7 & 75.0 & & 50.0 & 56.2 & & 43.7 & 62.5 & & 50.0 & 62.5		 \\
+	& \acs{fal}	& 50.0 & 62.5 & & 81.2 & 87.5 & & 50.0 & 68.7 & & 56.2 & 62.5 & & 81.2 & 68.7 & & 75.0 & 68.7  \\
+	%& \acs{fac}	 & 56.2 & 81.2 & & 68.2 & 81.2 & & 68.7 & 87.5 & & 75.0 & 68.7 & & 87.5 & 75.0 & & 75.0 & 87.5 	 \\
 
 \bottomrule
-\end{tabular}
-\label{tab:Table3}
+\end{tabular}}}
+\label{tab:table3}
 \end{table}
-\end{tiny}
+%\end{tiny}
+\end{landscape}
+
+%--------------------------------------------------------
+%  \begin{table}[ht]
+%\caption{The obtained results of experiment \#2.
+%Classification results obtained from low-level representation of global \ac{lbp} and \ac{lbptop} features with different pre-processing.
+%Pre-processing steps include: \ac{nf}, \ac{f}, \ac{fal}, and \ac{fac}.
+%Different classifiers such as \ac{rf}, \ac{gb}, \ac{svm}, \ac{lr}, and $k$-\ac{nn} are used.
+%}
+%\medskip
+%
+%\footnotesize{
+%\begin{center}
+%\resizebox{1\linewidth}{!}{
+%%\begin{tabularx}{1.02\linewidth}{l cc  cc cc c cc cc cc }
+%\begin{tabular}{l cc  cc cc c cc cc cc }
+%\toprule
+%& \multicolumn{6}{c}{\ac{rf}} & &  \multicolumn{6}{c}{\ac{gb}} \\
+%\cmidrule(l){2-7} \cmidrule(l){9-14}
+%Features &  \multicolumn{2}{c}{$8^{riu2}$}  & \multicolumn{2}{c}{$16^{riu2}$} & \multicolumn{2}{c}{$24^{riu2}$} & &  
+%   \multicolumn{2}{c}{$8^{riu2}$}  &  \multicolumn{2}{c}{$16^{riu2}$} & \multicolumn{2}{c}{$24^{riu2}$} \\
+%  \cmidrule(l){2-3}  \cmidrule(l){4-5}  \cmidrule(l){6-7} \cmidrule(l){9-10}  \cmidrule(l){11-12}  \cmidrule(l){13-14}
+%   &  	\ac{se}\% &  \ac{sp}\%  &  \ac{se}\% &  \ac{sp}\% & 	\ac{se}\% &  \ac{sp}\% & & 
+%   \ac{se}\% &  \ac{sp}\% & \ac{se}\% &  \ac{sp}\% & \ac{se}\% &  \ac{sp}\%\\
+%\midrule
+%  	\emph{global}-\ac{lbp} \\
+% 	\acs{nf} & 43.7 & 62.5 &   43.7 & 62.5 & 56.2 & 75   & &  43.7 & 43.7 & 43.7 & 37.5 & 37.5 & 31.25  		\\
+%	\acs{f}  & 56.2 & 56.2 &   68.7 & 62.5 & 62.5 & 68.7 & &  25   & 56.2 & 50   & 43.7 & 25   & 43.7 \\
+%	\acs{fa} & 65.2 & 56.2 &   50   & 50   & 56.2 & 68.7 & &  43.75& 62.5 & 62.5 & 50   & 31.2 & 31.2 \\
+%	\acs{fac}& 56.2 & 62.5 &   56.2 & 62.5 & 68.7 & 56.2 & &  25   & 62.5 & 75   & 81.2 & 93.7 & 87.5\\
+%
+%\hdashline \noalign{\vskip 3pt}
+% 	\emph{global}-\ac{lbptop}		\\
+% 	\acs{nf}	 & 56.2 & 68.7 &   68.7  & 87.5 & 68.7  & 81.2 & &  68.7 & 68.7 & 75   & 50   & 56.2 & 43.7\\
+%	\acs{f}	 & 56.2 & 62.5 &   81.2  & 68.7 & 81.2  & 81.2 & &  56.2 & 62.5 & 62.5 & 68.7 & 68.7 & 81.2\\
+%	\acs{fal}& 68.7 & 62.5 &   75    & 68.7 & 75    & 81.2 & &  56.2 & 43.7 & 62.5 & 62.5 & 75   & 75 \\
+%	\acs{fac}& 75   & 68.7 &   75    & 81.2 & 75    & 75   & &  75   & 75   & 75   & 56.2 & 81.2 & 62.5\\
+%\midrule
+%& \multicolumn{6}{c}{\ac{svm}} & &  \multicolumn{6}{c}{$k$-\ac{nn}} \\
+%\cmidrule(l){2-7} \cmidrule(l){9-14}
+%Features &  \multicolumn{2}{c}{$8^{riu2}$}  & \multicolumn{2}{c}{$16^{riu2}$} & \multicolumn{2}{c}{$24^{riu2}$} & &  
+%   \multicolumn{2}{c}{$8^{riu2}$}  &  \multicolumn{2}{c}{$16^{riu2}$} & \multicolumn{2}{c}{$24^{riu2}$} \\
+%  \cmidrule(l){2-3}  \cmidrule(l){4-5}  \cmidrule(l){6-7} \cmidrule(l){9-10}  \cmidrule(l){11-12}  \cmidrule(l){13-14}
+%   &  	\ac{se}\% &  \ac{sp}\%  &  \ac{se}\% &  \ac{sp}\% & 	\ac{se}\% &  \ac{sp}\% & & 
+%   \ac{se}\% &  \ac{sp}\% & \ac{se}\% &  \ac{sp}\% & \ac{se}\% &  \ac{sp}\%\\
+%\midrule
+%  	\emph{global}-\ac{lbp}		\\
+% 	\acs{nf} & 56.2 & 62.5 & 56.2 & 43.7 & 56.2 & 68.7 & & 37.5 & 50   & 25   & 50   & 37.5 & 68.7 \\
+%	\acs{f}  & 75   & 68.7 & 62.5 & 62.5 & 62.5 & 68.7 & & 62.5 & 50   & 56.2 & 75   & 62.5 & 68.7\\
+%	\acs{fa} & 75   & 68.7 & 62.5 & 62.5 & 62.5 & 68.7 & & 56.2 & 50   & 56.2 & 75   & 62.5 & 68.7 \\
+%	\acs{fac}& 56.2 & 62.5 & 25   & 50   & 43.7 & 62.5 & & 50   & 43.7 & 68.7 & 62.5 & 62.5 & 62.5\\
+%
+%\hdashline \noalign{\vskip 3pt}
+% 	\emph{global}-\ac{lbptop}		\\
+% 	\acs{nf}	  & 62.5 & 75   & 62.5 & 93.7 & 56.2 & 87.5 & & 31.2 & 93.7 & 37.5 & 100  & 37.5 & 81.2 \\
+%	\acs{f}	  & 68.7 & 75   & 43.7 & 68.7 & 68.7 & 56.2 & & 50   & 56.2 & 56.2 & 75   & 56.2 & 62.5\\
+%	\acs{fal} & 68.7 & 62.5 & 62.5 & 56.2 & 56.2 & 68.7 & & 75   & 43.7 & 56.2 & 43.7 & 68.7 & 50  \\
+%	\acs{fac} & 68.7 & 68.7 & 68.7 & 87.5 & 68.7 & 87.5 & & 62.5 & 62.5 & 68.7 & 68.7 & 75   & 75\\
+%%\midrule
+%%
+%%& \multicolumn{6}{c}{\ac{lr}} \\
+%%\cmidrule(l){2-7} 
+%%Features &  \multicolumn{2}{c}{$8^{riu2}$}  & \multicolumn{2}{c}{$16^{riu2}$} & \multicolumn{2}{c}{$24^{riu2}$}  \\
+%%  \cmidrule(l){2-3}  \cmidrule(l){4-5}  \cmidrule(l){6-7} 
+%%   &  	\ac{se}\% &  \ac{sp}\%  &  \ac{se}\% &  \ac{sp}\% & 	\ac{se}\% &  \ac{sp}\% \\
+%%\midrule
+%%
+%%\emph{global}-\ac{lbp}		\\
+%%	\acs{nf}	  & 56.2 & 43.7 & 43.7 & 56.2 & 50 & 68.7\\
+%%	\acs{f}	  & 56.2 & 43.7 & 56.2 & 37.5 & 68.7 & 43.7 \\
+%%	\acs{fal} & 56.2 & 43.7 & 56.2 & 31.2 & 68.7 & 43.7 \\
+%%	\acs{fac} & 62.5 & 56.2 & 56.2 & 62.5 & 56.2 & 56.2\\
+%%
+%%
+%%\hdashline \noalign{\vskip 3pt}
+%% 	\emph{global}-\ac{lbptop}		\\
+%% 	\acs{nf}  & 50   & 50 &  6 & 93.7 & 0 & 100	\\
+%%	\acs{f}	  & 75   & 18 & 50 & 75 & 25 & 81.2\\
+%%	\acs{fal} & 93.7 & 6  & 93.7 & 6 & 50 & 43.7\\
+%%	\acs{fac} & 50   & 81.2 & 0 & 93.7 & 0 & 100\\
+%
+%\bottomrule
+%
+%
+%\end{tabular}}
+%
+%\end{center}}
+%\label{tab:table4}
+%\end{table}
