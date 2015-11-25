@@ -198,57 +198,40 @@ The histogram is obtained by calculating the frequency of occurrences of each of
 Classification corresponds to the mapping of a set of inputs $\mathbf{x}$ into a set of categorical outputs $\mathbf{y}$ using a linear or non-linear function $f(\cdot)$.
 In supervised learning methods, this function is defined by providing a training set of $N$ samples $\mathbf{x}_{tr}$ with their associated labels $\mathbf{y}_{tr}$.
 In the remainder of this section, we briefly summarize the supervised classification methods used in the experiments.
+{\color{red}Details regarding the parameters used in our experiments are provided in Sect.\,\ref{}}
 
 \begin{description}
 
-\item[$k$-\acf*{nn}] is a non-parametric classification method in which an unlabeled feature vector $x$ is assigned to the majority class of its $k$ nearest-neighbors from the training set.
-To avoid a tie case, the parameter $k$ is set to an odd number.\\
+\item[$k$-\acf{nn}] is a non-parametric classification method in which an unlabeled feature vector $x$ is assigned to the majority class of its $k$ nearest-neighbors from the training set.
+To avoid a tie case, the parameter $k$ is set to an odd number.
 
-\item[\acf*{lr}] is a linear classifier which uses the logistic function to estimate the probability of $x$ to belong to a particular class $c_i$~\cite{cox1958regression}.
+\item[\acf{lr}] is a linear classifier which uses the logistic function to estimate the probability of $x$ to belong to a particular class $c_i$~\cite{cox1958regression}.
 Thus, the posterior probability is expressed as:
 \begin{equation} \label{eq:ppc1lr}
 p(c_{i}|x) = \frac{1}{1+\exp(-w^{T}x)}
 \end{equation}
 \noindent where $w$ is a vector of the regression parameters to obtain a linear combination of the input feature vector $x$.
-Using this model the unlabeled sample is assigned to the class which maximizes the posterior probability.
-\begin{equation}
-C(x_{i}) =  \text{arg}\max\limits_{k} p(C = k| x_{i})
-\end{equation}
-In this method, finding an optimal set of parameters for $w$ is essential.
-The vectors of parameters $w$ can be inferred by finding the maximum likelihood estimates via optimization methods such as quasi-Newton method~\cite{byrd1994representations}.\\
+The vector $w$ can be inferred by finding the maximum likelihood estimates via optimization methods such as quasi-Newton method~\cite{byrd1994representations}.
+Once the vector $w$ found, an unlabeled feature vector is assigned to the class which maximizes the posterior probability.
+% \begin{equation}
+% C(x) =  \text{arg}\max\limits_{k} p(C = k| x)
+% \end{equation}
 
-\item[\acf*{rf}] is an ensemble of decision trees and was introduced by~\cite{breiman2001random}.
-The ensemble uses each tree to predict an output and finalizes the ultimate prediction by aggregating the outputs of all tress.
-This classifier learns the data by training multiple decision trees on bootstrap samples of the original data.
-Each bootstrap of $D$ dimension is used for training one decision tree and at each node, the best split among randomly ($d << D$) selected subset of descriptors is chosen.
-Each tree is grown to its maximum length without any pruning.
-In the prediction stage a sample is voted by each tree and it is labeled by considering the majority of the votes.\\
-%% Another explanation from BIOIMAGING:
-%is an ensemble of decision trees~\cite{breiman2001random} which generalizes the classification process by applying two types of randomization: at the tree level, each tree is fed by a bootstrap made of $S'$ samples which are built from the original data of size $S$ such that  $S=S'$, and at the node level, a subset of feature dimensions $m$ is randomly selected from the original dimension $M$ such that $m=\sqrt{M}$.
-%The trees in \ac{rf} are grown to their maximum length without any pruning.
-%Figure~\ref{fig:rftrain} shows the training stage of \ac{rf} ensemble.
-%In the testing stage, each tree in the ensemble casts a unit vote in the final prediction and the final prediction is based on combination of all the votes.
+\item[\acf{rf}] is an ensemble of decision trees~\cite{breiman2001random} which generalizes the classification process by applying two types of randomization: at the tree level, each tree is fed by a bootstrap made of $S'$ samples which are built from the original data of size $S$ such that  $S=S'$, and at the node level, a subset of feature dimensions $m$ is randomly selected from the original dimension $M$ such that $m << M$.
+The trees in \ac{rf} are grown to their maximum length without any pruning.
+In the testing stage, each tree in the ensemble casts a unit vote in the final prediction and the final prediction is based on combination of all the votes.
+% is an ensemble of decision trees~\cite{breiman2001random}.
+% The ensemble uses each tree to predict an output and finalizes the ultimate prediction by aggregating the outputs of all tress.
+% This classifier learns the data by training multiple decision trees on bootstrap samples of the original data.
+% Each bootstrap of $D$ dimension is used for training one decision tree and at each node, the best split among randomly ($d << D$) selected subset of descriptors is chosen.
+% Each tree is grown to its maximum length without any pruning.
+% In the prediction stage a sample is voted by each tree and it is labeled by considering the majority of the votes.
 
-\item[\acf*{gb}] is a generalization form of \ac{adb}, which is able to use real-value weak learners and minimizes different loss functions~\cite{zheng2007general}.
-\ac{gb} builds the ensemble in a greedy manner.
-It iteratively selects the best pair of real-valued weak learners and adjust their weights so that they minimize a given differentiable loss function.
-%\begin{subequations}
-%\begin{align}
-%\varphi(x) & = \sum\limits_{j = 1}^{M} \alpha_{j} h_{j}(x)\\
-%\mathcal{L} & = \sum\limits_{i = 1}^{N} L(y_{i}, \varphi(x_{i}))
-%\end{align}
-%\end{subequations}
-%\noindent Here $h_{j}(.)$ is the weak learner and $\alpha_{j}$ is the real value weight and the aim is to minimize $\mathcal{L}$.
-Common choice for the weak learner is decision stumps or regression trees while the loss function is generally an exponential loss or a logarithmic loss~\cite{becker2013supervised}.
-%\begin{subequations}
-%\begin{align}
-%\text{Exponential loss } \qquad L &= e^{-y_{i}\varphi(x_{i})} \label{eq:exploss} \\
-%\text{Log loss } \qquad L &= \log(1+e^{-2y_{i}\varphi(x_{i})})
-%\end{align}
-%\end{subequations}
-This minimization is carried out via gradient descent or quadratic approximation.\\
+\item[\acf{gb}] is a reformulation of \ac{adb}~\cite{friedman2002stochastic} in which the problem of finding an ensemble of real-valued weak learners is tackled as a numerical optimization~\cite{lemaitre2015boosting}.
+A strong learner is built by iteratively finding the best pair of real-valued weak learner function and its corresponding weight which minimizes a given differentiable loss function.
+Common choice for weak learners is decision stumps or regression trees while the loss function is generally an exponential or logarithmic loss~\cite{becker2013supervised}, minimized via gradient descent or quadratic approximation.
 
-\item[\acf*{svm}]~\cite{vapnik1963generalized} is a sparse kernel method which aims to separate two classes by finding the best hyperplane which maximizes the margin between the two classes.
+\item[\acf{svm}] is a sparse kernel classification method which aims at finding the best linear hyperplane which separates two classes by maximizing the margin between them~\cite{vapnik1963generalized}.
 Maximizing the margin is equivalent to minimizing the norm of the normal vector of the hyperplane:
 \begin{equation}
 \min\limits_{\mathbf{w}, \omega_{0}} \frac{1}{2} \Vert \mathbf{w}\Vert^{2} \qquad \text{s.t. } \quad  y_{i}(\mathbf{w}^{T}\mathbf{x_{i}} + \omega_{0}) \geq 1, i = 1: N
