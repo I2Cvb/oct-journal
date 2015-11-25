@@ -201,18 +201,15 @@ In the remainder of this section, we briefly summarize the supervised classifica
 
 \begin{description}
 
-\item[$k$-\acf*{nn}] is a method in which the labelling decision depends of its
-is one the simplest supervised machine learning classification methods.
-In this method a new unlabeled vector is assigned to the most represented class from $k$ nearest-neighbors in the features space.
+\item[$k$-\acf*{nn}] is a non-parametric classification method in which an unlabeled feature vector $x$ is assigned to the majority class of its $k$ nearest-neighbors from the training set.
 To avoid a tie case, the parameter $k$ is set to an odd number.\\
 
-\item[\acf*{lr}]~\cite{cox1958regression} is another supervised learning which can provide associated probability of each prediction.
-As the name suggests, this classifier uses a logistic function, to estimate the probabilities.
-By defining the posterior probability for one of the classes, using logistic function (see Eq.~\ref{eq:ppc1lr}), the probability of other class is defined as $p(c_{2}|x_{i}) = 1 - p(c_{1}|x_{i})$.
+\item[\acf*{lr}] is a linear classifier which uses the logistic function to estimate the probability of $x$ to belong to a particular class $c_i$~\cite{cox1958regression}.
+Thus, the posterior probability is expressed as:
 \begin{equation} \label{eq:ppc1lr}
-p(c_{1}|x_{i}) = \frac{1}{1+\exp(-w^{T}x_{i})}
+p(c_{i}|x) = \frac{1}{1+\exp(-w^{T}x)}
 \end{equation}
-\noindent Here $w$ is a vector of regression parameters, which allows to obtain a linear combination of the input feature vector $x_{i}$.
+\noindent where $w$ is a vector of the regression parameters to obtain a linear combination of the input feature vector $x$.
 Using this model the unlabeled sample is assigned to the class which maximizes the posterior probability.
 \begin{equation}
 C(x_{i}) =  \text{arg}\max\limits_{k} p(C = k| x_{i})
