@@ -1,0 +1,39 @@
+\begin{landscape}
+\begin{table}
+\caption{The summary of the state of the art methods}
+\resizebox{1\linewidth}{!}{
+\scriptsize{
+\begin{tabular}{l ccc c cccc	c c ccc}
+\toprule
+Ref & \multicolumn{3}{c}{Task} & Data size & \multicolumn{4}{c}{Pre-processing} & features & Classifier & \multicolumn{3}{c}{Evaluation}\\
+\cmidrule(l){2-4}\cmidrule(l){6-9} \cmidrule(l){12-14}
+    & \ac{amd} & \ac{dme} & normal     &           & de-noise & Flatten & aligned & Cropped &   &  & \ac{se} & \ac{sp} & \ac{auc}\\
+\midrule
+& & & & & & & & & & & & &  \\
+
+Srinivansan\,\textit{et al.}~\cite{Srinivasan2014} & $\checkmark$ & $\checkmark$ & $\checkmark$ &  45 & $\checkmark$ & $\checkmark$ &  &  & \ac{hog} & \ac{svm} & 86.7\%,100\%,100\% & &  \\
+& & & & & & & & & & & & &    \\
+
+Venhuizen\,\textit{et al.}~\cite{Venhuizen2015} & $\checkmark$ &  & $\checkmark$ & 384 &  & & & &  texton  & \acs{rf} & & & 0.984 \\ 
+& & & & & & & & & & & & &   \\
+
+Liu\,\textit{et al.}~\cite{Liu2011} & $\checkmark$ & $\checkmark$ & $\checkmark$  & 326 &  & $\checkmark$ & $\checkmark$ &  &  Edge, \ac{lbp} & \acs{svm} & & &  0.93 \\
+& & & & & & & & & & & & &   \\
+
+Lema\^itre\,\textit{et al.}~\cite{Lemaintre2015miccaiOCT} &  & $\checkmark$ & $\checkmark$ & 32  & $\checkmark$ &  &  &  & \acs{lbp}-\acs{lbptop} & \ac{rf} & 87.5\% & 75\% & \\
+& & & & & & & & & & & & &   \\
+\bottomrule
+\end{tabular}}}
+\label{tab:survey-tab}
+\end{table}
+
+\begin{figure}
+  \centering{
+    \includegraphics[width=1\linewidth]{content/survey/ml.png}}
+  \caption{Machine learning classification basic scheme}
+  \label{fig:ML-scheme}
+\end{figure}
+
+
+
+\end{landscape}
