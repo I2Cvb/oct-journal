@@ -1,4 +1,4 @@
-%\begin{tiny}
+\begin{landscape}
   \begin{table}[ht]
 \caption{The obtained results of experiment \#3.
 Classification results obtained from low-level representation of global \ac{lbp} and \ac{lbptop} features with different pre-processing.
@@ -7,53 +7,56 @@ Different classifiers such as \ac{rf}, \ac{gb}, \ac{svm}, and $k$-\ac{nn} are us
 }
 \medskip
 
-\footnotesize{
+\scriptsize{
 \begin{center}
 \resizebox{1\linewidth}{!}{
 %\begin{tabularx}{1.02\linewidth}{l cc  cc cc c cc cc cc }
-\begin{tabular}{l cc  cc cc c cc cc cc }
+\begin{tabular}{ll cc  cc cc c cc cc cc }
 \toprule
-& \multicolumn{6}{c}{\ac{rf}} & &  \multicolumn{6}{c}{\ac{gb}} \\
-\cmidrule(l){2-7} \cmidrule(l){9-14}
-Features &  \multicolumn{2}{c}{$8^{riu2}$}  & \multicolumn{2}{c}{$16^{riu2}$} & \multicolumn{2}{c}{$24^{riu2}$} & &  
+&  & \multicolumn{6}{c}{$k$-\ac{nn}} & &  \multicolumn{6}{c}{$k$-\ac{svm}} \\
+\cmidrule(l){3-8} \cmidrule(l){10-15}
+Features & Pre-processing &   \multicolumn{2}{c}{$8^{riu2}$}  & \multicolumn{2}{c}{$16^{riu2}$} & \multicolumn{2}{c}{$24^{riu2}$} & &  
    \multicolumn{2}{c}{$8^{riu2}$}  &  \multicolumn{2}{c}{$16^{riu2}$} & \multicolumn{2}{c}{$24^{riu2}$} \\
-  \cmidrule(l){2-3}  \cmidrule(l){4-5}  \cmidrule(l){6-7} \cmidrule(l){9-10}  \cmidrule(l){11-12}  \cmidrule(l){13-14}
-   &  	\ac{se}\% &  \ac{sp}\%  &  \ac{se}\% &  \ac{sp}\% & 	\ac{se}\% &  \ac{sp}\% & & 
-   \ac{se}\% &  \ac{sp}\% & \ac{se}\% &  \ac{sp}\% & \ac{se}\% &  \ac{sp}\%\\
-\midrule
-  	\emph{global}-\ac{lbp} \\
- 	\acs{nf} & 43.7 & 62.5 &   43.7 & 62.5 & 56.2 & 75   & &  43.7 & 43.7 & 43.7 & 37.5 & 37.5 & 31.25  		\\
-	\acs{f}  & 56.2 & 56.2 &   68.7 & 62.5 & 62.5 & 68.7 & &  25   & 56.2 & 50   & 43.7 & 25   & 43.7 \\
-	\acs{fal} & 65.2 & 56.2 &   50   & 50   & 56.2 & 68.7 & &  43.75& 62.5 & 62.5 & 50   & 31.2 & 31.2 \\
-	%\acs{fac}& 56.2 & 62.5 &   56.2 & 62.5 & 68.7 & 56.2 & &  25   & 62.5 & 75   & 81.2 & 93.7 & 87.5\\
-
-\hdashline \noalign{\vskip 3pt}
- 	\emph{global}-\ac{lbptop}		\\
- 	\acs{nf}	 & 56.2 & 68.7 &   68.7  & 87.5 & 68.7  & 81.2 & &  68.7 & 68.7 & 75   & 50   & 56.2 & 43.7\\
-	\acs{f}	 & 56.2 & 62.5 &   81.2  & 68.7 & 81.2  & 81.2 & &  56.2 & 62.5 & 62.5 & 68.7 & 68.7 & 81.2\\
-	\acs{fal}& 68.7 & 62.5 &   75    & 68.7 & 75    & 81.2 & &  56.2 & 43.7 & 62.5 & 62.5 & 75   & 75 \\
-	%\acs{fac}& 75   & 68.7 &   75    & 81.2 & 75    & 75   & &  75   & 75   & 75   & 56.2 & 81.2 & 62.5\\
-\midrule
-& \multicolumn{6}{c}{\ac{svm}} & &  \multicolumn{6}{c}{$k$-\ac{nn}} \\
-\cmidrule(l){2-7} \cmidrule(l){9-14}
-Features &  \multicolumn{2}{c}{$8^{riu2}$}  & \multicolumn{2}{c}{$16^{riu2}$} & \multicolumn{2}{c}{$24^{riu2}$} & &  
-   \multicolumn{2}{c}{$8^{riu2}$}  &  \multicolumn{2}{c}{$16^{riu2}$} & \multicolumn{2}{c}{$24^{riu2}$} \\
-  \cmidrule(l){2-3}  \cmidrule(l){4-5}  \cmidrule(l){6-7} \cmidrule(l){9-10}  \cmidrule(l){11-12}  \cmidrule(l){13-14}
-   &  	\ac{se}\% &  \ac{sp}\%  &  \ac{se}\% &  \ac{sp}\% & 	\ac{se}\% &  \ac{sp}\% & & 
+  \cmidrule(l){3-4}  \cmidrule(l){5-6}  \cmidrule(l){7-8} \cmidrule(l){10-11}  \cmidrule(l){12-13}  \cmidrule(l){14-15}
+   &  & 	\ac{se}\% &  \ac{sp}\%  &  \ac{se}\% &  \ac{sp}\% & 	\ac{se}\% &  \ac{sp}\% & & 
    \ac{se}\% &  \ac{sp}\% & \ac{se}\% &  \ac{sp}\% & \ac{se}\% &  \ac{sp}\%\\
 \midrule
   	\emph{global}-\ac{lbp}		\\
- 	\acs{nf} & 56.2 & 62.5 & 56.2 & 43.7 & 56.2 & 68.7 & & 37.5 & 50   & 25   & 50   & 37.5 & 68.7 \\
-	\acs{f}  & 75   & 68.7 & 62.5 & 62.5 & 62.5 & 68.7 & & 62.5 & 50   & 56.2 & 75   & 62.5 & 68.7\\
-	\acs{fa} & 75   & 68.7 & 62.5 & 62.5 & 62.5 & 68.7 & & 56.2 & 50   & 56.2 & 75   & 62.5 & 68.7 \\
-	%\acs{fac}& 56.2 & 62.5 & 25   & 50   & 43.7 & 62.5 & & 50   & 43.7 & 68.7 & 62.5 & 62.5 & 62.5\\
+ 	& \acs{nf} & 37.5 & 50   & 25   & 50   & 37.5 & 68.7 & & 56.2 & 62.5 & 56.2 & 43.7 & 56.2 & 68.7 \\
+	& \acs{f}  & 62.5 & 50   & 56.2 & 75   & 62.5 & 68.7 & & 75   & 68.7 & 62.5 & 62.5 & 62.5 & 68.7 \\
+	& \acs{fa} & 56.2 & 50   & 56.2 & 75   & 62.5 & 68.7 & & 75   & 68.7 & 62.5 & 62.5 & 62.5 & 68.7 \\
+	%\acs{fac}& 50   & 43.7 & 68.7 & 62.5 & 62.5 & 62.5 & & 56.2 & 62.5 & 25   & 50   & 43.7 & 62.5  \\
 
 \hdashline \noalign{\vskip 3pt}
  	\emph{global}-\ac{lbptop}		\\
- 	\acs{nf}	  & 62.5 & 75   & 62.5 & 93.7 & 56.2 & 87.5 & & 31.2 & 93.7 & 37.5 & 100  & 37.5 & 81.2 \\
-	\acs{f}	  & 68.7 & 75   & 43.7 & 68.7 & 68.7 & 56.2 & & 50   & 56.2 & 56.2 & 75   & 56.2 & 62.5\\
-	\acs{fal} & 68.7 & 62.5 & 62.5 & 56.2 & 56.2 & 68.7 & & 75   & 43.7 & 56.2 & 43.7 & 68.7 & 50  \\
-	%\acs{fac} & 68.7 & 68.7 & 68.7 & 87.5 & 68.7 & 87.5 & & 62.5 & 62.5 & 68.7 & 68.7 & 75   & 75\\
+ 	& \acs{nf}	  &  31.2 & 93.7 & 37.5 & 100  & 37.5 & 81.2 & &  62.5 & 75   & 62.5 & 93.7 & 56.2 & 87.5  \\
+	& \acs{f}	  &  50   & 56.2 & 56.2 & 75   & 56.2 & 62.5 & & 68.7 & 75   & 43.7 & 68.7 & 68.7 & 56.2 \\
+	& \acs{fal} &  75   & 43.7 & 56.2 & 43.7 & 68.7 & 50  & & 68.7 & 62.5 & 62.5 & 56.2 & 56.2 & 68.7  \\
+	%\acs{fac} & 68.7 & 68.7 & 68.7 & 87.5 & 68.7 & 87.5 & & 62.5 & 62.5 & 68.7 & 68.7 & 75   & 75\\	
+\midrule	
+&  & \multicolumn{6}{c}{\ac{rf}} & &  \multicolumn{6}{c}{\ac{gb}} \\
+\cmidrule(l){3-8} \cmidrule(l){10-15}
+Features & Pre-processing &   \multicolumn{2}{c}{$8^{riu2}$}  & \multicolumn{2}{c}{$16^{riu2}$} & \multicolumn{2}{c}{$24^{riu2}$} & &  
+   \multicolumn{2}{c}{$8^{riu2}$}  &  \multicolumn{2}{c}{$16^{riu2}$} & \multicolumn{2}{c}{$24^{riu2}$} \\
+  \cmidrule(l){3-4}  \cmidrule(l){5-6}  \cmidrule(l){7-8} \cmidrule(l){10-11}  \cmidrule(l){12-13}  \cmidrule(l){14-15}
+   & &  	\ac{se}\% &  \ac{sp}\%  &  \ac{se}\% &  \ac{sp}\% & 	\ac{se}\% &  \ac{sp}\% & & 
+   \ac{se}\% &  \ac{sp}\% & \ac{se}\% &  \ac{sp}\% & \ac{se}\% &  \ac{sp}\%\\
+\midrule
+  	\emph{global}-\ac{lbp} \\
+ 	& \acs{nf} & 43.7 & 62.5 &   43.7 & 62.5 & 56.2 & 75   & &  43.7 & 43.7 & 43.7 & 37.5 & 37.5 & 31.25  		\\
+	& \acs{f}  & 56.2 & 56.2 &   68.7 & 62.5 & 62.5 & 68.7 & &  25   & 56.2 & 50   & 43.7 & 25   & 43.7 \\
+    & \acs{fal} & 65.2 & 56.2 &   50   & 50   & 56.2 & 68.7 & &  43.75& 62.5 & 62.5 & 50   & 31.2 & 31.2 \\
+	%& \acs{fac}& 56.2 & 62.5 &   56.2 & 62.5 & 68.7 & 56.2 & &  25   & 62.5 & 75   & 81.2 & 93.7 & 87.5\\
+
+\hdashline \noalign{\vskip 3pt}
+ 	\emph{global}-\ac{lbptop}		\\
+ 	& \acs{nf}	 & 56.2 & 68.7 &   68.7  & 87.5 & 68.7  & 81.2 & &  68.7 & 68.7 & 75   & 50   & 56.2 & 43.7\\
+	& \acs{f}	 & 56.2 & 62.5 &   81.2  & 68.7 & 81.2  & 81.2 & &  56.2 & 62.5 & 62.5 & 68.7 & 68.7 & 81.2\\
+	& \acs{fal}& 68.7 & 62.5 &   75    & 68.7 & 75    & 81.2 & &  56.2 & 43.7 & 62.5 & 62.5 & 75   & 75 \\
+	%\acs{fac}& 75   & 68.7 &   75    & 81.2 & 75    & 75   & &  75   & 75   & 75   & 56.2 & 81.2 & 62.5\\
+
+
+
 %\midrule
 %
 %& \multicolumn{6}{c}{\ac{lr}} \\
@@ -84,4 +87,4 @@ Features &  \multicolumn{2}{c}{$8^{riu2}$}  & \multicolumn{2}{c}{$16^{riu2}$} & 
 \end{center}}
 \label{tab:table4}
 \end{table}
-%\end{tiny}
+\end{landscape}
