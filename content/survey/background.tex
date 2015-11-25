@@ -27,7 +27,15 @@ The method starts by aligning and flattening the images, then a $3$-level multi-
 All obtained histograms are concatenated into a global descriptor whose dimensions are reduced using \ac{pca}. Finally a \ac{svm} is used as classifier.
 The method achieved good results in detection \ac{oct} scan containing different pathology such as \ac{dme} or \ac{amd}, with an \ac{auc} of $0.93$ using a dataset of $326$ \ac{oct} scans.
 
-Lema\^itre\,\textit{et al.} propose \todo{summary of previous best result}
+Lema\^itre\,\textit{et al.} propose a standard classification procedure to differentiate between \dme and normal \sdoct volumes.
+The data is pre-processed using \nlm filtering. 
+The volumes are mapped into a discrete set of structures namely local when these structures correspond to patches, or global when the structures corresponds to volume slices or the whole volume.
+These structures are described in terms of \lbp, or \lbptop, and when necessary to represent each volume as a single feature vector, these structure sets are encoded either using histograms, \pca or \bow, to present the volumes to a \rf classifier.
+
+The methodology was tested against Venhuizen\,\textit{et al.}~\cite{Venhuizen2015} using public and non-public datasets showing an improvement within the results, achieving a \ac{se} of $87.5\%$ and a \ac{sp} of $100\%$.
+
+
+
 
 \DTLloaddb[keys={task,Srinivasan,Venhuizen,Liu,Lemaitre}]
           {survey}{./content/survey/tables/survey.csv}
