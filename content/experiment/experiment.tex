@@ -166,27 +166,86 @@ The results obtained when using the optimum number of words for each configurati
   \label{fig:RBOW}
 \end{figure}
 
+%% Experiment Result description
+\added[id=sik]{Result description}
 
 \input{content/experiment/Table2.tex}
 
 \subsection{Experiment \#3}\label{subsec:exp3}
-Once studied the impact of the codebook size in Sect.\,\ref{subsec:exp2}, this experiment explores the improvement of using more sophisticated classification strategies.
+% Experiment structure
+%
+% Intro:
+%   - background
+%   - goal / experiment intention / why
+%   - data
+%   - evaluation
+%   - reference to result table
+%
+% Procedure (by data if more than one):
+%   - pre-processing
+%   - feature extraction
+%   - mapping
+%   - feature representation
+%   - classifier
+%
+% Remarks (if any)
+%
+% Result highlights:
+%   - (only a description)
 
-This experiment is performed for high-level features on SERI dataset.
-Using the optimum number of words which are obtained from the previous experiment, the low-level feature sets with regards to different pre-processing configurations are re-represented using \ac{bow} and $k$-means clustering approach and are classified using different classifiers such as $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac{svm}.\
-The $k$-means algorithm is initialized using $k$-means++ method and is performed with 5 iteration for each codebook.
+%% Experiment intro
+Once studied the impact of the codebook size in Sect.\,\ref{subsec:exp2}, this experiment explores the improvement associated to use more sophisticated classification strategies.
+
+%% Procedure
+For this experiment, several pre-processing strategies are evaluated: (i) \nlm, (ii) a combination of \nlm and flattening; (iii) a combination of \nlm, flattening and aligning.
+\lbp and \lbptop descriptors are extracted using the default configuration.
+Volumes are represented using the high-level representation \bow. The codebooks are computed using regular $k$-means algorithm initialized using $k$-means++, where $k$ is chose accordingly to the findings in \emph{Experiment \#2}.
+Finally, the volumes are classified using $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac{svm}.
+
+Regarding the classification strategies, $k$-\ac{nn} classifier is trained by considering the 3 nearest neighbor.
 The \ac{rf} and \ac{gb} classifier are trained using 100 un-pruned trees, while \ac{svm} classifier is trained with \ac{rbf} kernel.
-The regularization and soft-margin parameters of this classifier are chosen with grid-search method.
-Finally the $k$-\ac{nn} classifier is trained by considering the 3 nearest neighbor.
-Table~\ref{tab:table3} shows the obtained results from this experiment.\\
+
+Table~\ref{tab:table3} shows the obtained results from this experiment.
+
+%% Experiment Result description
+\added[id=sik]{Result description}
 
 \input{content/experiment/Table3.tex}
 
 
 \subsection{Experiment \#4}\label{subsec:exp4}
-This experiment is conducted for low-level features.
-The \emph{global} \ac{lbp} and \ac{lbptop} features are classified using the same classifiers as previous experiments with the same configurations.
-The obtained results from this experiment is listed in Table.~\ref{tab:table4}.\\
+% Experiment structure
+%
+% Intro:
+%   - background
+%   - goal / experiment intention / why
+%   - data
+%   - evaluation
+%   - reference to result table
+%
+% Procedure (by data if more than one):
+%   - pre-processing
+%   - feature extraction
+%   - mapping
+%   - feature representation
+%   - classifier
+%
+% Remarks (if any)
+%
+% Result highlights:
+%   - (only a description)
+
+%% Experiment intro
+This experiment replicates the \emph{Experiment \#3} for the case of low-level representation of the volumes.
+
+%% Experiment procedure
+For this experiment, several pre-processing strategies are evaluated: (i) \nlm, (ii) a combination of \nlm and flattening; (iii) a combination of \nlm, flattening and aligning.
+\lbp and \lbptop descriptors are extracted using the default configuration.
+Volumes are represented using low-level representation of the \emph{global} mapping.
+\todo{we should justify why local does not make sense. + we should say something in the previous experiments about the local/global}
+Finally, the volumes are classified using $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac{svm}; using the same configuration of \emph{Experiment \#3}.
+
+The obtained results from this experiment is listed in Table.~\ref{tab:table4}.
 \input{content/experiment/Table4.tex}
 
 
