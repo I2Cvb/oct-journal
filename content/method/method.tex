@@ -20,16 +20,6 @@ The feature extraction and representation are presented in depth in Sect.\,\ref{
 Finally the classification step is presented in Sect.\,\ref{subsec:cls}.
 %A \ac{rf} classifier has been selected to perform the classification of the \ac{oct} volume~\cite{breiman2001random}.
 
-% \subsection{Data}
-% \color{red}{
-%   \begin{itemize}
-%   \item cross-validation
-%   \item our dataset
-%   \item DUC dataset
-%   \end{itemize}}\color{black}
-
-% For evaluation purposes, the results have been cross-validated, by splitting the data in training and testing using a \ac{lopo} strategy. In this manner for each round a pair \color{red}{dce,normal} has been selected to be used as the round test set, while the rest of the dataset has been used as a training. \color{red}{Doing the cross validation in this manner, has the limitation that despite the fact that the results are robust due to the cross validation, no results variance can be reported. However, and despite this limitation, \ac{lopo} has been choose due to the reduced amount of \ac{oct} volumes available.}\color{black}
-
 
 \subsection{Image pre-processing}\label{subsec:prepro}
 
@@ -38,10 +28,15 @@ These approaches can be arbitrarily combined.
 Combinations of these technologies and the influence of these combinations are reported in experimentation~\cref{sec:exp}.
 
 \subsubsection{\acf{nlm}}
-\Ac{oct} images are known to be affected by a speckle noise~\cite{schmitt1999speckle}.
+\replaced[id=sik]{
+\ac{oct} images, like other image modalities such as \ac{us}, suffer from speckle noise~\cite{schmitt1999speckle}.
+Considering that \ac{nlm}~\cite{buades2005non} has been successfully applied to \us images~\cite{Coupe2009} to reduce speckle, and our preliminary study in \ac{oct} images \cite{Lemaitre2015}, \ac{nlm} filtering is used here to denoise each B-scan (i.e. each $x-z$ slice) of the \ac{oct} volumes (see in Fig.\,\ref{subfig:vol}).
+}{
+\ac{oct} images are known to be affected by a speckle noise~\cite{schmitt1999speckle}.
 Subsequently, \ac{nlm}~\cite{buades2005non} filtering has been successfully used in \ac{us} images to filter similar noise~\cite{Coupe2009} and is used in our framework to denoise each B-scan (i.e. each $x-z$ slice) of the \ac{oct} volumes (see in Fig.\,\ref{subfig:vol}).
-\added[id = moj]{In this regard (For this reason, Due to this reason), we use the \ac{nlm} filtering which has been successfully used on \ac{us} images to remove similar noise~\cite{Coupe2009}.
-This filter is applied on each B-scan (i.e. each $x-z$ slice) for the \ac{oct} volumes (see in Fig.\,\ref{subfig:vol}).}
+In this regard (For this reason, Due to this reason), we use the \ac{nlm} filtering which has been successfully used on \ac{us} images to remove similar noise~\cite{Coupe2009}.
+This filter is applied on each B-scan (i.e. each $x-z$ slice) for the \ac{oct} volumes (see in Fig.\,\ref{subfig:vol}).
+}
 %The pre-processing stage in the proposed methodology applies an image denoising method to reduce the speckle noise in \ac{oct} images.
 %Since image details and texture of the original image are needed by the following stages in the method, \ac{nlm} algorithm \cite{buades2005non} is used.
 \ac{nlm} filtering offers the advantage to use all the possible self-predictions that the image can provide rather than local or frequency filters such as Gaussian, anisotropic or Wiener filters~\cite{buades2005non}.
@@ -83,9 +78,6 @@ Our implementation modifies the proposal of Liu\,\textit{et al.}~\cite{Liu2011},
 \subsubsection{Slice alignment}
 Similarly, when using 3D texture, misalignment between the slice introduce error to the texture descriptor. In this case the slices are also aligned based on the segmentation's hull.
 
-\subsubsection{Background cropping}
-\todo[inline]{Cropping out the background allows for less texture to be encoded}
-
 \subsection{Features extraction}\label{subsec:feaext}
 \todo[inline]{This a generic description. Shall we place it for our images with some picture? (maybe we don't have time)}
 \added[id=moj]{In this research we chose to extract simple and efficient \ac{lbp} texture features with regards to each \ac{oct} slice and volumes.}
@@ -108,11 +100,7 @@ LBP_{P,R} = \sum_{p=0}^{P-1}s(g_{p} - g_{c})2^{p} \ , \qquad s(\cdot) = \begin{c
 %   \end{cases} \ .
 % \end{align}
 \noindent where $g_c$, $g_{p}$ are the intensities of the central pixel and a given neighbor pixel, respectively. $P$ is the number of sampling points in the circle of radius $R$. Figure~\ref{subfig:lbp} illustrates the meaning of $P$ and $R$.
-
-\begin{changebar}
-\todo{Are we doing Rotation Invariant version??}
 Ojala\,\textit{et al.} further extend the original \ac{lbp} formulation to achieve rotation invariance at the expense of limiting the texture description to the notion of circular ``uniformity''~\cite{ojala2002multiresolution}.
-\end{changebar}
 Volume encoding is later proposed by Zhao\,\textit{et al.} by computing \ac{lbp} descriptors in each orthogonal planes, so called \ac{lbptop}~\cite{zhao2012rotation}.
 
 \begin{figure}[t]
@@ -155,7 +143,7 @@ Here $N$ is the total number of elements in each B-scan, and 3D volume, respecti
 \item[High-level representation] According to the chosen mapping strategy, the low-level representation can lead to a high dimensional feature space.
 High-level representation simplifies this high dimensional feature space into a more discriminant lower space.
 \ac{bow} approach is used for this purpose~\cite{Sivic2003}.
-This model represents the features by creating a visual dictionary or ``codebook'', from the set of low-level features.
+This model represents the features by creating a visual dictionary or \replaced[id=sik]{codebook}{``codebook''}, from the set of low-level features.
 The set of low-level features are clustered using \textit{k}-means to create the codebook with \textit{k} clusters or visual words.
 After creating the codebook, each of the training example is represented as a histogram of size \textit{k}.
 The histogram is obtained by calculating the frequency of occurrences of each of the \textit{k} words in the extracted features from the training example.
@@ -198,7 +186,7 @@ The histogram is obtained by calculating the frequency of occurrences of each of
 Classification corresponds to the mapping of a set of inputs $\mathbf{x}$ into a set of categorical outputs $\mathbf{y}$ using a linear or non-linear function $f(\cdot)$.
 In supervised learning methods, this function is defined by providing a training set of $N$ samples $\mathbf{x}_{tr}$ with their associated labels $\mathbf{y}_{tr}$.
 In the remainder of this section, we briefly summarize the supervised classification methods used in the experiments.
-{\color{red}Details regarding the parameters used in our experiments are provided in Sect.\,\ref{}}
+\added[id=glm]{Details regarding the parameters used in our experiments are provided in Sect.\,\ref{}}
 
 \begin{description}
 
