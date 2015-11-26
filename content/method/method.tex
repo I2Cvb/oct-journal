@@ -7,7 +7,7 @@
 
 The proposed method, as well as, its experimental set-up for \ac{oct} volume classification are outlined in Fig.\,\ref{fig:ML-scheme}.
 %The methodology is formulated as a standard classification procedure.
-The methodology is formulated as a standard classification procedure which consists in 5 steps.
+The methodology is formulated as a standard classification procedure which consists of five steps.
 First, the \ac{oct} volumes are pre-processed as presented in details in Sect.\,\ref{subsec:prepro}.
 %Then toward a final descriptor \ac{lbp} and \ac{lbptop} features are extracted with different mapping strategy and represented using two approach.
 Then, \ac{lbp} and \ac{lbptop} features are extracted, mapped and represented as discussed in depth in Sect.\,\ref{subsec:feaext}, Sect.\,\ref{subsec:mapping}, and Sect.\,\ref{subsec:fearep}, respectively.
@@ -46,32 +46,38 @@ The \ac{oct} volumes are enhanced by denoising each B-scan (i.e. each $x-z$ slic
 \begin{figure}[t]
 \centering 
   \hspace*{\fill}
-  \subfigure[]{\includegraphics[width=0.20\textwidth]{flattening/original_cropped}}\hfill
-  \subfigure[]{\includegraphics[width=0.20\textwidth]{flattening/thresholding_cropped}}\hfill
-  \subfigure[]{\includegraphics[width=0.20\textwidth]{flattening/median_cropped}}
+  \subfigure[]{\label{subfig:flatorg}\includegraphics[width=0.20\textwidth]{flattening/original_cropped}}\hfill
+  \subfigure[]{\label{subfig:flatotsu}\includegraphics[width=0.20\textwidth]{flattening/thresholding_cropped}}\hfill
+  \subfigure[]{\label{subfig:flatmedian}\includegraphics[width=0.20\textwidth]{flattening/median_cropped}}
   \hspace*{\fill}	
   \\
   \hspace*{\fill}
-  \subfigure[]{\includegraphics[width=0.20\textwidth]{flattening/fit_cropped}}\hfill
-  \subfigure[]{\includegraphics[width=0.20\textwidth]{flattening/warped_cropped}}\hfill
-  \subfigure[]{\includegraphics[width=0.20\textwidth]{flattening/warped_org_cropped}}
+  \subfigure[]{\label{subfig:flatfit}\includegraphics[width=0.20\textwidth]{flattening/fit_cropped}}\hfill
+  \subfigure[]{\label{subfig:flatwarp}\includegraphics[width=0.20\textwidth]{flattening/warped_cropped}}\hfill
+  \subfigure[]{\label{subfig:flatfinal}\includegraphics[width=0.20\textwidth]{flattening/warped_org_cropped}}
   \hspace*{\fill}
   \caption{Flattening procedure: (a) original image, (b) thresholding, (c) median filter, (d) curve fitting, (e) warping, (f) flatten image.}
   \label{fig:flatten}
 \end{figure}
 
 Textural descriptors characterize spatial arrangement of intensities.
-However, the \ac{oct} scans suffers from large type of variations: inclination angles, positioning, and natural curvature of the retina~\cite{Liu2011}.
-Therefore, these variations have to be taken into account to ensure a consistent characterization of the tissue disposition, regardless of the location in the retina.%, prior to build the textural descriptors.
-%Therefore, to ensure a consistent characterization of the tissue disposition regardless of the location within the retina, the natural curvature of the retina needs to be corrected.
-This invariance can be achieved from different manners: (i) using a descriptor allowing for a wide number of textures, so that each texture orientation accounts for each own descriptor, (ii) using a rotation invariant descriptor, or (iii) by unfolding the curvature of the retina.
-%This can be done in different manners: (i) using a descriptor allowing for a wide number of textures, so that each texture orientation accounts for each own descriptor, (ii) using a rotation invariant descriptor, or (iii) by unfolding the curvature of the retina.
+However, the \ac{oct} scans suffer from large type of variations: inclination angles, positioning, and natural curvature of the retina~\cite{Liu2011}.
+Therefore, these variations have to be taken into account to ensure a consistent characterization of the tissue disposition, regardless of the location in the retina.
+This invariance can be achieved from different manners: (i) using a rotation invariant descriptor (cf. Sect.\,\ref{subsec:feaext}), or (ii) by unfolding the curvature of the retina.
+This latter correction is known as image flattening which theoretically consists of two distinct steps: (i) estimate and fit the curvature of the \ac{rpe} and (ii) warp the \ac{oct} volume such that the \ac{rpe} becomes flat.
 
-This process of unfolding the curvature of the retina is known as image flattening. When flattening, an estimation of the \rpe  layer is used to modify the volume by imposing that the \rpe  should be flat.
-Our implementation modifies the proposal of Liu\,\textit{et al.}~\cite{Liu2011}, as illustrated in \Cref{fig:flatten}. Othsu thresholding is used to segment the retina from the background. A line is fitted to the bottom part of the segmentation hull, since it is assumed to be parallel to the \rpe. The image is corrected based on this line.
+Our correction is similar to the one of Liu\,\textit{et al.}~\cite{Liu2011}: each B-scan is thresholded using Otsu's method followed by a median filtering to detect the different retina layers (see Fig\,\ref{subfig:flatmedian} and Fig\,\ref{subfig:flatotsu}). 
+Then, a morphological closing and opening is applied to fill the holes and the resulting area is fitted using a second-order polynomial (see Fig.\,\ref{subfig:flatfit}). 
+Finally, the scan is warped such that the curve becomes a line as presented in Fig.\,\ref{subfig:flatwarp} and Fig.\,\ref{subfig:flatfinal}. 
+
+%This process of unfolding the curvature of the retina is known as image flattening. When flattening, an estimation of the \rpe  layer is used to modify the volume by imposing that the \rpe  should be flat.
+%Our implementation modifies the proposal of Liu\,\textit{et al.}~\cite{Liu2011}, as illustrated in \Cref{fig:flatten}. Othsu thresholding is used to segment the retina from the background. A line is fitted to the bottom part of the segmentation hull, since it is assumed to be parallel to the \rpe. The image is corrected based on this line.
 
 \subsubsection{Slice alignment}
-Similarly, when using 3D texture, misalignment between the slice introduce error to the texture descriptor. In this case the slices are also aligned based on the segmentation's hull.
+The flattening correction does not enforce an alignment through the \ac{oct} volume.
+Thus, in addition to the flattening correction, the warped curve of each B-scan are positioned at the same altitude in the $z$ axis. 
+
+%Similarly, when using 3D texture, misalignment between the slice introduce error to the texture descriptor. In this case the slices are also aligned based on the segmentation's hull.
 
 %\subsubsection{Background cropping}
 %\todo[inline]{Cropping out the background allows for less texture to be encoded}
