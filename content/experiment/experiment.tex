@@ -150,7 +150,7 @@ In order to determine the optimal size of the codebook when using \bow, this exp
 For this experiment, several pre-processing strategies are evaluated: (i) \nlm, (ii) a combination of \nlm and flattening; (iii) a combination of \nlm, flattening and aligning.
 \lbp and \lbptop descriptors are extracted using the default configuration.
 Volumes are represented using the high-level representation \bow using $k \in \{10, 20, 30, \cdots, 100, 200, \cdots, 500, 1000\}$.
-Finally, the volumes are classified using \lr.
+Finally, the volumes are classified using \lr. The choice of a linear classifier avoids that the results get busted by the classifier. In this manner any improvement would be linked to the pre-processing and the size of the codebook.
 
 
 The usual construction of the codebook consists of clustering the samples in
