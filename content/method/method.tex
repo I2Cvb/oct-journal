@@ -232,23 +232,24 @@ A strong learner is built by iteratively finding the best pair of real-valued we
 Common choice for weak learners is decision stumps or regression trees while the loss function is generally an exponential or logarithmic loss~\cite{becker2013supervised}, minimized via gradient descent or quadratic approximation.
 
 \item[\acf{svm}] is a sparse kernel classification method which aims at finding the best linear hyperplane which separates two classes by maximizing the margin between them~\cite{vapnik1963generalized}.
-Maximizing the margin is equivalent to minimizing the norm of the normal vector of the hyperplane:
-\begin{equation}
-\min\limits_{\mathbf{w}, \omega_{0}} \frac{1}{2} \Vert \mathbf{w}\Vert^{2} \qquad \text{s.t. } \quad  y_{i}(\mathbf{w}^{T}\mathbf{x_{i}} + \omega_{0}) \geq 1, i = 1: N
-\label{eq:svmsm}
-\end{equation}
-\noindent This constraint intends to force all the point to be in the correct side of the decision boundary (hyperplane) with a minimum distance of 1.
-This assumption is only valid if the data is linearly separable.
-Thus for general cases a slack variable $\xi_{i} \geq 0 $ is introduced, which is $\xi_{i} = 0 $, if the points are on/or inside the correct margin boundary, is $0 < \xi_{i} \leq 1 $ if the points are inside the margin but in the correct side of the decision boundary and otherwise if they lie in the wrong side of decision boundary is $\xi_{i} > 1 $.
-This assumption introduces the \textit{soft margin constraints}.
-Therefore the optimization problem of \ac{svm} classifier is presented by:
+\ac{svm} becomes a non-linear classifier by using the kernel trick~\cite{aizerman1964} which consists in replacing each inner product by a non-linear kernel function such as \ac{rbf} or polynomial kernels.
+% Maximizing the margin is equivalent to minimizing the norm of the normal vector of the hyperplane:
+% \begin{equation}
+% \min\limits_{\mathbf{w}, \omega_{0}} \frac{1}{2} \Vert \mathbf{w}\Vert^{2} \qquad \text{s.t. } \quad  y_{i}(\mathbf{w}^{T}\mathbf{x_{i}} + \omega_{0}) \geq 1, i = 1: N
+% \label{eq:svmsm}
+% \end{equation}
+% \noindent This constraint intends to force all the point to be in the correct side of the decision boundary (hyperplane) with a minimum distance of 1.
+% This assumption is only valid if the data is linearly separable.
+% Thus for general cases a slack variable $\xi_{i} \geq 0 $ is introduced, which is $\xi_{i} = 0 $, if the points are on/or inside the correct margin boundary, is $0 < \xi_{i} \leq 1 $ if the points are inside the margin but in the correct side of the decision boundary and otherwise if they lie in the wrong side of decision boundary is $\xi_{i} > 1 $.
+% This assumption introduces the \textit{soft margin constraints}.
+% Therefore the optimization problem of \ac{svm} classifier is presented by:
 
-\begin{align}
- & \min\limits_{\mathbf{w},\omega_{0}, \mathbf{\xi}} \frac{1}{2} \Vert \mathbf{w} \Vert^{2} + C \sum\limits_{i = 1}^{N} \xi_{i} \nonumber \\
-\text{s.t. } & \quad \xi_{i} \geq 0, \quad y_{i}(x_{i}^{T}\mathbf{w} + \omega_{0}) \geq 1 - \xi_{i}, i = 1:N
-\label{eq:svmop}
-\end{align}
-In Eq.~\ref{eq:svmop}, the $\sum_{i} \xi_{i}$ term, describes the upper bound on the number of misclassified points and $C$ is the regularization parameter that controls the tolerance of the classifiers on the number of errors~\cite{murphy2012machine}. \\
+% \begin{align}
+%  & \min\limits_{\mathbf{w},\omega_{0}, \mathbf{\xi}} \frac{1}{2} \Vert \mathbf{w} \Vert^{2} + C \sum\limits_{i = 1}^{N} \xi_{i} \nonumber \\
+% \text{s.t. } & \quad \xi_{i} \geq 0, \quad y_{i}(x_{i}^{T}\mathbf{w} + \omega_{0}) \geq 1 - \xi_{i}, i = 1:N
+% \label{eq:svmop}
+% \end{align}
+% In Eq.~\ref{eq:svmop}, the $\sum_{i} \xi_{i}$ term, describes the upper bound on the number of misclassified points and $C$ is the regularization parameter that controls the tolerance of the classifiers on the number of errors~\cite{murphy2012machine}. \\
 
 \end{description}
 
