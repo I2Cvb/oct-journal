@@ -1,0 +1,50 @@
+\begin{landscape}
+  \begin{table}[ht]
+\caption{The outline and summary of the performed experiments.}
+\medskip
+\scriptsize{
+\begin{center}
+\resizebox{1\linewidth}{!}{
+\begin{tabular}{l c	 c  c  c  c  c  c  c }
+\toprule
+&  Dataset & Pre-processing & Features & Mapping & Representation & Classification & Validation & Evaluation \\
+\cmidrule(l){2-9}
+\multirow{3}{*}{Common:} & \multirow{3}{*}{SERI} & \multirow{3}{*}{\ac{nlm}} & \ac{lbp},\ac{lbptop} & \multirow{3}{*}{} & \multirow{3}{*}{}  & & \multirow{3}{*}{\ac{lopocv}}& \multirow{3}{*}{} \\
+        &      &          & $S = \{8,16,24\}$ & & & & & \\
+        &      &          & $R = \{1,2,3\}$  & & & & & \\
+\midrule
+\\
+Experiment\#1 & \multicolumn{8}{l}{Goal: Evaluation of features, mapping and representation} \\\\
+\hdashline \noalign{\vskip 3pt}
+\\
+ & + Duke & $\sim$ & $\sim$ & \emph{local}, \emph{global} & \ac{bow}, histogram & \ac{rf} & $\sim$ & \ac{se}, \ac{sp}\\   
+\midrule
+\\
+Experiment\#2 & \multicolumn{8}{l}{Goal: Finding the optimum number of words}\\\\
+\hdashline \noalign{\vskip 3pt}
+\\
+ & $\sim$ & +\{\acs{f}, \acs{fal}\} & $\sim$ & \emph{local}, \emph{global} & \ac{bow} & $k$-\ac{nn} & $\sim$ & \ac{acc}, \ac{f1}\\\\
+\midrule
+\\
+Experiment\#3 & \multicolumn{8}{l}{Goal: Evaluation of different pre-processing for high-level features}\\\\
+\hdashline \noalign{\vskip 3pt}
+\\
+%\hdashline \noalign{\vskip 3pt}
+ & $\sim$ & +\{\acs{f}, \acs{fal}\} & $\sim$ & \emph{local}, \emph{global} & \ac{bow} & $k$-\ac{nn}, \ac{rf}, \ac{svm}, \ac{gb} & $\sim$ & \ac{se}, \ac{sp}\\
+\\
+\midrule
+\\
+Experiment\#4 & \multicolumn{8}{l}{Goal: Evaluation of different pre-processing for low-level features}\\\\
+\hdashline \noalign{\vskip 3pt}
+\\
+%\hdashline \noalign{\vskip 3pt}
+ & $\sim$ & +\{\acs{f}, \acs{fal}\} & $\sim$ & \emph{global} & histogram & $k$-\ac{nn}, \ac{rf}, \ac{svm}, \ac{gb} & $\sim$ & \ac{se}, \ac{sp}\\
+\\
+\bottomrule
+
+
+\end{tabular}}
+\end{center}}
+\label{tab:table4}
+\end{table}
+\end{landscape}
