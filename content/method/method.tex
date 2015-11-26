@@ -29,7 +29,7 @@ The influence of these pre-processing methods and their possible combinations ar
   \subfigure[]{\label{subfig:raw}\includegraphics[width=0.3\linewidth]{raw_crop_grey.png}} \hfill
   \subfigure[]{\label{subfig:nlm}\includegraphics[width=0.3\linewidth]{nlm_crop_grey.png}}
   \hspace*{\fill}
-  \caption{\ac{oct}: (a) Organization of the \ac{oct} data - (b) Original image - (c) \ac{nlm} filtering.}
+  \caption{\ac{oct}: (a) Organization of the \ac{oct} data - (b) Original image - (c) \ac{nlm} filtering. Note that the images have been negated for visualization purposes.}
   \label{fig:denoise}
 \end{figure}
 
@@ -83,8 +83,7 @@ Thus, in addition to the flattening correction, the warped curve of each B-scan 
 %\todo[inline]{Cropping out the background allows for less texture to be encoded}
 
 \subsection{Features extraction}\label{subsec:feaext}
-\todo[inline]{This a generic description. Shall we place it for our images with some picture? (maybe we don't have time)}
-In this research we chose to extract simple and efficient \ac{lbp} texture features with regards to each \ac{oct} slice and volumes.
+In this research, we choose to extract simple and efficient \ac{lbp} texture features with regards to each \ac{oct} slice and volumes.
 \ac{lbp} is a texture descriptor based on the signs of the differences of a central pixel with respect to its neighboring pixels~\cite{ojala2002multiresolution}.
 These differences are encoded in terms of binary patterns as in~Eq.\,\eqref{Eq:LBP}:
 
@@ -95,26 +94,26 @@ LBP_{P,R} = \sum_{p=0}^{P-1}s(g_{p} - g_{c})2^{p} \ , \qquad s(\cdot) = \begin{c
   \end{cases} \ ,
 \end{equation}
 
-\noindent where $g_c$, $g_{p}$ are the intensities of the central pixel and a given neighbor pixel, respectively. $P$ is the number of sampling points in the circle of radius $R$. Figure~\ref{subfig:lbp} illustrates the meaning of $P$ and $R$.
-
+\noindent where $g_c$, $g_{p}$ are the intensities of the central pixel and a given neighbor pixel, respectively. $P$ is the number of sampling points in the circle of radius $R$.
 Ojala\,\textit{et al.} further extend the original \ac{lbp} formulation to achieve rotation invariance at the expense of limiting the texture description to the notion of circular ``uniformity''~\cite{ojala2002multiresolution}.
-Volume encoding is later proposed by Zhao\,\textit{et al.} by computing \ac{lbp} descriptors in each orthogonal planes, so called \ac{lbptop}~\cite{zhao2012rotation}.
+Volume encoding is later proposed by Zhao\,\textit{et al.} by computing \ac{lbp} descriptors in each orthogonal plane, so called \ac{lbptop}~\cite{zhao2012rotation}.
 
-In this research we consider uniform and rotation invariant \ac{lbp} and \ac{lbptop} features with various sampling points, $\{8,16,24\}$, with respect to different radius, $\{1,2,3\}$, respectively.
+In this research we consider rotation invariant ad uniform \ac{lbp} and \ac{lbptop} features with various sampling points (i.e., $\{8,16,24\}$) with respect to different radius, (i.e., $\{1,2,3\}$).
+The number of patterns ($LBP_{\#pat}$) in regards with each configuration is reported in Table~\ref{tab:lbphist}.
 
-Table.~\ref{tab:lbphist} shows the length of uniform rotation invariant histogram ($\ac{lbp}_{hist}$) for the used sampling point and radius.
+%Table.~\ref{tab:lbphist} shows the length of uniform rotation invariant histogram ($\ac{lbp}_{hist}$) for the used sampling point and radius.
 \begin{table}
-\caption{length of $\ac{lbp}_{hist}$ for different sampling points and radius ($\{S,R\}$) in \ac{lbp} descriptor}
+\caption{Number of patterns ($LBP_{\#pat}$) for different sampling points and radius ($\{S,R\}$) of the \ac{lbp} descriptor.}
 \centering{
 \resizebox{0.5\linewidth}{!}{
 \footnotesize{
 \begin{tabular}{l  c c c }
 \toprule
- \multicolumn{4}{c}{Sampling point in a given radius ($\{S,R\}$)}\\
+ \multicolumn{4}{c}{Sampling point for a radius ($\{S, R\}$)}\\
  \midrule
- & $\{8,1\}$ & $\{16,2\}$ & $\{24,3\}$\\
+ & $\{8, 1\}$ & $\{16, 2\}$ & $\{24, 3\}$\\
  \cmidrule{2-4}
- $\lbp_{hist}$  & 10 & 18 & 26 \\
+  $LBP_{\#pat}$  & 10 & 18 & 26 \\
  \bottomrule
 \end{tabular}}}}
 \label{tab:lbphist}
