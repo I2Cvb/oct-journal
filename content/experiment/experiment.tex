@@ -27,7 +27,7 @@ In this validation, at each round a pair \ac{dme}-normal volume is selected for 
 The use of this method implies that no variance in terms of \ac{se} and \ac{sp} can be reported.
 However, and despite this limitation, \ac{lopocv} has been employed due to the small size of the dataset.
 
-The obtained results of all the experiments except experiment \#1 is represented in terms of \ac{se} and \ac{sp}.
+The obtained results of all the experiments except experiment \#2 is represented in terms of \ac{se} and \ac{sp}.
 These statistics are driven from the confusion matrix (see Fig.~\ref{fig:CM}).
 
 \begin{figure}
@@ -93,7 +93,7 @@ The majority of the development of our framework has been carried out using our 
 %%However, Duke dataset is already filtered using BM3D method~\cite{Srinivasan2014}.
 %%For both datasets, \ac{lbp} and \ac{lbptop} features are extracted for different sampling points of 8, 16 and 24 for radius of 1, 2 and 3, respectively.
 %%Two different mapping strategies are used: (i) \emph{global} mapping corresponding to the 2D B-scan for \ac{lbp} or the 3D volume for \ac{lbptop} and (ii) \emph{local} mapping considering to a set of 2D \ac{sw} of size $(7 \times 7)$ for \ac{lbp} or the 3D sub-volume for \ac{lbptop} of size $(7 \times 7 \times 7)$.
-\subsection{Experiment \#1}
+\subsection{Experiment \#1}\label{subsec:exp1}
 As previously stated, this experiment was performed with our primary framework which is presented in \cite{Lemaintre2015miccaiOCT}.
 This experiment was performed to evaluate the effects of different features representation.
 In this experiment, the \ac{oct} volumes of our own dataset, were only de-noised using \ac{nlm} method and \ac{bow} approach was used with fix number of words ($k = 32$).
@@ -105,7 +105,7 @@ The obtained results from this experiment is listed in Table.~\ref{tab:table1-1}
 \input{content/experiment/Table1.tex}
 
 Once again in order to evaluate the proposed pipeline the proposed method by Venhuizen\,\textit{et al.}~\cite{Venhuizen2015} was developed and tested on the two dataset. The comparison of the obtained results with the highest performance achieved by our framework is shown in Table.~\ref{ta:table1-2}
-\input{content/experiment/Table1-2.tex}
+\input{content/experiment/Table1-2.tex}\label{subsec:exp2}
 
 \subsection{Experiment \#2}
 This experiment, conducted on SERI dataset, is performed to find the optimal number of words for \ac{bow} high-level feature representation.
@@ -129,7 +129,7 @@ Figure.~\ref{fig:RBOW} shows the obtained graphs for some of the configurations.
   \label{fig:RBOW}
 \end{figure}
  
-\subsection{Experiment \#3}
+\subsection{Experiment \#3}\label{subsec:exp3}
 This experiment is performed for high-level features on SERI dataset. 
 Using the optimum number of words which are obtained from the previous experiment, the low-level feature sets with regards to different pre-processing configurations are re-represented using \ac{bow} and $k$-means clustering approach and are classified using different classifiers such as $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac{svm}.\
 The $k$-means algorithm is initialized using $k$-means++ method and is performed with 5 iteration for each codebook.
@@ -142,7 +142,7 @@ Table~\ref{tab:table3} shows the obtained results from this experiment.\\
 
 
 
-\subsection{Experiment \#4}
+\subsection{Experiment \#4}\label{subsec:exp4}
 This experiment is conducted for low-level features.
 The \emph{global} \ac{lbp} and \ac{lbptop} features are classified using the same classifiers as previous experiments with the same configurations.
 The obtained results from this experiment is listed in Table.~\ref{tab:table4}.\\

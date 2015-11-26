@@ -3,25 +3,26 @@
 \caption{The summary of the state of the art methods}
 \resizebox{1\linewidth}{!}{
 \scriptsize{
-\begin{tabular}{l ccc c cccc	c c ccc}
+\begin{tabular}{l ccc c cccc	c c c ccc}
 \toprule
-Ref & \multicolumn{3}{c}{Task} & Data size & \multicolumn{4}{c}{Pre-processing} & Features & Classifier & \multicolumn{3}{c}{Evaluation}\\
-\cmidrule(l){2-4}\cmidrule(l){6-9} \cmidrule(l){12-14}
-    & \ac{amd} & \ac{dme} & Normal     &           & De-noise & Flatten & Aligning & Cropping &   &  & \ac{se} & \ac{sp} & \ac{auc}\\
+Ref & \multicolumn{3}{c}{Task} & Data  & \multicolumn{4}{c}{Pre-processing} & Features & Representation & Classifier & \multicolumn{3}{c}{Evaluation}\\
+    &  &  &  & size &  &  &  &  &  &  &  & & & \\
+   \cmidrule(l){2-4}\cmidrule(l){6-9} \cmidrule(l){13-15}
+    & \ac{amd} & \ac{dme} & Normal  &           & De-noise & Flatten & Aligning & Cropping &   & &   & \ac{se} & \ac{sp} & \ac{auc}\\
 \midrule
-& & & & & & & & & & & & &  \\
-
-Srinivansan\,\textit{et al.}~\cite{Srinivasan2014} & $\checkmark$ & $\checkmark$ & $\checkmark$ &  45 & $\checkmark$ & $\checkmark$ &  & $\checkmark$ & \ac{hog} & \ac{svm} & 86.7\%,100\%,100\% & &  \\
-& & & & & & & & & & & & &    \\
-
-Venhuizen\,\textit{et al.}~\cite{Venhuizen2015} & $\checkmark$ &  & $\checkmark$ & 384 &  & & & &  texton  & \acs{rf} & & & 0.984 \\ 
-& & & & & & & & & & & & &   \\
-
-Liu\,\textit{et al.}~\cite{Liu2011} & $\checkmark$ & $\checkmark$ & $\checkmark$  & 326 &  & $\checkmark$ & $\checkmark$ &  &  Edge, \ac{lbp} & \acs{svm} & & &  0.93 \\
-& & & & & & & & & & & & &   \\
-
-Lema\^itre\,\textit{et al.}~\cite{Lemaintre2015miccaiOCT} &  & $\checkmark$ & $\checkmark$ & 32  & $\checkmark$ &  &  &  & \acs{lbp}-\acs{lbptop} & \ac{rf} & 87.5\% & 75\% & \\
-& & & & & & & & & & & & &   \\
+& & & & & & & & & & & & & &  \\
+%Srinivansan\,\textit{et al.}~
+\cite{Srinivasan2014} & $\checkmark$ & $\checkmark$ & $\checkmark$ &  45 & $\checkmark$ & $\checkmark$ &  & $\checkmark$ & \ac{hog} &  & \ac{svm} & 86.7\%,100\%,100\% & &  \\
+& & & & & & & & & & & & &   &  \\
+%Venhuizen\,\textit{et al.}~
+\cite{Venhuizen2015} & $\checkmark$ &  & $\checkmark$ & 384 &  & & & &  texton  &\acs{bow}, \acs{pca}  & \acs{rf} & & & 0.984 \\ 
+& & & & & & & & & & & & &   & \\
+%Liu\,\textit{et al.}~
+\cite{Liu2011} & $\checkmark$ & $\checkmark$ & $\checkmark$  & 326 &  & $\checkmark$ & $\checkmark$ &  &  Edge, \ac{lbp} & \acs{pca}& \acs{svm} & & &  0.93 \\
+& & & & & & & & & & & & &   & \\
+%Lema\^itre\,\textit{et al.}~
+\cite{Lemaintre2015miccaiOCT} &  & $\checkmark$ & $\checkmark$ & 32  & $\checkmark$ &  &  &  & \acs{lbp}-\acs{lbptop} & \acs{pca}, \acs{bow}, histogram&  \ac{rf} & 87.5\% & 75\% & \\
+& & & & & & & & & & & & &   & \\
 \bottomrule
 \end{tabular}}}
 \label{tab:survey-tab}

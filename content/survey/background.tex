@@ -16,10 +16,8 @@ On a dataset of 45 patients equally subdivided into the three aforementioned cla
 Venhuizen\,\textit{et al.} proposed a method for \ac{oct} images classification using the \ac{bow} models~\cite{Venhuizen2015}.
 The method starts with the detection and selection of keypoints in each individual B-scan, by keeping the most salient points corresponding to the top $3 \%$ of the vertical gradient values. Then, a texton of size $9 \times 9$ pixels is extracted around each keypoint, and \ac{pca} is applied to reduce the dimension of every texton to get a feature vector of size $9$.
 All extracted feature vectors are used to create a codebook using \textit{k}-means clustering.
-\replaced[id=sik]
-{Then, each \ac{oct} volume is represented in terms of this codebook and characterized as a histogram that captures the codebook occurrences. These histograms are}
-{Then, the obtained codebook from the training is used to represent each \ac{oct} volume as a feature \added[id=glm]{vector occurrence histogram}.
-Finally, this histogram is} used as feature vector to train a \ac{rf} with a maximum of $100$ trees.
+Then, each \ac{oct} volume is represented in terms of this codebook and is characterized as a histogram that captures the codebook occurrences.
+These histograms are used as feature vector to train a \ac{rf} with a maximum of $100$ trees.
 The method was used to classify \ac{oct} volumes between \ac{amd} and normal cases and achieved an \ac{auc} of $0.984$ with a dataset of $384$ \ac{oct} volumes.
 
 Liu\,\textit{et al.} proposed a methodology for detecting macular pathology in \ac{oct} images using \ac{lbp} and gradient information as attributes~\cite{Liu2011}.
@@ -30,21 +28,15 @@ All the obtained histograms are concatenated into a global descriptor whose dime
 Finally a \ac{svm} is used as classifier.
 The method achieved good results in detection \ac{oct} scan containing different pathology such as \ac{dme} or \ac{amd}, with an \ac{auc} of $0.93$ using a dataset of $326$ \ac{oct} scans.
 
-\added[id=sik]{
-  Our later study proposes a standard classification procedure to differentiate between \ac{dme} and normal \ac{sdoct} volumes~\cite{Lemaitre2015}The data is pre-processed using \ac{nlm} filtering.
+Our later study proposes a standard classification procedure to differentiate between \ac{dme} and normal \ac{sdoct} volumes~\cite{Lemaitre2015}The data is pre-processed using \ac{nlm} filtering.
 The volumes are mapped into discrete set of structures namely: local, when these structures correspond to patches; or global, when the structures correspond to volume slices or the whole volume.
 These structures are described in terms of texture using \ac{lbp} or \ac{lbptop} and encoded using histogram, \ac{pca} or \ac{bow} to produce a single feature vector in order to present the volumes to a \ac{rf} classifeir.
-This methodology was tested against Venhuizen\,\textit{et al.}~\cite{Venhuizen2015} using public and non-public datasets showing an improvement within the results achieving a \ac{se} of 87.5\% and a \ac{sp} of 75\%.}
+This methodology was tested against Venhuizen\,\textit{et al.}~\cite{Venhuizen2015} using public and non-public datasets showing an improvement within the results achieving a \ac{se} of 87.5\% and a \ac{sp} of 75\%.
+The obtained results of this study is listed in Sect.\,\ref{sec:exp}.
 
-\added[id = moj]{In our latest study~\cite{Lemaintre2015miccaiOCT}, we proposed a classification framework for differentiating \ac{dme} and normal \ac{sdoct} volumes.
-In this work, we proposed to pre-process the volumes using \ac{nlm} filtering and mapped them either into a set of structures, corresponding to patches from slices or volumes (local) or a single structure per slice or volume (global).
-From the considered structures we proposed to extract \ac{lbp} and \ac{lbptop} features and represent them using histogram, \ac{pca} or \ac{bow} algorithm.
-The represented features were then classified using \ac{rf} classifier.
-This methodology was tested on public and non-public dataset and the obtained results revealed improvement against Venhuizen\,\textit{et al.}~\cite{Venhuizen2015} algorithm by achieving the \ac{se} and \ac{sp} of 87.5\% and 100\%, respectively.
-The obtained results from this study is listed in Sect.\,\ref{sec:exp}.
 As stated in previous section, this research is a continue of our previous work, where we intend to evaluate the influence of different pre-processing, \ac{bow} representation and various classifiers.
-Our proposed pipeline with detail description of each step is presented in the following section
- }
+Our proposed pipeline with detail description of each step is presented in the following section.
+ 
 
 %\DTLloaddb[keys={task,Srinivasan,Venhuizen,Liu,Lemaitre}]
 %          {survey}{./content/survey/tables/survey.csv}
