@@ -128,11 +128,30 @@ For this work two mapping strategies are defined: (i) \emph{global} and (ii) \em
 \begin{description}
 \item[\emph{Global}] mapping considers to extract the features from the 2D B-scans for \ac{lbp} and 3D volume for \ac{lbptop}.
 Therefore for a volume with $d$ B-scans, the \emph{global}-\ac{lbp} feature leads to a final descriptor of size $d \times \ac{lbp}_{hist}$ and \emph{global}-\ac{lbptop} feature returns the final descriptor of size $3 \times \ac{lbp}_{hist}$.
-Here $\ac{lbp}_{hist}$ refers to the size of uniform and rotation invariant \ac{lbp} histogram which it's number of bins depends on the number of sampling points in a given neighborhood.\\
+Here $\ac{lbp}_{hist}$ refers to the size of uniform and rotation invariant \ac{lbp} histogram which it's number of bins depends on the number of sampling points in a given neighborhood.
+The \emph{global} mapping for 2D B-scan end 3D volume is shown in Fig.~\ref{fig:globalmapping}
+\begin{figure}[h]
+\begin{center}
+\subfigure[2D B-scan]{\includegraphics[width=0.3\textwidth]{/mapping/global-2d.png}}\hfill
+\subfigure[3D volume]{\includegraphics[width=0.3\textwidth]{/mapping/global-3d.png}}
+\caption{\emph{Global} mapping for \ac{lbp} and \ac{lbptop} features (2D B-scane and 3D volume, respectively).}
+\end{center}
+\label{fig:globalmapping}
+\end{figure}
 \item[\emph{Local}] mapping extracts the features from a set of 2D patches for \ac{lbp} and a set of sub-volumes for \ac{lbptop}.
 Considering ($m \times m$) \acf{sw} for 2D \ac{lbp} and ($ m \times m \times m$) sub-volume for \ac{lbptop}.
 Using these elements, the \emph{local}-\ac{lbp} approach provides a final descriptor of size ($\ac{lbp}_{hist} \times N \times d $) while \emph{local}-\ac{lbptop} results in a final descriptor of size $3 \times \ac{lbp}_{hist} \times N' \times \frac{m}{d}$.
 Here $N$ and $N'$ are the total number of elements in each B-scan, and 3D volume, respectively.
+This mapping is illustrated in Fig.~\ref{fig:localmapping}.
+\begin{figure}[h]
+\begin{center}
+\subfigure[2D B-scan]{\includegraphics[width=0.3\textwidth]{/mapping/local-2d.png}}\hfill
+\subfigure[3D volume]{\includegraphics[width=0.3\textwidth]{/mapping/local-3d.png}}
+\caption{\emph{Local} mapping for \ac{lbp} and \ac{lbptop} features (2D B-scane and 3D volume, respectively).}
+\end{center}
+\label{fig:localmapping}
+\end{figure}
+
 \end{description}
 
 For the sake of clarification, the length of final descriptor for \emph{local} and \emph{global} mapping of both \ac{lbp} and \ac{lbptop} features with respect to the length of $\ac{lbp}_{hist}$ are listed in Table.~\ref{tab:tabmap}.
