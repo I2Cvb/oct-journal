@@ -20,25 +20,12 @@ Finally, the classification step is presented in Sect.\,\ref{subsec:cls}.
 This section describes the set of pre-processing techniques which aim at enhancing the \ac{oct} volume.
 The influence of these pre-processing methods and their possible combinations are extensively studied in Sect.\,\ref{sec:}.\todo{add the section for the experiment flattening+aligned} 
 
-% This section describes set of pre-processing techniques which are provided by our framework.
-% These approaches can be arbitrarily combined.
-% Combinations of these technologies and the influence of these combinations are reported in experimentation~\cref{sec:exp}.
-
 \subsubsection{\acf{nlm}}
 \ac{oct} images suffer from speckle noise, like other image modalities such as \ac{us}~\cite{schmitt1999speckle}.
-
-% \replaced[id=sik]{
-% Considering that \ac{nlm}~\cite{buades2005non} has been successfully applied to \us images~\cite{Coupe2009} to reduce speckle, and our preliminary study in \ac{oct} images \cite{Lemaitre2015}, \ac{nlm} filtering is used here to denoise each B-scan (i.e. each $x-z$ slice) of the \ac{oct} volumes (see in Fig.\,\ref{subfig:vol}).
-% }{
-% \ac{oct} images are known to be affected by a speckle noise~\cite{schmitt1999speckle}.
-% Subsequently, \ac{nlm}~\cite{buades2005non} filtering has been successfully used in \ac{us} images to filter similar noise~\cite{Coupe2009} and is used in our framework to denoise each B-scan (i.e. each $x-z$ slice) of the \ac{oct} volumes (see in Fig.\,\ref{subfig:vol}).
-% In this regard (For this reason, Due to this reason), we use the \ac{nlm} filtering which has been successfully used on \ac{us} images to remove similar noise~\cite{Coupe2009}.
-% This filter is applied on each B-scan (i.e. each $x-z$ slice) for the \ac{oct} volumes (see in Fig.\,\ref{subfig:vol}).
-% }
-%The pre-processing stage in the proposed methodology applies an image denoising method to reduce the speckle noise in \ac{oct} images.
-%Since image details and texture of the original image are needed by the following stages in the method, \ac{nlm} algorithm \cite{buades2005non} is used.
-\ac{nlm} filtering offers the advantage to use all the possible self-predictions that the image can provide rather than local or frequency filters such as Gaussian, anisotropic or Wiener filters~\cite{buades2005non}.
-An example of filtering using \ac{nlm} filter on \ac{oct} image is depicted in Fig\,\ref{subfig:raw} and Fig.\,\ref{subfig:nlm}.
+The \ac{oct} volumes are enhanced by denoising each B-scan (i.e. each $x-z$ slice) using the \ac{nlm}~\cite{buades2005non}, as shown in Fig.\,\ref{fig:denoise}.
+\ac{nlm} has been successfully applied to \ac{us} images to reduce speckle noise and outperforms other common denoising methods~\cite{Coupe2009}.
+\ac{nlm} filtering preserve fine structures as well as flat zones, using all the possible self-predictions that the image can provide rather than local or frequency filters such as Gaussian, anisotropic, or Wiener filters~\cite{buades2005non}.
+%An example of filtering using \ac{nlm} filter on \ac{oct} image is depicted in Fig\,\ref{subfig:raw} and Fig.\,\ref{subfig:nlm}.
 
 \begin{figure}[t]
   \centering
@@ -51,7 +38,7 @@ An example of filtering using \ac{nlm} filter on \ac{oct} image is depicted in F
   \label{fig:denoise}
 \end{figure}
 
-\subsubsection{Flatten}
+\subsubsection{Flattening}
 
 Texture descriptors characterize spatial arrangement of intensities.
 Therefore, to ensure a consistent characterization of the tissue disposition regardless of the location within the retina, the natural curvature of the retina needs to be taken into account.
