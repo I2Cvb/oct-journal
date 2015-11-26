@@ -15,7 +15,7 @@ Only for the sake of comparison some experiments are re-run on the Duke public d
 For all the experiments, \ac{lbp} and \ac{lbptop} features are extracted for different sampling points of 8, 16, and 24 for radius of 1, 2, and 3, respectively.
 As previously mentioned, two different mapping strategies, \emph{local} and \emph{global}, are used, where for \emph{local} mapping, we consider a ($7 \times 7$) \acf{sw} for 2D \ac{lbp} and ($ 7 \times 7 \times 7$) sub-volume for \ac{lbptop}.
 
-\deleted[id=sik]{ The pipeline in each experiment is }{All the experiments are} evaluated using \ac{lopocv} strategy.
+All the experiments are evaluated using \ac{lopocv} strategy.
 In this validation, at each round a pair \ac{dme}-normal volume is selected for testing while the rest of the volumes are used for training.
 The use of this method implies that no variance in terms of \ac{se} and \ac{sp} can be reported.
 However, and despite this limitation, \ac{lopocv} has been employed due to the small size of the dataset.
@@ -65,28 +65,13 @@ Equation.~\ref{eq:accf1} shows the formulation of these two measurements.
 \end{figure}
 
 
-Experimentation details can be fount in \cref{subsec:exp1} to \cref{subsec:exp4} and summarized in \cref{tab:experiment_summary}.
-In general terms, all the experiments have been carried out using SERI dataset while \emph{Experiment \#1\,\cref{subsec:exp1}} has been complemented using Duke dataset for comparison purposes. This \emph{Experiment \#1\,\cref{subsec:exp1}} takes from the experimentation reported in \cite{Lemaintre2015miccaiOCT} to evaluate the effects of different feature representations\todo{are not we evaluating feature extraction?} and compares the results to those obtained by Venhuizen\emph{et al.}\,\cite{Venhuizen2015}.
-\emph{Experiment \#2\,\cref{subsec:exp2}} studies the effect of the codebook size in order to find the optimal number of words for our application when using \ac{bow}.
-\emph{Experiment \#3\,\cref{subsec:exp3}} studies the effect different pre-processing and classifiers.
+Experimentation details can be found in Sect.\,\ref{subsec:exp1} to Sect.\,\ref{subsec:exp4} and summarized in Sect.\,\ref{tab:experiment_summary}.
+In general terms, all the experiments have been carried out using SERI dataset while \emph{Experiment \#1\,Sect.\,\ref{subsec:exp1}} has been complemented using Duke dataset for comparison purposes. This \emph{Experiment \#1\,Sect.\,\ref{subsec:exp1}} takes from the experimentation reported in \cite{Lemaintre2015miccaiOCT} to evaluate the effects of different feature representations\todo{are not we evaluating feature extraction?} and compares the results to those obtained by Venhuizen\emph{et al.}\,\cite{Venhuizen2015}.
+\emph{Experiment \#2\,Sect.\,\ref{subsec:exp2}} studies the effect of the codebook size in order to find the optimal number of words for our application when using \ac{bow}.
+\emph{Experiment \#3\,Sect.\,\ref{subsec:exp3}} studies the effect different pre-processing and classifiers.
 
 \input{content/experiment/experiment-table.tex}
-\deleted[id=sik]{
-The \emph{global} and \emph{local} extracted features are then presented in low or high level representation.
-As previously mentioned, \ac{bow} approach is used for high-level representation.
-% In this regard, to find the optimal number of  
-}
 
-\deleted[id=sik]{
-Four experiments are presented in the reminder of this section.
-Experiment \#1 presents the obtained results from our primary study~\cite{Lemaintre2015miccaiOCT} where we the framework was tested with one pre-processing, one classifier, and fixed number of visual words. 
-In this regard in the next experiment \#2, we perform a preliminary test in a search for the optimal number of ``visual-words'' ($k$).
-In experiment \#3, using the obtained number of words, we test the performance of different classifiers with regards to different pre-processing steps for high-level represented features and finally in experiment \#4 we compare the performance of different classifiers with respect to different pre-processing for low-level represented features.
-%
-\\
-Beside experiment \#1, where the primary pipeline is tested on SERI and Duke dataset, the rest of the experiment are performed only on SERI dataset and for the sake of the comparison, these three experiments are performed using all the aforementioned classifiers. 
-However only the relevant part and results related to our experiment is represented within the paper, while the rest are mentioned in online {\color{red}repository}.
-}
 
 
 
