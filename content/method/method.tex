@@ -60,9 +60,12 @@ The \ac{oct} volumes are enhanced by denoising each B-scan (i.e. each $x-z$ slic
   \label{fig:flatten}
 \end{figure}
 
-Texture descriptors characterize spatial arrangement of intensities.
-Therefore, to ensure a consistent characterization of the tissue disposition regardless of the location within the retina, the natural curvature of the retina needs to be taken into account.
-This can be done in different manners: (i) using a descriptor allowing for a wide number of textures, so that each texture orientation accounts for each own descriptor, (ii) using a rotation invariant descriptor, or (iii) by unfolding the curvature of the retina.
+Textural descriptors characterize spatial arrangement of intensities.
+However, the \ac{oct} scans suffers from large type of variations: inclination angles, positioning, and natural curvature of the retina~\cite{Liu2011}.
+Therefore, these variations have to be taken into account to ensure a consistent characterization of the tissue disposition, regardless of the location in the retina.%, prior to build the textural descriptors.
+%Therefore, to ensure a consistent characterization of the tissue disposition regardless of the location within the retina, the natural curvature of the retina needs to be corrected.
+This invariance can be achieved from different manners: (i) using a descriptor allowing for a wide number of textures, so that each texture orientation accounts for each own descriptor, (ii) using a rotation invariant descriptor, or (iii) by unfolding the curvature of the retina.
+%This can be done in different manners: (i) using a descriptor allowing for a wide number of textures, so that each texture orientation accounts for each own descriptor, (ii) using a rotation invariant descriptor, or (iii) by unfolding the curvature of the retina.
 
 This process of unfolding the curvature of the retina is known as image flattening. When flattening, an estimation of the \rpe  layer is used to modify the volume by imposing that the \rpe  should be flat.
 Our implementation modifies the proposal of Liu\,\textit{et al.}~\cite{Liu2011}, as illustrated in \Cref{fig:flatten}. Othsu thresholding is used to segment the retina from the background. A line is fitted to the bottom part of the segmentation hull, since it is assumed to be parallel to the \rpe. The image is corrected based on this line.
