@@ -62,8 +62,19 @@ This process of unfolding the curvature of the retina is known as image flatteni
 Our implementation modifies the proposal of Liu\,\textit{et al.}~\cite{Liu2011}, as illustrated in \Cref{fig:flatten}. Othsu thresholding is used to segment the retina from the background. A line is fitted to the bottom part of the segmentation hull, since it is assumed to be parallel to the \rpe. The image is corrected based on this line.
 
 \begin{figure}[t]
-  \missingfigure{Illustration of (a) orignail image, (b) segmentation, (c) feeting curve, flattening, (d) corrected image}
-  \caption{}
+\centering 
+  \hspace*{\fill}
+  \subfigure[]{\includegraphics[width=0.20\textwidth]{flattening/original_cropped}}\hfill
+  \subfigure[]{\includegraphics[width=0.20\textwidth]{flattening/thresholding_cropped}}\hfill
+  \subfigure[]{\includegraphics[width=0.20\textwidth]{flattening/median_cropped}}
+  \hspace*{\fill}	
+  \\
+  \hspace*{\fill}
+  \subfigure[]{\includegraphics[width=0.20\textwidth]{flattening/fit_cropped}}\hfill
+  \subfigure[]{\includegraphics[width=0.20\textwidth]{flattening/warped_cropped}}\hfill
+  \subfigure[]{\includegraphics[width=0.20\textwidth]{flattening/warped_org_cropped}}
+  \hspace*{\fill}
+  \caption{Flattening procedure: (a) original image, (b) thresholding, (c) median filter, (d)curve fitting, (e) warping, (f) flatten image.}
   \label{fig:flatten}
 \end{figure}
 
@@ -125,34 +136,37 @@ Table.~\ref{tab:lbphist} shows the length of uniform rotation invariant histogra
 The mapping stage is used to determine a discrete set of elements (or structures) which is used for representing the \ac{oct} volume.
 For this work two mapping strategies are defined: (i) \emph{global} and (ii) \emph{local} mapping.
 
+\begin{figure}[t]
+\begin{center}
+\hspace*{\fill}
+\subfigure[]{\includegraphics[width=0.22\textwidth]{/mapping/global-2d.png}\label{fig:gm1}}\hfill
+\subfigure[]{\includegraphics[width=0.22\textwidth]{/mapping/global-3d.png}\label{fig:gm2}}\hfill
+\subfigure[]{\includegraphics[width=0.22\textwidth]{/mapping/local-2d.png}\label{fig:lm1}}\hfill
+\subfigure[]{\includegraphics[width=0.22\textwidth]{/mapping/local-3d.png}\label{fig:lm2}}
+
+\hspace*{\fill}
+\caption{\emph{Global} (a)-(b) and \emph{local} (c)-(d) mapping for \ac{lbp} and \ac{lbptop} features (2D B-scane and 3D volume, respectively).}
+\end{center}
+\label{fig:lgmapping}
+\end{figure}
+
 \begin{description}
 \item[\emph{Global}] mapping considers to extract the features from the 2D B-scans for \ac{lbp} and 3D volume for \ac{lbptop}.
 Therefore for a volume with $d$ B-scans, the \emph{global}-\ac{lbp} feature leads to a final descriptor of size $d \times \ac{lbp}_{hist}$ and \emph{global}-\ac{lbptop} feature returns the final descriptor of size $3 \times \ac{lbp}_{hist}$.
 Here $\ac{lbp}_{hist}$ refers to the size of uniform and rotation invariant \ac{lbp} histogram which it's number of bins depends on the number of sampling points in a given neighborhood.
-The \emph{global} mapping for 2D B-scan end 3D volume is shown in Fig.~\ref{fig:globalmapping}
-\begin{figure}[h]
-\begin{center}
-\subfigure[2D B-scan]{\includegraphics[width=0.3\textwidth]{/mapping/global-2d.png}}\hfill
-\subfigure[3D volume]{\includegraphics[width=0.3\textwidth]{/mapping/global-3d.png}}
-\caption{\emph{Global} mapping for \ac{lbp} and \ac{lbptop} features (2D B-scane and 3D volume, respectively).}
-\end{center}
-\label{fig:globalmapping}
-\end{figure}
+The \emph{global} mapping for 2D B-scan end 3D volume is shown in Fig.~\ref{fig:gm1} and \ref{fig:gm2}.
+
 \item[\emph{Local}] mapping extracts the features from a set of 2D patches for \ac{lbp} and a set of sub-volumes for \ac{lbptop}.
 Considering ($m \times m$) \acf{sw} for 2D \ac{lbp} and ($ m \times m \times m$) sub-volume for \ac{lbptop}.
 Using these elements, the \emph{local}-\ac{lbp} approach provides a final descriptor of size ($\ac{lbp}_{hist} \times N \times d $) while \emph{local}-\ac{lbptop} results in a final descriptor of size $3 \times \ac{lbp}_{hist} \times N' \times \frac{m}{d}$.
 Here $N$ and $N'$ are the total number of elements in each B-scan, and 3D volume, respectively.
-This mapping is illustrated in Fig.~\ref{fig:localmapping}.
-\begin{figure}[h]
-\begin{center}
-\subfigure[2D B-scan]{\includegraphics[width=0.3\textwidth]{/mapping/local-2d.png}}\hfill
-\subfigure[3D volume]{\includegraphics[width=0.3\textwidth]{/mapping/local-3d.png}}
-\caption{\emph{Local} mapping for \ac{lbp} and \ac{lbptop} features (2D B-scane and 3D volume, respectively).}
-\end{center}
-\label{fig:localmapping}
-\end{figure}
+This mapping is illustrated in Fig.~\ref{fig:lm1} and \ref{fig:lm2}.
+
 
 \end{description}
+
+
+
 
 For the sake of clarification, the length of final descriptor for \emph{local} and \emph{global} mapping of both \ac{lbp} and \ac{lbptop} features with respect to the length of $\ac{lbp}_{hist}$ are listed in Table.~\ref{tab:tabmap}.
 
