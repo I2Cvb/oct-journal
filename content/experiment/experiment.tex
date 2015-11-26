@@ -1,34 +1,40 @@
 % % include the figures path relative to the master file
 % \graphicspath{ {./content/results/figures/} }
 
-\section{Experiments and Validation}\label{sec:exp}
+\section{Experiments and Validation}
+\label{sec:exp} \label{sec:exp:datasets}
 
+To evaluate the effects and influence of the different blocks composing our framework, an experimentation suit has been designed to test different configuration parameters evaluated in various datasets (see \cref{tab:experiment_summary}).
+\begin{changebar}
+Despite details regarding the data can be found in \cref{sec:exp:dataset:seri} and \cref{sec:exp:dataset:duke}; and specific details of the experiments can be fount in \cref{subsec:exp1} to \cref{subsec:exp4}; henceforth details the experimentation aspects and the design decisions that are consistent across all the experimentation.
+\end{changebar}
 
-To evaluate the effects and influence of different stages of our framework, we perform various tests using two datasets.
-% and sake of comparison, the optimal configurations are evaluated on a public dataset.
-A detailed description of the used datasets can be found in \Cref{sec:exp:datasets}.
+Unless stated otherwise, all the experiments are run using our own dataset (SERI) alone.
+Only for the sake of comparison some experiments are re-run on the Duke public dataset using our optimal configurations.
+
 For all the experiments, \ac{lbp} and \ac{lbptop} features are extracted for different sampling points of 8, 16, and 24 for radius of 1, 2, and 3, respectively.
 As previously mentioned, two different mapping strategies, \emph{local} and \emph{global}, are used, where for \emph{local} mapping, we consider a ($7 \times 7$) \acf{sw} for 2D \ac{lbp} and ($ 7 \times 7 \times 7$) sub-volume for \ac{lbptop}.
 
-The \emph{global} and \emph{local} extracted features are then presented in low or high level representation.
-As previously mentioned, \ac{bow} approach is used for high-level representation.
-% In this regard, to find the optimal number of  
-
-Four experiments are presented in the reminder of this section.
-Experiment \#1 presents the obtained results from our primary study~\cite{Lemaintre2015miccaiOCT} where we the framework was tested with one pre-processing, one classifier, and fixed number of visual words. 
-In this regard in the next experiment \#2, we perform a preliminary test in a search for the optimal number of ``visual-words'' ($k$).
-In experiment \#3, using the obtained number of words, we test the performance of different classifiers with regards to different pre-processing steps for high-level represented features and finally in experiment \#4 we compare the performance of different classifiers with respect to different pre-processing for low-level represented features.
-
-Beside experiment \#1, where the primary pipeline is tested on SERI and Duke dataset, the rest of the experiment are performed only on SERI dataset and for the sake of the comparison, these three experiments are performed using all the aforementioned classifiers. 
-However only the relevant part and results related to our experiment is represented within the paper, while the rest are mentioned in online {\color{red}repository}.
-
-The pipeline in each experiment is evaluated using \ac{lopocv} strategy.
+\deleted[id=sik]{All the experiments are}{ The pipeline in each experiment is } evaluated using \ac{lopocv} strategy.
 In this validation, at each round a pair \ac{dme}-normal volume is selected for testing while the rest of the volumes are used for training.
 The use of this method implies that no variance in terms of \ac{se} and \ac{sp} can be reported.
 However, and despite this limitation, \ac{lopocv} has been employed due to the small size of the dataset.
 
 The obtained results of all the experiments except experiment \#2 is represented in terms of \ac{se} and \ac{sp}.
-These statistics are driven from the confusion matrix (see Fig.~\ref{fig:CM}).
+All the experiments are evaluated in terms of \ac{se} and \ac{sp}, which are statistics driven from the confusion matrix (see Fig.~\ref{fig:CM}) as stated in \cref{eq:sesp}.
+The \ac{se} evaluates the performance of the classifier with respect to the positive class, while the \ac{sp} evaluate it's performance with respect to negative class.
+\begin{align}
+ \ac{se}  = \frac{TP}{TP+FN} \qquad \ac{sp} = \frac{TN}{TN+FP}
+ \label{eq:sesp}
+\end{align}
+
+Some experiments are complemented using \ac{acc} and \ac{f1}.
+\acl{acc} is used to have a overall sense of classifier performance, and \ac{f1} is used to see the trade off between \ac{se} and precision.
+Equation.~\ref{eq:accf1} shows the formulation of these two measurements. 
+\begin{align}
+\ac{acc} = \frac{TP+TN}{TP+TN+FP+FN} \qquad \ac{f1} = \frac{2TP}{2TP +FP+FN}
+\label{eq:accf1}
+\end{align}
 
 \begin{figure}
 \begin{center}
@@ -57,32 +63,40 @@ These statistics are driven from the confusion matrix (see Fig.~\ref{fig:CM}).
 \caption{Confusion matrix with truly and falsely positive detected samples (\acs{tp}, \acs{fp}) in the first row, from left to right and the falsely and truly negative detected samples (\acs{fn}, \acs{tn}) in the second row, from left to right.}
 \label{fig:CM}
 \end{figure}
-The former evaluate the performance of the classifier with respect to the positive class, while the later evaluate it's performance with respect to negative class.
-These measurements are formulated as: 
-\begin{align}
- \ac{se}  = \frac{TP}{TP+FN} \qquad \ac{sp} = \frac{TN}{TN+FP}
-\end{align}
-
-In experiment \#1 we use \ac{acc} and \ac{f1} instead.
-\acl{acc} is used to have a overall sense of classifier performance, and \ac{f1} is used to see the trade off between \ac{se} and precision.
-Equation.~\ref{eq:accf1} shows the formulation of these measurements. 
-\begin{align}
-\ac{acc} = \frac{TP+TN}{TP+TN+FP+FN} \qquad \ac{f1} = \frac{2TP}{2TP +FP+FN}
-\label{eq:accf1}
-\end{align}
 
 
-\subsection{Datasets}\label{sec:exp:datasets}
+Experimentation details can be fount in \cref{subsec:exp1} to \cref{subsec:exp4} and summarized in \cref{tab:experiment_summary}.
+In general terms, all the experiments have been carried out using SERI dataset while \emph{Experiment \#1\,\cref{subsec:exp1}} has been complemented using Duke dataset for comparison purposes. This \emph{Experiment \#1\,\cref{subsec:exp1}} takes from the experimentation reported in \cite{Lemaintre2015miccaiOCT} to evaluate the effects of different feature representations\todo{are not we evaluating feature extraction?} and compares the results to those obtained by Venhuizen\emph{et al.}\,\cite{Venhuizen2015}.
+\emph{Experiment \#2\,\cref{subsec:exp2}} studies the effect of the codebook size in order to find the optimal number of words for our application when using \ac{bow}.
+\emph{Experiment \#3\,\cref{subsec:exp3}} studies the effect different pre-processing and classifiers.
 
-The majority of the development of our framework has been carried out using our own dataset (SERI) and to facilitate further comparison we use the Duke public dataset to evaluate our optimal configurations.
 
-\begin{description}
+\deleted[id=sik]{
+The \emph{global} and \emph{local} extracted features are then presented in low or high level representation.
+As previously mentioned, \ac{bow} approach is used for high-level representation.
+% In this regard, to find the optimal number of  
+}
 
-\item[SERI]- datasets were acquired by Singapore Eye Research Institute (SERI), using CIRRUS TM (Carl Zeiss Meditec, Inc., Dublin, CA) \ac{sdoct} device. The datasets consist of 32 \ac{oct} volumes (16 \ac{dme} and 16 normal cases). Each volume contains 128 B-sane with  dimension of 512 $\times$ 1024 pixels.  All \ac{sdoct} images are read and assessed by trained graders and identifies as normal or \ac{dme} cases based on evaluation of retinal thickening, hard exudates, intraretinal cystoid space formation and subretinal fluid.
+\deleted[id=sik]{
+Four experiments are presented in the reminder of this section.
+Experiment \#1 presents the obtained results from our primary study~\cite{Lemaintre2015miccaiOCT} where we the framework was tested with one pre-processing, one classifier, and fixed number of visual words. 
+In this regard in the next experiment \#2, we perform a preliminary test in a search for the optimal number of ``visual-words'' ($k$).
+In experiment \#3, using the obtained number of words, we test the performance of different classifiers with regards to different pre-processing steps for high-level represented features and finally in experiment \#4 we compare the performance of different classifiers with respect to different pre-processing for low-level represented features.
+%
+\\
+Beside experiment \#1, where the primary pipeline is tested on SERI and Duke dataset, the rest of the experiment are performed only on SERI dataset and for the sake of the comparison, these three experiments are performed using all the aforementioned classifiers. 
+However only the relevant part and results related to our experiment is represented within the paper, while the rest are mentioned in online {\color{red}repository}.
+}
 
-\item[Duke] - datasets published by Srinivasan et al. \cite{Srinivasan2014} were acquired in Institutional Review Board-approved protocols using Spectralis \ac{sdoct} (Heidelberg Engineering Inc., Heidelberg, Germany) imaging at Duke University, Harvard University and the University of Michigan. This datasets consist of 45 \ac{oct} volumes (15 \ac{amd}, 15 \ac{dme} and 15 normal). In this study we only consider a subset of the original data containing 15 \ac{dme} and 15 normal \ac{oct} volumes.
 
-\end{description}
+
+
+
+\subsection{SERI-Dataset}\label{sec:exp:dataset:seri}
+This data was acquired by Singapore Eye Research Institute (SERI), using CIRRUS TM (Carl Zeiss Meditec, Inc., Dublin, CA) \ac{sdoct} device. The datasets consist of 32 \ac{oct} volumes (16 \ac{dme} and 16 normal cases). Each volume contains 128 B-sane with  dimension of 512 $\times$ 1024 pixels.  All \ac{sdoct} images are read and assessed by trained graders and identifies as normal or \ac{dme} cases based on evaluation of retinal thickening, hard exudates, intraretinal cystoid space formation and subretinal fluid.
+
+\subsection{Duke-Dataset} \label{sec:exp:dataset:duke}
+This data published by Srinivasan\,\emph{et al.}~\cite{Srinivasan2014} was acquired in Institutional Review Board-approved protocols using Spectralis \ac{sdoct} (Heidelberg Engineering Inc., Heidelberg, Germany) imaging at Duke University, Harvard University and the University of Michigan. This datasets consist of 45 \ac{oct} volumes (15 \ac{amd}, 15 \ac{dme} and 15 normal). In this study we only consider a subset of the original data containing 15 \ac{dme} and 15 normal \ac{oct} volumes.
 
 
 % \subsection{Experiments \& Results}
@@ -139,7 +153,6 @@ Finally the $k$-\ac{nn} classifier is trained by considering the 3 nearest neigh
 Table~\ref{tab:table3} shows the obtained results from this experiment.\\
 
 \input{content/experiment/Table3.tex}
-
 
 
 \subsection{Experiment \#4}\label{subsec:exp4}
