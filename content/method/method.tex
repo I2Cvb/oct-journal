@@ -3,33 +3,38 @@
 \graphicspath{ {./content/method/figures/}}
 
 \section{Materials and Methods}\label{sec:method}
-\todo{Mention texture here, rework where the sections are called}
+%\todo{Mention texture here, rework where the sections are called}
 
 The proposed method, as well as, its experimental set-up for \ac{oct} volume classification are outlined in Fig.\,\ref{fig:ML-scheme}.
 %The methodology is formulated as a standard classification procedure.
-The methodology is formulated as a standard classification procedure, through 5 steps.
+The methodology is formulated as a standard classification procedure which consists in 5 steps.
 First, the \ac{oct} volumes are pre-processed as presented in details in Sect.\,\ref{subsec:prepro}.
-Then toward a final descriptor \ac{lbp} and \ac{lbptop} features are extracted with different mapping strategy and represented using two approach.
-The feature extraction, mapping, and representation are presented in depth in Sect.\,\ref{subsec:feaext}, Sect.\,\ref{subsec:mapping}, and Sect.\,\ref{subsec:fearep}, respectively.
-Finally the classification step is presented in Sect.\,\ref{subsec:cls}.
+%Then toward a final descriptor \ac{lbp} and \ac{lbptop} features are extracted with different mapping strategy and represented using two approach.
+Then, \ac{lbp} and \ac{lbptop} features are extracted, mapped and represented as discussed in depth in Sect.\,\ref{subsec:feaext}, Sect.\,\ref{subsec:mapping}, and Sect.\,\ref{subsec:fearep}, respectively.
+%{\color{red}The feature extraction, mapping, and representation are presented in depth in Sect.\,\ref{subsec:feaext}, Sect.\,\ref{subsec:mapping}, and Sect.\,\ref{subsec:fearep}, respectively. CHECK THE SECTION ORDERING}
+Finally, the classification step is presented in Sect.\,\ref{subsec:cls}.
 
 
 \subsection{Image pre-processing}\label{subsec:prepro}
 
-This section describes set of pre-processing techniques which are provided by our framework.
-These approaches can be arbitrarily combined.
-Combinations of these technologies and the influence of these combinations are reported in experimentation~\cref{sec:exp}.
+This section describes the set of pre-processing techniques which aim at enhancing the \ac{oct} volume.
+The influence of these pre-processing methods and their possible combinations are extensively studied in Sect.\,\ref{sec:}.\todo{add the section for the experiment flattening+aligned} 
+
+% This section describes set of pre-processing techniques which are provided by our framework.
+% These approaches can be arbitrarily combined.
+% Combinations of these technologies and the influence of these combinations are reported in experimentation~\cref{sec:exp}.
 
 \subsubsection{\acf{nlm}}
-\replaced[id=sik]{
-\ac{oct} images, like other image modalities such as \ac{us}, suffer from speckle noise~\cite{schmitt1999speckle}.
-Considering that \ac{nlm}~\cite{buades2005non} has been successfully applied to \us images~\cite{Coupe2009} to reduce speckle, and our preliminary study in \ac{oct} images \cite{Lemaitre2015}, \ac{nlm} filtering is used here to denoise each B-scan (i.e. each $x-z$ slice) of the \ac{oct} volumes (see in Fig.\,\ref{subfig:vol}).
-}{
-\ac{oct} images are known to be affected by a speckle noise~\cite{schmitt1999speckle}.
-Subsequently, \ac{nlm}~\cite{buades2005non} filtering has been successfully used in \ac{us} images to filter similar noise~\cite{Coupe2009} and is used in our framework to denoise each B-scan (i.e. each $x-z$ slice) of the \ac{oct} volumes (see in Fig.\,\ref{subfig:vol}).
-In this regard (For this reason, Due to this reason), we use the \ac{nlm} filtering which has been successfully used on \ac{us} images to remove similar noise~\cite{Coupe2009}.
-This filter is applied on each B-scan (i.e. each $x-z$ slice) for the \ac{oct} volumes (see in Fig.\,\ref{subfig:vol}).
-}
+\ac{oct} images suffer from speckle noise, like other image modalities such as \ac{us}~\cite{schmitt1999speckle}.
+
+% \replaced[id=sik]{
+% Considering that \ac{nlm}~\cite{buades2005non} has been successfully applied to \us images~\cite{Coupe2009} to reduce speckle, and our preliminary study in \ac{oct} images \cite{Lemaitre2015}, \ac{nlm} filtering is used here to denoise each B-scan (i.e. each $x-z$ slice) of the \ac{oct} volumes (see in Fig.\,\ref{subfig:vol}).
+% }{
+% \ac{oct} images are known to be affected by a speckle noise~\cite{schmitt1999speckle}.
+% Subsequently, \ac{nlm}~\cite{buades2005non} filtering has been successfully used in \ac{us} images to filter similar noise~\cite{Coupe2009} and is used in our framework to denoise each B-scan (i.e. each $x-z$ slice) of the \ac{oct} volumes (see in Fig.\,\ref{subfig:vol}).
+% In this regard (For this reason, Due to this reason), we use the \ac{nlm} filtering which has been successfully used on \ac{us} images to remove similar noise~\cite{Coupe2009}.
+% This filter is applied on each B-scan (i.e. each $x-z$ slice) for the \ac{oct} volumes (see in Fig.\,\ref{subfig:vol}).
+% }
 %The pre-processing stage in the proposed methodology applies an image denoising method to reduce the speckle noise in \ac{oct} images.
 %Since image details and texture of the original image are needed by the following stages in the method, \ac{nlm} algorithm \cite{buades2005non} is used.
 \ac{nlm} filtering offers the advantage to use all the possible self-predictions that the image can provide rather than local or frequency filters such as Gaussian, anisotropic or Wiener filters~\cite{buades2005non}.
