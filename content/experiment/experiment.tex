@@ -104,16 +104,16 @@ This data published by Srinivasan\,\emph{et al.}~\cite{Srinivasan2014} was acqui
 
 %% Experiment intro
 For the completeness of this article, this experiment replicates some of the experiments reported in~\cite{Lemaintre2015miccaiOCT}.
-The experiment evaluates the effects of different \added[id=sik]{feature extraction, feature representation,\ldots} using the SERI dataset.
-Duke dataset is used to compare our findings with the method proposed by Venhuizen\,\textit{et al.}~\cite{Venhuizen2015}.
-Results can be found in Table.~\ref{tab:table1-1} and Table.~\ref{tab:table1-2}, respectively.
+The experiment evaluates the effects of different \added[id=sik]{feature extraction, feature representation,\ldots} using the SERI and Duke datasets.
 
 %% Experiment Procedure
-When using SERI dataset, the volumes are pre-processed using \nlm.
+For this experiment, the volumes are pre-processed using \nlm.
 \lbp and \lbptop descriptors are extracted using the default configuration.
 Local and global mapping are used.
 Volumes are represented using both low-level and high-level representation. For concordance with~\cite{Lemaintre2015miccaiOCT}, when using \bow the size of the coodebook is fixed to $32$ words.
 Finally, the volumes are classified using \ac{rf} classifier with 100 un-pruned trees.
+
+Results are listed in Table.~\ref{tab:table1-1}, while the two best performing configurations are compared to Venhuizen\,\textit{et al.}~\cite{Venhuizen2015} in Table.~\ref{tab:table1-2}.
 
 %% Experiment Result description
 \added[id=sik]{Result description}
@@ -122,27 +122,57 @@ Finally, the volumes are classified using \ac{rf} classifier with 100 un-pruned 
 \input{content/experiment/Table1-2.tex}
 
 \subsection{Experiment \#2}\label{subsec:exp2}
+% Experiment structure
+%
+% Intro:
+%   - background
+%   - goal / experiment intention / why
+%   - data
+%   - evaluation
+%   - reference to result table
+%
+% Procedure (by data if more than one):
+%   - pre-processing
+%   - feature extraction
+%   - mapping
+%   - feature representation
+%   - classifier
+%
+% Remarks (if any)
+%
+% Result highlights:
+%   - (only a description)
 
-This experiment, conducted on SERI dataset, is performed to find the optimal number of words for \ac{bow} high-level feature representation.
-\emph{Global} and \emph{local}-\ac{lbp} and \emph{local}-\ac{lbptop} feature descriptors are re-represented using \ac{bow} approach.
-In this experiment, the \ac{bow} algorithm is performed using various number of words in the range of $\{10, 20, 30, \cdots,$
- $100, 200, \cdots, 500, 1000\}$.
-The words are randomly selected using $k$-means++ algorithm and the features are mapped to their nearest word to create the final clusters.
-In order to asses the effect of number of words, simple linear classifier such as \ac{lr} is used.
-The number of words associated with highest \ac{acc} and \ac{f1} score, is selected as the optimum number of words.
-Table~\ref{tab:table2} shows the obtained results of this experiment.
-The optimum number of words and the achieved \ac{acc} and \ac{f1} of \ac{lr} classifier for different configurations are listed in this table.
+%% Experiment intro
+In order to determine the optimal size of the codebook when using \bow, this experiment evaluates several codebook sizes on SERI dataset.
 
-\input{content/experiment/Table2.tex}
+%% Experiment procedure
+For this experiment, several pre-processing strategies are evaluated: (i) \nlm, (ii) a combination of \nlm and flattening; (iii) a combination of \nlm, flattening and aligning.
+\lbp and \lbptop descriptors are extracted using the default configuration.
+Volumes are represented using the high-level representation \bow using $k \in \{10, 20, 30, \cdots, 100, 200, \cdots, 500, 1000\}$.
+Finally, the volumes are classified using \lr.
 
 
-Figure.~\ref{fig:RBOW} shows the obtained graphs for some of the configurations. \\
+The usual construction of the codebook consists of clustering the samples in
+the feature space using $k$-means. However, this operation is rather
+computationally expensive and convergence of the $k$-means algorithm for all
+codebook sizes is not granted.
+Nonetheless, \citeauthor{nowak2006sampling} pointed out that randomly generated coodebooks can be used at expenses of accuracy.
+Since the goal is to assess the best coodebook size not its final performance, for this experiment, the construction of the coodebook has been carried out using $k$-means++ algorithm \added[id=sik]{(reference is missing)}, which is usually used as a $k$-means initialization algorithm.
+
+Figure.~\ref{fig:RBOW} shows the \ac{acc} and \ac{f1} score graphs obtained for some of the configurations\footnote{Full set of scores can be found at the github repository in~\cite{Lemaitre2015}}.
+The results obtained when using the optimum number of words for each configuration, are listed in Table~\ref{tab:table2}.
 
 \begin{figure}[t]
   \missingfigure{fig:RBOW}
   \caption{}
   \label{fig:RBOW}
 \end{figure}
+
+
+\input{content/experiment/Table2.tex}
+
+
 
 \subsection{Experiment \#3}\label{subsec:exp3}
 This experiment is performed for high-level features on SERI dataset.
