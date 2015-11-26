@@ -21,11 +21,6 @@ This section describes the set of pre-processing techniques which aim at enhanci
 The influence of these pre-processing methods and their possible combinations are extensively studied in Sect.\,\ref{sec:}.\todo{add the section for the experiment flattening+aligned} 
 
 \subsubsection{\acf{nlm}}
-\ac{oct} images suffer from speckle noise, like other image modalities such as \ac{us}~\cite{schmitt1999speckle}.
-The \ac{oct} volumes are enhanced by denoising each B-scan (i.e. each $x-z$ slice) using the \ac{nlm}~\cite{buades2005non}, as shown in Fig.\,\ref{fig:denoise}.
-\ac{nlm} has been successfully applied to \ac{us} images to reduce speckle noise and outperforms other common denoising methods~\cite{Coupe2009}.
-\ac{nlm} filtering preserve fine structures as well as flat zones, using all the possible self-predictions that the image can provide rather than local or frequency filters such as Gaussian, anisotropic, or Wiener filters~\cite{buades2005non}.
-%An example of filtering using \ac{nlm} filter on \ac{oct} image is depicted in Fig\,\ref{subfig:raw} and Fig.\,\ref{subfig:nlm}.
 
 \begin{figure}[t]
   \centering
@@ -38,20 +33,15 @@ The \ac{oct} volumes are enhanced by denoising each B-scan (i.e. each $x-z$ slic
   \label{fig:denoise}
 \end{figure}
 
+
+\ac{oct} images suffer from speckle noise, like other image modalities such as \ac{us}~\cite{schmitt1999speckle}.
+The \ac{oct} volumes are enhanced by denoising each B-scan (i.e. each $x-z$ slice) using the \ac{nlm}~\cite{buades2005non}, as shown in Fig.\,\ref{fig:denoise}.
+\ac{nlm} has been successfully applied to \ac{us} images to reduce speckle noise and outperforms other common denoising methods~\cite{Coupe2009}.
+\ac{nlm} filtering preserve fine structures as well as flat zones, by using all the possible self-predictions that the image can provide rather than local or frequency filters such as Gaussian, anisotropic, or Wiener filters~\cite{buades2005non}.
+%An example of filtering using \ac{nlm} filter on \ac{oct} image is depicted in Fig\,\ref{subfig:raw} and Fig.\,\ref{subfig:nlm}.
+
 \subsubsection{Flattening}
 
-Texture descriptors characterize spatial arrangement of intensities.
-Therefore, to ensure a consistent characterization of the tissue disposition regardless of the location within the retina, the natural curvature of the retina needs to be taken into account.
-This can be done in different manners:
-\begin{itemize}
-    \item using a descriptor allowing for a wide number of textures, so that
-      each texture orientation accounts for each own descriptor.
-    \item using a rotation invariant descriptor.
-    \item by unfolding the curvature of the retina.
-\end{itemize}
-
-This process of unfolding the curvature of the retina is known as image flattening. When flattening, an estimation of the \rpe  layer is used to modify the volume by imposing that the \rpe  should be flat.
-Our implementation modifies the proposal of Liu\,\textit{et al.}~\cite{Liu2011}, as illustrated in \Cref{fig:flatten}. Othsu thresholding is used to segment the retina from the background. A line is fitted to the bottom part of the segmentation hull, since it is assumed to be parallel to the \rpe. The image is corrected based on this line.
 
 \begin{figure}[t]
 \centering 
@@ -66,10 +56,16 @@ Our implementation modifies the proposal of Liu\,\textit{et al.}~\cite{Liu2011},
   \subfigure[]{\includegraphics[width=0.20\textwidth]{flattening/warped_cropped}}\hfill
   \subfigure[]{\includegraphics[width=0.20\textwidth]{flattening/warped_org_cropped}}
   \hspace*{\fill}
-  \caption{Flattening procedure: (a) original image, (b) thresholding, (c) median filter, (d)curve fitting, (e) warping, (f) flatten image.}
+  \caption{Flattening procedure: (a) original image, (b) thresholding, (c) median filter, (d) curve fitting, (e) warping, (f) flatten image.}
   \label{fig:flatten}
 \end{figure}
 
+Texture descriptors characterize spatial arrangement of intensities.
+Therefore, to ensure a consistent characterization of the tissue disposition regardless of the location within the retina, the natural curvature of the retina needs to be taken into account.
+This can be done in different manners: (i) using a descriptor allowing for a wide number of textures, so that each texture orientation accounts for each own descriptor, (ii) using a rotation invariant descriptor, or (iii) by unfolding the curvature of the retina.
+
+This process of unfolding the curvature of the retina is known as image flattening. When flattening, an estimation of the \rpe  layer is used to modify the volume by imposing that the \rpe  should be flat.
+Our implementation modifies the proposal of Liu\,\textit{et al.}~\cite{Liu2011}, as illustrated in \Cref{fig:flatten}. Othsu thresholding is used to segment the retina from the background. A line is fitted to the bottom part of the segmentation hull, since it is assumed to be parallel to the \rpe. The image is corrected based on this line.
 
 \subsubsection{Slice alignment}
 Similarly, when using 3D texture, misalignment between the slice introduce error to the texture descriptor. In this case the slices are also aligned based on the segmentation's hull.
@@ -135,7 +131,6 @@ For this work two mapping strategies are defined: (i) \emph{global} and (ii) \em
 \subfigure[]{\includegraphics[width=0.22\textwidth]{/mapping/global-3d.png}\label{fig:gm2}}\hfill
 \subfigure[]{\includegraphics[width=0.22\textwidth]{/mapping/local-2d.png}\label{fig:lm1}}\hfill
 \subfigure[]{\includegraphics[width=0.22\textwidth]{/mapping/local-3d.png}\label{fig:lm2}}
-
 \hspace*{\fill}
 \caption{\emph{Global} (a)-(b) and \emph{local} (c)-(d) mapping for \ac{lbp} and \ac{lbptop} features (2D B-scane and 3D volume, respectively).}
 \end{center}
