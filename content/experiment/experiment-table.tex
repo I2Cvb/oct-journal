@@ -1,0 +1,59 @@
+\begin{landscape}
+  \begin{table}[ht]
+\caption{The outline and summary of the performed experiments.}
+\medskip
+\scriptsize{
+\begin{center}
+\resizebox{1\linewidth}{!}{
+\begin{tabular}{l  c	 c  c  c  c  c  c  c }
+\toprule
+\\
+&  Dataset & Pre-processing & Features & Mapping & Representation & Classification & Validation & Evaluation \\
+\cmidrule(l){2-9}
+\\
+\multirow{3}{*}{Common:} & \multirow{3}{*}{SERI} & \multirow{3}{*}{\ac{nlm}} & \ac{lbp},\ac{lbptop} & \multirow{3}{*}{} & \multirow{3}{*}{}  & & \multirow{3}{*}{\ac{lopocv}}& \multirow{3}{*}{} \\
+        &      &          & $S = \{8,16,24\}$ & & & & & \\
+        &      &          & $R = \{1,2,3\}$  & & & & & \\\\
+\midrule
+\\
+Experiment\#1:  \\
+%\hdashline \noalign{\vskip 3pt}
+%\\
+\multirow{2}{4cm}{Goal: Evaluation of features, mapping and representation} & \multirow{2}{*}{+ Duke} &\multirow{2}{*}{$\sim$} & \multirow{2}{*}{$\sim$} & \emph{gocal} & \ac{bow} & \multirow{2}{*}{\ac{rf}} & \multirow{2}{*}{$\sim$} & \multirow{2}{*}{\ac{se}, \ac{sp}, \cite{Venhuizen2015}}\\
+&  & & & \emph{local} & Histogram &  & & \\\\
+\midrule
+\\
+Experiment\#2:\\
+%\hdashline \noalign{\vskip 3pt}
+%\\
+\multirow{2}{4cm}{Goal: Finding the optimum number of words}& \multirow{2}{*}{$\sim$} & + \acs{f} & \multirow{2}{*}{$\sim$} & \emph{global} & \multirow{2}{*}{\ac{bow}} & \multirow{2}{*}{\ac{lr}} & \multirow{2}{*}{$\sim$} & \multirow{2}{*}{ \ac{acc}, \ac{f1}}\\
+  & & + \acs{fal} & & \emph{local} & & & & \\\\
+\midrule
+\\
+Experiment\#3: \\
+%\hdashline \noalign{\vskip 3pt}
+%\\
+%\hdashline \noalign{\vskip 3pt}
+ \multirow{4}{4cm}{Goal: Evaluation of different pre-processing for high-level features }& \multirow{4}{*}{$\sim$} & \multirow{2}{*}{+\acs{f}} & \multirow{4}{*}{$\sim$} & \multirow{2}{*}{\emph{global}} & \multirow{4}{*}{\ac{bow}} & $3$-\ac{nn} & \multirow{4}{*}{$\sim$} & \multirow{4}{*}{\ac{se}, \ac{sp}}\\
+ & & \multirow{2}{*}{+\acs{fal}} & & \multirow{2}{*}{\emph{local}} &  & \ac{rf} & & \\
+ & & & & & & \ac{svm} & & \\
+ & & & & & & \ac{gb} & & \\
+\midrule
+\\
+Experiment\#4:\\
+%\hdashline \noalign{\vskip 3pt}
+%\\
+%\hdashline \noalign{\vskip 3pt}
+\multirow{4}{4cm}{Goal: Evaluation of different pre-processing for low-level features} & \multirow{4}{*}{$\sim$} & \multirow{2}{*}{ +\acs{f}} & \multirow{4}{*}{$\sim$} & \multirow{4}{*}{\emph{global}} & \multirow{4}{*}{Histogram} & $3$-\ac{nn} & \multirow{4}{*}{$\sim$} & \multirow{4}{*}{\ac{se}, \ac{sp}}\\
+& & \multirow{2}{*}{+\ac{fal}} & & & & \ac{rf} &  &\\
+& & & & & & \ac{svm} & & \\
+& & & & & & \ac{gb} & & \\
+\\
+\bottomrule
+
+
+\end{tabular}}
+\end{center}}
+\label{tab:experiment_summary}
+\end{table}
+\end{landscape}
