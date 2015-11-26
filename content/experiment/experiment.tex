@@ -66,13 +66,10 @@ Equation.~\ref{eq:accf1} shows the formulation of these two measurements.
 
 Experimentation details can be found in Sect.\,\ref{subsec:exp1} to Sect.\,\ref{subsec:exp4} and summarized in Table.~\ref{tab:experiment_summary}.
 In general terms, all the experiments have been carried out using SERI dataset while \emph{Experiment \#1~(Sect.\,\ref{subsec:exp1})} has been complemented using Duke dataset for comparison purposes. This \emph{Experiment \#1\,\cref{subsec:exp1}} takes from the experimentation reported in \cite{Lemaintre2015miccaiOCT} to evaluate the effects of different feature representations\todo{are not we evaluating feature extraction?} and compares the results to those obtained by Venhuizen\emph{et al.}\,\cite{Venhuizen2015}.
-\emph{Experiment \#2~(Sect.\,\ref{subsec:exp2})} studies the effect of the codebook size in order to find the optimal number of words for our application when using \ac{bow}.
-\emph{Experiment \#3~(Sect.\,\ref{subsec:exp3})} studies the effect different pre-processing and classifiers.
+\emph{Experiment \#2 and \#3~(Sect.\,\ref{subsec:exp2}\,\&\,\ref{subsec:exp3})} studies the high-level representation of the volumes using \bow. The former experiments effect of the codebook size in order to find the optimal number of words using a linear classifier; while the later explore more sophisticated classifiers using the previously found codebook sizes.
+\emph{Experiment \#4~(Sect.\,\ref{subsec:exp4})} accounts for the experimentation using low-level representation.
 
 \input{content/experiment/experiment-table.tex}
-
-
-
 
 \subsection{SERI-Dataset}\label{sec:exp:dataset:seri}
 This data was acquired by Singapore Eye Research Institute (SERI), using CIRRUS TM (Carl Zeiss Meditec, Inc., Dublin, CA) \ac{sdoct} device. The datasets consist of 32 \ac{oct} volumes (16 \ac{dme} and 16 normal cases). Each volume contains 128 B-sane with  dimension of 512 $\times$ 1024 pixels.  All \ac{sdoct} images are read and assessed by trained graders and identifies as normal or \ac{dme} cases based on evaluation of retinal thickening, hard exudates, intraretinal cystoid space formation and subretinal fluid.
@@ -172,9 +169,9 @@ The results obtained when using the optimum number of words for each configurati
 
 \input{content/experiment/Table2.tex}
 
-
-
 \subsection{Experiment \#3}\label{subsec:exp3}
+Once studied the impact of the codebook size in Sect.\,\ref{subsec:exp2}, this experiment explores the improvement of using more sophisticated classification strategies.
+
 This experiment is performed for high-level features on SERI dataset.
 Using the optimum number of words which are obtained from the previous experiment, the low-level feature sets with regards to different pre-processing configurations are re-represented using \ac{bow} and $k$-means clustering approach and are classified using different classifiers such as $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac{svm}.\
 The $k$-means algorithm is initialized using $k$-means++ method and is performed with 5 iteration for each codebook.
