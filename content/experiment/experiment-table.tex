@@ -1,6 +1,6 @@
 \begin{landscape}
   \begin{table}[ht]
-\caption{The outline and summary of the performed experiments.}
+\caption{The outline and summary of the performed experiments. $\sim$ indicate that common configuration applies.}
 \medskip
 \scriptsize{
 \begin{center}
@@ -26,16 +26,16 @@ Experiment\#1:  \\
 Experiment\#2:\\
 %\hdashline \noalign{\vskip 3pt}
 %\\
-\multirow{2}{4cm}{Goal: Finding the optimum number of words}& \multirow{2}{*}{$\sim$} & + \acs{f} & \multirow{2}{*}{$\sim$} & \emph{global} & \multirow{2}{*}{\ac{bow}} & \multirow{2}{*}{\ac{lr}} & \multirow{2}{*}{ +\ac{acc}, \ac{f1}}\\
-  & & + \acs{fal} & & \emph{local} & & & \\\\
+\multirow{2}{4cm}{Goal: Finding the optimum number of words}& \multirow{2}{*}{$\sim$} & + \acs{f} & \multirow{2}{*}{$\sim$} & \emph{global} & \ac{bow} & \multirow{2}{*}{\ac{lr}} & \multirow{2}{*}{ +\ac{acc}, \ac{f1}}\\
+  & & + \acs{fal} & & \emph{local} & $k \in K$ & & \\\\
 \midrule
 \\
 Experiment\#3: \\
 %\hdashline \noalign{\vskip 3pt}
 %\\
 %\hdashline \noalign{\vskip 3pt}
- \multirow{4}{4cm}{Goal: Evaluation of different pre-processing for high-level features }& \multirow{4}{*}{$\sim$} & \multirow{2}{*}{+\acs{f}} & \multirow{4}{*}{$\sim$} & \multirow{2}{*}{\emph{global}} & \multirow{4}{*}{\ac{bow}} & $3$-\ac{nn} & \multirow{4}{*}{$\sim$} \\
- & & \multirow{2}{*}{+\acs{fal}} & & \multirow{2}{*}{\emph{local}} &  & \ac{rf} &  \\
+ \multirow{4}{4cm}{Goal: Evaluation of different pre-processing for high-level features }& \multirow{4}{*}{$\sim$} & \multirow{2}{*}{+\acs{f}} & \multirow{4}{*}{$\sim$} & \multirow{2}{*}{\emph{global}} & \multirow{2}{*}{\ac{bow}} & $3$-\ac{nn} & \multirow{4}{*}{$\sim$} \\
+ & & \multirow{2}{*}{+\acs{fal}} & & \multirow{2}{*}{\emph{local}} & \multirow{2}{*}{optimal $k$} & \ac{rf} &  \\
  & & & & & & \ac{svm} &  \\
  & & & & & & \ac{gb} &  \\
 \midrule
