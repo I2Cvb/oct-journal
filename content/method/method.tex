@@ -88,28 +88,28 @@ In this research, we choose to detect simple and efficient \ac{lbp} texture feat
 These differences are encoded in terms of binary patterns as in~Eq.\,\eqref{Eq:LBP}:
 
 \begin{equation}\label{Eq:LBP}
-LBP_{P,R} = \sum_{p=0}^{P-1}s(g_{p} - g_{c})2^{p} \ , \qquad s(\cdot) = \begin{cases}
-    1  & \ \text{if } (g_{p} - g_{c}) \geq 0\\
+LBP_{P,R} = \sum_{p=0}^{P-1}s(g_{p} - g_{c})2^{p} \ , \qquad s(x) = \begin{cases}
+    1  & \ \text{if } x \geq 0\\
     0  & \ \text{otherwise}\\
   \end{cases} \ ,
 \end{equation}
 
 \noindent where $g_c$, $g_{p}$ are the intensities of the central pixel and a given neighbor pixel, respectively. $P$ is the number of sampling points in the circle of radius $R$.
 Ojala\,\textit{et al.} further extend the original \ac{lbp} formulation to achieve rotation invariance at the expense of limiting the texture description to the notion of circular ``uniformity''~\cite{ojala2002multiresolution}.
-Volume encoding is later proposed by Zhao\,\textit{et al.} by computing \ac{lbp} descriptors in each orthogonal plane, so called \ac{lbptop}~\cite{zhao2012rotation}.
+Volume encoding is later proposed by Zhao\,\textit{et al.} by computing \ac{lbp} descriptors in three orthogonal planes, so called \ac{lbptop}~\cite{zhao2012rotation}.
 
-In this research we consider rotation invariant ad uniform \ac{lbp} and \ac{lbptop} features with various sampling points (i.e., $\{8,16,24\}$) with respect to different radius, (i.e., $\{1,2,3\}$).
+In this research we consider rotation invariant and uniform \ac{lbp} and \ac{lbptop} features with various sampling points (i.e., $\{8,16,24\}$) with respect to different radius, (i.e., $\{1,2,3\}$).
 The number of patterns ($LBP_{\#pat}$) in regards with each configuration is reported in Table~\ref{tab:lbphist}.
 
 %Table.~\ref{tab:lbphist} shows the length of uniform rotation invariant histogram ($\ac{lbp}_{hist}$) for the used sampling point and radius.
 \begin{table}
-\caption{Number of patterns ($LBP_{\#pat}$) for different sampling points and radius ($\{S,R\}$) of the \ac{lbp} descriptor.}
+\caption{Number of patterns ($LBP_{\#pat}$) for different sampling points and radius ($\{P,R\}$) of the \ac{lbp} descriptor.}
 \centering{
 \resizebox{0.5\linewidth}{!}{
 \footnotesize{
 \begin{tabular}{l  c c c }
 \toprule
- \multicolumn{4}{c}{Sampling point for a radius ($\{S, R\}$)}\\
+ \multicolumn{4}{c}{Sampling point for a radius ($\{P, R\}$)}\\
  \midrule
  & $\{8, 1\}$ & $\{16, 2\}$ & $\{24, 3\}$\\
  \cmidrule{2-4}
@@ -150,11 +150,11 @@ For this work, two mapping strategies are defined: (i) \emph{global} and (ii) \e
 \item[\emph{Global}] mapping considers to extract the final descriptors from the 2D feature image for \ac{lbp} and 3D volume for \ac{lbptop}.
 %mapping considers to extract the features from the 2D B-scans for \ac{lbp} and 3D volume for \ac{lbptop}.
 Therefore, for a volume with $d$ slices, the \emph{global}-\ac{lbp} mapping will lead to the extraction of $d$ elements.
-While the \emph{global}-\ac{lbptop} represents the whole volume and thus a single element.
+While the \emph{global}-\ac{lbptop} represents the whole volume as a single element.
 The \emph{global} mapping for 2D images and 3D volume is shown in Fig.~\ref{fig:gm1} and \ref{fig:gm2}.
 
 \item[\emph{Local}] mapping considers to extract the final descriptors from a set of ($m \times m$) 2D patches for \ac{lbp} and a set of ($ m \times m \times m$) sub-volumes for \ac{lbptop}.
-Given $N$ and $N'$ the total number of 2D patch and 3D sub-volume respectively, the \emph{local}-\ac{lbp} approach provides $N \times d$ elements, while \emph{local}-\ac{lbptop} provides $N'$ elements.
+Given $N$ and $N'$ the total number of 2D patches and 3D sub-volumes respectively, the \emph{local}-\ac{lbp} approach provides $N \times d$ elements, while \emph{local}-\ac{lbptop} provides $N'$ elements.
 %Here $N$ and $N'$ are the total number of elements per B-scane or the volume, respectively.
 This mapping is illustrated in Fig.~\ref{fig:lm1} and \ref{fig:lm2}.
 
@@ -187,7 +187,7 @@ This mapping is illustrated in Fig.~\ref{fig:lm1} and \ref{fig:lm2}.
 \subsection{Feature extraction}\label{subsec:fearep}
 
 % Each \ac{oct} volume can be described by its texture and we employed two strategies.
-Two strategies are used to described each \ac{oct} volume texture.
+Two strategies are used to describe each \ac{oct} volume texture.
 
 \begin{description}
 
@@ -257,7 +257,7 @@ p(c_{i}|x) = \frac{1}{1+\exp(-w^{T}x)}
 \end{equation}
 \noindent where $w$ is a vector of the regression parameters to obtain a linear combination of the input feature vector $x$.
 The vector $w$ can be inferred by finding the maximum likelihood estimates via optimization methods such as quasi-Newton method~\cite{byrd1994representations}.
-Once the vector $w$ found, an unlabeled feature vector is assigned to the class which maximizes the posterior probability.
+Once the vector $w$ is found, an unlabeled feature vector is assigned to the class which maximizes the posterior probability.
 % \begin{equation}
 % C(x) =  \text{arg}\max\limits_{k} p(C = k| x)
 % \end{equation}
