@@ -66,8 +66,12 @@ Equation.~\ref{eq:accf1} shows the formulation of these two measurements.
 
 Experimentation details can be found in Sect.\,\ref{subsec:exp1} to Sect.\,\ref{subsec:exp4} and summarized in Table~\ref{tab:experiment_summary}.
 In general terms, all the experiments have been carried out using SERI dataset while \emph{Experiment \#1}(Sect.\,\ref{subsec:exp1}) has been complemented using Duke dataset for comparison purposes. This \emph{Experiment \#1}(Sect.\,\ref{subsec:exp1}) takes from the experimentation reported in \cite{Lemaintre2015miccaiOCT} to evaluate the effects of different feature representations and compares the results to those obtained by Venhuizen\emph{et al.}\,\cite{Venhuizen2015}.
-\emph{Experiment \#2 and \#3} (Sect.\,\ref{subsec:exp2}\,\&\,\ref{subsec:exp3})) studies the high-level feature extraction from the volumes using \bow. The former experiments effect of the codebook size in order to find the optimal number of words using a linear classifier; while the later explore more sophisticated classifiers using \added(id = moj){based on} the previously found codebook sizes.
+\emph{Experiment \#2 and \#3} (Sect.\,\ref{subsec:exp2}\,\&\,\ref{subsec:exp3})) studies the high-level feature extraction from the volumes using \bow. The former experiments effect of the codebook size in order to find the optimal number of words using a linear classifier; while the later explore more sophisticated classifiers using.
 \emph{Experiment \#4} (Sect.\,\ref{subsec:exp4}) accounts for the experimentation using low-level representation.
+
+A summary of the most relevant findings can be found in Sect.\,\ref{sec:con}.
+
+
 
 \input{content/experiment/experiment-table.tex}
 
@@ -205,10 +209,10 @@ Finally, the volumes are classified using $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac
 Regarding the classification strategies, $k$-\ac{nn} classifier is trained by considering the 3 nearest neighbor.
 The \ac{rf} and \ac{gb} classifier are trained using 100 un-pruned trees, while \ac{svm} classifier is trained with \ac{rbf} kernel.
 
-Table~\ref{tab:table3} shows the obtained results from this experiment, where the best performance are highlighted in \textbf{bold}.
 %% Experiment Result description
+Table~\ref{tab:table3} shows the obtained results from this experiment, where the most relevant configurations are shaded and the highest results are highlighted in \textbf{bold}.
 Regarding the effect of pre-processing for the most relevant configurations show a decrease of performance when adding alignment or flattening
-(see all configuration blocks shaded in Table~\ref{tab:tab3}).
+%(see all configuration blocks shaded in Table~\ref{tab:tab3}).
 %$k$-NM\,8\,\emph{local}-\lbp, \svm\,8\,\emph{local}-\lbptop, \svm\,16\,\emph{local}-\lbptop, \rf\,8\,\emph{global}-\lbp, \rf\,8\,\emph{local}-\lbp).
 However the two best configurations, presented in dark shade, improve its results when adding flattening or flattening and alignment to the pre-processing.
 %(see: \svm\,8\,\emph{local}-\lbp and \rf\,16\,\emph{local}-\lbptop).
@@ -248,11 +252,13 @@ For this experiment, several pre-processing strategies are evaluated: (i) \nlm, 
 Volumes are represented using low-level feature extraction of the \emph{global} mapping.
 Finally, the volumes are classified using $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac{svm}; using the same configuration of \emph{Experiment \#3}.
 
-The obtained results from this experiment is listed in Table.~\ref{tab:table4}, where the highest results are highlighted in \textbf{bold}.
-
-
 %% Experiment Result description
-The obtained results, shows that \ac{rf} has a better performance while using low-level extracted features, in comparison to the previous experiment where, \ac{svm} had a better performance dealing with high-level extracted features.
+The obtained results from this experiment is listed in Table.~\ref{tab:table4}, where the most relevant configurations are shaded and the highest results are highlighted in \textbf{bold}.
+Similarly to the results reported in Sect.\,\ref{subsec:exp3}, the effect of incorporating flattening to the pre-processing stage increase boost the results for the best performing configuration, but this effect is not consistent across all configurations.
+For this experiment, \lbptop rules over \lbp and larger $S$ and $R$ values for computing the texture show a tendency to better results. 
+There is no local mapping.
+In terms of classifier \rf performs better than the others but the highest \ac{sp} is achieved using \rbf-\svm.
+
 
 The highest results of this experiment, \ac{se} and \ac{sp} of 81.2\% and 81.2\%, respectively, was achieved with \ac{rf} and using \emph{global}-\ac{lbptop} features with sampling points and radius of $\{S,R\}=\{24,3\}$.
 In general, in this experiment, \emph{global}-\ac{lbptop} features have better performance in comparison to \emph{global}-\ac{lbp} features and the  classification rates improved while using a higher number of sampling points and radius ($\{S,R\}=\{24,3\}$).
