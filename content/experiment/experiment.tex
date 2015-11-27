@@ -66,7 +66,7 @@ Equation.~\ref{eq:accf1} shows the formulation of these two measurements.
 
 Experimentation details can be found in Sect.\,\ref{subsec:exp1} to Sect.\,\ref{subsec:exp4} and summarized in Table~\ref{tab:experiment_summary}.
 In general terms, all the experiments have been carried out using SERI dataset while \emph{Experiment \#1}(Sect.\,\ref{subsec:exp1}) has been complemented using Duke dataset for comparison purposes. This \emph{Experiment \#1}(Sect.\,\ref{subsec:exp1}) takes from the experimentation reported in \cite{Lemaintre2015miccaiOCT} to evaluate the effects of different feature representations\todo{are not we evaluating feature extraction?} and compares the results to those obtained by Venhuizen\emph{et al.}\,\cite{Venhuizen2015}.
-\emph{Experiment \#2 and \#3} (Sect.\,\ref{subsec:exp2}\,\&\,\ref{subsec:exp3})) studies the high-level representation of the volumes using \bow. The former experiments effect of the codebook size in order to find the optimal number of words using a linear classifier; while the later explore more sophisticated classifiers using the previously found codebook sizes.
+\emph{Experiment \#2 and \#3} (Sect.\,\ref{subsec:exp2}\,\&\,\ref{subsec:exp3})) studies the high-level feature extraction from the volumes using \bow. The former experiments effect of the codebook size in order to find the optimal number of words using a linear classifier; while the later explore more sophisticated classifiers using \added(id = moj){based on} the previously found codebook sizes.
 \emph{Experiment \#4} (Sect.\,\ref{subsec:exp4}) accounts for the experimentation using low-level representation.
 
 \input{content/experiment/experiment-table.tex}
@@ -106,13 +106,17 @@ For the completeness of this article, this experiment replicates some of the exp
 For this experiment, the volumes are pre-processed using \nlm.
 \lbp and \lbptop descriptors are detected using the default configuration.
 Local and global mapping are used.
-Volumes are represented using both low-level and high-level representation. For concordance with~\cite{Lemaintre2015miccaiOCT}, when using \bow the size of the coodebook is fixed to $32$ words.
+Volumes are represented using both low-level and high-level feature extraction. For concordance with~\cite{Lemaintre2015miccaiOCT}, when using \bow the size of the coodebook is fixed to $32$ words.
 Finally, the volumes are classified using \ac{rf} classifier with 100 un-pruned trees.
 
-Results are listed in Table.~\ref{tab:table1-1}, while the two best performing configurations are compared to Venhuizen\,\textit{et al.}~\cite{Venhuizen2015} in Table.~\ref{tab:table1-2}.
+Results are listed in Table~\ref{tab:table1-1}, while the two best performing configurations are compared to Venhuizen\,\textit{et al.}~\cite{Venhuizen2015} in Table~\ref{tab:table1-2}.
 
 %% Experiment Result description
-\added[id=sik]{Result description}
+Overall, the obtained results indicate that features driven from \ac{lbp} descriptors are highly discriminative.
+Nevertheless, Table~\ref{tab:table1-2} indicates a substantial performance difference between SERI and Duke dataset.
+This is attributed to the fact that the volumes in Duke dataset are provided with embedded pre-processing steps.
+
+
 
 \input{content/experiment/Table1.tex}
 \input{content/experiment/Table1-2.tex}
@@ -145,7 +149,7 @@ In order to determine the optimal size of the codebook when using \bow, this exp
 %% Experiment procedure
 For this experiment, several pre-processing strategies are evaluated: (i) \nlm, (ii) a combination of \nlm and flattening; (iii) a combination of \nlm, flattening and aligning.
 \lbp and \lbptop descriptors are detected using the default configuration.
-Volumes are represented using the high-level representation \bow using $k \in \{10, 20, 30, \cdots, 100, 200, \cdots, 500, 1000\}$.
+Volumes are represented using the high-level feature extraction by using \bow, where the codebook size has been varied as $k \in \{10, 20, 30, \cdots, 100, 200, \cdots, 500, 1000\}$.
 Finally, the volumes are classified using \lr. The choice of a linear classifier avoids that the results get busted by the classifier. In this manner any improvement would be linked to the pre-processing and the size of the codebook.
 
 
@@ -153,15 +157,17 @@ The usual construction of the codebook consists of clustering the samples in
 the feature space using $k$-means. However, this operation is rather
 computationally expensive and convergence of the $k$-means algorithm for all
 codebook sizes is not granted.
-Nonetheless, \citeauthor{nowak2006sampling} pointed out that randomly generated coodebooks can be used at expenses of accuracy.
-Since the goal is to assess the best coodebook size not its final performance, for this experiment, the construction of the coodebook has been carried out using $k$-means++ algorithm \added[id=sik]{(reference is missing)}, which is usually used as a $k$-means initialization algorithm.
+Nonetheless, Nowak\,\textit{et al.}~\cite{nowak2006sampling} pointed out that randomly generated codebooks can be used at the expenses of accuracy.
+Since the goal is to assess the best codebook size not its final performance, for this experiment, the construction of the codebook has been carried out using random initialization $k$-means++ algorithm ~\cite{arthur2007k}, which is usually used as a $k$-means initialization algorithm.
 
-Figure.~\ref{fig:RBOW} shows the \ac{acc} and \ac{f1} score graphs obtained for some of the configurations\footnote{Full set of scores can be found at the github repository in~\cite{Lemaitre2015}}.
-The results obtained when using the optimum number of words for each configuration, are listed in Table~\ref{tab:table2}.
+Figure.~\ref{fig:RBOW} shows the \ac{acc} and \ac{f1} score graphs obtained for a single case \footnote{Full set of scores can be found at the github repository} in~\cite{Lemaitre2015}, while the optimal number of words for all the configuration are reported in a compact manner in Table~\ref{tab:table2}.
 
+\added[id=sik]{For the sake of comparison, Table~\ref{tab:table2-2} reports performance of optimal codebook size in terms of \ac{se} and \ac{sp}.}
 
 %% Experiment Result description
-\added[id=sik]{Result description}
+In general, the obtained results show, that commonly less number of words is required when higher number of sampling points and radius ($\{S,R\} = \{24,3\}$) is used.
+The required number of words decreases for \emph{local}-\ac{lbp} in comparison to \emph{global}-\ac{lbp} as well.
+Although it was anticipated that the use of different pre-processing steps affect the optimal number of words, this influence is not substantial and consistent over all the obtained results.
 
 \input{content/experiment/Table2.tex}
 
@@ -192,19 +198,26 @@ Once studied the impact of the codebook size in Sect.\,\ref{subsec:exp2}, this e
 
 %% Procedure
 For this experiment, several pre-processing strategies are evaluated: (i) \nlm, (ii) a combination of \nlm and flattening; (iii) a combination of \nlm, flattening and aligning.
-\lbp and \lbptop descriptors are extracted using the default configuration.
-Volumes are represented using the high-level representation \bow. The codebooks are computed using regular $k$-means algorithm initialized using $k$-means++, where $k$ is chose accordingly to the findings in \emph{Experiment \#2}.
+\lbp and \lbptop features are detected using the default configuration.
+Volumes are represented using the high-level feature extraction, \bow. The codebooks are computed using regular $k$-means algorithm which is initialized by $k$-means++, where $k$ is chose accordingly to the findings in \emph{Experiment \#2}.
 Finally, the volumes are classified using $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac{svm}.
 
 Regarding the classification strategies, $k$-\ac{nn} classifier is trained by considering the 3 nearest neighbor.
 The \ac{rf} and \ac{gb} classifier are trained using 100 un-pruned trees, while \ac{svm} classifier is trained with \ac{rbf} kernel.
 
-Table~\ref{tab:table3} shows the obtained results from this experiment.
+Table~\ref{tab:table3} shows the obtained results from this experiment, where the best performance are highlighted in \textbf{bold}.
 
 %% Experiment Result description
-\added[id=sik]{Result description}
 
-\input{content/experiment/Table3.tex}
+In general terms, it is observed that \ac{rbf}-\ac{svm} provides the best results and outperforms the others.
+This classifier achieve the highest \ac{se} and \ac{sp} of 81.2\% and 93.7\% , respectively using the high-level extraction of \emph{local}-\ac{lbp} descriptor, when the data was preprocessed using \ac{nlm} and \ac{f}.
+In general, the classifier achieves the best performance,using the high-level extracted features of \emph{local}-\ac{lbp} and \emph{local}-\ac{lbptop}.
+This results are obtained while using a sampling points and radius of $\{S,R\} = \{8,1\}$.
+
+Although the highest results was achieved after additional \ac{f} pre-processing step, the effect of this step in not substantial and consistent through the whole experiment with respect to different classifiers and sampling points.
+Moreover, the results indicate that often using the pre-processed data only with \ac{nlm} is sufficient enough.
+
+
 
 
 \subsection{Experiment \#4}\label{subsec:exp4}
@@ -230,26 +243,30 @@ Table~\ref{tab:table3} shows the obtained results from this experiment.
 %   - (only a description)
 
 %% Experiment intro
-This experiment replicates the \emph{Experiment \#3} for the case of low-level representation of the volumes.
+This experiment replicates the \emph{Experiment \#3} for the case of low-level extracted features from the volumes.
 
 %% Experiment procedure
 For this experiment, several pre-processing strategies are evaluated: (i) \nlm, (ii) a combination of \nlm and flattening; (iii) a combination of \nlm, flattening and aligning.
-\lbp and \lbptop descriptors are extracted using the default configuration.
-Volumes are represented using low-level representation of the \emph{global} mapping.
-\todo{we should justify why local does not make sense. + we should say something in the previous experiments about the local/global}
+\lbp and \lbptop descriptors are detected using the default configuration.
+Volumes are represented using low-level feature extraction of the \emph{global} mapping.
 Finally, the volumes are classified using $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac{svm}; using the same configuration of \emph{Experiment \#3}.
 
-The obtained results from this experiment is listed in Table.~\ref{tab:table4}.
+The obtained results from this experiment is listed in Table.~\ref{tab:table4}, where the highest results are highlighted in \textbf{bold}.
+
+
+%% Experiment Result description
+The obtained results, shows that \ac{rf} has a better performance while using low-level extracted features, in comparison to the previous experiment where, \ac{svm} had a better performance dealing with high-level extracted features.
+
+The highest results of this experiment, \ac{se} and \ac{sp} of 81.2\% and 81.2\%, respectively, was achieved with \ac{rf} and using \emph{global}-\ac{lbptop} features with sampling points and radius of $\{S,R\}=\{24,3\}$.
+In general, in this experiment, \emph{global}-\ac{lbptop} features have better performance in comparison to \emph{global}-\ac{lbp} features and the  classification rates improved while using a higher number of sampling points and radius ($\{S,R\}=\{24,3\}$).
+
+Similar to the previous experiments, although the effects of additional pre-processing steps (\ac{f} and \ac{fal}) is evident for \ac{rf} performance on $\{S,R\} = \{24,3\}$, similar to the previous experiments, this influence is not consistent for all different configurations, in terms of classifier and $\{S,R\}$.
+
+
+\input{content/experiment/Table3.tex}
 \input{content/experiment/Table4.tex}
 
 
-
-% The SERI datasets are provided in complete \ac{oct} volumes by 512$\times$1024$\times$128 dimensions. Using this datasets, first the three low-level features such as \ac{lbp}, \ac{lbp}+\ac{pca} and \ac{lbptop} are extracted. The rotation invariant uniform ($riu2$) descriptors are calculated with the $P$ number of 8, 16 and 24 for the radius if 1, 2 and 3 respectively. The features are classified using RF with 100 tress. Table \ref{tab:LbPTopVolumeResult} shows the relative results for $8riu2$, $16riu2$, $24riu2$ and their combination $8riu2 + 16riu2 + 24riu2$. The results are presented in terms of \ac{se} and \ac{sp} percentages.
-
-% The second experiment is carried out using high-level features and \ac{bow} approach, on SERI datasets. The first high-level feature \ac{lbp}+\ac{bow} is obtained by applying \ac{bow} with 32 visual-words on the previously low-level \ac{lbp} features (applied on each B-scan). The second and third high-level descriptors are obtained using a dense approach by applying the \ac{sw} of size (7$\times$7) on each B-scan and \ac{sw} of size (7$\times$7$\times$7) to the whole volume respectively. \ac{lbp}+\ac{bow}+\ac{sw} represent the second high-level feature where the 2D-\ac{lbp} features are extracted for each sliding window on each B-scan and the visual-words are selected from the pool, consisting of their histograms. The third high-level feature, \ac{lbptop}+\ac{bow}+\ac{sw}, is defined using \ac{lbptop}. By using the sliding window the 3D-\ac{lbp} features are extracted for each patch. Same as previous experiment with low-level features, the descriptors are calculated with the $P$ number of 8, 16 and 24 for the radius if 1, 2 and 3 respectively. The obtained results of this experiment are illustrated in Tab. \ref{tab:SERIBoWResult}.
-
-% In order to compare our proposed framework the third experiment is carried out using the subsection of Duke datasets \cite{Srinivasan2014}. The OCT volumes provided by this datasets are of different volume size, cropped and denoised by the method of authors choice. Subsequently only the second experiment with high-level features and low-level \ac{lbptop} features comply with these requirements. The number of visual-words and the size of \ac{sw} for 2D and 3D features are the same than the previous experiment. The 2D and 3D \ac{lbp} features are extracted with $P$ number of 8, 16 and 24 for the radius if 1, 2 and 3 respectively. The obtained results for this experiment are shown in Tab. \ref{tab:DukeBoWResult}.
-%----------
 
 %%% Local Variables:
 %%% mode: latex
