@@ -1,6 +1,6 @@
 \begin{landscape}
   \begin{table}[ht]
-\caption{Summary of all the results}
+\caption{Summary of all the results. The best results for each experiment are denoted in bold.}
 \medskip
 \scriptsize{
 \begin{center}
@@ -13,7 +13,9 @@
 
  % \multicolumn{2}{c}{Evaluation} & \multicolumn{3}{c}{Pre-processing} & \multicolumn{5}{c}{Feature} & \multicolumn{2}{c}{Mapping} & \multicolumn{2}{c}{Feature} & Classifier & \# words\\
  % &  &  & & & \multicolumn{5}{c}{detection}  &  & \multicolumn{2}{c}{extraction} &  & \\
-
+Experiment & \multicolumn{2}{c}{Evaluation} & Pre-processing & \multicolumn{4}{c}{Feat. Detection} & Mapping & Feat. Extraction& Classifier & \#words \\
+\cmidrule(l){2-3} \cmidrule(l){5-8}
+& \ac{se} & \ac{sp} &  & Type & $\{8,1\}$ & $\{16,2\}$ & $\{24,3\}$ & & & & \\
 % \midrule 
 % \acs{se} & \acs{sp} & \acs{nf} & \acs{f} & \acs{fal} & $\{8,1\}$ & $\{16,2\}$ & $\{24,3\}$ & \lbp & \lbptop & \emph{global} & \emph{local} & Low & High & &  \\
 \midrule
@@ -21,33 +23,39 @@
 
 \showrowcolors
 
-%             & se   & sp   & nf      & lbp(top) & 1 & 2 & 3 & map    & f.e$\checkmark$t & class       & words \\
-Experiment 3  & 81.2 & 93.7 & NLM+F   & \lbp     & $\checkmark$ &   &   & local  & High  & \ac{svm}    & 30 \\
-              & 75.0 & 93.7 & NLM+F+A & \lbp     & $\checkmark$ &   &   & local  & High  & \ac{svm}    & 40 \\
-              & 75.0 & 93.7 & NLM     & \lbp     & $\checkmark$ &   &   & local  & High  & \ac{svm}    & 70\\
-              & 75.0 & 100  & NLM     & \lbptop  &   & $\checkmark$ &   & local  & High  & \ac{svm}    & 500\\
-              & 81.2 & 87.5 & NLM     & \lbptop  & $\checkmark$ &   &   & local  & High  & \ac{svm}    & 400\\
-              & 81.2 & 87.5 & NLM+F+A & \lbptop  &   & $\checkmark$ &   & local  & High  & \ac{rf}     & 90 \\
-              & 81.2 & 81.2 & NLM     & \lbp     & $\checkmark$ &   &   & local  & High  & \ac{rf}     & 70 \\
-Experiment 4  & 81.2 & 81.2 & NLM     & \lbptop  &   &   & $\checkmark$ & global & Low   & \rf         & \\
-              & 81.2 & 81.2 & NLM+F   & \lbptop  & $\checkmark$ &   &   & local  & High  & \ac{svm}    & 300\\
-              & 81.2 & 81.2 & NLM+F+A & \lbptop  &   &   & $\checkmark$ & global & Low   & \gb         & \\
-              & 81.2 & 81.2 & NLM+F   & \lbptop  &   &   & $\checkmark$ & global & Low   & \rf         & \\
-              & 75.0 & 87.5 & NLM     & \lbp     & $\checkmark$ &   &   & local  & High  & $k$-\ac{nn} & 70 \\
-Experiment 1  & 75.0 & 87.5 & NLM     & \lbp     & $\checkmark$ &   &   & local  & High  & \rf         & 32 \\
-Experiment 1  & 75.0 & 87.5 & NLM     & \lbptop  &   & $\checkmark$ &   & global & High  & \rf         & 32 \\
-              & 68.7 & 93.7 & NLM     & \lbp     & $\checkmark$ &   &   & global & High  & \ac{rf}     & 500\\
-              & 75   & 81.2 & NLM+F+A & \lbptop  &   &   & $\checkmark$ & global & Low   & \rf         & \\
-              & 68.7 & 81.2 & NLM     & \lbptop  &   & $\checkmark$ &   & local  & High  & \ac{rf}     & 500 \\
-              & 62.5 & 93.7 & NLM     & \lbptop  &   & $\checkmark$ &   & global & Low   & \svm        & \\
-              & 68.7 & 87.5 & NLM     & \lbptop  &   & $\checkmark$ &   & global & Low   & \rf         & \\
-              & 68.7 & 81.2 & NLM     & \lbptop  &   &   &   & global & Low   & \rf         & \\
-              & 75.0 & 75.0 & NLM     & \lbptop  &   &   &   & global & Low   & \rf         & \\
-              & 68.7 & 75.0 & NLM+F   & \lbptop  & $\checkmark$ &   &   & global & Low   & \svm        & \\
-              & 56.2 & 75.0 & NLM     & \lbp     &   &   & $\checkmark$ & global & Low   & \rf         & \\
-              & 56.2 & 75.0 & NLM+F   & \lbp     &   & $\checkmark$ &   & global & Low   & $k$-NN      & \\
-              & 56.2 & 75.0 & NLM+F+A & \lbp     &   & $\checkmark$ &   & global & Low   & $k$-NN      & \\
-Venhuizen\,\emph{et al.}\,\cite{Venhuizen2015} & 61.5 & 58.8 &\\
+%             & se   & sp   & nf      & lbp(top) & 1            & 2            & 3            & map    & f.extract. & class       & words \\
+\textbf{\#3} & \textbf{81.2} & \textbf{93.7 }& \textbf{NLM+F}   & \textbf{\lbp }   & \textbf{$\checkmark$} & & & \textbf{local}  & \textbf{High }& \textbf{\ac{svm}}    & \textbf{30} \\
+
+             \#3 & 75.0 & 93.7 & NLM+F+A & \lbp    & $\checkmark$ &              &              & local  & High & \ac{svm}    & 40 \\
+             \#3 & 75.0 & 93.7 & NLM     & \lbp    & $\checkmark$ &              &              & local  & High & \ac{svm}    & 70\\
+             \#3 & 75.0 & 100  & NLM     & \lbptop &              & $\checkmark$ &              & local  & High & \ac{svm}    & 500\\
+             \#3 & 81.2 & 87.5 & NLM     & \lbptop & $\checkmark$ &              &              & local  & High & \ac{svm}    & 400\\
+             \#3 & 81.2 & 87.5 & NLM+F+A & \lbptop &              & $\checkmark$ &              & local  & High & \ac{rf}     & 90 \\
+             \#3 & 81.2 & 81.2 & NLM     & \lbp    & $\checkmark$ &              &              & local  & High & \ac{rf}     & 70 \\
+
+\textbf{\#4}& \textbf{81.2}& \textbf{81.2}& \textbf{NLM}& \textbf{\lbptop}& & & \textbf{$\checkmark$}& \textbf{global}& \textbf{Low}& \textbf{\rf}& \\
+
+             \#3 & 81.2 & 81.2 & NLM+F   & \lbptop & $\checkmark$ &              &              & local  & High & \ac{svm}    & 300\\
+             \#4 & 81.2 & 81.2 & NLM+F+A & \lbptop &              &              & $\checkmark$ & global & Low  & \gb         & \\
+             \#4 & 81.2 & 81.2 & NLM+F   & \lbptop &              &              & $\checkmark$ & global & Low  & \rf         & \\
+             \#3 & 75.0 & 87.5 & NLM     & \lbp    & $\checkmark$ &              &              & local  & High & $k$-\ac{nn} & 70 \\
+
+\textbf{\#1}&\textbf{75.0}&\textbf{87.5}&\textbf{NLM}&\textbf{\lbp}&\textbf{$\checkmark$}&&&\textbf{local}&\textbf{High}&\textbf{\rf}&\textbf{32}\\
+
+\textbf{\#1}&\textbf{75.0}&\textbf{87.5}&\textbf{NLM}&\textbf{\lbptop}&&\textbf{$\checkmark$}&&\textbf{global}&\textbf{Low}&\textbf{\rf}&\\
+
+             \#3 & 68.7 & 93.7 & NLM     & \lbp    & $\checkmark$ &              &              & global & High & \ac{rf}     & 500\\
+             \#4 & 75   & 81.2 & NLM+F+A & \lbptop &              &              & $\checkmark$ & global & Low  & \rf         & \\
+             \#3 & 68.7 & 81.2 & NLM     & \lbptop &              & $\checkmark$ &              & local  & High & \ac{rf}     & 500 \\
+             \#4 & 62.5 & 93.7 & NLM     & \lbptop &              & $\checkmark$ &              & global & Low  & \svm        & \\
+             \#4 & 68.7 & 87.5 & NLM     & \lbptop &              & $\checkmark$ &              & global & Low  & \rf         & \\
+             \#4 & 68.7 & 81.2 & NLM     & \lbptop &              &              &              & global & Low  & \rf         & \\
+             \#4 & 75.0 & 75.0 & NLM     & \lbptop &              &              &              & global & Low  & \rf         & \\
+             \#4 & 68.7 & 75.0 & NLM+F   & \lbptop & $\checkmark$ &              &              & global & Low  & \svm        & \\
+             \#4 & 56.2 & 75.0 & NLM     & \lbp    &              &              & $\checkmark$ & global & Low  & \rf         & \\
+             \#4 & 56.2 & 75.0 & NLM+F   & \lbp    &              & $\checkmark$ &              & global & Low  & $k$-NN      & \\
+             \#4 & 56.2 & 75.0 & NLM+F+A & \lbp    &              & $\checkmark$ &              & global & Low  & $k$-NN      & \\
+\textbf{Venhuizen\,\emph{et al.}\,\cite{Venhuizen2015}}&\textbf{61.5}&\textbf{58.8}& \\
 
 \bottomrule
 
