@@ -220,6 +220,7 @@ Feature detection shows a tendency towards better results when using small radiu
 Regarding the mapping strategy, local mapping tends to produce better results than global mapping.
 In terms of choosing a classifier, \ac{rbf}-\ac{svm} provides the best results and along with \rf outperform the other classifiers.
 
+The best performing results (81.2\%\,\ac{se} and 93.7\%\,\ac{sp}) are achieved when using \nlm, flattening, \lbp detection using $S=8$ and $R=1$, local mapping, high-level extracted features using \bow with $k=70$, \rbf-\svm classifier. This result can be compared with other relevant results in Table\,\ref{tab:experiment_summary}
 
 \subsection{Experiment \#4}\label{subsec:exp4}
 % Experiment structure
@@ -260,16 +261,16 @@ There is no local mapping.
 In terms of classifier \rf performs better than the others but the highest \ac{sp} is achieved using \rbf-\svm.
 
 
-The highest results of this experiment, \ac{se} and \ac{sp} of 81.2\% and 81.2\%, respectively, was achieved with \ac{rf} and using \emph{global}-\ac{lbptop} features with sampling points and radius of $\{S,R\}=\{24,3\}$.
-In general, in this experiment, \emph{global}-\ac{lbptop} features have better performance in comparison to \emph{global}-\ac{lbp} features and the  classification rates improved while using a higher number of sampling points and radius ($\{S,R\}=\{24,3\}$).
+% The highest results of this experiment, \ac{se} and \ac{sp} of 81.2\% and 81.2\%, respectively, was achieved with \ac{rf} and using \emph{global}-\ac{lbptop} features with sampling points and radius of $\{S,R\}=\{24,3\}$.
+% In general, in this experiment, \emph{global}-\ac{lbptop} features have better performance in comparison to \emph{global}-\ac{lbp} features and the  classification rates improved while using a higher number of sampling points and radius ($\{S,R\}=\{24,3\}$).
 
-Similar to the previous experiments, although the effects of additional pre-processing steps (\ac{f} and \ac{fal}) is evident for \ac{rf} performance on $\{S,R\} = \{24,3\}$, similar to the previous experiments, this influence is not consistent for all different configurations, in terms of classifier and $\{S,R\}$.
+% Similar to the previous experiments, although the effects of additional pre-processing steps (\ac{f} and \ac{fal}) is evident for \ac{rf} performance on $\{S,R\} = \{24,3\}$, similar to the previous experiments, this influence is not consistent for all different configurations, in terms of classifier and $\{S,R\}$.
 
+
+The best performing results (81.2\%\,\ac{se} and 81.2\%\,\ac{sp}) are achieved when using \nlm, flattening, \lbptop detection using $S=24$ and $R=3$, global mapping, low-level feature extraction, and \rf classifier. This result can be compared with other relevant results in Table\,\ref{tab:experiment_summary}
 
 \input{content/experiment/Table3.tex}
 \input{content/experiment/Table4.tex}
-\input{content/experiment/Table5.tex}
-
 
 
 %%% Local Variables:
