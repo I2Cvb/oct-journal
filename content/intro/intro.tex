@@ -11,16 +11,19 @@ Moreover, the prevalent cases of \ac{dr} are expected to grow exponentially affe
 Early detection and treatment of \ac{dr} and \ac{dme} play a major role to prevent adverse effects such as blindness.
 Indeed, the detection and diagnosis of retinal diseases are based on the detection of vascular abnormalities or lesions in the retina. 
 
+
+
 In past decades, \ac{cad} systems devoted to ophthalmology, have been developed focusing on the automatic analysis of fundus images~\cite{Abramoff2010,Trucco2013}.
 %\Ac{cad} systems have focused on the automatic analysis of fundus images in past decades~\cite{Abramoff2010,Trucco2013}.
-However, the use of fundus photography is limited to the detection of signs which are correlated with retinal thickening such as hard and soft exudates, hemorrhages or micro-aneurysms.
+However, the use of fundus photography is limited to the detection of signs which are correlated with retinal thickening such as hard and soft exudates, hemorrhages or micro-aneurysms except if multiple fundus images are used~\cite{giancardo2011textureless}.
+However, only qualitative information can be inferred.
 Moreover, \ac{dme} is characterized as an increase in retinal thickness within 1 disk diameter of the fovea center with or without hard exudates and sometimes associated with cysts~\cite{ETDRSG1985}.
 Therefore, fundus photography cannot always identify the clinical signs of \ac{dme}; for example cysts, which are not visible in the retinal surface. In addition, it does not provide any quantitative measurements of retina thickness or information about cross-sectional retinal morphology. 
 
 Recently, \ac{oct} has been widely used as a valuable diagnosis tool for \ac{dme} detection.
 \ac{oct} is based on optical reflectivity and produces cross-sectional and three-dimensional images of the central retina, thus allowing quantitative retinal thickness and structure measurements.
-The new generation of \ac{oct} imaging, namely \ac{sdoct} offers higher resolution and faster image acquisition over conventional time domain \ac{oct}. \Ac{sdoct} can produce $27,000$ to $40,000$ A-scans/seconds with an axial resolution ranging from \SIrange{3.5}{6}{\micro \metre}~\cite{Chen2005}. 
-Figure.\,\ref{fig:dme-normal} shows one normal B-scan and two abnormal B-scans.
+The new generation of \ac{oct} imaging, namely \ac{sdoct} offers higher resolution and faster image acquisition over conventional time domain \ac{oct}. \Ac{sdoct} can produce $27,000$ to $40,000$ A-scans/second with an axial resolution ranging from \SIrange{3.5}{6}{\micro \metre}~\cite{Chen2005}. 
+Figure\,\ref{fig:dme-normal} shows one normal B-scan and two abnormal B-scans.
 \begin{figure}
 \begin{center}
 \hspace*{\fill}
@@ -45,8 +48,8 @@ In this research beside the comparison of 2D and 3D features, we also compare th
 
 %In the following of this paper, first in Sect.\,\ref{sec:rw} a summary of the related studies is presented.
 
-This paper is organized as follows, Section~\ref{sec:rw} presents a summary of the related studies.
-The proposed framework is explained in Sect.\,\ref{sec:method}, while the experiments and results are discussed in Sect.\,\ref{sec:exp}.
+This paper is organized as follows: Sect.\,\ref{sec:rw} presents a summary of the related studies;
+the proposed framework is explained in Sect.\,\ref{sec:method}, while the experiments and results are discussed in Sect.\,\ref{sec:exp}.
 Finally, the conclusion and avenue for future directions are drawn in Sect.\,\ref{sec:con}.
 
 

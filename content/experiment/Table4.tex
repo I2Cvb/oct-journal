@@ -12,7 +12,7 @@ Different classifiers such as \ac{rf}, \ac{gb}, \ac{svm}, and $k$-\ac{nn} are us
 %\begin{tabularx}{1.02\linewidth}{l cc  cc cc c cc cc cc }
 \begin{tabular}{ll cc  cc cc c cc cc cc }
 \toprule
-&  & \multicolumn{6}{c}{$k$-\ac{nn}} & &  \multicolumn{6}{c}{$k$-\ac{svm}} \\
+&  & \multicolumn{6}{c}{$k$-\ac{nn}} & &  \multicolumn{6}{c}{\ac{svm}} \\
 \cmidrule(l){3-8} \cmidrule(l){10-15}
 Features & Pre-processing &   \multicolumn{2}{c}{$\{8,1\}$}  & \multicolumn{2}{c}{$\{16,2\}$} & \multicolumn{2}{c}{$\{24,3\}$} & &  
    \multicolumn{2}{c}{$\{8,1\}$}  &  \multicolumn{2}{c}{$\{16,2\}$} & \multicolumn{2}{c}{$\{24,3\}$} \\
@@ -28,9 +28,9 @@ Features & Pre-processing &   \multicolumn{2}{c}{$\{8,1\}$}  & \multicolumn{2}{c
 
 \hdashline \noalign{\vskip 3pt}
  	\emph{global}-\ac{lbptop}		\\
- 	& \acs{nf}	  &  31.2 & 93.7 & 37.5 & 100.0  & 37.5 & 81.2 & &  62.5 & 75.0   & \textbf{62.5} & \textbf{93.7} & 56.2 & 87.5  \\
-	& \acs{f}	  &  50.0 & 56.2 & 56.2 & 75.0   & 56.2 & 62.5 & &  68.7 & 75.0   & 43.7 & 68.7 & 68.7 & 56.2 \\
-	& \acs{fal}   &  75.0 & 43.7 & 56.2 & 43.7   & 68.7 & 50.0 & &  68.7 & 62.5   & 62.5 & 56.2 & 56.2 & 68.7  \\
+ 	& \acs{nf}	  &  31.2 & 93.7 & 37.5 & 100.0  & 37.5 & 81.2 & &  62.5 & 75.0   & \cellcolor[gray]{0.8}\textbf{62.5} & \cellcolor[gray]{0.8}\textbf{93.7} & 56.2 & 87.5  \\
+	& \acs{f}	  &  50.0 & 56.2 & 56.2 & 75.0   & 56.2 & 62.5 & &  68.7 & 75.0   & \cellcolor[gray]{0.8}43.7 & \cellcolor[gray]{0.8}68.7 & 68.7 & 56.2 \\
+	& \acs{fal}   &  75.0 & 43.7 & 56.2 & 43.7   & 68.7 & 50.0 & &  68.7 & 62.5   & \cellcolor[gray]{0.8}62.5 & \cellcolor[gray]{0.8}56.2 & 56.2 & 68.7  \\
 	%\acs{fac} & 68.7 & 68.7 & 68.7 & 87.5 & 68.7 & 87.5 & & 62.5 & 62.5 & 68.7 & 68.7 & 75   & 75\\	
 \midrule	
 &  & \multicolumn{6}{c}{\ac{rf}} & &  \multicolumn{6}{c}{\ac{gb}} \\
@@ -49,9 +49,9 @@ Features & Pre-processing &   \multicolumn{2}{c}{$8^{riu2}$}  & \multicolumn{2}{
 
 \hdashline \noalign{\vskip 3pt}
  	\emph{global}-\ac{lbptop}		\\
- 	& \acs{nf}	 & 56.2 & 68.7 &   \textbf{68.7}  & \textbf{87.5} & \textbf{68.7}  & \textbf{81.2} & &  68.7 & 68.7 & 75.0   & 50.0   & 56.2 & 43.7\\
-	& \acs{f}	 & 56.2 & 62.5 &   81.2  & 68.7 & \textbf{81.2}  & \textbf{81.2} & &  56.2 & 62.5 & 62.5 & 68.7 & 68.7 & 81.2\\
-	& \acs{fal}& 68.7 & 62.5 &   75.0    & 68.7 & \textbf{75.0}   & \textbf{81.2} & &  56.2 & 43.7 & 62.5 & 62.5 &\textbf{75.0}   & \textbf{75.0} \\
+ 	& \acs{nf}	 & 56.2 & 68.7 &   \cellcolor[gray]{0.8}\textbf{68.7}  & \cellcolor[gray]{0.8}\textbf{87.5} & \cellcolor[gray]{0.6}\textbf{68.7}  & \cellcolor[gray]{0.6}\textbf{81.2} & &  68.7 & 68.7 & 75.0   & 50.0   & \cellcolor[gray]{0.8}56.2 & \cellcolor[gray]{0.8}43.7\\
+	& \acs{f}	 & 56.2 & 62.5 &   \cellcolor[gray]{0.8}81.2  & \cellcolor[gray]{0.8}68.7 & \cellcolor[gray]{0.6}\textbf{81.2}  & \cellcolor[gray]{0.6}\textbf{81.2} & &  56.2 & 62.5 & 62.5 & 68.7 & \cellcolor[gray]{0.8}68.7 & \cellcolor[gray]{0.8}81.2\\
+	& \acs{fal}& 68.7 & 62.5 &   \cellcolor[gray]{0.8}75.0    & \cellcolor[gray]{0.8}68.7 & \cellcolor[gray]{0.6}\textbf{75.0}   & \cellcolor[gray]{0.6}\textbf{81.2} & &  56.2 & 43.7 & 62.5 & 62.5 &\cellcolor[gray]{0.8}\textbf{75.0}   & \cellcolor[gray]{0.8}\textbf{75.0} \\
 	%\acs{fac}& 75   & 68.7 &   75    & 81.2 & 75    & 75   & &  75   & 75   & 75   & 56.2 & 81.2 & 62.5\\
 
 

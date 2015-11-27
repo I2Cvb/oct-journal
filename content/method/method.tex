@@ -56,7 +56,7 @@ The \ac{oct} volumes are enhanced by denoising each B-scan (i.e. each $x-z$ slic
   \subfigure[]{\label{subfig:flatwarp}\includegraphics[width=0.20\textwidth]{flattening/warped_cropped}}\hfill
   \subfigure[]{\label{subfig:flatfinal}\includegraphics[width=0.20\textwidth]{flattening/warped_org_cropped}}
   \hspace*{\fill}
-  \caption{Flattening procedure: (a) original image, (b) thresholding, (c) median filter, (d) curve fitting, (e) warping, (f) flatten image.}
+  \caption{Flattening procedure: (a) original image, (b) thresholding, (c) median filtering, (d) curve fitting, (e) warping, (f) flatten image.}
   \label{fig:flatten}
 \end{figure}
 
@@ -75,7 +75,7 @@ Finally, the scan is warped such that the curve becomes a line as presented in F
 
 \subsubsection{Slice alignment}
 The flattening correction does not enforce an alignment through the \ac{oct} volume.
-Thus, in addition to the flattening correction, the warped curve of each B-scan are positioned at the same altitude in the $z$ axis. 
+Thus, in addition to the flattening correction, the warped curves of each B-scan are positioned at the same altitude in the $z$ axis. 
 
 %Similarly, when using 3D texture, misalignment between the slice introduce error to the texture descriptor. In this case the slices are also aligned based on the segmentation's hull.
 
@@ -83,7 +83,7 @@ Thus, in addition to the flattening correction, the warped curve of each B-scan 
 %\todo[inline]{Cropping out the background allows for less texture to be encoded}
 
 \subsection{Feature detection}\label{subsec:feaext}
-In this research, we choose to detect simple and efficient \ac{lbp} texture features with regards to each \ac{oct} slice and volumes.
+In this research, we choose to detect simple and efficient \ac{lbp} texture features with regards to each \ac{oct} slice and volume.
 \ac{lbp} is a texture descriptor based on the signs of the differences of a central pixel with respect to its neighboring pixels~\cite{ojala2002multiresolution}.
 These differences are encoded in terms of binary patterns as in~Eq.\,\eqref{Eq:LBP}:
 
@@ -95,10 +95,10 @@ LBP_{P,R} = \sum_{p=0}^{P-1}s(g_{p} - g_{c})2^{p} \ , \qquad s(x) = \begin{cases
 \end{equation}
 
 \noindent where $g_c$, $g_{p}$ are the intensities of the central pixel and a given neighbor pixel, respectively. $P$ is the number of sampling points in the circle of radius $R$.
-Ojala\,\textit{et al.} further extend the original \ac{lbp} formulation to achieve rotation invariance at the expense of limiting the texture description to the notion of circular ``uniformity''~\cite{ojala2002multiresolution}.
+Ojala\,\textit{et al.} further extended the original \ac{lbp} formulation to achieve rotation invariance at the expense of limiting the texture description to the notion of circular ``uniformity''~\cite{ojala2002multiresolution}.
 Volume encoding is later proposed by Zhao\,\textit{et al.} by computing \ac{lbp} descriptors in three orthogonal planes, so called \ac{lbptop}~\cite{zhao2012rotation}.
 
-In this research we consider rotation invariant and uniform \ac{lbp} and \ac{lbptop} features with various sampling points (i.e., $\{8,16,24\}$) with respect to different radius, (i.e., $\{1,2,3\}$).
+In this research, we consider rotation invariant and uniform \ac{lbp} and \ac{lbptop} features with various sampling points (i.e., $\{8,16,24\}$) with respect to different radius, (i.e., $\{1,2,3\}$).
 The number of patterns ($LBP_{\#pat}$) in regards with each configuration is reported in Table~\ref{tab:lbphist}.
 
 %Table.~\ref{tab:lbphist} shows the length of uniform rotation invariant histogram ($\ac{lbp}_{hist}$) for the used sampling point and radius.

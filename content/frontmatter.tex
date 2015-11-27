@@ -4,7 +4,7 @@
 
 %% or include affiliations in footnotes:
 \author[le2i,vicorob]{Guillaume~Lema\^itre\corref{mycorrespondingauthor}}
-\ead{g.lemaintre58@gmail.com}
+\ead{g.lemaitre58@gmail.com}
 \author[le2i,vicorob]{Mojdeh~Rastgoo\corref{mycorrespondingauthor}}
 \ead{mojdeh.rastgoo@gmail.com}
 \author[le2i]{Joan~Massich\corref{mycorrespondingauthor}}
@@ -20,15 +20,18 @@
 
 \address[vicorob]{ViCOROB, Universitat de Girona, Campus Montilivi, Edifici P4, 17071 Girona, Spain}
 \address[Le2i]{LE2I UMR6306, CNRS, Arts et M\'etiers, Univ. Bourgogne Franche-Comt\'e, 12 rue de la Fonderie, 71200 Le Creusot, France}
-\address[seri]{Singaore Eye Research Institute, Singapore National Eye Center, Singapore}
+\address[seri]{Singapore Eye Research Institute, Singapore National Eye Center, Singapore}
 \begin{abstract}
 \acresetall  % reset the acronyms from the title (if any)
-%This paper addresses the problem of automatic classification of \ac{sdoct} data for automatic identification of patients with \ac{dme} versus normal subjects.
-%Our method is based on \ac{lbp} features to describe the texture of \ac{oct} images and we compare different \ac{lbp} features extraction approaches to compute a single signature for the whole \ac{oct} volume.
-%Experimental results with two datasets of respectively 32 and 30 \ac{oct} volumes show that
-%regardless of using low or high level representations, features derived from \ac{lbp} texture have highly discriminative power.% for the task on hand.
-%
-%Moreover, the experiments show that the proposed method achieves better classification performances than other recent published works.
+This paper addresses the problem of automatic classification of \ac{sdoct} data for automatic identification of patients with \ac{dme} versus normal subjects.
+\ac{oct} has been a valuable diagnostic tool for \ac{dme}, which is among the most common causes of irreversible vision loss in individuals with diabetes.
+Here, a classification framework with five distinctive steps is proposed and we present an extensive study of each step.
+Our method considers combination of various pre-processings in conjunction with \ac{lbp} features and different mapping strategies.
+Using linear and non-linear classifiers, we tested the developed framework on a balanced cohort of 32 patients.
+
+Experimental results show that the proposed method outperforms the previous studies by achieving a \ac{se} and \ac{sp} of 81.2\% and 93.7\%, respectively. 
+Our study concludes that the 3D features and high-level representation of 2D features using patches achieve the best results.
+However, the effects of pre-processing is inconsistent with respect to different classifiers and feature configurations. 
 \end{abstract}
 
 \begin{keyword}
