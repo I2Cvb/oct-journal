@@ -1,5 +1,5 @@
 % % include the figures path relative to the master file
-% \graphicspath{ {./content/results/figures/} }
+ \graphicspath{ {./content/experiment/figures/} }
 
 \section{Experiments and Validation}
 \label{sec:exp} \label{sec:exp:datasets}
@@ -155,29 +155,37 @@ This is attributed to the fact that the volumes in Duke dataset are provided wit
 In order to determine the optimal size of the codebook when using \bow, this experiment evaluates several codebook sizes on SERI dataset.
 
 %% Experiment procedure
-For this experiment, several pre-processing strategies are evaluated: (i) \nlm, (ii) a combination of \nlm and flattening; (iii) a combination of \nlm, flattening and aligning.
+Several pre-processing strategies are evaluated: (i) \nlm, (ii) a combination of \nlm and flattening, and (iii) a combination of \nlm, flattening and aligning.
 \lbp and \lbptop descriptors are detected using the default configuration.
-Volumes are represented using \bow, where the codebook size has been varied as $k \in \{10, 20, 30, \cdots, 100, 200, \cdots, 500, 1000\}$.
+Volumes are represented using \ac{bow}, where the codebook size ranging for $k \in \{10, 20, 30, \cdots, 100, 200, \cdots, 500, 1000\}$.
 Finally, the volumes are classified using \lr.
-The choice of a linear classifier avoids that the results get boosted by the classifier. In this manner any improvement would be linked to the pre-processing and the size of the codebook.
+The choice of this linear classifier avoids that the results get boosted by the classifier. In this manner any improvement would be linked to the pre-processing and the size of the codebook.
 \input{content/experiment/Table2.tex}
 \input{content/experiment/Table2-2.tex}
 
 
-The usual construction of the codebook consists of clustering the samples in
-the feature space using $k$-means. However, this operation is rather
-computationally expensive and convergence of the $k$-means algorithm for all
-codebook sizes is not granted.
+The usual build of the codebook consists of clustering the samples in
+the feature space using $k$-means (see Sect.\,\ref{subsec:fearep}).
+However, this operation is rather computationally expensive and convergence of the $k$-means algorithm for all codebook sizes is not granted.
 Nonetheless, Nowak\,\textit{et al.}~\cite{nowak2006sampling} pointed out that randomly generated codebooks can be used at the expenses of accuracy.
-Since the goal is to assess the best codebook size not its final performance, for this experiment, the construction of the codebook has been carried out using random initialization $k$-means++ algorithm ~\cite{arthur2007k}, which is usually used as a $k$-means initialization algorithm.
+Thus, the codebook are randomly generated since the final aim is to asses the influence of codebook size and not the performance of the framework.
+For this experiment, the codebook building is carried out using random initialization $k$-means++ algorithm~\cite{arthur2007k}, which is usually used as a $k$-means initialization algorithm.
 
-Figure.~\ref{fig:RBOW} shows the \ac{acc} and \ac{f1} score graphs obtained for a single case \footnote{Full set of scores can be found at the github repository} in~\cite{Lemaitre2015}, while the optimal number of words for all the configuration are reported in a compact manner in Table~\ref{tab:table2}.
-Table~\ref{tab:table2-2} reports performance of optimal codebook size in terms of \ac{se} and \ac{sp}.
+Figure~\ref{fig:RBOW} shows the \ac{acc} and \ac{f1} score graphs obtained for a single case \footnote{Full set of scores can be found at the github repository} in~\cite{Lemaitre2015}, while the optimal number of words for all the configuration are reported in a compact manner in Table~\ref{tab:table2}.
+Table~\ref{tab:table2-2} reports the performance of the optimal codebook size in terms of \ac{se} and \ac{sp}.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.85\textwidth]{figure2}
+\caption{The performance of \ac{lr} with \ac{nlm}+\ac{f} pre-processing for different $P$ and $R$.}
+\label{fig:RBOW}
+\end{figure}
+
 
 %% Experiment Result description
-In general, the obtained results show, that commonly less number of words is required when higher number of sampling points and radius ($\{S,R\} = \{24,3\}$) is used.
-The required number of words decreases for \emph{local}-\ac{lbp} in comparison to \emph{global}-\ac{lbp} as well.
-Although it was anticipated that the use of different pre-processing steps affect the optimal number of words, this influence is not substantial and consistent over all the obtained results.
+The obtained results show that commonly less number of words is required when higher number of sampling points and radius ($\{P,R\} = \{24,3\}$) are used.
+The required number of words decreases for \emph{local}-\ac{lbp} in comparison with \emph{global}-\ac{lbp}.
+Although it was expected that the use of different pre-processing steps affect the optimal number of words, this influence is not substantial nor consistent over all the obtained results.
 
 
 \subsection{Experiment \#3}\label{subsec:exp3}
@@ -203,30 +211,30 @@ Although it was anticipated that the use of different pre-processing steps affec
 %   - (only a description)
 
 %% Experiment intro
-Once studied the impact of the codebook size in Sect.\,\ref{subsec:exp2}, this experiment explores the improvement associated with: (i) different pre-processing, and (ii) using more sophisticated classification strategies.
+After studying the impact of the codebook size in Sect.\,\ref{subsec:exp2}, this experiment explores the improvement associated with: (i) different pre-processing, and (ii) using larger range of classifiers (i.e. linear and non-linear).
 
 %% Procedure
-For this experiment, several pre-processing strategies are evaluated: (i) \nlm, (ii) a combination of \nlm and flattening; (iii) a combination of \nlm, flattening and aligning.
+For this experiment, several pre-processing strategies are evaluated: (i) \nlm, (ii) a combination of \nlm and flattening, and (iii) a combination of \nlm, flattening and aligning.
 \lbp and \lbptop features are detected using the default configuration and volumes are represented using \bow.
-The codebooks are computed using regular $k$-means algorithm which is initialized by $k$-means++, where $k$ is chose accordingly to the findings in \emph{Experiment \#2}.
+The codebooks are computed using regular $k$-means algorithm which is initialized using $k$-means++, where $k$ is chosen according to the findings of \emph{Experiment \#2}.
 Finally, the volumes are classified using $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac{svm}.
 
 Regarding the classification strategies, $k$-\ac{nn} classifier is trained by considering the 3 nearest neighbor.
-The \ac{rf} and \ac{gb} classifier are trained using 100 un-pruned trees, while \ac{svm} classifier is trained with \ac{rbf} kernel.
+The \ac{rf} and \ac{gb} classifier are trained using 100 un-pruned trees, while \ac{svm} classifier is trained with \ac{rbf} kernel and its parameters $C$, and $\gamma$ are optimized through grid-search.
 
 %% Experiment Result description
 Table~\ref{tab:table3} shows the obtained results from this experiment, where the most relevant configurations are shaded and the highest results are highlighted in \textbf{bold}.
-Regarding the effect of pre-processing, most configurations show a decrease of performance when adding alignment or flattening.
-%(see all configuration blocks shaded in Table~\ref{tab:tab3}).
+Regarding the effects of pre-processing, the performance of the most configurations decreases by aligning or flattening the B-scan (i.e. light shaded configurations in Table~\ref{tab:table3}).
 %$k$-NM\,8\,\emph{local}-\lbp, \svm\,8\,\emph{local}-\lbptop, \svm\,16\,\emph{local}-\lbptop, \rf\,8\,\emph{global}-\lbp, \rf\,8\,\emph{local}-\lbp).
-However the two best configurations, presented in dark shade, achieve better results when adding flattening or flattening and alignment to the pre-processing.
+However, the two best configurations (i.e. dark shaded in Table~\ref{tab:table3}), achieve better results when adding flattening or flattening and alignment as pre-processing.
+A small radius and small number of samples in feature detection tends to increase the classification performance.
 %(see: \svm\,8\,\emph{local}-\lbp and \rf\,16\,\emph{local}-\lbptop).
-Feature detection shows a tendency towards better results when using small radius and small number of samples.
+%Feature detection shows a tendency towards better results when using small radius and small number of samples.
 Regarding the mapping strategy, local mapping tends to produce better results than global mapping.
-In terms of choosing a classifier, \ac{svm} provides the best results, follows by \rf.
+In terms of choosing a classifier, \ac{svm} provides the best results, followed by \rf.
 
-The best performing results (81.2\%\,\ac{se} and 93.7\%\,\ac{sp}) are achieved when using \nlm, flattening, \lbp detection using $\{P,R\} = \{8,1\}$, local mapping, high-level representation, using \bow with $k=70$, and \svm classifier.
-This result can be compared with other relevant results in Table\,\ref{tab:experiment_summary}
+The best results (81.2\%\,\ac{se} and 93.7\%\,\ac{sp}) are achieved using \nlm, flattening, \lbp detection using $\{P,R\} = \{8,1\}$, local mapping, high-level representation, using a codebook with $k=70$, and \svm classifier.
+This result can be compared with other relevant results in Table\,\ref{tab:experiment_summary}.
 
 \subsection{Experiment \#4}\label{subsec:exp4}
 % Experiment structure
@@ -251,19 +259,20 @@ This result can be compared with other relevant results in Table\,\ref{tab:exper
 %   - (only a description)
 
 %% Experiment intro
-This experiment replicates the \emph{Experiment \#3} for the case of low-level extracted features from the volumes.
+This experiment replicates the \emph{Experiment \#3} for the case of low-level representation features from the volumes.
 
 %% Experiment procedure
-For this experiment, several pre-processing strategies are evaluated: (i) \nlm, (ii) a combination of \nlm and flattening; (iii) a combination of \nlm, flattening and aligning.
+For this experiment, several pre-processing strategies are evaluated: (i) \nlm, (ii) a combination of \nlm and flattening, and (iii) a combination of \nlm, flattening and aligning.
 \lbp and \lbptop descriptors are detected using the default configuration.
-Volumes are represented using low-level feature extraction of the \emph{global} mapping.
-Finally, the volumes are classified using $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac{svm}; using the same configuration of \emph{Experiment \#3}.
+Volumes are represented using low-level feature representation of the \emph{global} mapping.
+Finally, the volumes are classified using $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac{svm}, similarly to \emph{Experiment \#3}.
 
 %% Experiment Result description
-The obtained results from this experiment is listed in Table.~\ref{tab:table4}, where the most relevant configurations are shaded and the highest results are highlighted in \textbf{bold}.
-Similarly to the results reported in Sect.\,\ref{subsec:exp3}, the effect of incorporating flattening to the pre-processing stage boosts the results for the best performing configuration, but this effect is not consistent across all the configurations.
-For this experiment, \lbptop outperforms \lbp and larger $P$ and $R$ values for computing the texture show a tendency to better results. 
-In terms of classifier \rf performs better than the others but the highest \ac{sp} is achieved using \svm.
+The obtained results from this experiment is listed in Table.~\ref{tab:table4}.
+The most relevant configurations are shaded and the highest results are highlighted in \textbf{bold}.
+Similarly to the results reported in Sect.\,\ref{subsec:exp3}, the effect of flattening the B-scan boosts the results for the best performing configuration, but this effect is not consistent across all the configurations.
+For this experiment, \lbptop outperforms \lbp and larger $P$ and $R$ values for feature detection tends to obtain better results. 
+In terms of classifier, \rf have better performance than the others but the highest \ac{sp} is achieved using \svm.
 
 
 % The highest results of this experiment, \ac{se} and \ac{sp} of 81.2\% and 81.2\%, respectively, was achieved with \ac{rf} and using \emph{global}-\ac{lbptop} features with sampling points and radius of $\{S,R\}=\{24,3\}$.
@@ -272,7 +281,7 @@ In terms of classifier \rf performs better than the others but the highest \ac{s
 % Similar to the previous experiments, although the effects of additional pre-processing steps (\ac{f} and \ac{fal}) is evident for \ac{rf} performance on $\{S,R\} = \{24,3\}$, similar to the previous experiments, this influence is not consistent for all different configurations, in terms of classifier and $\{S,R\}$.
 
 
-The best performing results (81.2\%\,\ac{se} and 81.2\%\,\ac{sp}) are achieved when using \nlm, flattening, \lbptop detection using $\{P,R\}= \{24,3\}$, global mapping, low-level feature extraction, and \rf classifier.
+The best results (81.2\%\,\ac{se} and 81.2\%\,\ac{sp}) are achieved when using \nlm, flattening, \lbptop detection using $\{P,R\}= \{24,3\}$, global mapping, low-level representation, and \rf classifier.
 This result can be compared with other relevant results in Table\,\ref{tab:experiment_summary}
 
 \input{content/experiment/Table3.tex}
