@@ -129,7 +129,8 @@ The number of patterns ($LBP_{\#pat}$) in regards with each configuration is rep
 %\end{figure}
 
 \subsection{Mapping} \label{subsec:mapping}
-The mapping stage is used to determine a discrete set of elements (or structures) which is used for representing the \ac{oct} volume.
+The mapping stage is used to partition the previously computed feature images to later extract the final descriptor as presented in the next section.
+%The mapping stage is used to determine a discrete set of elements (or structures) which is used for representing the \ac{oct} volume.
 For this work, two mapping strategies are defined: (i) \emph{global} and (ii) \emph{local} mapping.
 
 \begin{figure}[t]
@@ -146,15 +147,15 @@ For this work, two mapping strategies are defined: (i) \emph{global} and (ii) \e
 \end{figure}
 
 \begin{description}
-\item[\emph{Global}] mapping considers to extract the features from the 2D B-scans for \ac{lbp} and 3D volume for \ac{lbptop}.
-Therefore for a volume with $d$ B-scans, the \emph{global}-\ac{lbp} mapping corresponds to $d$ elements.
-While the \emph{global}-\ac{lbptop} represents one element, which corresponds to the whole volume; therefore, $d = 1$.
-The \emph{global} mapping for 2D B-scan end 3D volume is shown in Fig.~\ref{fig:gm1} and \ref{fig:gm2}.
+\item[\emph{Global}] mapping considers to extract the final descriptors from the 2D feature image for \ac{lbp} and 3D volume for \ac{lbptop}.
+%mapping considers to extract the features from the 2D B-scans for \ac{lbp} and 3D volume for \ac{lbptop}.
+Therefore, for a volume with $d$ slices, the \emph{global}-\ac{lbp} mapping will lead to the extraction of $d$ elements.
+While the \emph{global}-\ac{lbptop} represents the whole volume and thus a single element.
+The \emph{global} mapping for 2D images and 3D volume is shown in Fig.~\ref{fig:gm1} and \ref{fig:gm2}.
 
-\item[\emph{Local}] mapping represents the features from a set of 2D patches for \ac{lbp} and a set of sub-volumes for \ac{lbptop}.
-Considering ($m \times m$) \acf{sw} for 2D \ac{lbp} and ($ m \times m \times m$) sub-volume for \ac{lbptop}.
-Using these elements, the \emph{local}-\ac{lbp} approach provides a  $N \times d$ elements, where \emph{local}-\ac{lbptop} gives $N'$ elements.
-Here $N$ and $N'$ are the total number of elements per B-scane or the volume, respectively.
+\item[\emph{Local}] mapping considers to extract the final descriptors from a set of ($m \times m$) 2D patches for \ac{lbp} and a set of ($ m \times m \times m$) sub-volumes for \ac{lbptop}.
+Given $N$ and $N'$ the total number of 2D patch and 3D sub-volume respectively, the \emph{local}-\ac{lbp} approach provides $N \times d$ elements, while \emph{local}-\ac{lbptop} provides $N'$ elements.
+%Here $N$ and $N'$ are the total number of elements per B-scane or the volume, respectively.
 This mapping is illustrated in Fig.~\ref{fig:lm1} and \ref{fig:lm2}.
 
 
@@ -185,15 +186,18 @@ This mapping is illustrated in Fig.~\ref{fig:lm1} and \ref{fig:lm2}.
 
 \subsection{Feature extraction}\label{subsec:fearep}
 
-Each \ac{oct} volume can be described by its texture and we employed two strategies.
+% Each \ac{oct} volume can be described by its texture and we employed two strategies.
+Two strategies are used to described each \ac{oct} volume texture.
 
 \begin{description}
 
-\item[Low-level representation] The texture descriptor of an \ac{oct} volume is defined as the concatenation of the \ac{lbp} histograms.
-\ac{lbp} histogram are extracted from the previously detected \ac{lbp} features.
-Therefore, for the \ac{lbptop}, the feature descriptor is computed through the concatenation of the \ac{lbp} histograms of the three orthogonal planes and for the \ac{lbp}, the descriptor is defined either through concatenation of the \ac{lbp} histograms per each B-scan (\emph{global}-mapping), or per each patch (\emph{local}-mapping).\\
+\item[Low-level representation] The texture descriptor of an \ac{oct} volume is defined as the concatenation of the \ac{lbp} histograms with the \emph{global}-mapping.
+The \ac{lbp} histograms are extracted from the previously detected \ac{lbp} images (see Sect.\,\ref{subsec:feaext}).
+Therefore, the \ac{lbptop} final descriptor is computed through the concatenation of the \ac{lbp} histograms of the three orthogonal planes with the final size of $3 \times LBP_{\#pat}$.
+Similarly, the \ac{lbp} descriptor is defined through concatenation of the \ac{lbp} histograms per each slice with the final size of $d \times LBP_{\#pat}$.
 
-\item[High-level representation] According to the chosen mapping strategy, the low-level representation can lead to a high dimensional feature space.
+\item[High-level representation] The concatenation of histograms employed in the low-level representation in conjunction with either \emph{global}- or \emph{local}-mapping can lead lead to a high dimensional feature space.
+For instance, \emph{local}-mapping results to a size of $N \times d \times LBP_{\#path}$ for the final \ac{lbp} descriptor and $N' \times LBP_{\#path}$ for the final \ac{lbptop} descriptor.
 High-level representation simplifies this high dimensional feature space into a more discriminant lower space.
 \ac{bow} approach is used for this purpose~\cite{Sivic2003}.
 This model represents the features by creating a codebook or visual dictionary, from the set of low-level features.
