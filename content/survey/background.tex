@@ -25,7 +25,7 @@ The method starts by aligning and flattening the images and creating a $3$-level
 The edge and \ac{lbp} histograms are then extracted from each block of every level of the pyramid.
 %is created and edge and \ac{lbp} histograms are extracted in each block at every level of the pyramid.
 All the obtained histograms are concatenated into a global descriptor whose dimensions are reduced using \ac{pca}.
-Finally a \ac{svm} is used as classifier.
+Finally a \ac{svm} with an \ac{rbf} kernel is used as classifier.
 The method achieved good results in detection \ac{oct} scan containing different pathology such as \ac{dme} or \ac{amd}, with an \ac{auc} of $0.93$ using a dataset of $326$ \ac{oct} scans.
 
 Our later study proposes a standard classification procedure to differentiate between \ac{dme} and normal \ac{sdoct} volumes~\cite{Lemaitre2015}The data is pre-processed using \ac{nlm} filtering.
