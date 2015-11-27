@@ -1397,7 +1397,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -5002,7 +5002,7 @@
              id="tspan5119"
              x="-184.17078"
              y="575.72247"
-             style="font-size:14px;fill:#666666">Logistic Regrassion</tspan></text>
+             style="font-size:14px;fill:#666666">Logistic Regression</tspan></text>
         <text
            inkscape:export-ydpi="300"
            inkscape:export-xdpi="300"
