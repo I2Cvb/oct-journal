@@ -194,7 +194,7 @@ Although it was anticipated that the use of different pre-processing steps affec
 %   - (only a description)
 
 %% Experiment intro
-Once studied the impact of the codebook size in Sect.\,\ref{subsec:exp2}, this experiment explores the improvement associated to use more sophisticated classification strategies.
+Once studied the impact of the codebook size in Sect.\,\ref{subsec:exp2}, this experiment explores the improvement associated with: (i) different pre-processing, and (ii) using more sophisticated classification strategies.
 
 %% Procedure
 For this experiment, several pre-processing strategies are evaluated: (i) \nlm, (ii) a combination of \nlm and flattening; (iii) a combination of \nlm, flattening and aligning.
@@ -207,13 +207,14 @@ The \ac{rf} and \ac{gb} classifier are trained using 100 un-pruned trees, while 
 
 Table~\ref{tab:table3} shows the obtained results from this experiment, where the best performance are highlighted in \textbf{bold}.
 %% Experiment Result description
-Regarding the effect of pre-processing for the most relevant configurations show a decrease of performance when adding alignment or flattening (see:
-$k$-NM\,8\,\emph{local}-\lbp, \svm\,8\,\emph{local}-\lbptop, \svm\,16\,\emph{local}-\lbptop, \rf\,8\,\emph{global}-\lbp, \rf\,8\,\emph{local}-\lbp).
-However the two best configurations improve its results when adding flattening or flattening and alignment to the pre-processing (see: 
-\svm\,8\,\emph{local}-\lbp and \rf\,16\,\emph{local}-\lbptop).
-Regarding feature detection, a tendency to better results is observed when using small radius and samples.
-In the same manner local mapping tends to produce better results than global mapping.
-In terms of choosing a classifier, \ac{rbf}-\ac{svm} provides the best results and outperforms the others.
+Regarding the effect of pre-processing for the most relevant configurations show a decrease of performance when adding alignment or flattening
+(see all configuration blocks shaded in Table~\ref{tab:tab3}).
+%$k$-NM\,8\,\emph{local}-\lbp, \svm\,8\,\emph{local}-\lbptop, \svm\,16\,\emph{local}-\lbptop, \rf\,8\,\emph{global}-\lbp, \rf\,8\,\emph{local}-\lbp).
+However the two best configurations, presented in dark shade, improve its results when adding flattening or flattening and alignment to the pre-processing.
+%(see: \svm\,8\,\emph{local}-\lbp and \rf\,16\,\emph{local}-\lbptop).
+Feature detection shows a tendency towards better results when using small radius and small number of samples.
+Regarding the mapping strategy, local mapping tends to produce better results than global mapping.
+In terms of choosing a classifier, \ac{rbf}-\ac{svm} provides the best results and along with \rf outperform the other classifiers.
 
 
 \subsection{Experiment \#4}\label{subsec:exp4}
