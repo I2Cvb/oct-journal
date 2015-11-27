@@ -163,8 +163,7 @@ Nonetheless, Nowak\,\textit{et al.}~\cite{nowak2006sampling} pointed out that ra
 Since the goal is to assess the best codebook size not its final performance, for this experiment, the construction of the codebook has been carried out using random initialization $k$-means++ algorithm ~\cite{arthur2007k}, which is usually used as a $k$-means initialization algorithm.
 
 Figure.~\ref{fig:RBOW} shows the \ac{acc} and \ac{f1} score graphs obtained for a single case \footnote{Full set of scores can be found at the github repository} in~\cite{Lemaitre2015}, while the optimal number of words for all the configuration are reported in a compact manner in Table~\ref{tab:table2}.
-
-\added[id=sik]{For the sake of comparison, Table~\ref{tab:table2-2} reports performance of optimal codebook size in terms of \ac{se} and \ac{sp}.}
+Table~\ref{tab:table2-2} reports performance of optimal codebook size in terms of \ac{se} and \ac{sp}.
 
 %% Experiment Result description
 In general, the obtained results show, that commonly less number of words is required when higher number of sampling points and radius ($\{S,R\} = \{24,3\}$) is used.
@@ -207,8 +206,10 @@ Regarding the classification strategies, $k$-\ac{nn} classifier is trained by co
 The \ac{rf} and \ac{gb} classifier are trained using 100 un-pruned trees, while \ac{svm} classifier is trained with \ac{rbf} kernel.
 
 Table~\ref{tab:table3} shows the obtained results from this experiment, where the best performance are highlighted in \textbf{bold}.
-
 %% Experiment Result description
+Despite the best performance is achieved using \nlm filtering and flattening, the results there is no consistent improvement 
+
+
 
 In general terms, it is observed that \ac{rbf}-\ac{svm} provides the best results and outperforms the others.
 This classifier achieve the highest \ac{se} and \ac{sp} of 81.2\% and 93.7\% , respectively using the high-level extraction of \emph{local}-\ac{lbp} descriptor, when the data was preprocessed using \ac{nlm} and \ac{f}.
