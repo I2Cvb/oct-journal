@@ -151,6 +151,8 @@ For this experiment, several pre-processing strategies are evaluated: (i) \nlm, 
 \lbp and \lbptop descriptors are detected using the default configuration.
 Volumes are represented using the high-level feature extraction by using \bow, where the codebook size has been varied as $k \in \{10, 20, 30, \cdots, 100, 200, \cdots, 500, 1000\}$.
 Finally, the volumes are classified using \lr. The choice of a linear classifier avoids that the results get busted by the classifier. In this manner any improvement would be linked to the pre-processing and the size of the codebook.
+\input{content/experiment/Table2.tex}
+\input{content/experiment/Table2-2.tex}
 
 
 The usual construction of the codebook consists of clustering the samples in
@@ -169,7 +171,6 @@ In general, the obtained results show, that commonly less number of words is req
 The required number of words decreases for \emph{local}-\ac{lbp} in comparison to \emph{global}-\ac{lbp} as well.
 Although it was anticipated that the use of different pre-processing steps affect the optimal number of words, this influence is not substantial and consistent over all the obtained results.
 
-\input{content/experiment/Table2.tex}
 
 \subsection{Experiment \#3}\label{subsec:exp3}
 % Experiment structure

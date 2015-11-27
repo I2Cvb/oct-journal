@@ -1,0 +1,36 @@
+%\begin{tiny}
+  \begin{table}[ht]
+\caption{Experiment \#2 - The obtained results, using the optimal number of words in terms of \ac{se} and \ac{sp}.}
+\centering
+
+\footnotesize{
+\resizebox{1\linewidth}{!}{
+\begin{tabular}{ll  lcr	c	lcr	c lcr}
+\toprule
+Features & Pre-processing &    \multicolumn{3}{c}{$8^{riu2}$}  & & \multicolumn{3}{c}{$16^{riu2}$} & & \multicolumn{3}{c}{$24^{riu2}$} \\
+  \cmidrule(l){3-5}  \cmidrule(l){7-9}  \cmidrule(l){11-13}
+   & &  	\ac{acc}\% & \ac{f1}\% & W\# &  & \ac{acc}\% & \ac{f1}\% & W\# &  & \ac{acc}\% & \ac{f1}\% & W\#\\
+\midrule
+  	\emph{global}-\ac{lbp}		\\
+ 	& \acs{nf} & 68.7 &  93.7 &  500 & & 56.2 & 62.5 & 80  & & 62.5  & 62.5 & 80  \\
+	& \acs{f}  & 68.7 &  75.0 &  400 & & 62.5 & 75.0 & 300 & & 62.5  & 75.0 & 300	 \\
+	& \acs{fal}& 68.7 &  75.0 &  500 & & 68.7 & 75.0 & 200 & & 68.7  & 68.7 & 500	 \\
+	%& \acs{fac}& 68.7   &  81.2 &  500 & & 68.7 & 87.5  & 500 & & 68.7  & 68.7 & 90	 \\
+\hdashline \noalign{\vskip 3pt}
+ 	\emph{local}-\ac{lbp}		\\
+ 	& \acs{nf} & 75.0  & 75.0 & 70 & & 62.5 & 68.7  & 90 & &  56.2  & 68.7   & 30  \\
+	& \acs{f}  & 68.7  & 81.2 & 30 & & 68.7 & 75.0  & 70 & &  62.5  & 62.5 & 100	 \\
+	& \acs{fal} & 62.5 & 81.2 & 40 & & 68.7 & 75.0  & 200 & &  68.7 & 62.5 & 10	 \\
+	%& \acs{fac}& 68.7 & 68.7 & 300 & & 62.5 & 68.7 & 100 & & 62.5  & 68.7 & 100	 \\
+\hdashline \noalign{\vskip 3pt}
+ 	\emph{local}-\ac{lbptop}		\\
+ 	& \acs{nf}	& 68.7 & 68.7 & 400 & & 75.0   & 75.0   & 500 & & 68.7 & 75.0 &60	 \\
+	& \acs{f}	& 68.7 & 68.7 & 300 & & 62.5   & 75.0 & 50  & & 81.2   & 68.7  & 80	 \\
+	& \acs{fal}	& 68.7 & 81.2 & 100 & & 68.7   & 81.2 & 90  & & 62.5   & 81.2 &  70	 \\
+	%& \acs{fac}	& 62.5 & 81.2   & 400 & & 68.7   & 81.2 & 100 & & 68.7   & 81.2 &60	 \\
+
+\bottomrule
+\end{tabular}}}
+\label{tab:table2-2}
+\end{table}
+%\end{tiny}
