@@ -1,0 +1,46 @@
+\begin{landscape}
+  \begin{table}[ht]
+\caption{Summary of all the results}
+\medskip
+\scriptsize{
+\begin{center}
+\resizebox{1\linewidth}{!}{
+\begin{tabular}{lr  ccc	 ccccc  cc  cc  c  c}
+\toprule
+ \multicolumn{2}{c}{Evaluation} & \multicolumn{3}{c}{Pre-processing} & \multicolumn{5}{c}{Feature} & \multicolumn{2}{c}{Mapping} & \multicolumn{2}{c}{Feature} & Classifier & \# words\\
+ &  &  & & & \multicolumn{5}{c}{detection}  &  & \multicolumn{2}{c}{extraction} &  & \\
+\midrule 
+\acs{se} & \acs{sp} & \acs{nf} & \acs{f} & \acs{fal} & $\{8,1\}$ & $\{16,2\}$ & $\{24,3\}$ & \lbp & \lbptop & \emph{global} & \emph{local} & Low & High & &  \\
+\midrule
+% se & sp   & nf           & f            & fa           & 1            & 2            & 3            & lpb          & lbptop       & g            & l            & L            & H            & class       & words \\
+81.2 & 93.7 &              & $\checkmark$ &              & $\checkmark$ &              &              & $\checkmark$ &              &              & $\checkmark$ &              & $\checkmark$ & \ac{svm}    & 30 \\
+75.0 & 93.7 &              &              & $\checkmark$ & $\checkmark$ &              &              & $\checkmark$ &              &              & $\checkmark$ &              & $\checkmark$ & \ac{svm}    & 40 \\
+75.0 & 93.7 & $\checkmark$ &              &              & $\checkmark$ &              &              & $\checkmark$ &              &              & $\checkmark$ &              & $\checkmark$ & \ac{svm}    & 70\\
+75.0 & 100  & $\checkmark$ &              &              &              & $\checkmark$ &              &              & $\checkmark$ &              & $\checkmark$ &              & $\checkmark$ & \ac{svm}    & 500\\
+81.2 & 87.5 & $\checkmark$ &              &              & $\checkmark$ &              &              &              & $\checkmark$ &              & $\checkmark$ &              & $\checkmark$ & \ac{svm}    & 400\\
+81.2 & 87.5 &              &              & $\checkmark$ &              & $\checkmark$ &              &              & $\checkmark$ &              & $\checkmark$ &              & $\checkmark$ & \ac{rf}     & 90 \\
+81.2 & 81.2 & $\checkmark$ &              &              & $\checkmark$ &              &              & $\checkmark$ &              &              & $\checkmark$ &              & $\checkmark$ & \ac{rf}     & 70 \\
+81.2 & 81.2 & $\checkmark$ &              &              &              &              & $\checkmark$ &              & $\checkmark$ & $\checkmark$ &              & $\checkmark$ &              & \rf         & \\
+81.2 & 81.2 &              & $\checkmark$ &              & $\checkmark$ &              &              &              & $\checkmark$ &              & $\checkmark$ &              & $\checkmark$ & \ac{svm}    & 300\\
+81.2 & 81.2 &              &              & $\checkmark$ &              &              & $\checkmark$ &              & $\checkmark$ & $\checkmark$ &              & $\checkmark$ &              & \gb         & \\
+81.2 & 81.2 &              & $\checkmark$ &              &              &              & $\checkmark$ &              & $\checkmark$ & $\checkmark$ &              & $\checkmark$ &              & \rf         & \\
+75.0 & 87.5 & $\checkmark$ &              &              & $\checkmark$ &              &              & $\checkmark$ &              &              & $\checkmark$ &              & $\checkmark$ & $k$-\ac{nn} & 70 \\
+68.7 & 93.7 & $\checkmark$ &              &              & $\checkmark$ &              &              & $\checkmark$ &              & $\checkmark$ &              &              & $\checkmark$ & \ac{rf}     & 500\\
+75   & 81.2 &              & $\checkmark$ & $\checkmark$ &              &              & $\checkmark$ &              & $\checkmark$ & $\checkmark$ &              & $\checkmark$ &              & \rf         & \\
+68.7 & 81.2 & $\checkmark$ &              &              &              & $\checkmark$ &              &              & $\checkmark$ &              & $\checkmark$ &              & $\checkmark$ & \ac{rf}     & 500 \\
+62.5 & 93.7 & $\checkmark$ &              &              &              & $\checkmark$ &              &              & $\checkmark$ & $\checkmark$ &              & $\checkmark$ &              & \svm        & \\
+68.7 & 87.5 & $\checkmark$ &              &              &              & $\checkmark$ &              &              & $\checkmark$ & $\checkmark$ &              & $\checkmark$ &              & \rf         & \\
+68.7 & 81.2 &              &              &              &              &              &              &              &              & $\checkmark$ &              & $\checkmark$ &              & \rf         & \\
+75.0 & 75.0 &              &              &              &              &              &              &              &              & $\checkmark$ &              & $\checkmark$ &              & \rf         & \\
+68.7 & 75.0 &              & $\checkmark$ &              & $\checkmark$ &              &              &              & $\checkmark$ & $\checkmark$ &              & $\checkmark$ &              & \svm        & \\
+56.2 & 75.0 & $\checkmark$ &              &              &              &              & $\checkmark$ & $\checkmark$ &              & $\checkmark$ &              & $\checkmark$ &              & \rf         & \\
+56.2 & 75.0 &              & $\checkmark$ &              &              & $\checkmark$ &              & $\checkmark$ &              & $\checkmark$ &              & $\checkmark$ &              & $k$-NN      & \\
+56.2 & 75.0 &              &              & $\checkmark$ &              & $\checkmark$ &              & $\checkmark$ &              & $\checkmark$ &              & $\checkmark$ &              & $k$-NNrf    & \\
+\bottomrule
+
+
+\end{tabular}}
+\end{center}}
+\label{tab:experiment_summary}
+\end{table}
+\end{landscape}

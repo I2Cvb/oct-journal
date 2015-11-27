@@ -207,19 +207,13 @@ The \ac{rf} and \ac{gb} classifier are trained using 100 un-pruned trees, while 
 
 Table~\ref{tab:table3} shows the obtained results from this experiment, where the best performance are highlighted in \textbf{bold}.
 %% Experiment Result description
-Despite the best performance is achieved using \nlm filtering and flattening, the results there is no consistent improvement 
-
-
-
-In general terms, it is observed that \ac{rbf}-\ac{svm} provides the best results and outperforms the others.
-This classifier achieve the highest \ac{se} and \ac{sp} of 81.2\% and 93.7\% , respectively using the high-level extraction of \emph{local}-\ac{lbp} descriptor, when the data was preprocessed using \ac{nlm} and \ac{f}.
-In general, the classifier achieves the best performance,using the high-level extracted features of \emph{local}-\ac{lbp} and \emph{local}-\ac{lbptop}.
-This results are obtained while using a sampling points and radius of $\{S,R\} = \{8,1\}$.
-
-Although the highest results was achieved after additional \ac{f} pre-processing step, the effect of this step in not substantial and consistent through the whole experiment with respect to different classifiers and sampling points.
-Moreover, the results indicate that often using the pre-processed data only with \ac{nlm} is sufficient enough.
-
-
+Regarding the effect of pre-processing for the most relevant configurations show a decrease of performance when adding alignment or flattening (see:
+$k$-NM\,8\,\emph{local}-\lbp, \svm\,8\,\emph{local}-\lbptop, \svm\,16\,\emph{local}-\lbptop, \rf\,8\,\emph{global}-\lbp, \rf\,8\,\emph{local}-\lbp).
+However the two best configurations improve its results when adding flattening or flattening and alignment to the pre-processing (see: 
+\svm\,8\,\emph{local}-\lbp and \rf\,16\,\emph{local}-\lbptop).
+Regarding feature detection, a tendency to better results is observed when using small radius and samples.
+In the same manner local mapping tends to produce better results than global mapping.
+In terms of choosing a classifier, \ac{rbf}-\ac{svm} provides the best results and outperforms the others.
 
 
 \subsection{Experiment \#4}\label{subsec:exp4}
@@ -267,6 +261,7 @@ Similar to the previous experiments, although the effects of additional pre-proc
 
 \input{content/experiment/Table3.tex}
 \input{content/experiment/Table4.tex}
+\input{content/experiment/Table5.tex}
 
 
 
