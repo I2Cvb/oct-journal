@@ -236,7 +236,7 @@ Regarding the mapping strategy, local mapping tends to produce better results th
 In terms of choosing a classifier, \ac{svm} provides the best results, followed by \rf.
 
 The best results (81.2\%\,\ac{se} and 93.7\%\,\ac{sp}) are achieved using \nlm, flattening, \lbp detection using $\{P,R\} = \{8,1\}$, local mapping, high-level representation, using a codebook with $k=70$, and \svm classifier.
-This result can be compared with other relevant results in Table\,\ref{tab:experiment_summary}.
+This result can be compared with other relevant results in Table~\ref{tab:experiment_summary}.
 
 \subsection{Experiment \#4}\label{subsec:exp4}
 % Experiment structure
@@ -270,7 +270,7 @@ Volumes are represented using low-level feature representation of the \emph{glob
 Finally, the volumes are classified using $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac{svm}, similarly to \emph{Experiment \#3}.
 
 %% Experiment Result description
-The obtained results from this experiment is listed in Table.~\ref{tab:table4}.
+The obtained results from this experiment is listed in Table~\ref{tab:table4}.
 The most relevant configurations are shaded and the highest results are highlighted in \textbf{bold}.
 Similarly to the results reported in Sect.\,\ref{subsec:exp3}, the effect of flattening the B-scan boosts the results for the best performing configuration, but this effect is not consistent across all the configurations.
 For this experiment, \lbptop outperforms \lbp and larger $P$ and $R$ values for feature detection tends to obtain better results. 
@@ -283,7 +283,7 @@ In terms of classifier, \rf have better performance than the others but the high
 % Similar to the previous experiments, although the effects of additional pre-processing steps (\ac{f} and \ac{fal}) is evident for \ac{rf} performance on $\{S,R\} = \{24,3\}$, similar to the previous experiments, this influence is not consistent for all different configurations, in terms of classifier and $\{S,R\}$.
 
 The best results (81.2\%\,\ac{se} and 81.2\%\,\ac{sp}) are achieved when using \nlm, flattening, \lbptop detection using $\{P,R\}= \{24,3\}$, global mapping, low-level representation, and \rf classifier.
-This result can be compared with other relevant results in Table\,\ref{tab:experiment_summary}
+This result can be compared with other relevant results in Table~\ref{tab:experiment_summary}
 
 \input{content/experiment/Table3.tex}
 \input{content/experiment/Table4.tex}
