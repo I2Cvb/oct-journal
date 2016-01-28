@@ -7,15 +7,17 @@ An experimental suit composed of three experiments is designed to test the influ
 Table~\ref{tab:experiment_summary} summarizes the different aspects of each experiment as well as the baseline~\cite{Lemaintre2015miccaiOCT}.
  
 Lemaitre\,\textit{et al.}~\cite{Lemaintre2015miccaiOCT} proposed to pre-process the volumes using \nlm denoising without any flattening or aligning.
-Then using local and global mapping \ac{lbp} and \ac{lbptop} features were extracted. 
-\ac{bow} approach with fixed codebook size of 32 words were then used as a high representation of the feature.
+Then local and global mapping \ac{lbp} and \ac{lbptop} features were extracted and \ac{bow} approach with fixed codebook size of 32 words were used as a high representation of the feature.
 Finally the \ac{rf} classifier was used to classify the the volumes. 
-This framework was tested using two datasets of Duke and SERI and was compared to method proposed by Venhuizen\,\textit{et al.}~\cite{Venhuizen2015}.
+This framework was tested using two datasets of Duke and SERI and was compared to the proposed method of Venhuizen\,\textit{et al.}~\cite{Venhuizen2015}.
 The obtained results highlighted the discriminative power of \ac{lbp} descriptors and showed that the proposed framework outperforms the others.
 {\color{red}However while comparing the obtained results using the two dataset of SERI and Duke, substantial difference were observed.
 This was attributed to the fact that the volumes in Duke dataset were provided with embedded pre-processing steps.}
 
-Considering the conclusion drawn from our baseline, three experiments are designed such as: 
+%Considering the conclusion drawn from our baseline, three experiments are designed such as: 
+Considering the conclusion drawn from our baseline, three experiments are designed in order to investigate the effects of (i) optimal number of words, (ii) different pre-processing steps, and (iii) different classifiers.
+These experiments are defined such as: 
+
 \begin{itemize}
 \item Experiment~\#1 is intended to find the optimal number of words (unlike \cite{Lemaintre2015miccaiOCT}) and its effect with respect to different configurations (pre-processing which consists of denoising, flattening, and aligning along different mapping).
 \item Using the optimal number of words for high level representation of the features, experiment~\#2 investigates the performance of different configurations and classifiers.
@@ -180,7 +182,7 @@ Nonetheless, Nowak\,\textit{et al.}~\cite{nowak2006sampling} pointed out that ra
 Thus, the codebook are randomly generated since the final aim is to asses the influence of codebook size and not the performance of the framework.
 For this experiment, the codebook building is carried out using random initialization $k$-means++ algorithm~\cite{arthur2007k}, which is usually used as a $k$-means initialization algorithm.
 
-Figure~\ref{fig:RBOW} shows the \ac{acc} and \ac{f1} score graphs obtained for a single case\footnote{\texttt{http://tinyurl.com/jeczfh6}} in~\cite{Lemaitre2015}, while the optimal number of words for all the configurations are reported in a compact manner in Appendix - Table~\ref{tab:table2}.
+Figure~\ref{fig:RBOW} shows the \ac{acc} and \ac{f1} score graphs obtained for a single case\footnote{\texttt{http://tinyurl.com/jeczfh6}} in~\cite{Lemaitre2015}, while the optimal number of words for all the configurations are reported in a compact manner in Appendix~\ref{app:1} - Table~\ref{tab:table2}.
 %Table~\ref{tab:table2-2} reports the performance of the optimal codebook size in terms of \ac{se} and \ac{sp}.
 
 \begin{figure}
@@ -232,7 +234,7 @@ Finally, the volumes are classified using $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac
 %Finally, the volumes are classified using $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac{svm}.
 Regarding the classification strategies, $k$-\ac{nn} classifier is trained by considering the 3 nearest neighbor.
 The \ac{rf} and \ac{gb} classifier are trained using 100 un-pruned trees, while \ac{svm} classifier is trained with \ac{rbf} kernel and its parameters $C$, and $\gamma$ are optimized through grid-search.
-Complete list of the obtained results from this experiment are shown in Appendix - Table~\ref{tab:table3}, while the most relevant configurations are shaded and the highest results are highlighted in \textbf{bold}.
+Complete list of the obtained results from this experiment are shown in Appendix~\ref{app:1} - Table~\ref{tab:table3}, while the most relevant configurations are shaded and the highest results are highlighted in \textbf{bold}.
 
 %%% Experiment Result description
 %%Table~\ref{tab:table3} shows the obtained results from this experiment, the most relevant configurations are shaded and the highest results are highlighted in \textbf{bold}.
@@ -281,6 +283,7 @@ The same pre-processing strategies (NLM, NLM+\acs{f}, and NLM+\acs{fal}) are inv
 \lbp and \lbptop descriptors are detected using the default configuration.
 Volumes are represented using low-level feature representation of the \emph{global} mapping.
 Finally, the volumes are classified using $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac{svm}, similarly to \emph{Experiment \#3}.
+The obtained results from this experiment are listed in Appendix~\ref{app:1} - Table~\ref{tab:table4}.
 
 %%% Experiment Result description
 %The obtained results from this experiment is listed in Table~\ref{tab:table4}.
@@ -300,12 +303,11 @@ Finally, the volumes are classified using $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac
 %\input{content/experiment/Table4.tex}
 
 \section{Results}\label{sec:res}
-Table~\ref{tab:results_summary} represent a summary and comparison of the obtained results from experiment~\#2~\&~\#3 with respect to the baseline.
-The complete list of obtained result regarding each experiment can be found in Appendix (see Table~\ref{tab:table2}, \ref{tab:table3}, and \ref{tab:table4}).
-This table illustrates the highest 25 performances from highest to lowest considering their achieved \ac{se} and \ac{sp}.
+Table~\ref{tab:results_summary} represents a summary and comparison of the obtained results from experiment~\#2~\&~\#3 with respect to the baseline.
+The complete list of obtained result regarding each experiment can be found in Appendix~\ref{app:1} (see Table~\ref{tab:table2}, \ref{tab:table3}, and \ref{tab:table4}).
+This table illustrates the highest 26 performances from highest to lowest considering their achieved \ac{se} and \ac{sp}.
 The related experiment, choice of pre-processing, type and configuration of the features, choice of mapping and representation, choice of classifier, and finally if required size of codebook is illustrated in this table.
 \input{content/experiment/Table5.tex}
-
 
 
 
