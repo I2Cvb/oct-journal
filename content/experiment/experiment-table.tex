@@ -16,35 +16,35 @@
         &      &          & $R = \{1,2,3\}$  & & & &   \\\\
 \midrule
 \\
-Experiment\#1:  \\
+\textbf{Baseline~\cite{Lemaintre2015miccaiOCT}:}  \\
 %\hdashline \noalign{\vskip 3pt}
 %\\
-\multirow{2}{4cm}{Goal: Evaluation of features, mapping and representation} & \multirow{2}{*}{+ Duke} &\multirow{2}{*}{$\sim$} & \multirow{2}{*}{$\sim$} & \emph{global} & \ac{bow} & \multirow{2}{*}{\ac{rf}} & \multirow{2}{*}{+\cite{Venhuizen2015}}\\
+\multirow{2}{4cm}{\textbf{Goal: Evaluation of features, mapping and representation}} & \multirow{2}{*}{+ Duke} &\multirow{2}{*}{$\sim$} & \multirow{2}{*}{$\sim$} & \emph{global} & \ac{bow} & \multirow{2}{*}{\ac{rf}} & \multirow{2}{*}{+\cite{Venhuizen2015}}\\
 &  & & & \emph{local} & Histogram &  & \\\\
 \midrule
 \\
-Experiment\#2:\\
+\textbf{Experiment\#1:}\\
 %\hdashline \noalign{\vskip 3pt}
 %\\
-\multirow{2}{4cm}{Goal: Finding the optimum number of words}& \multirow{2}{*}{$\sim$} & + \acs{f} & \multirow{2}{*}{$\sim$} & \emph{global} & \ac{bow} & \multirow{2}{*}{\ac{lr}} & \multirow{2}{*}{ +\ac{acc}, \ac{f1}}\\
+\multirow{2}{4cm}{\textbf{Goal: Finding the optimum number of words}}& \multirow{2}{*}{$\sim$} & + \acs{f} & \multirow{2}{*}{$\sim$} & \emph{global} & \ac{bow} & \multirow{2}{*}{\ac{lr}} & \multirow{2}{*}{ +\ac{acc}, \ac{f1}}\\
   & & + \acs{fal} & & \emph{local} & $k \in K$ & & \\\\
 \midrule
 \\
-Experiment\#3: \\
+\textbf{Experiment\#2:} \\
 %\hdashline \noalign{\vskip 3pt}
 %\\
 %\hdashline \noalign{\vskip 3pt}
- \multirow{4}{4cm}{Goal: Evaluation of different pre-processing for high-level features }& \multirow{4}{*}{$\sim$} & \multirow{2}{*}{+\acs{f}} & \multirow{4}{*}{$\sim$} & \multirow{2}{*}{\emph{global}} & \multirow{2}{*}{\ac{bow}} & $3$-\ac{nn} & \multirow{4}{*}{$\sim$} \\
+ \multirow{4}{4cm}{\textbf{Goal: Evaluation of different pre-processing for high-level features }}& \multirow{4}{*}{$\sim$} & \multirow{2}{*}{+\acs{f}} & \multirow{4}{*}{$\sim$} & \multirow{2}{*}{\emph{global}} & \multirow{2}{*}{\ac{bow}} & $3$-\ac{nn} & \multirow{4}{*}{$\sim$} \\
  & & \multirow{2}{*}{+\acs{fal}} & & \multirow{2}{*}{\emph{local}} & \multirow{2}{*}{optimal $k$} & \ac{rf} &  \\
  & & & & & & \ac{svm} &  \\
  & & & & & & \ac{gb} &  \\
 \midrule
 \\
-Experiment\#4:\\
+\textbf{Experiment\#3:}\\
 %\hdashline \noalign{\vskip 3pt}
 %\\
 %\hdashline \noalign{\vskip 3pt}
-\multirow{4}{4cm}{Goal: Evaluation of different pre-processing for low-level features} & \multirow{4}{*}{$\sim$} & \multirow{2}{*}{ +\acs{f}} & \multirow{4}{*}{$\sim$} & \multirow{4}{*}{\emph{global}} & \multirow{4}{*}{Histogram} & $3$-\ac{nn} & \multirow{4}{*}{$\sim$}\\
+\multirow{4}{4cm}{\textbf{Goal: Evaluation of different pre-processing for low-level features}} & \multirow{4}{*}{$\sim$} & \multirow{2}{*}{ +\acs{f}} & \multirow{4}{*}{$\sim$} & \multirow{4}{*}{\emph{global}} & \multirow{4}{*}{Histogram} & $3$-\ac{nn} & \multirow{4}{*}{$\sim$}\\
 & & \multirow{2}{*}{+\ac{fal}} & & & & \ac{rf} &  \\
 & & & & & & \ac{svm} &  \\
 & & & & & & \ac{gb} &  \\

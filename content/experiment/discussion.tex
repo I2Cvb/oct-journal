@@ -1,0 +1,36 @@
+\section{Discussion}
+\label{sec:dis}
+
+%% Experiment Result description
+The obtained results show that commonly less number of words is required when higher number of sampling points and radius ($\{P,R\} = \{24,3\}$) are used.
+The required number of words decreases for \emph{local}-\ac{lbp} in comparison with \emph{global}-\ac{lbp}.
+Although it was expected that the use of different pre-processing steps affect the optimal number of words, this influence is not substantial nor consistent over all the obtained results.
+
+
+%% Experiment Result description
+%Table~\ref{tab:table3} shows the obtained results from this experiment, the most relevant configurations are shaded and the highest results are highlighted in \textbf{bold}.
+Regarding the effects of pre-processing, most configurations decrease in performance while aligning and flattening the B-scan (i.e. light shaded configurations in Table~\ref{tab:table3}).
+%the performance of the most configurations decreases by aligning or flattening the B-scan (i.e. light shaded configurations in Table~\ref{tab:table3}).
+%$k$-NM\,8\,\emph{local}-\lbp, \svm\,8\,\emph{local}-\lbptop, \svm\,16\,\emph{local}-\lbptop, \rf\,8\,\emph{global}-\lbp, \rf\,8\,\emph{local}-\lbp).
+However, the two best configurations (i.e. dark shaded in Table~\ref{tab:table3}), achieve better results when adding flattening or flattening and alignment as pre-processing.
+A small radius and small number of samples in feature detection tends to increase the classification performance.
+%(see: \svm\,8\,\emph{local}-\lbp and \rf\,16\,\emph{local}-\lbptop).
+%Feature detection shows a tendency towards better results when using small radius and small number of samples.
+Regarding the mapping strategy, local mapping tends to produce better results than global mapping.
+In terms of choosing a classifier, \ac{svm} provides the best results, followed by \rf.
+
+The best results (81.2\%\,\ac{se} and 93.7\%\,\ac{sp}) are achieved using \nlm, flattening, \lbp detection using $\{P,R\} = \{8,1\}$, local mapping, high-level representation, using a codebook with $k=70$, and \svm classifier.
+This result can be compared with other relevant results in Table~\ref{tab:results_summary}.
+
+
+
+%% Experiment Result description
+The obtained results from this experiment is listed in Table~\ref{tab:table4}.
+The most relevant configurations are shaded and the highest results are highlighted in \textbf{bold}.
+Similarly to the results reported in Sect.\,\ref{subsec:exp3}, the effect of flattening the B-scan boosts the results for the best performing configuration, but this effect is not consistent across all the configurations.
+For this experiment, \lbptop outperforms \lbp and larger $P$ and $R$ values for feature detection tends to obtain better results. 
+In terms of classifier, \rf have better performance than the others but the highest \ac{sp} is achieved using \svm.
+
+
+The best results (81.2\%\,\ac{se} and 81.2\%\,\ac{sp}) are achieved when using \nlm, flattening, \lbptop detection using $\{P,R\}= \{24,3\}$, global mapping, low-level representation, and \rf classifier.
+This result can be compared with other relevant results in Table~\ref{tab:results_summary}
