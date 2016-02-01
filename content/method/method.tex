@@ -242,61 +242,62 @@ The histogram is obtained by calculating the frequency of occurrences of each of
 
 Classification corresponds to the mapping of a set of inputs $\mathbf{x}$ into a set of categorical outputs $\mathbf{y}$ using a linear or non-linear function $f(\cdot)$.
 In supervised learning methods, this function is defined by providing a training set of $N$ samples $\mathbf{x}_{tr}$ with their associated labels $\mathbf{y}_{tr}$.
-In the remainder of this section, we briefly summarize the supervised classification methods used in the experiments.
+In order to make a comparative study, five different classifiers are used: (i) $k$-\acf{nn}, (ii) \acf{lr}~\cite{cox1958regression}, (iii) \acf{rf}~\cite{breiman2001random}, (iv) \acf{gb}~\cite{friedman2002stochastic, lemaitre2015boosting}, and (v) \acf{svm}~\cite{vapnik1963generalized, aizerman1964}.
+%In the remainder of this section, we briefly summarize the supervised classification methods used in the experiments.
 Details regarding the parameters used in our experiments are provided in Sect.\,\ref{sec:exp}.
 
-\begin{description}
+% \begin{description}
 
-\item[$k$-\acf{nn}] is a non-parametric classification method in which an unlabeled feature vector $x$ is assigned to the majority class of its $k$ nearest-neighbors from the training set.
-To avoid a tie case, the parameter $k$ is set to an odd number.
+% \item[$k$-\acf{nn}] is a non-parametric classification method in which an unlabeled feature vector $x$ is assigned to the majority class of its $k$ nearest-neighbors from the training set.
+% To avoid a tie case, the parameter $k$ is set to an odd number.
 
-\item[\acf{lr}] is a linear classifier which uses the logistic function to estimate the probability of $x$ to belong to a particular class $c_i$~\cite{cox1958regression}.
-Thus, the posterior probability is expressed as:
-\begin{equation} \label{eq:ppc1lr}
-p(c_{i}|x) = \frac{1}{1+\exp(-w^{T}x)}
-\end{equation}
-\noindent where $w$ is a vector of the regression parameters to obtain a linear combination of the input feature vector $x$.
-The vector $w$ can be inferred by finding the maximum likelihood estimates via optimization methods such as quasi-Newton method~\cite{byrd1994representations}.
-Once the vector $w$ is found, an unlabeled feature vector is assigned to the class which maximizes the posterior probability.
-% \begin{equation}
-% C(x) =  \text{arg}\max\limits_{k} p(C = k| x)
+% \item[\acf{lr}] is a linear classifier which uses the logistic function to estimate the probability of $x$ to belong to a particular class $c_i$~\cite{cox1958regression}.
+% Thus, the posterior probability is expressed as:
+% \begin{equation} \label{eq:ppc1lr}
+% p(c_{i}|x) = \frac{1}{1+\exp(-w^{T}x)}
 % \end{equation}
+% \noindent where $w$ is a vector of the regression parameters to obtain a linear combination of the input feature vector $x$.
+% The vector $w$ can be inferred by finding the maximum likelihood estimates via optimization methods such as quasi-Newton method~\cite{byrd1994representations}.
+% Once the vector $w$ is found, an unlabeled feature vector is assigned to the class which maximizes the posterior probability.
+% % \begin{equation}
+% % C(x) =  \text{arg}\max\limits_{k} p(C = k| x)
+% % \end{equation}
 
-\item[\acf{rf}] is an ensemble of decision trees~\cite{breiman2001random} which generalizes the classification process by applying two types of randomization: at the tree level, each tree is fed by a bootstrap made of $S'$ samples which are built from the original data of size $S$ such that  $S=S'$, and at the node level, a subset of feature dimensions $m$ is randomly selected from the original dimension $M$ such that $m << M$.
-The trees in \ac{rf} are grown to their maximum length without any pruning.
-In the testing stage, each tree in the ensemble casts a unit vote in the final prediction and the final prediction is based on combination of all the votes.
-% is an ensemble of decision trees~\cite{breiman2001random}.
-% The ensemble uses each tree to predict an output and finalizes the ultimate prediction by aggregating the outputs of all tress.
-% This classifier learns the data by training multiple decision trees on bootstrap samples of the original data.
-% Each bootstrap of $D$ dimension is used for training one decision tree and at each node, the best split among randomly ($d << D$) selected subset of descriptors is chosen.
-% Each tree is grown to its maximum length without any pruning.
-% In the prediction stage a sample is voted by each tree and it is labeled by considering the majority of the votes.
+% \item[\acf{rf}] is an ensemble of decision trees~\cite{breiman2001random} which generalizes the classification process by applying two types of randomization: at the tree level, each tree is fed by a bootstrap made of $S'$ samples which are built from the original data of size $S$ such that  $S=S'$, and at the node level, a subset of feature dimensions $m$ is randomly selected from the original dimension $M$ such that $m << M$.
+% The trees in \ac{rf} are grown to their maximum length without any pruning.
+% In the testing stage, each tree in the ensemble casts a unit vote in the final prediction and the final prediction is based on combination of all the votes.
+% % is an ensemble of decision trees~\cite{breiman2001random}.
+% % The ensemble uses each tree to predict an output and finalizes the ultimate prediction by aggregating the outputs of all tress.
+% % This classifier learns the data by training multiple decision trees on bootstrap samples of the original data.
+% % Each bootstrap of $D$ dimension is used for training one decision tree and at each node, the best split among randomly ($d << D$) selected subset of descriptors is chosen.
+% % Each tree is grown to its maximum length without any pruning.
+% % In the prediction stage a sample is voted by each tree and it is labeled by considering the majority of the votes.
 
-\item[\acf{gb}] is a reformulation of \ac{adb}~\cite{friedman2002stochastic} in which the problem of finding an ensemble of real-valued weak learners is tackled as a numerical optimization~\cite{lemaitre2015boosting}.
-A strong learner is built by iteratively finding the best pair of real-valued weak learner function and its corresponding weight which minimizes a given differentiable loss function.
-Common choice for weak learners is decision stumps or regression trees while the loss function is generally an exponential or logarithmic loss~\cite{becker2013supervised}, minimized via gradient descent or quadratic approximation.
+% \item[\acf{gb}] is a reformulation of \ac{adb}~\cite{friedman2002stochastic} in which the problem of finding an ensemble of real-valued weak learners is tackled as a numerical optimization~\cite{lemaitre2015boosting}.
+% A strong learner is built by iteratively finding the best pair of real-valued weak learner function and its corresponding weight which minimizes a given differentiable loss function.
+% Common choice for weak learners is decision stumps or regression trees while the loss function is generally an exponential or logarithmic loss~\cite{becker2013supervised}, minimized via gradient descent or quadratic approximation.
 
-\item[\acf{svm}] is a sparse kernel classification method which aims at finding the best linear hyperplane which separates two classes by maximizing the margin between them~\cite{vapnik1963generalized}.
-\ac{svm} becomes a non-linear classifier by using the kernel trick~\cite{aizerman1964} which consists in replacing each inner product by a non-linear kernel function such as \ac{rbf} or polynomial kernels.
-% Maximizing the margin is equivalent to minimizing the norm of the normal vector of the hyperplane:
-% \begin{equation}
-% \min\limits_{\mathbf{w}, \omega_{0}} \frac{1}{2} \Vert \mathbf{w}\Vert^{2} \qquad \text{s.t. } \quad  y_{i}(\mathbf{w}^{T}\mathbf{x_{i}} + \omega_{0}) \geq 1, i = 1: N
-% \label{eq:svmsm}
-% \end{equation}
-% \noindent This constraint intends to force all the point to be in the correct side of the decision boundary (hyperplane) with a minimum distance of 1.
-% This assumption is only valid if the data is linearly separable.
-% Thus for general cases a slack variable $\xi_{i} \geq 0 $ is introduced, which is $\xi_{i} = 0 $, if the points are on/or inside the correct margin boundary, is $0 < \xi_{i} \leq 1 $ if the points are inside the margin but in the correct side of the decision boundary and otherwise if they lie in the wrong side of decision boundary is $\xi_{i} > 1 $.
-% This assumption introduces the \textit{soft margin constraints}.
-% Therefore the optimization problem of \ac{svm} classifier is presented by:
+% \item[\acf{svm}] is a sparse kernel classification method which aims at finding the best linear hyperplane which separates two classes by maximizing the margin between them~\cite{vapnik1963generalized}.
+% \ac{svm} becomes a non-linear classifier by using the kernel trick~\cite{aizerman1964} which consists in replacing each inner product by a non-linear kernel function such as \ac{rbf} or polynomial kernels.
+% % Maximizing the margin is equivalent to minimizing the norm of the normal vector of the hyperplane:
+% % \begin{equation}
+% % \min\limits_{\mathbf{w}, \omega_{0}} \frac{1}{2} \Vert \mathbf{w}\Vert^{2} \qquad \text{s.t. } \quad  y_{i}(\mathbf{w}^{T}\mathbf{x_{i}} + \omega_{0}) \geq 1, i = 1: N
+% % \label{eq:svmsm}
+% % \end{equation}
+% % \noindent This constraint intends to force all the point to be in the correct side of the decision boundary (hyperplane) with a minimum distance of 1.
+% % This assumption is only valid if the data is linearly separable.
+% % Thus for general cases a slack variable $\xi_{i} \geq 0 $ is introduced, which is $\xi_{i} = 0 $, if the points are on/or inside the correct margin boundary, is $0 < \xi_{i} \leq 1 $ if the points are inside the margin but in the correct side of the decision boundary and otherwise if they lie in the wrong side of decision boundary is $\xi_{i} > 1 $.
+% % This assumption introduces the \textit{soft margin constraints}.
+% % Therefore the optimization problem of \ac{svm} classifier is presented by:
 
-% \begin{align}
-%  & \min\limits_{\mathbf{w},\omega_{0}, \mathbf{\xi}} \frac{1}{2} \Vert \mathbf{w} \Vert^{2} + C \sum\limits_{i = 1}^{N} \xi_{i} \nonumber \\
-% \text{s.t. } & \quad \xi_{i} \geq 0, \quad y_{i}(x_{i}^{T}\mathbf{w} + \omega_{0}) \geq 1 - \xi_{i}, i = 1:N
-% \label{eq:svmop}
-% \end{align}
-% In Eq.~\ref{eq:svmop}, the $\sum_{i} \xi_{i}$ term, describes the upper bound on the number of misclassified points and $C$ is the regularization parameter that controls the tolerance of the classifiers on the number of errors~\cite{murphy2012machine}. \\
+% % \begin{align}
+% %  & \min\limits_{\mathbf{w},\omega_{0}, \mathbf{\xi}} \frac{1}{2} \Vert \mathbf{w} \Vert^{2} + C \sum\limits_{i = 1}^{N} \xi_{i} \nonumber \\
+% % \text{s.t. } & \quad \xi_{i} \geq 0, \quad y_{i}(x_{i}^{T}\mathbf{w} + \omega_{0}) \geq 1 - \xi_{i}, i = 1:N
+% % \label{eq:svmop}
+% % \end{align}
+% % In Eq.~\ref{eq:svmop}, the $\sum_{i} \xi_{i}$ term, describes the upper bound on the number of misclassified points and $C$ is the regularization parameter that controls the tolerance of the classifiers on the number of errors~\cite{murphy2012machine}. \\
 
-\end{description}
+% \end{description}
 
 
 % Random Forest
