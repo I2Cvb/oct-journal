@@ -2,59 +2,36 @@
  \graphicspath{ {./content/experiment/figures/} }
 
 \section{Experiments}
-\label{sec:exp} 
-An experimental suit composed of three experiments is designed to test the influence of the different blocks composing our framework in comparison to our previous work~\cite{Lemaintre2015miccaiOCT} (baseline).
-Table~\ref{tab:experiment_summary} summarizes the different aspects of each experiment as well as the baseline~\cite{Lemaintre2015miccaiOCT}.
- 
-Lemaitre\,\textit{et al.}~\cite{Lemaintre2015miccaiOCT} proposed to pre-process the volumes using \nlm denoising without any flattening or aligning.
-Then local and global mapping \ac{lbp} and \ac{lbptop} features were extracted and \ac{bow} approach with fixed codebook size of 32 words were used as a high representation of the feature.
-Finally the \ac{rf} classifier was used to classify the the volumes. 
-This framework was tested using two datasets of Duke and SERI and was compared to the proposed method of Venhuizen\,\textit{et al.}~\cite{Venhuizen2015}.
-The obtained results highlighted the discriminative power of \ac{lbp} descriptors and showed that the proposed framework outperforms the others.
-{\color{red}However while comparing the obtained results using the two dataset of SERI and Duke, substantial difference were observed.
-This was attributed to the fact that the volumes in Duke dataset were provided with embedded pre-processing steps.}
+\label{sec:exp}
 
-%Considering the conclusion drawn from our baseline, three experiments are designed such as: 
-Considering the conclusion drawn from our baseline, three experiments are designed in order to investigate the effects of (i) optimal number of words, (ii) different pre-processing steps, and (iii) different classifiers.
-These experiments are defined such as: 
+% The aim of this work is to stress some of the design choices done in
+% \cite{Lemaintre2015miccaiOCT}, further test the influence of the new blocks
+% composing our framework and compare in comparison to its earlier version.
 
-\begin{itemize}
-\item Experiment~\#1 is intended to find the optimal number of words (unlike \cite{Lemaintre2015miccaiOCT}) and its effect with respect to different configurations (pre-processing which consists of denoising, flattening, and aligning along different mapping).
-\item Using the optimal number of words for high level representation of the features, experiment~\#2 investigates the performance of different configurations and classifiers.
-\item Finally experiment~\#3 is defined to investigate the benefits of different configurations and performance of different classifiers on low level represented features.
-\end{itemize}
-The detail explanation of each experiment is presented in the following subsections while the reminder of this section details the common configuration parameters across the three experiments. 
-%The remainder of this section details the common configuration parameters across the three experiments, while the following subsections focus on the specific aim of each experiment.
+This section describes the conceived experimentation to investigate the effects
+of (i) optimal number of words, (ii) different pre-processing steps, and (iii)
+different classifiers.
+Table~\ref{tab:experiment_summary} reports the experimentation
+in~\cite{Lemaintre2015miccaiOCT} as a baseline, and outlines the complementary
+experimentation here proposed.
+The reminder of this section details experiment commonalities, while experiment particularities are reported in the following subsections, and a complete set of the results obtained at each experiment is found in Appendix~\ref{app:1}.
 
-%Unless stated otherwise, all the experiments are run using our own dataset alone, SERI.
-%Only for the sake of comparison, \emph{Experiment \#1} is performed on the public Duke dataset.
-%Acquisition details regarding SERI and Duke datasets are reported in Sect.\,\ref{sec:exp:dataset:seri} and Sect.\,\ref{sec:exp:dataset:duke}, respectively.
-All the experiments are performed using our own dataset SERI.
-Acquisition details regarding SERI is reported in Sect.\,\ref{sec:exp:dataset:seri}.
-For all the experiments, \ac{lbp} and \ac{lbptop} features are extracted for different sampling points of 8, 16, and 24 for radius of 1, 2, and 3, respectively.
-As previously mentioned, the \emph{local}- and \emph{global}-mapping strategies are used.
+All the experiments are performed using our own dataset reported in Sect.\,\ref{sec:exp:dataset:seri} and reported according to Sect.\,\ref{sec:exp:eval}.
+\ac{lbp} and \ac{lbptop} features are extracted for different sampling points of 8, 16, and 24 for radius of 1, 2, and 3, respectively.
+Both \emph{local}- and \emph{global}-mapping strategies are used when applicable.
 The partitioning for \emph{local}-mapping is set to ($7 \times 7$) patch for 2D \ac{lbp} and ($ 7 \times 7 \times 7$) sub-volume for \ac{lbptop}.
-%where for \emph{local} mapping, we consider a ($7 \times 7$) \acf{sw} for 2D \ac{lbp} and ($ 7 \times 7 \times 7$) sub-volume for \ac{lbptop}.
 
-The three experiments are evaluated using \ac{lopocv} strategy.
-At each round, a pair \ac{dme}-normal volume is selected for testing while the remaining volumes are used for training.
-The use of this method implies that no variance in terms of \acf{se} and \acf{sp} can be reported.
-Despite this limitation, \ac{lopocv} has been employed due to the small size of the dataset.
-All the experiments are evaluated in terms of \ac{se} and \ac{sp}, which are statistics driven from the confusion matrix (see Fig.\,\ref{fig:CM}) as stated in Eq.\,\ref{eq:sesp}.
+\input{content/experiment/experiment-table.tex}
+
+\subsection{Dataset}\label{sec:exp:dataset:seri}
+This data was acquired by the Singapore Eye Research Institute (SERI), using CIRRUS TM (Carl Zeiss Meditec, Inc., Dublin, CA) \ac{sdoct} device. The datasets consist of 32 \ac{oct} volumes (16 \ac{dme} and 16 normal cases). Each volume contains 128 B-scan with resolution of 512 $\times$ 1024 pixels.
+All \ac{sdoct} images are read and assessed by trained graders and identified as normal or \ac{dme} cases based on evaluation of retinal thickening, hard exudates, intraretinal cystoid space formation and subretinal fluid.
+
+\subsection{Evaluation}\label{sec:exp:eval}
+Accordingly to~\cite{Lemaintre2015miccaiOCT}, all the experiments are evaluated in terms of \acf{se} and \acf{sp} using \ac{lopocv} strategy.
+
+\ac{se} and \ac{sp} are statistics driven from the confusion matrix (see Fig.\,\ref{fig:CM}) as stated in Eq.\,\ref{eq:sesp}.
 The \ac{se} evaluates the performance of the classifier with respect to the positive class, while the \ac{sp} evaluates its performance with respect to negative class.
-\begin{align}
- \ac{se}  = \frac{TP}{TP+FN} \qquad \ac{sp} = \frac{TN}{TN+FP}
- \label{eq:sesp}
-\end{align}
-
-%Among three, one experiment is carried out using \ac{acc} and \ac{f1} as formulated in Eq.\,\ref{eq:accf1}.
-%\ac{acc} is used to have an overall sense of the classifier performance, and \ac{f1} is used to see the trade off between \ac{se} and precision.
-Only in experiment~\#1, beside \ac{se} and \ac{sp} additional metrics such as \ac{acc} and \ac{f1} are applied. 
-\ac{acc} is used to have an overall sense of the classifier performance and \ac{f1} is used to see the trade off between \ac{se} and precision.
-\begin{align}
-\ac{acc} = \frac{TP+TN}{TP+TN+FP+FN} \qquad \ac{f1} = \frac{2TP}{2TP +FP+FN}
-\label{eq:accf1}
-\end{align}
 
 \begin{figure}
 \begin{center}
@@ -84,66 +61,16 @@ Only in experiment~\#1, beside \ac{se} and \ac{sp} additional metrics such as \a
 \label{fig:CM}
 \end{figure}
 
-%The details of the experiments are presented from Sect.\,\ref{subsec:exp1} to Sect.\,\ref{subsec:exp4} and summarized in Table~\ref{tab:experiment_summary}.
-%A summary of our baseline based on our previous work and the details of the three experiments are presented in the following.
+\begin{align}
+ \ac{se}  = \frac{TP}{TP+FN} \qquad \ac{sp} = \frac{TN}{TN+FP}
+ \label{eq:sesp}
+\end{align}
 
-%\emph{Experiment \#1}(Sect.\,\ref{subsec:exp1}) is similar to the experiment reported in \cite{Lemaintre2015miccaiOCT} to evaluate the effects of different feature representations and compares the results to those obtained by our own implementation of Venhuizen\,\emph{et al.}~\cite{Venhuizen2015}.
-%\emph{Experiment \#2 \&\ \#3} (Sect.\,\ref{subsec:exp2}\,\&\,\ref{subsec:exp3}) study the high-level feature representation using \ac{bow}.
-%The former experiment studies the effect of the codebook size in order to find the optimal number of words using a linear classifier; while the latter compares different classifiers (see Sect.\,\ref{subsec:cls}).
-%\emph{Experiment \#4} (Sect.\,\ref{subsec:exp4}) solely focus on the low-level representation.
-%A summary of the most relevant findings can be found in Sect.\,\ref{sec:con}.
+The usage of \ac{lopocv} implies that at each round, a pair \ac{dme}-normal volume is selected for testing while the remaining volumes are used for training.
+Subsequently, no \ac{se} or \ac{sp} variance can be reported.
+However, \ac{lopocv} strategy has been adopted despite this limitation due to the reduced size of the dataset.
 
-
-\subsection{SERI-Dataset}\label{sec:exp:dataset:seri}
-This data was acquired by the Singapore Eye Research Institute (SERI), using CIRRUS TM (Carl Zeiss Meditec, Inc., Dublin, CA) \ac{sdoct} device. The datasets consist of 32 \ac{oct} volumes (16 \ac{dme} and 16 normal cases). Each volume contains 128 B-scan with resolution of 512 $\times$ 1024 pixels.
-All \ac{sdoct} images are read and assessed by trained graders and identified as normal or \ac{dme} cases based on evaluation of retinal thickening, hard exudates, intraretinal cystoid space formation and subretinal fluid.
-
-
-\input{content/experiment/experiment-table.tex}
-
-
-%\subsection{Experiment \#1}\label{subsec:exp1}
-%
-%% Experiment structure
-%%
-%% Intro:
-%%   - background
-%%   - goal / experiment intention / why
-%%   - data
-%%   - evaluation
-%%   - reference to result table
-%%
-%% Procedure (by data if more than one):
-%%   - pre-processing
-%%   - feature extraction
-%%   - mapping
-%%   - feature representation
-%%   - classifier
-%%
-%% Result highlights:
-%%   - (only a description)
-%
-%%% Experiment intro
-%This experiment replicates some of the experiments reported in~\cite{Lemaintre2015miccaiOCT}, using the SERI and Duke datasets.
-%%% Experiment Procedure
-%The volumes are pre-processed using \nlm.
-%\lbp and \lbptop descriptors are detected using the default configuration in conjunction with local and global mapping.
-%Volumes are described using both low-level and high-level feature representation.
-%In accordance with~\cite{Lemaintre2015miccaiOCT}, \ac{bow} is used with a codebook of size $32$ words, and the volumes are classified using \ac{rf} classifier with 100 un-pruned trees.
-%
-%Results are listed in Table~\ref{tab:table1-1}.
-%The two configurations achieving the best results in Table~\ref{tab:table1-1} are compared to Venhuizen\,\textit{et al.}~\cite{Venhuizen2015} in Table~\ref{tab:table1-2}. 
-%%% Experiment Result description
-%Overall, the obtained results indicate that features driven from \ac{lbp} descriptors are highly discriminative.
-%Nevertheless, Table~\ref{tab:table1-2} indicates a substantial performance difference obtained on SERI and Duke dataset.
-%This is attributed to the fact that the volumes in Duke dataset are provided with embedded pre-processing steps.
-%
-%
-%
-%\input{content/experiment/Table1.tex}
-%\input{content/experiment/Table1-2.tex}
-
-\subsection{Experiment \#1}\label{subsec:exp1}
+\subsection{Experiment \#1: \acs{bow} dictionary size}\label{subsec:exp1}
 % Experiment structure
 %
 % Intro:
@@ -166,7 +93,8 @@ All \ac{sdoct} images are read and assessed by trained graders and identified as
 %   - (only a description)
 
 %% Experiment intro
-In order to determine the optimal size of the codebook when using \bow, this experiment evaluates several codebook sizes on SERI dataset.
+On its original implementation~\cite{Lemaitre2015, Lemaintre2015miccaiOCT} the codebook size was arbitrarily set $k=32$.
+This experiment evaluates several codebook sizes to find optimal size of the codebook in variated conditions.
 
 %% Experiment procedure
 Several pre-processing strategies are evaluated: (i) \nlm, (ii) a combination of \nlm and flattening, and (iii) a combination of \nlm, flattening and aligning.
@@ -182,8 +110,20 @@ Nonetheless, Nowak\,\textit{et al.}~\cite{nowak2006sampling} pointed out that ra
 Thus, the codebook are randomly generated since the final aim is to asses the influence of codebook size and not the performance of the framework.
 For this experiment, the codebook building is carried out using random initialization $k$-means++ algorithm~\cite{arthur2007k}, which is usually used as a $k$-means initialization algorithm.
 
-Figure~\ref{fig:RBOW} shows the \ac{acc} and \ac{f1} score graphs obtained for a single case\footnote{\texttt{http://tinyurl.com/jeczfh6}} in~\cite{Lemaitre2015}, while the optimal number of words for all the configurations are reported in a compact manner in Appendix~\ref{app:1} - Table~\ref{tab:table2}.
-%Table~\ref{tab:table2-2} reports the performance of the optimal codebook size in terms of \ac{se} and \ac{sp}.
+For this experiment, \ac{se} and \ac{sp} are complemented with \ac{acc} and \ac{f1} as stated in Eq.\,\ref{eq:accf1}.
+\ac{acc} offers an overall sense of the classifier performance while \ac{f1} illustrates the trade off between \ac{se} and precision.
+
+Appendix~\ref{app:1}\,-\,Table~\ref{tab:table2} shows the results obtained for
+the optimal dictionary size, while the complete set of \ac{acc} and \ac{f1}
+score graphs\footnote{\texttt{http://tinyurl.com/jeczfh6}} can be reproduced
+at~\cite{Lemaitre2015}.  In order to illustrate the impact of the dictionary
+size, Fig.\,\ref{fig:RBOW} illustrates the \ac{acc} and \ac{f1} score graphs
+for \added[id=sik]{xxxxxx xxxx xxx xx} particular case.
+
+\begin{align}
+\ac{acc} = \frac{TP+TN}{TP+TN+FP+FN} \qquad \ac{f1} = \frac{2TP}{2TP +FP+FN}
+\label{eq:accf1}
+\end{align}
 
 \begin{figure}
 \centering
@@ -192,12 +132,9 @@ Figure~\ref{fig:RBOW} shows the \ac{acc} and \ac{f1} score graphs obtained for a
 \label{fig:RBOW}
 \end{figure}
 
-
-%%% Experiment Result description
-%The obtained results show that commonly less number of words is required when higher number of sampling points and radius ($\{P,R\} = \{24,3\}$) are used.
-%The required number of words decreases for \emph{local}-\ac{lbp} in comparison with \emph{global}-\ac{lbp}.
-%Although it was expected that the use of different pre-processing steps affect the optimal number of words, this influence is not substantial nor consistent over all the obtained results.
-
+The results show that in general, the influence of the pre-processing is not
+substantial nor consistent and that larger \ac{lbp} radius tend to produce
+better results when small dictionaries are used.
 
 \subsection{Experiment \#2}\label{subsec:exp2}
 % Experiment structure
@@ -222,7 +159,7 @@ Figure~\ref{fig:RBOW} shows the \ac{acc} and \ac{f1} score graphs obtained for a
 %   - (only a description)
 
 %% Experiment intro
-After studying the impact of the codebook size in Sect.\,\ref{subsec:exp2}, this experiment explores the improvement associated with: (i) different pre-processings, and (ii) using larger range of classifiers (i.e. linear and non-linear) for high represented features.
+This experiment explores the improvement associated with: (i) different pre-processings, and (ii) using larger range of classifiers (i.e. linear and non-linear) for high represented features.
 
 %% Procedure
 Similar pre-processing strategies to the previous experiment are evaluated (NLM, NLM+\acs{f}, and NLM+\acs{fal}).
@@ -234,7 +171,8 @@ Finally, the volumes are classified using $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac
 %Finally, the volumes are classified using $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac{svm}.
 Regarding the classification strategies, $k$-\ac{nn} classifier is trained by considering the 3 nearest neighbor.
 The \ac{rf} and \ac{gb} classifier are trained using 100 un-pruned trees, while \ac{svm} classifier is trained with \ac{rbf} kernel and its parameters $C$, and $\gamma$ are optimized through grid-search.
-Complete list of the obtained results from this experiment are shown in Appendix~\ref{app:1} - Table~\ref{tab:table3}, while the most relevant configurations are shaded and the highest results are highlighted in \textbf{bold}.
+
+Complete list of the obtained results from this experiment are shown in Appendix~\ref{app:1} - Table~\ref{tab:table3},\deleted[id=sik, remark={state this at the table caption}]{while the most relevant configurations are shaded and the highest results are highlighted in \textbf{bold}}. Despite that highest performance is achieved when flattening or flattening and aligning, most configurations decline when applying these pre-processing stages. Best results are achieved using \ac{svm} followed by \ac{rf}.
 
 %%% Experiment Result description
 %%Table~\ref{tab:table3} shows the obtained results from this experiment, the most relevant configurations are shaded and the highest results are highlighted in \textbf{bold}.
@@ -282,14 +220,16 @@ The same pre-processing strategies (NLM, NLM+\acs{f}, and NLM+\acs{fal}) are inv
 %For this experiment, several pre-processing strategies are evaluated: (i) \nlm, (ii) a combination of \nlm and flattening, and (iii) a combination of \nlm, flattening and aligning.
 \lbp and \lbptop descriptors are detected using the default configuration.
 Volumes are represented using low-level feature representation of the \emph{global} mapping.
-Finally, the volumes are classified using $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac{svm}, similarly to \emph{Experiment \#3}.
+Finally, the volumes are classified using $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac{svm}.
 The obtained results from this experiment are listed in Appendix~\ref{app:1} - Table~\ref{tab:table4}.
+Flattening the B-scan boosts the results for the best performing configuration, but this effect is not consistent across all the configurations.
+In terms of classifier, \rf have better performance than the others but the highest \ac{sp} is achieved using \svm.
 
 %%% Experiment Result description
 %The obtained results from this experiment is listed in Table~\ref{tab:table4}.
 %The most relevant configurations are shaded and the highest results are highlighted in \textbf{bold}.
 %Similarly to the results reported in Sect.\,\ref{subsec:exp3}, the effect of flattening the B-scan boosts the results for the best performing configuration, but this effect is not consistent across all the configurations.
-%For this experiment, \lbptop outperforms \lbp and larger $P$ and $R$ values for feature detection tends to obtain better results. 
+%For this experiment, \lbptop outperforms \lbp and larger $P$ and $R$ values for feature detection tends to obtain better results.
 %In terms of classifier, \rf have better performance than the others but the highest \ac{sp} is achieved using \svm.
 
 % The highest results of this experiment, \ac{se} and \ac{sp} of 81.2\% and 81.2\%, respectively, was achieved with \ac{rf} and using \emph{global}-\ac{lbptop} features with sampling points and radius of $\{S,R\}=\{24,3\}$.

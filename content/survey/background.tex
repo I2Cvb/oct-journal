@@ -38,6 +38,16 @@ The method achieved good results in detection \ac{oct} scan containing different
 %Our proposed pipeline with detail description of each step is presented in the following section.
 As stated in the previous section, our current research is an extension of our previous work~\cite{Lemaitre2015} with further contributions and evaluations at every stages of our classification framework.
 
+\added[id=moj]{
+Lemaitre\,\textit{et al.}~\cite{Lemaintre2015miccaiOCT} proposed to pre-process the volumes using \nlm denoising without any flattening or aligning.
+Then local and global mapping \ac{lbp} and \ac{lbptop} features were extracted and \ac{bow} approach with fixed codebook size of 32 words were used as a high representation of the feature.
+Finally the \ac{rf} classifier was used to classify the the volumes. 
+This framework was tested using two datasets of Duke and SERI and was compared to the proposed method of Venhuizen\,\textit{et al.}~\cite{Venhuizen2015}.
+The obtained results highlighted the discriminative power of \ac{lbp} descriptors and showed that the proposed framework outperforms the others.
+However while comparing the obtained results using the two dataset of SERI and Duke, substantial difference were observed.
+This was attributed to the fact that the volumes in Duke dataset were provided with embedded pre-processing steps.}
+
+
 %\DTLloaddb[keys={task,Srinivasan,Venhuizen,Liu,Lemaitre}]
 %          {survey}{./content/survey/tables/survey.csv}
 %\begin{table}
