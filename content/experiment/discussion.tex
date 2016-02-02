@@ -1,53 +1,14 @@
-\section{Discussion}
-\label{sec:dis}
-
-%% Discussion of Experiment 1
-In this research, first the effects of required number of words with respect to different feature configuration and pre-processing was investigated in experiment~\#1.
-The obtained results from this experiment indicated that commonly less umber of words is required when higher number of sampling points and radius ($\{P,R\} = \{24,3\}$) are used.
-Considering the mapping stage it was observed that the number of words decreases for \emph{local}-\ac{lbp} in comparison with \emph{global}-\ac{lbp}.
-Concerning different pre-processing steps, opposite to the initial expectation, it was observed that the influence of this step is not substantial nor consistent over all the obtained results.
-%The obtained results show that commonly less number of words is required when higher number of sampling points and radius ($\{P,R\} = \{24,3\}$) are used.
-%The required number of words decreases for \emph{local}-\ac{lbp} in comparison with \emph{global}-\ac{lbp}.
-%Although it was expected that the use of different pre-processing steps affect the optimal number of words, this influence is not substantial nor consistent over all the obtained results.
-
-%% Discussion of Experiment 2
-%Table~\ref{tab:table3} shows the obtained results from this experiment, the most relevant configurations are shaded and the highest results are highlighted in \textbf{bold}.
-Similar performances concerning different pre-processing was observed in experiment~\#2.
-In fact, most configurations decreased in performance while flattening or flattening and aligning were added to denoising in pre-processing step (i.e. light shaded configurations in Appendix~\ref{app:1} - Table~\ref{tab:table3}).
-However the configurations with the highest performances, achieved better results when flattening or flattening and alignment were added to the pre-processing.
-These configurations are highlighted in dark shades in Table~\ref{tab:table3}.
-Regarding the feature configuration, high representation of locally mapped feature descriptors with smaller radius and number of sampling points achieved better performances.
-In terms of choosing a classifier, \ac{svm} provided the best results, followed by \rf. 
-
-%Regarding the effects of pre-processing, most configurations decrease in performance while aligning and flattening the B-scan (i.e. light shaded configurations in Table~\ref{tab:table3}).
-%%the performance of the most configurations decreases by aligning or flattening the B-scan (i.e. light shaded configurations in Table~\ref{tab:table3}).
-%%$k$-NM\,8\,\emph{local}-\lbp, \svm\,8\,\emph{local}-\lbptop, \svm\,16\,\emph{local}-\lbptop, \rf\,8\,\emph{global}-\lbp, \rf\,8\,\emph{local}-\lbp).
-%However, the two best configurations (i.e. dark shaded in Table~\ref{tab:table3}), achieve better results when adding flattening or flattening and alignment as pre-processing.
-%A small radius and small number of samples in feature detection tends to increase the classification performance.
-%%(see: \svm\,8\,\emph{local}-\lbp and \rf\,16\,\emph{local}-\lbptop).
-%%Feature detection shows a tendency towards better results when using small radius and small number of samples.
-%Regarding the mapping strategy, local mapping tends to produce better results than global mapping.
-%In terms of choosing a classifier, \ac{svm} provides the best results, followed by \rf.
-%The best results (81.2\%\,\ac{se} and 93.7\%\,\ac{sp}) are achieved using \nlm, flattening, \lbp detection using $\{P,R\} = \{8,1\}$, local mapping, high-level representation, using a codebook with $k=70$, and \svm classifier.
-
-
-%% Discussion of Experiment 3
-By analyzing the effects of pre-processing for low represented features, similar conclusions were drawn.
-Although flattening the B-scans boosted the performance of the best performing configurations, the effect was not consistent across all the configurations.
-In Appendix~\ref{app:1} - Table~\ref{tab:table4}, the most relevant configurations are shaded and the highest results are highlighted in \textbf{bold}.
-Concerning the feature configurations opposite to experiment~\#2, larger radius and number of sampling points obtained better results and in general \ac{lbptop} had a better performance in comparison to \ac{lbp}.
-In terms of classifier, \rf had a better performance than others but the highest \ac{sp} was achieved using \svm.
-
-%The obtained results from this experiment is listed in Table~\ref{tab:table4}.
-%The most relevant configurations are shaded and the highest results are highlighted in \textbf{bold}.
-%Similarly to the results reported in Sect.\,\ref{subsec:exp3}, the effect of flattening the B-scan boosts the results for the best performing configuration, but this effect is not consistent across all the configurations.
-%For this experiment, \lbptop outperforms \lbp and larger $P$ and $R$ values for feature detection tends to obtain better results. 
-%In terms of classifier, \rf have better performance than the others but the highest \ac{sp} is achieved using \svm.
-%The best results (81.2\%\,\ac{se} and 81.2\%\,\ac{sp}) are achieved when using \nlm, flattening, \lbptop detection using $\{P,R\}= \{24,3\}$, global mapping, low-level representation, and \rf classifier.
-%This result can be compared with other relevant results in Table~\ref{tab:results_summary}
-
-Finally analyzing all the results as it is illustrated in Table~\ref{tab:results_summary}, it is clear that just optimizing the codebook size without additional pre-processing step improves the results (compare line 7 (experiment~\#2) and line 13 (baseline)).
-The obtained results indicated that the highest results were achieved while flattening and flattening and alignment was added in the pre-processing step using high representation of locally mapped \ac{lbp} features (compare the first five lines).
-These results also outperformed the baseline.
-In general with respect to the highest 10 performances (all outperforming the baseline), high representation of locally mapped features with \ac{svm} classifier outperformed other configurations.
-Considering the desirable radius and sampling points as it was concluded before, smaller radius and sampling points is effective for local mapping while global mapping benefits from larger radius and sampling points.
+\input{content/experiment/Table5.tex}
+\section{Results and Discussion}
+\label{sec:res-dis}
+This section summarizes the results obtained from Sect.\,\ref{sec:exp} (extensive results can be found in Appe	ndix~\ref{app:1}) and extends the discussion.
+Table~\ref{tab:results_summary} combines the obtained results from experiment~\#2~and~\#3 with those reported in Lemaitre~\emph{et al.}~\cite{Lemaintre2015miccaiOCT}.
+% Using this last one as cut-off.
+This table illustrates the highest 26 performances from highest to lowest considering their achieved \ac{se} and \ac{sp}.
+The related experiment, choice of pre-processing, type and configuration of the features, choice of mapping and representation, choice of classifier, and finally if required the use of \ac{bow} is illustrated in this table.
+%finally if required size of codebook is illustrated in this table.
+Analyzing the obtained results, it is clear that just optimizing the codebook size without additional pre-processing step improves the results (compare line 7 (experiment~\#2) and line 13 (baseline)).
+The obtained results indicate that the highest results are achieved while flattening and flattening and alignment are added in the pre-processing step using high representation of locally mapped \ac{lbp} features (compare the first five lines).
+These results also outperform the baseline.
+In general with respect to the highest 10 performances (all outperforming the baseline), high representation of locally mapped features with \ac{svm} classifier outperform other configurations.
+Considering the desirable radius and sampling points it is concluded that smaller radius and sampling points is effective for local mapping while global mapping benefits from larger radius and sampling points.

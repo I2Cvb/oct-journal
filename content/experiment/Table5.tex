@@ -13,7 +13,7 @@
 
  % \multicolumn{2}{c}{Evaluation} & \multicolumn{3}{c}{Pre-processing} & \multicolumn{5}{c}{Feature} & \multicolumn{2}{c}{Mapping} & \multicolumn{2}{c}{Feature} & Classifier & \# words\\
  % &  &  & & & \multicolumn{5}{c}{detection}  &  & \multicolumn{2}{c}{extraction} &  & \\
-Line & Experiment & \multicolumn{2}{c}{Evaluation} & Pre-processing & \multicolumn{4}{c}{Feat. Detection} & Mapping & Feat. Representation & Classifier & \#words \\
+Line & Experiment & \multicolumn{2}{c}{Evaluation} & Pre-processing & \multicolumn{4}{c}{Feat. Detection} & Mapping & Feat. Representation & Classifier & \acs{bow} \\%\#words
 \cmidrule(l){3-4} \cmidrule(l){6-9}
 & &  \ac{se} & \ac{sp} &  & Type & $\{8,1\}$ & $\{16,2\}$ & $\{24,3\}$ & & & & \\
 % \midrule 
@@ -24,23 +24,23 @@ Line & Experiment & \multicolumn{2}{c}{Evaluation} & Pre-processing & \multicolu
 \showrowcolors
 
 %             & se   & sp   & nf      & lbp(top) & 1            & 2            & 3            & map    & f.extract. & class       & words \\
-			 1  & \#2 & 81.2  & 93.7 & NLM+F  & \lbp   & $\checkmark$ & & & local  & High &  \ac{svm}  & 30 \\
-             2  & \#2 & 75.0 & 93.7 & NLM+F+A & \lbp    & $\checkmark$ &              &              & local  & High & \ac{svm}    & 40 \\
-             3  & \#2 & 75.0 & 93.7 & NLM     & \lbp    & $\checkmark$ &              &              & local  & High & \ac{svm}    & 70\\
-             4  & \#2 & 75.0 & 100  & NLM     & \lbptop &              & $\checkmark$ &              & local  & High & \ac{svm}    & 500\\
-             5  & \#2 & 81.2 & 87.5 & NLM     & \lbptop & $\checkmark$ &              &              & local  & High & \ac{svm}    & 400\\
-             6  & \#2 & 81.2 & 87.5 & NLM+F+A & \lbptop &              & $\checkmark$ &              & local  & High & \ac{rf}     & 90 \\
-             7  & \#2 & 81.2 & 81.2 & NLM     & \lbp    & $\checkmark$ &              &              & local  & High & \ac{rf}     & 70 \\
+			 1  & \#2 & 81.2  & 93.7 & NLM+F  & \lbp   & $\checkmark$ & & & local  & High &  \ac{svm}  & $\checkmark$\\%30
+             2  & \#2 & 75.0 & 93.7 & NLM+F+A & \lbp    & $\checkmark$ &              &              & local  & High & \ac{svm}    & $\checkmark$ \\%40
+             3  & \#2 & 75.0 & 93.7 & NLM     & \lbp    & $\checkmark$ &              &              & local  & High & \ac{svm}    & $\checkmark$\\ %70
+             4  & \#2 & 75.0 & 100  & NLM     & \lbptop &              & $\checkmark$ &              & local  & High & \ac{svm}    & $\checkmark$\\% 500
+             5  & \#2 & 81.2 & 87.5 & NLM     & \lbptop & $\checkmark$ &              &              & local  & High & \ac{svm}    & $\checkmark$\\% 400
+             6  & \#2 & 81.2 & 87.5 & NLM+F+A & \lbptop &              & $\checkmark$ &              & local  & High & \ac{rf}     & $\checkmark$ \\%90
+             7  & \#2 & 81.2 & 81.2 & NLM     & \lbp    & $\checkmark$ &              &              & local  & High & \ac{rf}     & $\checkmark$ \\%70
 			 8  & \#3 & 81.2 & 81.2 & NLM		& \lbptop & 				 & 			   & $\checkmark$  & global & Low & \ac{rf}		& \\
-             9  & \#2 & 81.2 & 81.2 & NLM+F   & \lbptop & $\checkmark$ &              &              & local  & High & \ac{svm}    & 300\\
+             9  & \#2 & 81.2 & 81.2 & NLM+F   & \lbptop & $\checkmark$ &              &              & local  & High & \ac{svm}    & $\checkmark$\\%300
              10 & \#3 & 81.2 & 81.2 & NLM+F+A & \lbptop &              &              & $\checkmark$ & global & Low  & \gb         & \\
              11 & \#3 & 81.2 & 81.2 & NLM+F   & \lbptop &              &              & $\checkmark$ & global & Low  & \rf         & \\
-             12 & \#2 & 75.0 & 87.5 & NLM     & \lbp    & $\checkmark$ &              &              & local  & High & $k$-\ac{nn} & 70 \\
-			 13 & Lemaitre\,\emph{et al.}\,\cite{Lemaintre2015miccaiOCT} & 75.0 & 87.5 & NLM & \lbp & $\checkmark$ &&& local & High & \rf & 32 \\
+             12 & \#2 & 75.0 & 87.5 & NLM     & \lbp    & $\checkmark$ &              &              & local  & High & $k$-\ac{nn} & $\checkmark$ \\%70
+			 13 & Lemaitre\,\emph{et al.}\,\cite{Lemaintre2015miccaiOCT} & 75.0 & 87.5 & NLM & \lbp & $\checkmark$ &&& local & High & \rf &$\checkmark$ \\% 32
 			 14 & Lemaitre\,\emph{et al.}\,\cite{Lemaintre2015miccaiOCT} & 75.0 & 87.5 & NLM & \lbptop && $\checkmark$ && global & Low & \rf &\\
-             15 & \#2 & 68.7 & 93.7 & NLM     & \lbp    & $\checkmark$ &              &              & global & High & \ac{rf}     & 500\\
+             15 & \#2 & 68.7 & 93.7 & NLM     & \lbp    & $\checkmark$ &              &              & global & High & \ac{rf}     & $\checkmark$\\%500
              16 & \#3 & 75   & 81.2 & NLM+F+A & \lbptop &              &              & $\checkmark$ & global & Low  & \rf         & \\
-             17 & \#2 & 68.7 & 81.2 & NLM     & \lbptop &              & $\checkmark$ &              & local  & High & \ac{rf}     & 500 \\
+             17 & \#2 & 68.7 & 81.2 & NLM     & \lbptop &              & $\checkmark$ &              & local  & High & \ac{rf}     & $\checkmark$ \\%500
              18 & \#3 & 62.5 & 93.7 & NLM     & \lbptop &              & $\checkmark$ &              & global & Low  & \svm        & \\
              19 & \#3 & 68.7 & 87.5 & NLM     & \lbptop &              & $\checkmark$ &              & global & Low  & \rf         & \\
              20 & \#3 & 68.7 & 81.2 & NLM     & \lbptop &              &              &              & global & Low  & \rf         & \\
