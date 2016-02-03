@@ -18,6 +18,7 @@ Finally, the classification step is presented in Sect.\,\ref{subsec:cls}.
 \subsection{Image pre-processing}\label{subsec:prepro}
 
 This section describes the set of pre-processing techniques which aim at enhancing the \ac{oct} volume.
+{\color{red} CHECK THE OUTLINE HERE - IT SHOULD CHANGE.}
 The influence of these pre-processing methods and their possible combinations are extensively studied in Sect.\,\ref{subsec:exp2}-\ref{subsec:exp4}.
 
 \subsubsection{\acf{nlm}}
@@ -35,7 +36,7 @@ The influence of these pre-processing methods and their possible combinations ar
 
 
 \ac{oct} images suffer from speckle noise, like other image modalities such as \ac{us}~\cite{schmitt1999speckle}.
-The \ac{oct} volumes are enhanced by denoising each B-scan (i.e. each $x-z$ slice) using the \ac{nlm}~\cite{buades2005non}, as shown in Fig.\,\ref{fig:denoise}.
+The \ac{oct} volumes are enhanced by denoising each B-scan (i.e. each $(x$-$z)$ slice) using the \ac{nlm}~\cite{buades2005non}, as shown in Fig.\,\ref{fig:denoise}.
 \ac{nlm} has been successfully applied to \ac{us} images to reduce speckle noise and outperforms other common denoising methods~\cite{Coupe2009}.
 \ac{nlm} filtering preserves fine structures as well as flat zones, by using all the possible self-predictions that the image can provide rather than local or frequency filters such as Gaussian, anisotropic, or Wiener filters~\cite{buades2005non}.
 %An example of filtering using \ac{nlm} filter on \ac{oct} image is depicted in Fig\,\ref{subfig:raw} and Fig.\,\ref{subfig:nlm}.
@@ -94,9 +95,14 @@ LBP_{P,R} = \sum_{p=0}^{P-1}s(g_{p} - g_{c})2^{p} \ , \qquad s(x) = \begin{cases
   \end{cases} \ ,
 \end{equation}
 
-\noindent where $g_c$, $g_{p}$ are the intensities of the central pixel and a given neighbor pixel, respectively. $P$ is the number of sampling points in the circle of radius $R$.
+\noindent where $g_c$, $g_{p}$ are the intensities of the central pixel and a given neighbor pixel, respectively; $P$ is the number of sampling points in the circle of radius $R$.
+
 Ojala\,\textit{et al.} further extended the original \ac{lbp} formulation to achieve rotation invariance at the expense of limiting the texture description to the notion of circular ``uniformity''~\cite{ojala2002multiresolution}.
+Referring to the coordinate system defined in Fig.\,\ref{subfig:vol}, the \ac{lbp} codes are computed on each $(x$-$z)$ slice, leading to a set of \ac{lbp} maps, a map for each $(x$-$z)$ slice.
+
 Volume encoding is later proposed by Zhao\,\textit{et al.} by computing \ac{lbp} descriptors in three orthogonal planes, so called \ac{lbptop}~\cite{zhao2012rotation}.
+More precisely, the \ac{lbp} codes are computed considering the $(x$-$z)$ plane, $(x$-$y)$ plane, and $(y$-$z)$ plane, independently.
+Thus, three sets of \ac{lbp} maps are obtained, one for each orthogonal plane.
 
 In this research, we consider rotation invariant and uniform \ac{lbp} and \ac{lbptop} features with various sampling points (i.e., $\{8,16,24\}$) with respect to different radius, (i.e., $\{1,2,3\}$).
 The number of patterns ($LBP_{\#pat}$) in regards with each configuration is reported in Table~\ref{tab:lbphist}.
@@ -146,6 +152,24 @@ For this work, two mapping strategies are defined: (i) \emph{global} and (ii) \e
 \label{fig:lgmapping}
 \end{figure}
 
+\begin{table}
+\caption{Size of a descriptor for an \ac{sdoct} volume. $d$ denotes the number of slices in the volume, $N$ the number of 2D windows, and $N'$ the number of 3D sub-volumes, respectively.}
+\centering{
+\footnotesize{
+\begin{tabular}{l c c }
+  \ctoprule{2-3}
+  & Global mapping & Local mapping \\
+  \midrule
+  \ac{lbp} & $d \times LBP_{\#pat}$ & $(N \times d) \times LBP_{\#pat}$ \\
+  \midrule
+  \ac{lbptop} & $1 \times (3 \times LBP_{\#pat})$ & $N' \times (3 \times LBP_{\#pat})$ \\
+  \bottomrule
+\end{tabular}}}
+\label{tab:descsize}
+\end{table}
+
+The size of the feature descriptor is summarized in Table~\ref{tab:descsize}.
+
 \begin{description}
 \item[\emph{Global}] mapping considers to extract the final descriptors from the 2D feature image for \ac{lbp} and 3D volume for \ac{lbptop}.
 %mapping considers to extract the features from the 2D B-scans for \ac{lbp} and 3D volume for \ac{lbptop}.
@@ -194,10 +218,11 @@ Two strategies are used to describe each \ac{oct} volume texture.
 \item[Low-level representation] The texture descriptor of an \ac{oct} volume is defined as the concatenation of the \ac{lbp} histograms with the \emph{global}-mapping.
 The \ac{lbp} histograms are extracted from the previously detected \ac{lbp} images (see Sect.\,\ref{subsec:feaext}).
 Therefore, the \ac{lbptop} final descriptor is computed through the concatenation of the \ac{lbp} histograms of the three orthogonal planes with the final size of $3 \times LBP_{\#pat}$.
-Similarly, the \ac{lbp} descriptor is defined through concatenation of the \ac{lbp} histograms per each slice with the final size of $d \times LBP_{\#pat}$.
+More precisely, an \ac{lbp} histogram is computed for each set of \ac{lbp} maps $(x$-$z)$ plane, $(x$-$y)$ plane, and $(y$-$z)$ plane, respectively.
+Similarly, the \ac{lbp} descriptor is defined through concatenation of the \ac{lbp} histograms per each $(x$-$z)$ slice with the final size of $d \times LBP_{\#pat}$.
 
-\item[High-level representation] The concatenation of histograms employed in the low-level representation in conjunction with either \emph{global}- or \emph{local}-mapping can lead lead to a high dimensional feature space.
-For instance, \emph{local}-mapping results to a size of $N \times d \times LBP_{\#path}$ for the final \ac{lbp} descriptor and $N' \times LBP_{\#path}$ for the final \ac{lbptop} descriptor.
+\item[High-level representation] The concatenation of histograms employed in the low-level representation in conjunction with either \emph{global}- or \emph{local}-mapping can lead to a high dimensional feature space.
+For instance, \emph{local}-mapping results to a size of $N \times d \times LBP_{\#pat}$ for the final \ac{lbp} descriptor and $N' \times LBP_{\#pat}$ for the final \ac{lbptop} descriptor.
 High-level representation simplifies this high dimensional feature space into a more discriminant lower space.
 \ac{bow} approach is used for this purpose~\cite{Sivic2003}.
 This model represents the features by creating a codebook or visual dictionary, from the set of low-level features.
