@@ -139,18 +139,18 @@ The mapping stage is used to partition the previously computed feature images to
 %The mapping stage is used to determine a discrete set of elements (or structures) which is used for representing the \ac{oct} volume.
 For this work, two mapping strategies are defined: (i) \emph{global} and (ii) \emph{local} mapping.
 
-\begin{figure}[t]
-\begin{center}
-\hspace*{\fill}
-\subfigure[]{\includegraphics[width=0.22\textwidth]{/mapping/global-2d.png}\label{fig:gm1}}\hfill
-\subfigure[]{\includegraphics[width=0.22\textwidth]{/mapping/global-3d.png}\label{fig:gm2}}\hfill
-\subfigure[]{\includegraphics[width=0.22\textwidth]{/mapping/local-2d.png}\label{fig:lm1}}\hfill
-\subfigure[]{\includegraphics[width=0.22\textwidth]{/mapping/local-3d.png}\label{fig:lm2}}
-\hspace*{\fill}
-\caption{\emph{Global} (a)-(b) and \emph{local} (c)-(d) mapping for \ac{lbp} and \ac{lbptop} features (2D B-scan and 3D volume, respectively).}
-\end{center}
-\label{fig:lgmapping}
-\end{figure}
+% \begin{figure}[t]
+% \begin{center}
+% \hspace*{\fill}
+% \subfigure[]{\includegraphics[width=0.22\textwidth]{/mapping/global-2d.png}\label{fig:gm1}}\hfill
+% \subfigure[]{\includegraphics[width=0.22\textwidth]{/mapping/global-3d.png}\label{fig:gm2}}\hfill
+% \subfigure[]{\includegraphics[width=0.22\textwidth]{/mapping/local-2d.png}\label{fig:lm1}}\hfill
+% \subfigure[]{\includegraphics[width=0.22\textwidth]{/mapping/local-3d.png}\label{fig:lm2}}
+% \hspace*{\fill}
+% \caption{\emph{Global} (a)-(b) and \emph{local} (c)-(d) mapping for \ac{lbp} and \ac{lbptop} features (2D B-scan and 3D volume, respectively).}
+% \end{center}
+% \label{fig:lgmapping}
+% \end{figure}
 
 \begin{table}
 \caption{Size of a descriptor for an \ac{sdoct} volume. $d$ denotes the number of slices in the volume, $N$ the number of 2D windows, and $N'$ the number of 3D sub-volumes, respectively.}
@@ -168,6 +168,20 @@ For this work, two mapping strategies are defined: (i) \emph{global} and (ii) \e
 \label{tab:descsize}
 \end{table}
 
+\begin{figure}[t]
+  \centering
+  \hspace*{\fill}
+  \subfigure[]{\label{subfig:glbp}\includegraphics[width=0.25\linewidth]{global-lbp.png}} \hfill
+  \subfigure[]{\label{subfig:glbptop}\includegraphics[width=0.48\linewidth]{global-lbptop.png}}
+  \hspace*{\fill}\\
+  \hspace*{\fill}
+  \subfigure[]{\label{subfig:llbp}\includegraphics[width=0.25\linewidth]{local-lbp.png}} \hfill
+  \subfigure[]{\label{subfig:llbptop}\includegraphics[width=0.48\linewidth]{local-lbptop.png}}
+  \hspace*{\fill}
+  \caption{Graphical representation of the feature extraction: (a) extraction of \ac{lbp} for global mapping - (b) extraction of \ac{lbptop} for global mapping - (c) extraction of \ac{lbp} for local mapping - (d) extraction of \ac{lbptop} for local mapping.}
+  \label{fig:feaextimg}
+\end{figure}
+
 The size of the feature descriptor is summarized in Table~\ref{tab:descsize}.
 
 \begin{description}
@@ -175,12 +189,12 @@ The size of the feature descriptor is summarized in Table~\ref{tab:descsize}.
 %mapping considers to extract the features from the 2D B-scans for \ac{lbp} and 3D volume for \ac{lbptop}.
 Therefore, for a volume with $d$ slices, the \emph{global}-\ac{lbp} mapping will lead to the extraction of $d$ elements.
 While the \emph{global}-\ac{lbptop} represents the whole volume as a single element.
-The \emph{global} mapping for 2D images and 3D volume is shown in Fig.~\ref{fig:gm1} and \ref{fig:gm2}.
+The \emph{global} mapping for 2D images and 3D volume is shown in Fig.~\ref{subfig:glbp} and \ref{subfig:glbptop}.
 
 \item[\emph{Local}] mapping considers to extract the final descriptors from a set of ($m \times m$) 2D patches for \ac{lbp} and a set of ($ m \times m \times m$) sub-volumes for \ac{lbptop}.
 Given $N$ and $N'$ the total number of 2D patches and 3D sub-volumes respectively, the \emph{local}-\ac{lbp} approach provides $N \times d$ elements, while \emph{local}-\ac{lbptop} provides $N'$ elements.
 %Here $N$ and $N'$ are the total number of elements per B-scane or the volume, respectively.
-This mapping is illustrated in Fig.~\ref{fig:lm1} and \ref{fig:lm2}.
+This mapping is illustrated in Fig.~\ref{subfig:llbp} and \ref{subfig:llbptop}.
 
 
 \end{description}
