@@ -1,24 +1,23 @@
 \input{content/experiment/Table5.tex}
-\section{Results and Discussion}
+\section{Results and discussion}
 \label{sec:res-dis}
-This section summarizes the results obtained from Sect.\,\ref{sec:exp} (extensive results can be found in Appe	ndix~\ref{app:1}) and extends the discussion.
-Table~\ref{tab:results_summary} combines the obtained results from Sect.\,\ref{sec:exp} with those reported in Lemaitre~\emph{et al.}~\cite{Lemaintre2015miccaiOCT}, while detailing the frameworks configurations.
-{\color{red}This table sorts the achieved performances with \ac{se} higher than 55\% in a descending manner.}
-This table sorts in descend the achieved performances with their \ac{se} higher than 55\%.
+This section summarizes the results obtained from Sect.\,\ref{sec:exp} (extensive results can be found in Appendix~\ref{app:1}) and extends the discussion.
+Table~\ref{tab:results_summary} combines the obtained results from Sect.\,\ref{sec:exp} with those reported by Lemaitre~\emph{et al.}~\cite{Lemaintre2015miccaiOCT}, while detailing the frameworks configurations.
+This table sorts the achieved performances with \ac{se} higher than 55\%, in a descending manner.
 % Using this last one as cut-off.
 %The related experiment, choice of pre-processing, type and configuration of the features, choice of mapping and representation, choice of classifier, and finally if required the use of \ac{bow} is illustrated in this table.
 %This table illustrates the highest 26 performances from highest to lowest considering their achieved \ac{se} and \ac{sp}.
 
 %finally if required size of codebook is illustrated in this table.
-The obtained results indicates that expansion and tuning of our previous framework~\cite{Lemaintre2015miccaiOCT} improves the results.
-Only tuning the codebook size, based on the findings in \emph{Experiment~\#1}, leads to an improvement of 6\% in terms of \ac{se} (comparison of line 7 and line 13).
-While integrating all the blocks (see Sect.\,\ref{sec:method}) leads to an improvement of 6\% in both \ac{se} and \ac{sp}.
-Our framework also outperforms the proposed method of \cite{Venhuizen2015} with an improvement of 20\% and 36\% in terms of \ac{se} and \ac{sp}, respectively.
+The obtained results indicate that expansion and tuning of our previous framework improves the results.
+%Only tuning the codebook size, based on the findings in \emph{Experiment~\#1}, leads to an improvement of 6\% in terms of \ac{se} (comparison of line 7 and line 13).
+From \emph{Experiment~\#1}, tuning the codebook size leads to an improvement of 6\% in terms of \ac{se} (see Table~\ref{tab:results_summary} at line 7 and 13).
+Furthermore, the fine tuning of our framework (see Sect.\,\ref{sec:method}) also leads to an improvement of 6\% in both \ac{se} and \ac{sp}.
+Our framework also outperforms the proposed method of~\cite{Venhuizen2015} with an improvement of 20\% and 36\% in terms of \ac{se} and \ac{sp}, respectively.
 
-Note that although the effects of pre-processing is not consistent through all the performances, the highest results are achieved while flattening and flattening and aligning are added in the pre-processing steps.
-In general it is observed that configurations based on \emph{Experiment~\#2} outperforms the others.
-More specifically, high representation of locally mapped features with \ac{svm} classifier.
-Considering the desirable radius and sampling points it is concluded that smaller radius and sampling points is effective for local mapping while global mapping benefits from larger radius and sampling points. 
+Note that although the effects of pre-processing are not consistent through all the performance, the best results are achieved with \nlm+\f and \nlm+\fa configurations as pre-processing stages.
+In general, the configurations presented in \emph{Experiment~\#2} outperform the others, in particular the high-level representation of locally mapped features with an \ac{svm} classifier.  
+Focusing on the most desirable radius and sampling point configuration, smaller radius and sampling points are more effective in conjunction with local mapping, while global mapping benefit from larger radius and sampling points.
 
 %Analyzing the obtained results, it is clear that just optimizing the codebook size without additional pre-processing step improves the results (compare line 7 (experiment~\#2) and line 13 (baseline)).
 
