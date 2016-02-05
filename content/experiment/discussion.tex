@@ -2,13 +2,28 @@
 \section{Results and Discussion}
 \label{sec:res-dis}
 This section summarizes the results obtained from Sect.\,\ref{sec:exp} (extensive results can be found in Appe	ndix~\ref{app:1}) and extends the discussion.
-Table~\ref{tab:results_summary} combines the obtained results from experiment~\#2~and~\#3 with those reported in Lemaitre~\emph{et al.}~\cite{Lemaintre2015miccaiOCT}.
+Table~\ref{tab:results_summary} combines the obtained results from Sect.\,\ref{sec:exp} with those reported in Lemaitre~\emph{et al.}~\cite{Lemaintre2015miccaiOCT}, while detailing the frameworks configurations.
+{\color{red}This table sorts the achieved performances with \ac{se} higher than 55\% in a descending manner.}
+This table sorts in descend the achieved performances with their \ac{se} higher than 55\%.
 % Using this last one as cut-off.
-This table illustrates the highest 26 performances from highest to lowest considering their achieved \ac{se} and \ac{sp}.
-The related experiment, choice of pre-processing, type and configuration of the features, choice of mapping and representation, choice of classifier, and finally if required the use of \ac{bow} is illustrated in this table.
+%The related experiment, choice of pre-processing, type and configuration of the features, choice of mapping and representation, choice of classifier, and finally if required the use of \ac{bow} is illustrated in this table.
+%This table illustrates the highest 26 performances from highest to lowest considering their achieved \ac{se} and \ac{sp}.
+
 %finally if required size of codebook is illustrated in this table.
-Analyzing the obtained results, it is clear that just optimizing the codebook size without additional pre-processing step improves the results (compare line 7 (experiment~\#2) and line 13 (baseline)).
-The obtained results indicate that the highest results are achieved while flattening and flattening and alignment are added in the pre-processing step using high representation of locally mapped \ac{lbp} features (compare the first five lines).
-These results also outperform the baseline.
-In general with respect to the highest 10 performances (all outperforming the baseline), high representation of locally mapped features with \ac{svm} classifier outperform other configurations.
-Considering the desirable radius and sampling points it is concluded that smaller radius and sampling points is effective for local mapping while global mapping benefits from larger radius and sampling points.
+The obtained results indicates that expansion and tuning of our previous framework~\cite{Lemaintre2015miccaiOCT} improves the results.
+Only tuning the codebook size, based on the findings in \emph{Experiment~\#1}, leads to an improvement of 6\% in terms of \ac{se} (comparison of line 7 and line 13).
+While integrating all the blocks (see Sect.\,\ref{sec:method}) leads to an improvement of 6\% in both \ac{se} and \ac{sp}.
+Our framework also outperforms the proposed method of \cite{Venhuizen2015} with an improvement of 20\% and 36\% in terms of \ac{se} and \ac{sp}, respectively.
+
+Note that although the effects of pre-processing is not consistent through all the performances, the highest results are achieved while flattening and flattening and aligning are added in the pre-processing steps.
+In general it is observed that configurations based on \emph{Experiment~\#2} outperforms the others.
+More specifically, high representation of locally mapped features with \ac{svm} classifier.
+Considering the desirable radius and sampling points it is concluded that smaller radius and sampling points is effective for local mapping while global mapping benefits from larger radius and sampling points. 
+
+%Analyzing the obtained results, it is clear that just optimizing the codebook size without additional pre-processing step improves the results (compare line 7 (experiment~\#2) and line 13 (baseline)).
+
+%The obtained results indicate that the highest results are achieved while flattening and flattening and alignment are added in the pre-processing step using high representation of locally mapped \ac{lbp} features (compare the first five lines).
+
+%These results also outperform the baseline.
+%In general with respect to the highest 10 performances (all outperforming the baseline), high representation of locally mapped features with \ac{svm} classifier outperform other configurations.
+

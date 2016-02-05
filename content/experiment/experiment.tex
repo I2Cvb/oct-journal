@@ -3,15 +3,14 @@
 
 \section{Experiments}
 \label{sec:exp} 
-An experimental suit composed of three experiments is designed to test the influence of the different blocks composing our framework in comparison to our previous work~\cite{Lemaintre2015miccaiOCT} (baseline).
+An experimental suit composed of three experiments is designed to test the influence of the different blocks composing our framework in comparison to our previous work~\cite{Lemaintre2015miccaiOCT}.
 These experiments are designed in order to investigate the effects of (i) optimal number of words, (ii) different pre-processing steps, and (iii) different classifiers.
-Table~\ref{tab:experiment_summary} summarizes the different aspects of each experiment as well as the baseline~\cite{Lemaintre2015miccaiOCT}.
-{\color{red}Table~\ref{tab:experiment_summary} reports the experimentation in \cite{Lemaintre2015miccaiOCT} as a baseline and outlines the complementary experimentation here proposed.}
-The reminder of this section details the common configuration parameters across the the three experiments, while the detail explanations are presented in the following 
+Table~\ref{tab:experiment_summary} reports the experimentation in \cite{Lemaintre2015miccaiOCT} as a baseline and outlines the complementary experimentation here proposed.
+The reminder of this section details the common configuration parameters across the experiments, while the detail explanations are presented in the following 
 subsections. 
 
 All the experiments are performed using our own dataset, presented in Sect.\,\ref{sec:exp:dataset:seri} and are reported according to the validation described in Sect.\,\ref{sec:exp:validation}
-\ac{lbp} and \ac{lbptop} features are extracted using both \emph{local} and \emph{global}-mapping for different sampling points of 8, 16, and 24 for radius of 1, 2, and 3, respectively.
+{\color{red} In all the experiments}, \ac{lbp} and \ac{lbptop} features are extracted using both \emph{local} and \emph{global}-mapping for different sampling points of 8, 16, and 24 for radius of 1, 2, and 3, respectively.
 The partitioning for \emph{local}-mapping is set to ($7 \times 7$) patch for 2D \ac{lbp} and ($ 7 \times 7 \times 7$) sub-volume for \ac{lbptop}.
 
 %The remainder of this section details the common configuration parameters across the three experiments, while the following subsections focus on the specific aim of each experiment.
@@ -72,7 +71,7 @@ All \ac{sdoct} images are read and assessed by trained graders and identified as
 \label{fig:CM}
 \end{figure}
 \subsection{Validation}\label{sec:exp:validation}
-Accordingly to \cite{Lemaintre2015miccaiOCT}, all the experiments are evaluated in terms \acf{se} and \acf{sp} using \ac{lopocv} strategy.
+All the experiments are evaluated in terms \acf{se} and \acf{sp} using \ac{lopocv} strategy, in line with \cite{Lemaintre2015miccaiOCT}.
 \ac{se} and \ac{sp} are statistics driven from the confusion matrix (see Fig.\,\ref{fig:CM}) as stated in Eq.\,\ref{eq:sesp}.
 The \ac{se} evaluates the performance of the classifier with respect to the positive class, while the \ac{sp} evaluates its performance with respect to negative class.
 \begin{align}
@@ -166,6 +165,9 @@ However, \ac{lopocv} strategy has been adapted despite this limitation due to th
 %% Experiment intro
 Experiment~\#1 is intended to find the optimal number of words (unlike \cite{Lemaintre2015miccaiOCT}) and its effect with respect to different configurations.
 
+{\color{red}This experiment intends to find the optimal number of words and its effect with respect to different configurations, in contrary to \cite{Lemaintre2015miccaiOCT}, where the codebook size was arbitrarily set to $k = 32$.}
+{\color{blue}This experiment explores several codebook sizes in variated conditions to find the optimal number of words in contrary to \cite{Lemaintre2015miccaiOCT}, where the codebook size was arbitrarily set to $k = 32$.}
+
 %(pre-processing which consists of denoising, flattening, and aligning along different mapping).
 %In order to determine the optimal size of the codebook when using \bow, this experiment evaluates several codebook sizes on SERI dataset.
 
@@ -183,11 +185,14 @@ Nonetheless, Nowak\,\textit{et al.}~\cite{nowak2006sampling} pointed out that ra
 Thus, the codebook are randomly generated since the final aim is to asses the influence of codebook size and not the performance of the framework.
 For this experiment, the codebook building is carried out using random initialization $k$-means++ algorithm~\cite{arthur2007k}, which is usually used as a $k$-means initialization algorithm.
 
-For this experiment, \ac{se} and \ac{sp} are complemented with \ac{acc} and \ac{f1} score as stated in Eg.\,\ref{eq:accf1}.
+For this experiment, \ac{se} and \ac{sp} are complemented with \ac{acc} and \ac{f1} score (see Eg.\,\ref{eq:accf1}).
 \ac{acc} offers an overall sense of the classifier performance, and \ac{f1} illustrates the trade off between \ac{se} and precision.
 
-Appendix~\ref{app:1}~-~Table~\ref{tab:table2} shows the results obtained for the optimal dictionary size, while complete set of \ac{acc} and \ac{f1} graph can be reproduced at \cite{Lemaitre2015}.
-In order to illustrate the impact of the dictionary size, Fig.\,\ref{fig:RBOW} illustrates the \ac{acc} and \ac{f1} graph for \emph{locally}-mapped \ac{lbp} features, extracted from volumes which are pre-processed by NLM+\ac{f}.
+Complete set of \ac{acc} and \ac{f1} graph can be reproduced at \cite{Lemaitre2015}.
+In order to illustrate the impact of the dictionary size, Fig.\,\ref{fig:RBOW} illustrates the \ac{acc} and \ac{f1} graph for a particular case\footnote{The shown example was chosen arbitrary and for the completer set please refer to \cite{Lemaitre2015}.}
+In this figure, the performance of \emph{local}-\ac{lbp} features extracted from denoised and flatten slices while using three different radius (see Sect.\,\ref{subsec:feaext}, blue, green and red for radius of $\{1,2,3\}$, respectively) are illustrated. 
+
+Appendix~\ref{app:1}~-~Table~\ref{tab:table2} shows the results obtained for the optimal dictionary size.
 
 %Figure~\ref{fig:RBOW} shows the \ac{acc} and \ac{f1} score graphs obtained for a single case\footnote{\texttt{http://tinyurl.com/jeczfh6}} in~\cite{Lemaitre2015}, while the optimal number of words for all the configurations are reported in a compact manner in Appendix~\ref{app:1} - Table~\ref{tab:table2}.
 %%Table~\ref{tab:table2-2} reports the performance of the optimal codebook size in terms of \ac{se} and \ac{sp}.
@@ -238,15 +243,17 @@ This experiments explores the improvement associated with: (i) different pre-pro
 %Using the optimal number of words for high level representation of the features, experiment~\#2 investigates the performance of different configurations and classifiers
 
 %% Procedure
-Similar pre-processing strategies to the previous experiment are evaluated (NLM, NLM+\acs{f}, and NLM+\acs{fal}).
+All the pre-processing stages are evaluated (NLM, NLM+\acs{f}, and NLM+\acs{fal}).
+%Similar pre-processing strategies to the previous experiment are evaluated (NLM, NLM+\acs{f}, and NLM+\acs{fal}).
 In this experiment the codebooks for the \ac{bow} representation of \ac{lbp} and \ac{lbptop} features are computed using regular $k$-means algorithm which is initialized using $k$-means++, where $k$ is chosen according to the findings of \emph{Experiment \#1}.
 Finally, the volumes are classified using $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac{svm}.
 %For this experiment, several pre-processing strategies are evaluated: (i) \nlm, (ii) a combination of \nlm and flattening, and (iii) a combination of \nlm, flattening and aligning.
 %\lbp and \lbptop features are detected using the default configuration and volumes are represented using \bow.
 %The codebooks are computed using regular $k$-means algorithm which is initialized using $k$-means++, where $k$ is chosen according to the findings of \emph{Experiment \#1}.
 %Finally, the volumes are classified using $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac{svm}.
-Regarding the classification strategies, $k$-\ac{nn} classifier is trained by considering the 3 nearest neighbor.
+The $k$-\ac{nn} classifier is trained by considering the 3 nearest neighbor.
 The \ac{rf} and \ac{gb} classifier are trained using 100 un-pruned trees, while \ac{svm} classifier is trained with \ac{rbf} kernel and its parameters $C$, and $\gamma$ are optimized through grid-search.
+
 Complete list of the obtained results from this experiment are shown in Appendix~\ref{app:1}~-~Table~\ref{tab:table3}.
 Despite that highest performances are achieved when NLM+\acs{f} or NLM+\acs{fal} are used, most configurations decline when applied with extra pre-processing stages.
 Best results are achieve using \ac{svm} followed by \ac{rf}.
@@ -289,15 +296,14 @@ Best results are achieve using \ac{svm} followed by \ac{rf}.
 %   - (only a description)
 
 %% Experiment intro
-This experiment replicates the \emph{Experiment \#2} for the case of low-level represented features extracted using \emph{global}-mapping.
+This experiment replicates the \emph{Experiment \#2} for the case of low-level representation of \ac{lbp} and \ac{lbptop} features extracted using \emph{global}-mapping.
 
-%% Experiment procedure
-The same pre-processing strategies (NLM, NLM+\acs{f}, and NLM+\acs{fal}) are investigated.
-%While investigating the same pre-processing strategies (\ac{nlm}, \ac{nlm}+\acs{f}, and \ac{nlm}+\acs{fal}), the \ac{lbp} and \ac{lbptop} features are extracted using global mapping and represented in low level.
-%For this experiment, several pre-processing strategies are evaluated: (i) \nlm, (ii) a combination of \nlm and flattening, and (iii) a combination of \nlm, flattening and aligning.
-\lbp and \lbptop descriptors are detected using the default configuration.
-Volumes are represented using low-level feature representation of the \emph{global} mapping.
-Finally, the volumes are classified using $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac{svm}, similarly to \emph{Experiment \#3}.
+%% Experiment procedur
+%The same pre-processing strategies (NLM, NLM+\acs{f}, and NLM+\acs{fal}) are investigated.
+%lbp and \lbptop descriptors are detected using the default configuration.
+%Volumes are represented using low-level feature representation of the \emph{global} mapping.
+%Finally, the volumes are classified using $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac{svm}, similarly to \emph{Experiment \#3}.
+
 The obtained results from this experiment are listed in Appendix~\ref{app:1}~-~Table~\ref{tab:table4}.
 In this experiment, flattening the B-scan boosts the results of the best performing configuration.
 However its effects is not consistent across all the configurations.

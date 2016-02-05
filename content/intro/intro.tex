@@ -8,11 +8,9 @@ Eye diseases such as \ac{dr} and \ac{dme} are the most common causes of irrevers
 States alone, health care and associated costs related to eye diseases are estimated at almost \SI{500}[\$]{M}~\cite{Sharma2005}.
 Moreover, the prevalent cases of \ac{dr} are expected to grow exponentially affecting over \SI{300}{M} people worldwide by 2025~\cite{Wild2004}.
 Given this scenario, early detection and treatment of \ac{dr} and \ac{dme} play a major role to prevent adverse effects such as blindness.
-\deleted[id=sik, remark={if dme is described so should be dr, and should be found right after the first sentence before States blabla. But I would just skip the definition since we dont use it.}]{
-\ac{dme} is characterized as an increase in retinal thickness within 1 disk diameter of the fovea center with or without hard exudates and sometimes associated with cysts~\cite{ETDRSG1985}.}
-\added[id=sik, remark={i tried to refrase it couple of times, but no luck}]{
-Fundus images which have proven to be very useful in revealing most of the eye pathologies~\cite{Mookiah20132136,Trucco2013} are not as good as \ac{oct} images~\cite{Wang2015} while dealing with \ac{dme}.  
-}
+\ac{dme} is characterized as an increase in retinal thickness within 1 disk diameter of the fovea center with or without hard exudates and sometimes associated with cysts~\cite{ETDRSG1985}.
+%Fundus images which have proven to be very useful in revealing most of the eye pathologies~\cite{Mookiah20132136,Trucco2013} are not as good as \ac{oct} images~\cite{Wang2015} while dealing with \ac{dme}.  
+
 Indeed, the new generation of \ac{oct} imaging, namely \ac{sdoct} offers high resolution and fast image acquisition, producing from $27,000$ to $40,000$ A-scans/second with an axial resolution ranging from \SIrange{3.5}{6}{\micro \metre}~\cite{Chen2005}. 
 Figure\,\ref{fig:dme-normal} shows one normal B-scan and two abnormal B-scans.
 \begin{figure}
@@ -51,20 +49,18 @@ All the obtained histograms are concatenated into a global descriptor whose dime
 Finally a \ac{svm} with an \ac{rbf} kernel is used as classifier.
 The method achieved good results in detection \ac{oct} scan containing different pathology such as \ac{dme} or \ac{amd}, with an \ac{auc} of $0.93$ using a dataset of $326$ \ac{oct} scans.
 
-{\color{red}Lemaitre~\emph{et al.}~\cite{Lemaintre2015miccaiOCT} proposed to use 2D and 3D \ac{lbp} features extracted from denoised volumes and dictionary learning using the \ac{bow} models~\cite{Sivic2003}.
+Lemaitre~\emph{et al.}~\cite{Lemaintre2015miccaiOCT} proposed to use 2D and 3D \ac{lbp} features extracted from denoised volumes and dictionary learning using the \ac{bow} models~\cite{Sivic2003}.
 In the proposed method all the dictionaries are learned with same size of ``visual words'' ($k = 32$) and final descriptors are classified using \ac{rf} classifier.
 %The proposed method by Lemaitre~\emph{et al.}~\cite{Lemaintre2015miccaiOCT} is based on \ac{lbp} features to describe the texture of \ac{oct} images and dictionary learning using the \ac{bow} models~\cite{Sivic2003}.
 The proposed method of this study is an extension of our previous work~\cite{Lemaintre2015miccaiOCT}\footnote{The Document source available on Github~\cite{Lemaitre2015}}.
-In this research beside the comparison of 2D and 3D features and global and local mapping, we also compare the effects of common pre-processing steps for OCT data (i.e., aligning, flattening beside denoising), study the optimal configuration regarding the \ac{bow} approach and finally performance of different base classifiers.}
+In this research beside the comparison of 2D and 3D features and global and local mapping, we also compare the effects of common pre-processing steps for OCT data (i.e., aligning, flattening beside denoising), study the optimal configuration regarding the \ac{bow} approach and finally performance of different base classifiers.
  
-\todo{I'm not sure if this is how we should state the previous work, but I like its flow}
-The proposed method, which is an extension of our previous work~\cite{Lemaintre2015miccaiOCT}\footnote{The Document source available on Github~\cite{Lemaitre2015}}, is based on \ac{lbp} features to describe the texture of \ac{oct} images and dictionary learning using the \ac{bow} models~\cite{Sivic2003}. 
-We propose to extract 2D and 3D \ac{lbp} features from \ac{oct} images and volumes, respectively. 
-The \ac{lbp} descriptors are further extracted from the entire sample or local patches within individual samples. 
-In this research beside the comparison of 2D and 3D features, we also compare the effects of common pre-processing steps for OCT data (i.e., noise removing, aligning, flattening), study the optimal configuration regarding the \ac{bow} approach in conjunction with different base classifiers.
+%The proposed method, which is an extension of our previous work~\cite{Lemaintre2015miccaiOCT}\footnote{The Document source available on Github~\cite{Lemaitre2015}}, is based on \ac{lbp} features to describe the texture of \ac{oct} images and dictionary learning using the \ac{bow} models~\cite{Sivic2003}. 
+%We propose to extract 2D and 3D \ac{lbp} features from \ac{oct} images and volumes, respectively. 
+%The \ac{lbp} descriptors are further extracted from the entire sample or local patches within individual samples. 
+%In this research beside the comparison of 2D and 3D features, we also compare the effects of common pre-processing steps for OCT data (i.e., noise removing, aligning, flattening), study the optimal configuration regarding the \ac{bow} approach in conjunction with different base classifiers.
  
-This paper is organized as follows: the proposed framework is explained in Sect.\,\ref{sec:method}, the experiments are presented in Sect.\,\ref{sec:exp}, while the results are discussed in Sect.\,\ref{sec:res-dis}.
-{\color{red}while the experiments and results are discussed through Sect.\,\ref{sec:exp} and Sect.\,\ref{sec:res-dis}.}
+This paper is organized as follows: the proposed framework is explained in Sect.\,\ref{sec:method}, while the experiments and results are discussed through Sect.\,\ref{sec:exp} and Sect.\,\ref{sec:res-dis}.
 Finally, the conclusion and avenue for future directions are drawn in Sect.\,\ref{sec:con}.
 
 %----------
