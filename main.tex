@@ -42,12 +42,7 @@ While outperforming the previous studies~\cite{Lemaintre2015miccaiOCT,Venhuizen2
 The strength of \ac{svm} classifier while used along \ac{bow} approach and \ac{rf} classifier while used with global mapping.
 In terms of pre-processing steps, although the highest performances are achieved while alignment and flattening were used in the pre-processing, it was shown that the effects of these extra steps are not consistent for all the cases and do not guaranty a better performance.
 
-{\color{red} AVENUES FOR FUTURE WORK
-\begin{itemize}
-  \item the flattening is not perfect, we could do it better
-  \item study LBP as with no rotation invariance that could help to have more discriminative patterns
-  \item include over feature as gradient or something else that could be complementary to the LBP
-\end{itemize}}
+Several avenues for future directions can be explored. The flattening method proposed by Liu\,\emph{et al.} flattens roughly the \ac{rpe} due to the fact that the \ac{rpe} is not segmented. Thus, in order to have a more accurate flattening pre-processing, the \ac{rpe} layer should be pre-segmented as proposed by Garvin\,\emph{et al.}~\cite{Garvin2009}. In this work, the \ac{lbp} invariant to rotation was used and the number of pattern encoded is reduced. Once the data are flattened, the non-rotation invariant \ac{lbp} could be studied since this descriptor encode more pattern. In addition to \ac{lbp}, other feature descriptors can be included in the framework to complement \ac{lbp}.
 
 \section*{Acknowledgments}\label{sec:acknowledgements}
 

@@ -163,7 +163,7 @@ However, \ac{lopocv} strategy has been adopted despite this limitation due to th
 %   - (only a description)
 
 %% Experiment intro
-This experiment intends to find the optimal number of words and its effect on the different configurations (i.e., {\color{red} Add the type of configuration or what it is}), on the contrary to~\cite{Lemaintre2015miccaiOCT}, where the codebook size was arbitrarily set to $k = 32$.
+This experiment intends to find the optimal number of words and its effect on the different configurations (i.e., pre-processing and feature representation), on the contrary to~\cite{Lemaintre2015miccaiOCT}, where the codebook size was arbitrarily set to $k = 32$.
 
 %(pre-processing which consists of denoising, flattening, and aligning along different mapping).
 %In order to determine the optimal size of the codebook when using \bow, this experiment evaluates several codebook sizes on SERI dataset.
@@ -173,7 +173,7 @@ Several pre-processing strategies are evaluated: (i) \ac{nlm}, (ii) a combinatio
 \lbp and \lbptop descriptors are detected using the default configuration.
 Volumes are represented using \ac{bow}, where the codebook size ranging for $k\in \{10, 20, 30, \cdots, 100, 200, \cdots, 500,$ $1000\}$.
 Finally, the volumes are classified using \lr.
-{\color{red} The choice of this linear classifier avoids that the results get boosted by the classifier.}
+The choice of this linear classifier avoids that the results get boosted by the classifier.
 In this manner, any improvement would be linked to the pre-processing and the size of the codebook.
 %\input{content/experiment/Table2.tex}
 
