@@ -225,12 +225,16 @@ This mapping is illustrated in Fig.~\ref{subfig:llbp} and \ref{subfig:llbptop}.
 \subsection{Feature representation}\label{subsec:fearep}
 
 % Each \ac{oct} volume can be described by its texture and we employed two strategies.
+
+% Sik: I would change this start by something like the following
+%
+% Our believe is that 'patology traits' present in the images can be captured bye means of thexture descriptors. In order to work with manage the descriptors, those should be represented in some fashion. Our framework incorporates two different manners of representing the volume descriptors.
 Two strategies are used to describe each \ac{oct} volume texture.
 
 \begin{description}
 
 \item[Low-level representation] The texture descriptor of an \ac{oct} volume is defined as the concatenation of the \ac{lbp} histograms with the \emph{global}-mapping.
-The \ac{lbp} histograms are extracted from the previously detected \ac{lbp} images (see Sect.\,\ref{subsec:feaext}).
+The \ac{lbp} histograms are extracted from the previously computed \ac{lbp} maps (see Sect.\,\ref{subsec:feaext}).
 Therefore, the \ac{lbptop} final descriptor is computed through the concatenation of the \ac{lbp} histograms of the three orthogonal planes with the final size of $3 \times LBP_{\#pat}$.
 More precisely, an \ac{lbp} histogram is computed for each set of \ac{lbp} maps $(x$-$z)$ plane, $(x$-$y)$ plane, and $(y$-$z)$ plane, respectively.
 Similarly, the \ac{lbp} descriptor is defined through concatenation of the \ac{lbp} histograms per each $(x$-$z)$ slice with the final size of $d \times LBP_{\#pat}$.
@@ -241,8 +245,10 @@ High-level representation simplifies this high dimensional feature space into a 
 \ac{bow} approach is used for this purpose~\cite{Sivic2003}.
 This model represents the features by creating a codebook or visual dictionary, from the set of low-level features.
 The set of low-level features are clustered using \textit{k}-means to create the codebook with \textit{k} clusters or visual words.
-After creating the codebook, each of the training example is represented as a histogram of size \textit{k}.
-The histogram is obtained by calculating the frequency of occurrences of each of the \textit{k} words in the extracted features from the training example.
+After creating the codebook from the training set, the low-level descriptors are replaced by its closest word within codebook.
+The final descriptor is a histogram of size \textit{k} to represent the codebook occurrences for a given mapping.
+
+
 %\Ac{pca} and \ac{bow} among other methods, are used for this purpose~\cite{Sivic2003}.
 %Although \ac{pca} maps the data according to their variance, \ac{bow} models represent the features by creating a visual dictionary, or ``codebook'', from the set of low-level features.
 %The set of low-level features is clustered using \textit{k}-means to create the codebook with \textit{k} defining the number of visual words.
