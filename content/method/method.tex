@@ -229,6 +229,9 @@ This mapping is illustrated in Fig.~\ref{subfig:llbp} and \ref{subfig:llbptop}.
 % Sik: I would change this start by something like the following
 %
 % Our believe is that 'patology traits' present in the images can be captured bye means of thexture descriptors. In order to work with manage the descriptors, those should be represented in some fashion. Our framework incorporates two different manners of representing the volume descriptors.
+
+%Depending of the textural feature (i.e., \ac{lbp} and \ac{lbptop}) and the mapping strategy (i.e., global or local), each volume can be represented into two different manners.
+
 Two strategies are used to describe each \ac{oct} volume texture.
 
 \begin{description}
@@ -245,7 +248,7 @@ High-level representation simplifies this high dimensional feature space into a 
 \ac{bow} approach is used for this purpose~\cite{Sivic2003}.
 This model represents the features by creating a codebook or visual dictionary, from the set of low-level features.
 The set of low-level features are clustered using \textit{k}-means to create the codebook with \textit{k} clusters or visual words.
-After creating the codebook from the training set, the low-level descriptors are replaced by its closest word within codebook.
+After creating the codebook from the training set, the low-level descriptors are replaced by its closest word within the codebook.
 The final descriptor is a histogram of size \textit{k} to represent the codebook occurrences for a given mapping.
 
 
