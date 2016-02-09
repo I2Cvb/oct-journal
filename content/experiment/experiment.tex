@@ -40,7 +40,7 @@ The partitioning for \emph{local}-mapping is set to ($7 \times 7$) pixels patch 
 %where for \emph{local} mapping, we consider a ($7 \times 7$) \acf{sw} for 2D \ac{lbp} and ($ 7 \times 7 \times 7$) sub-volume for \ac{lbptop}.
 
 \subsection{SERI-Dataset}\label{sec:exp:dataset:seri}
-This data was acquired by the Singapore Eye Research Institute (SERI), using CIRRUS TM (Carl Zeiss Meditec, Inc., Dublin, CA) \ac{sdoct} device. The datasets consist of 32 \ac{oct} volumes (16 \ac{dme} and 16 normal cases). Each volume contains 128 B-scan with resolution of 512 $\times$ 1024 pixels.
+This dataset was acquired by the Singapore Eye Research Institute (SERI), using CIRRUS TM (Carl Zeiss Meditec, Inc., Dublin, CA) \ac{sdoct} device. The dataset consists of 32 \ac{oct} volumes (16 \ac{dme} and 16 normal cases). Each volume contains 128 B-scan with resolution of 512 $\times$ 1024 pixels.
 All \ac{sdoct} images are read and assessed by trained graders and identified as normal or \ac{dme} cases based on evaluation of retinal thickening, hard exudates, intraretinal cystoid space formation and subretinal fluid.
 
 \begin{figure}
@@ -249,12 +249,12 @@ Finally, the volumes are classified using $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac
 %\lbp and \lbptop features are detected using the default configuration and volumes are represented using \bow.
 %The codebooks are computed using regular $k$-means algorithm which is initialized using $k$-means++, where $k$ is chosen according to the findings of \emph{Experiment \#1}.
 %Finally, the volumes are classified using $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac{svm}.
-The $k$-\ac{nn} classifier is trained considering the 3 nearest-neighbors rule.
+The $k$-\ac{nn} classifier is used in conjunction with the 3 nearest-neighbors rule to classify the test set.
 The \ac{rf} and \ac{gb} classifier are trained using 100 un-pruned trees, while \ac{svm} classifier is trained using an \ac{rbf} kernel and its parameters $C$, and $\gamma$ are optimized through grid-search.
 
 Complete list of the obtained results from this experiment are shown in Appendix~\ref{app:1}~-~Table~\ref{tab:table3}.
 Despite that highest performances are achieved when NLM+\acs{f} or NLM+\acs{fal} are used, most configurations decline when applied with extra pre-processing stages.
-The best results are achieve using \ac{svm} followed by \ac{rf}.
+The best results are achieved using \ac{svm} followed by \ac{rf}.
 % Regarding the feature configurations, high representation of locally mapped features descriptors with smaller radius and smapling points achieved better performances.
 
 %%% Experiment Result description
