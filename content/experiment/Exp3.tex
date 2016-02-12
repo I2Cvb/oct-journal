@@ -1,0 +1,55 @@
+\subsection{Experiment \#3}\label{subsec:exp3}
+% Experiment structure
+%
+% Intro:
+%   - background
+%   - goal / experiment intention / why
+%   - data
+%   - evaluation
+%   - reference to result table
+%
+% Procedure (by data if more than one):
+%   - pre-processing
+%   - feature extraction
+%   - mapping
+%   - feature representation
+%   - classifier
+%
+% Remarks (if any)
+%
+% Result highlights:
+%   - (only a description)
+
+%% Experiment intro
+This experiment replicates the \emph{Experiment \#2} for the case of low-level representation of \ac{lbp} and \ac{lbptop} features extracted using \emph{global}-mapping.
+
+%% Experiment procedur
+%The same pre-processing strategies (NLM, NLM+\acs{f}, and NLM+\acs{fal}) are investigated.
+%lbp and \lbptop descriptors are detected using the default configuration.
+%Volumes are represented using low-level feature representation of the \emph{global} mapping.
+%Finally, the volumes are classified using $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac{svm}, similarly to \emph{Experiment \#3}.
+
+The obtained results from this experiment are listed in Appendix~\ref{app:1}~-~Table~\ref{tab:table4}.
+In this experiment, flattening the B-scan boosts the results of the best performing configuration.
+However, its effects is not consistent across all the configurations.
+Random forest has a better performance by achieving better \ac{se} (81.2\%, 75.0\%, 68.7\%), while \ac{svm} achieve the highest \ac{sp} (93.7\%), see Appendix~\ref{app:1}~-~Table~\ref{tab:table4}.
+
+In terms of classifier, \ac{rf} has a better performance than the others despite the fact that the highest \ac{sp} is achieved using \ac{svm}.
+
+
+%%% Experiment Result description
+%The obtained results from this experiment is listed in Table~\ref{tab:table4}.
+%The most relevant configurations are shaded and the highest results are highlighted in \textbf{bold}.
+%Similarly to the results reported in Sect.\,\ref{subsec:exp3}, the effect of flattening the B-scan boosts the results for the best performing configuration, but this effect is not consistent across all the configurations.
+%For this experiment, \lbptop outperforms \lbp and larger $P$ and $R$ values for feature detection tends to obtain better results. 
+%In terms of classifier, \rf have better performance than the others but the highest \ac{sp} is achieved using \svm.
+
+% The highest results of this experiment, \ac{se} and \ac{sp} of 81.2\% and 81.2\%, respectively, was achieved with \ac{rf} and using \emph{global}-\ac{lbptop} features with sampling points and radius of $\{S,R\}=\{24,3\}$.
+% In general, in this experiment, \emph{global}-\ac{lbptop} features have better performance in comparison to \emph{global}-\ac{lbp} features and the  classification rates improved while using a higher number of sampling points and radius ($\{S,R\}=\{24,3\}$).
+
+% Similar to the previous experiments, although the effects of additional pre-processing steps (\ac{f} and \ac{fal}) is evident for \ac{rf} performance on $\{S,R\} = \{24,3\}$, similar to the previous experiments, this influence is not consistent for all different configurations, in terms of classifier and $\{S,R\}$.
+
+%The best results (81.2\%\,\ac{se} and 81.2\%\,\ac{sp}) are achieved when using \nlm, flattening, \lbptop detection using $\{P,R\}= \{24,3\}$, global mapping, low-level representation, and \rf classifier.
+%This result can be compared with other relevant results in Table~\ref{tab:results_summary}
+%\input{content/experiment/Table3.tex}
+%\input{content/experiment/Table4.tex}

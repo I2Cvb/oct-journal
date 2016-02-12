@@ -1,0 +1,57 @@
+\subsection{Experiment \#2}\label{subsec:exp2}
+% Experiment structure
+%
+% Intro:
+%   - background
+%   - goal / experiment intention / why
+%   - data
+%   - evaluation
+%   - reference to result table
+%
+% Procedure (by data if more than one):
+%   - pre-processing
+%   - feature extraction
+%   - mapping
+%   - feature representation
+%   - classifier
+%
+% Remarks (if any)
+%
+% Result highlights:
+%   - (only a description)
+
+%% Experiment intro
+This experiments explores the improvement associated with: (i) different pre-processing methods and (ii) using larger range of classifiers (i.e., linear and non-linear) on the high-level representation.
+%Using the optimal number of words for high level representation of the features, experiment~\#2 investigates the performance of different configurations and classifiers
+
+%% Procedure
+All the pre-processing stages are evaluated (NLM, NLM+\acs{f}, and NLM+\acs{fal}).
+%Similar pre-processing strategies to the previous experiment are evaluated (NLM, NLM+\acs{f}, and NLM+\acs{fal}).
+In this experiment, the codebooks for the \ac{bow} representation of \ac{lbp} and \ac{lbptop} features are computed using regular $k$-means algorithm which is initialized using $k$-means++, where $k$ is chosen according to the findings of \emph{Experiment \#1}.
+Finally, the volumes are classified using $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac{svm}.
+%For this experiment, several pre-processing strategies are evaluated: (i) \nlm, (ii) a combination of \nlm and flattening, and (iii) a combination of \nlm, flattening and aligning.
+%\lbp and \lbptop features are detected using the default configuration and volumes are represented using \bow.
+%The codebooks are computed using regular $k$-means algorithm which is initialized using $k$-means++, where $k$ is chosen according to the findings of \emph{Experiment \#1}.
+%Finally, the volumes are classified using $k$-\ac{nn}, \ac{rf}, \ac{gb}, and \ac{svm}.
+The $k$-\ac{nn} classifier is used in conjunction with the 3 nearest-neighbors rule to classify the test set.
+The \ac{rf} and \ac{gb} classifier are trained using 100 un-pruned trees, while \ac{svm} classifier is trained using an \ac{rbf} kernel and its parameters $C$, and $\gamma$ are optimized through grid-search.
+
+Complete list of the obtained results from this experiment are shown in Appendix~\ref{app:1}~-~Table~\ref{tab:table3}.
+Despite that highest performances are achieved when NLM+\acs{f} or NLM+\acs{fal} are used, most configurations decline when applied with extra pre-processing stages.
+The best results are achieved using \ac{svm} followed by \ac{rf}.
+% Regarding the feature configurations, high representation of locally mapped features descriptors with smaller radius and smapling points achieved better performances.
+
+%%% Experiment Result description
+%%Table~\ref{tab:table3} shows the obtained results from this experiment, the most relevant configurations are shaded and the highest results are highlighted in \textbf{bold}.
+%Regarding the effects of pre-processing, most configurations decrease in performance while aligning and flattening the B-scan (i.e. light shaded configurations in Table~\ref{tab:table3}).
+%%the performance of the most configurations decreases by aligning or flattening the B-scan (i.e. light shaded configurations in Table~\ref{tab:table3}).
+%%$k$-NM\,8\,\emph{local}-\lbp, \svm\,8\,\emph{local}-\lbptop, \svm\,16\,\emph{local}-\lbptop, \rf\,8\,\emph{global}-\lbp, \rf\,8\,\emph{local}-\lbp).
+%However, the two best configurations (i.e. dark shaded in Table~\ref{tab:table3}), achieve better results when adding flattening or flattening and alignment as pre-processing.
+%A small radius and small number of samples in feature detection tends to increase the classification performance.
+%%(see: \svm\,8\,\emph{local}-\lbp and \rf\,16\,\emph{local}-\lbptop).
+%%Feature detection shows a tendency towards better results when using small radius and small number of samples.
+%Regarding the mapping strategy, local mapping tends to produce better results than global mapping.
+%In terms of choosing a classifier, \ac{svm} provides the best results, followed by \rf.
+%The best results (81.2\%\,\ac{se} and 93.7\%\,\ac{sp}) are achieved using \nlm, flattening, \lbp detection using $\{P,R\} = \{8,1\}$, local mapping, high-level representation, using a codebook with $k=70$, and \svm classifier.
+%This result can be compared with other relevant results in Table~\ref{tab:results_summary}.
+
