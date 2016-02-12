@@ -66,12 +66,12 @@ Therefore, these variations have to be taken into account to ensure a consistent
 This invariance can be achieved from different manners: (i) using a rotation invariant descriptor (cf. Sect.\,\ref{subsec:feaext}), or (ii) by unfolding the curvature of the retina.
 This latter correction is known as image flattening which theoretically consists of two distinct steps: (i) estimate and fit the curvature of the \ac{rpe} and (ii) warp the \ac{oct} volume such that the \ac{rpe} becomes flat.
 
-Our correction is similar to the one of Liu\,\textit{et al.}~\cite{Liu2011}: each B-scan is thresholded using Otsu's method followed by a median filtering to detect the different retina layers (see Fig\,\ref{subfig:flatmedian} and Fig\,\ref{subfig:flatotsu}). 
+Our correction is similar to the one of Liu\,\textit{et~al.}~\cite{Liu2011}: each B-scan is thresholded using Otsu's method followed by a median filtering to detect the different retina layers (see Fig\,\ref{subfig:flatmedian} and Fig\,\ref{subfig:flatotsu}). 
 Then, a morphological closing and opening is applied to fill the holes and the resulting area is fitted using a second-order polynomial (see Fig.\,\ref{subfig:flatfit}). 
 Finally, the scan is warped such that the curve becomes a line as presented in Fig.\,\ref{subfig:flatwarp} and Fig.\,\ref{subfig:flatfinal}. 
 
 %This process of unfolding the curvature of the retina is known as image flattening. When flattening, an estimation of the \rpe  layer is used to modify the volume by imposing that the \rpe  should be flat.
-%Our implementation modifies the proposal of Liu\,\textit{et al.}~\cite{Liu2011}, as illustrated in \Cref{fig:flatten}. Othsu thresholding is used to segment the retina from the background. A line is fitted to the bottom part of the segmentation hull, since it is assumed to be parallel to the \rpe. The image is corrected based on this line.
+%Our implementation modifies the proposal of Liu\,\textit{et~al.}~\cite{Liu2011}, as illustrated in \Cref{fig:flatten}. Othsu thresholding is used to segment the retina from the background. A line is fitted to the bottom part of the segmentation hull, since it is assumed to be parallel to the \rpe. The image is corrected based on this line.
 
 \subsubsection{Slice alignment}
 The flattening correction does not enforce an alignment through the \ac{oct} volume.
@@ -96,10 +96,10 @@ LBP_{P,R} = \sum_{p=0}^{P-1}s(g_{p} - g_{c})2^{p} \ , \qquad s(x) = \begin{cases
 
 \noindent where $g_c$, $g_{p}$ are the intensities of the central pixel and a given neighbor pixel, respectively; $P$ is the number of sampling points in the circle of radius $R$.
 
-Ojala\,\textit{et al.} further extended the original \ac{lbp} formulation to achieve rotation invariance at the expense of limiting the texture description to the notion of circular ``uniformity''~\cite{ojala2002multiresolution}.
+Ojala\,\textit{et~al.} further extended the original \ac{lbp} formulation to achieve rotation invariance at the expense of limiting the texture description to the notion of circular ``uniformity''~\cite{ojala2002multiresolution}.
 Referring to the coordinate system defined in Fig.\,\ref{subfig:vol}, the \ac{lbp} codes are computed on each $(x$-$z)$ slice, leading to a set of \ac{lbp} maps, a map for each $(x$-$z)$ slice.
 
-Volume encoding is later proposed by Zhao\,\textit{et al.} by computing \ac{lbp} descriptors in three orthogonal planes, so called \ac{lbptop}~\cite{zhao2012rotation}.
+Volume encoding is later proposed by Zhao\,\textit{et~al.} by computing \ac{lbp} descriptors in three orthogonal planes, so called \ac{lbptop}~\cite{zhao2012rotation}.
 More precisely, the \ac{lbp} codes are computed considering the $(x$-$z)$ plane, $(x$-$y)$ plane, and $(y$-$z)$ plane, independently.
 Thus, three sets of \ac{lbp} maps are obtained, one for each orthogonal plane.
 
@@ -135,6 +135,7 @@ The number of patterns ($LBP_{\#pat}$) in regards with each configuration is rep
 
 \subsection{Mapping} \label{subsec:mapping}
 The mapping stage is used to partition the previously computed \ac{lbp} maps; for this work, two mapping strategies are defined: (i) \emph{global} and (ii) \emph{local} mapping.
+The size of the feature descriptor is summarized in Table~\ref{tab:descsize}.
 %The mapping stage is used to determine a discrete set of elements (or structures) which is used for representing the \ac{oct} volume.
 
 % \begin{figure}[t]
@@ -179,8 +180,6 @@ The mapping stage is used to partition the previously computed \ac{lbp} maps; fo
   \caption{Graphical representation of the feature extraction: (a) extraction of \ac{lbp} for global mapping - (b) extraction of \ac{lbptop} for global mapping - (c) extraction of \ac{lbp} for local mapping - (d) extraction of \ac{lbptop} for local mapping.}
   \label{fig:feaextimg}
 \end{figure}
-
-The size of the feature descriptor is summarized in Table~\ref{tab:descsize}.
 
 \begin{description}
 \item[\emph{Global}] mapping extracts the final descriptors from the 2D feature image for \ac{lbp} and 3D volume for \ac{lbptop}.
@@ -241,7 +240,7 @@ More precisely, an \ac{lbp} histogram is computed for each set of \ac{lbp} maps 
 Similarly, the \ac{lbp} descriptor is defined through concatenation of the \ac{lbp} histograms per each $(x$-$z)$ slice with the final size of $d \times LBP_{\#pat}$.
 
 \item[High-level representation] The concatenation of histograms employed in the low-level representation in conjunction with either \emph{global}- or \emph{local}-mapping can lead to a high dimensional feature space.
-For instance, \emph{local}-mapping results in a size of $N \times d \times LBP_{\#pat}$ for the final \ac{lbp} descriptor and $N' \times LBP_{\#pat}$ for the final \ac{lbptop} descriptor, where $N$ and $N'$ the total number of 2D patches and 3D sub-volumes, respectively.
+For instance, \emph{local}-mapping results in a size of $N \times d \times LBP_{\#pat}$ for the final \ac{lbp} descriptor and $N' \times LBP_{\#pat}$ for the final \ac{lbptop} descriptor, where $N$ and $N'$ are the total number of 2D patches and 3D sub-volumes, respectively.
 High-level representation simplifies this high dimensional feature space into a more discriminant lower space.
 \ac{bow} approach is used for this purpose~\cite{Sivic2003}.
 This model represents the features by creating a codebook or visual dictionary, from the set of low-level features.
@@ -258,7 +257,7 @@ The final descriptor is a histogram of size \textit{k} which represents the code
 \end{description}
 
 %\subsubsection{Low-level features} are extracted considering the whole volume using LBP and 3D-LBP descriptors.
-% LBP is a discriminative rotation invariant feature descriptor proposed by Ojala et al. \cite{ojala2002multiresolution}.
+% LBP is a discriminative rotation invariant feature descriptor proposed by Ojala et~al. \cite{ojala2002multiresolution}.
 % LBP descriptor encodes the intensity differences of a central pixel ($g_c$) with its neighboring pixels ($g_{p}$), within in a defined neighborhood of radius $R$. The differences are encoded in terms of binary patterns as in~Eq. \ref{Eq:LBP}:
 
 % \begin{equation} \label{Eq:LBP}
