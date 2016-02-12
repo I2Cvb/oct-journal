@@ -10,7 +10,7 @@ The proposed method, as well as, its experimental set-up for \ac{oct} volume cla
 The methodology is formulated as a standard classification procedure which consists of five steps.
 First, the \ac{oct} volumes are pre-processed as presented in details in Sect.\,\ref{subsec:prepro}.
 %Then toward a final descriptor \ac{lbp} and \ac{lbptop} features are extracted with different mapping strategy and represented using two approach.
-Then, \ac{lbp} and \ac{lbptop} features are detected, mapped and extracted as discussed in depth in Sect.\,\ref{subsec:feaext}, Sect.\,\ref{subsec:mapping}, and Sect.\,\ref{subsec:fearep}, respectively.
+Then, \ac{lbp} and \ac{lbptop} features are detected, mapped and represented as discussed in depth in Sect.\,\ref{subsec:feaext}, Sect.\,\ref{subsec:mapping}, and Sect.\,\ref{subsec:fearep}, respectively.
 %{\color{red}The feature extraction, mapping, and representation are presented in depth in Sect.\,\ref{subsec:feaext}, Sect.\,\ref{subsec:mapping}, and Sect.\,\ref{subsec:fearep}, respectively. CHECK THE SECTION ORDERING}
 Finally, the classification step is presented in Sect.\,\ref{subsec:cls}.
 
@@ -103,7 +103,7 @@ Volume encoding is later proposed by Zhao\,\textit{et al.} by computing \ac{lbp}
 More precisely, the \ac{lbp} codes are computed considering the $(x$-$z)$ plane, $(x$-$y)$ plane, and $(y$-$z)$ plane, independently.
 Thus, three sets of \ac{lbp} maps are obtained, one for each orthogonal plane.
 
-In this research, we consider rotation invariant and uniform \ac{lbp} and \ac{lbptop} features with various sampling points (i.e., $\{8,16,24\}$) with respect to different radius, (i.e., $\{1,2,3\}$).
+In this work, we consider rotation invariant and uniform \ac{lbp} and \ac{lbptop} features with various sampling points (i.e., $\{8,16,24\}$) with respect to different radius, (i.e., $\{1,2,3\}$).
 The number of patterns ($LBP_{\#pat}$) in regards with each configuration is reported in Table~\ref{tab:lbphist}.
 
 %Table.~\ref{tab:lbphist} shows the length of uniform rotation invariant histogram ($\ac{lbp}_{hist}$) for the used sampling point and radius.
@@ -134,9 +134,8 @@ The number of patterns ($LBP_{\#pat}$) in regards with each configuration is rep
 %\end{figure}
 
 \subsection{Mapping} \label{subsec:mapping}
-The mapping stage is used to partition the previously computed \ac{lbp} maps to later extract the final descriptor as presented in the next section.
+The mapping stage is used to partition the previously computed \ac{lbp} maps; for this work, two mapping strategies are defined: (i) \emph{global} and (ii) \emph{local} mapping.
 %The mapping stage is used to determine a discrete set of elements (or structures) which is used for representing the \ac{oct} volume.
-For this work, two mapping strategies are defined: (i) \emph{global} and (ii) \emph{local} mapping.
 
 % \begin{figure}[t]
 % \begin{center}
@@ -184,13 +183,13 @@ For this work, two mapping strategies are defined: (i) \emph{global} and (ii) \e
 The size of the feature descriptor is summarized in Table~\ref{tab:descsize}.
 
 \begin{description}
-\item[\emph{Global}] mapping considers to extract the final descriptors from the 2D feature image for \ac{lbp} and 3D volume for \ac{lbptop}.
+\item[\emph{Global}] mapping extracts the final descriptors from the 2D feature image for \ac{lbp} and 3D volume for \ac{lbptop}.
 %mapping considers to extract the features from the 2D B-scans for \ac{lbp} and 3D volume for \ac{lbptop}.
 Therefore, for a volume with $d$ slices, the \emph{global}-\ac{lbp} mapping will lead to the extraction of $d$ elements.
 While the \emph{global}-\ac{lbptop} represents the whole volume as a single element.
 The \emph{global} mapping for 2D images and 3D volume is shown in Fig.~\ref{subfig:glbp} and \ref{subfig:glbptop}.
 
-\item[\emph{Local}] mapping considers to extract the final descriptors from a set of ($m \times m$) 2D patches for \ac{lbp} and a set of ($ m \times m \times m$) sub-volumes for \ac{lbptop}.
+\item[\emph{Local}] mapping extracts the final descriptors from a set of ($m \times m$) 2D patches for \ac{lbp} and a set of ($ m \times m \times m$) sub-volumes for \ac{lbptop}.
 Given $N$ and $N'$ the total number of 2D patches and 3D sub-volumes respectively, the \emph{local}-\ac{lbp} approach provides $N \times d$ elements, while \emph{local}-\ac{lbptop} provides $N'$ elements.
 %Here $N$ and $N'$ are the total number of elements per B-scane or the volume, respectively.
 This mapping is illustrated in Fig.~\ref{subfig:llbp} and \ref{subfig:llbptop}.
@@ -231,7 +230,7 @@ This mapping is illustrated in Fig.~\ref{subfig:llbp} and \ref{subfig:llbptop}.
 
 %Depending of the textural feature (i.e., \ac{lbp} and \ac{lbptop}) and the mapping strategy (i.e., global or local), each volume can be represented into two different manners.
 
-Two strategies are used to describe each \ac{oct} volume texture.
+Two strategies are used to describe each \ac{oct} volume's texture.
 
 \begin{description}
 
@@ -242,13 +241,13 @@ More precisely, an \ac{lbp} histogram is computed for each set of \ac{lbp} maps 
 Similarly, the \ac{lbp} descriptor is defined through concatenation of the \ac{lbp} histograms per each $(x$-$z)$ slice with the final size of $d \times LBP_{\#pat}$.
 
 \item[High-level representation] The concatenation of histograms employed in the low-level representation in conjunction with either \emph{global}- or \emph{local}-mapping can lead to a high dimensional feature space.
-For instance, \emph{local}-mapping results to a size of $N \times d \times LBP_{\#pat}$ for the final \ac{lbp} descriptor and $N' \times LBP_{\#pat}$ for the final \ac{lbptop} descriptor.
+For instance, \emph{local}-mapping results in a size of $N \times d \times LBP_{\#pat}$ for the final \ac{lbp} descriptor and $N' \times LBP_{\#pat}$ for the final \ac{lbptop} descriptor, where $N$ and $N'$ the total number of 2D patches and 3D sub-volumes, respectively.
 High-level representation simplifies this high dimensional feature space into a more discriminant lower space.
 \ac{bow} approach is used for this purpose~\cite{Sivic2003}.
 This model represents the features by creating a codebook or visual dictionary, from the set of low-level features.
 The set of low-level features are clustered using \textit{k}-means to create the codebook with \textit{k} clusters or visual words.
-After creating the codebook from the training set, the low-level descriptors are replaced by its closest word within the codebook.
-The final descriptor is a histogram of size \textit{k} to represent the codebook occurrences for a given mapping.
+After creating the codebook from the training set, the low-level descriptors are replaced by their closest word within the codebook.
+The final descriptor is a histogram of size \textit{k} which represents the codebook occurrences for a given mapping.
 
 
 %\Ac{pca} and \ac{bow} among other methods, are used for this purpose~\cite{Sivic2003}.
@@ -287,9 +286,10 @@ The final descriptor is a histogram of size \textit{k} to represent the codebook
 % Classification is a supervised learning method which intends to find a mapping $f(.)$ which relates a set of input $x$ to a set of categorical outputs $y$.
 % The learning is comprehended using a training set, which contains a set of $N$ samples with their associated labels~\cite{murphy2012machine}.
 
-Classification corresponds to the mapping of a set of inputs $\mathbf{x}$ into a set of categorical outputs $\mathbf{y}$ using a linear or non-linear function $f(\cdot)$.
-In supervised learning methods, this function is defined by providing a training set of $N$ samples $\mathbf{x}_{tr}$ with their associated labels $\mathbf{y}_{tr}$.
-In order to make a comparative study, five different classifiers are used: (i) $k$-\acf{nn}, (ii) \acf{lr}~\cite{cox1958regression}, (iii) \acf{rf}~\cite{breiman2001random}, (iv) \acf{gb}~\cite{friedman2002stochastic, lemaitre2015boosting}, and (v) \acf{svm}~\cite{vapnik1963generalized, aizerman1964}.
+%Classification corresponds to the mapping of a set of inputs $\mathbf{x}$ into a set of categorical outputs $\mathbf{y}$ using a linear or non-linear function $f(\cdot)$.
+%In supervised learning methods, this function is defined by providing a training set of $N$ samples $\mathbf{x}_{tr}$ with their associated labels $\mathbf{y}_{tr}$.
+The last step of our framework consists in the classification of \ac{sdoct} volumes as normal or \ac{dme}.
+For that matter, five different classifiers are used: (i) $k$-\acf{nn}, (ii) \acf{lr}~\cite{cox1958regression}, (iii) \acf{rf}~\cite{breiman2001random}, (iv) \acf{gb}~\cite{friedman2002stochastic, lemaitre2015boosting}, and (v) \acf{svm}~\cite{vapnik1963generalized, aizerman1964}.
 %In the remainder of this section, we briefly summarize the supervised classification methods used in the experiments.
 Details regarding the parameters used in our experiments are provided in Sect.\,\ref{sec:exp}.
 

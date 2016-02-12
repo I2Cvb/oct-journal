@@ -9,10 +9,9 @@ Just in United States alone, health care and associated costs related to eye dis
 Moreover, the prevalent cases of \ac{dr} are expected to grow exponentially affecting over \SI{300}{M} people worldwide by 2025~\cite{Wild2004}.
 Given this scenario, early detection and treatment of \ac{dr} and \ac{dme} play a major role to prevent adverse effects such as blindness.
 \ac{dme} is characterized as an increase in retinal thickness within 1 disk diameter of the fovea center with or without hard exudates and sometimes associated with cysts~\cite{ETDRSG1985}.
-Fundus images which have proven to be very useful in revealing most of the eye pathologies~\cite{Mookiah20132136,Trucco2013} are not as good as \ac{oct} images~\cite{Wang2015} while dealing with \ac{dme}.  
+Fundus images which have proven to be very useful in revealing most of the eye pathologies~\cite{Mookiah20132136,Trucco2013} are not as good as \ac{oct} images which provide information about cross-sectional retinal morphology~\cite{Wang2015}.  
 
-Indeed, the new generation of \ac{oct} imaging, namely \ac{sdoct} offers high resolution and fast image acquisition, producing from $27,000$ to $40,000$ A-scans/second with an axial resolution ranging from \SIrange{3.5}{6}{\micro \metre}~\cite{Chen2005}. 
-Figure\,\ref{fig:dme-normal} shows one normal B-scan and two abnormal B-scans.
+%Indeed, the new generation of \ac{oct} imaging, namely \ac{sdoct} offers high resolution and fast image acquisition, producing from $27,000$ to $40,000$ A-scans/second with an axial resolution ranging from \SIrange{3.5}{6}{\micro \metre}~\cite{Chen2005}. 
 \begin{figure}
 \begin{center}
 \hspace*{\fill}
@@ -26,6 +25,7 @@ Figure\,\ref{fig:dme-normal} shows one normal B-scan and two abnormal B-scans.
 \end{figure}
 Many of the previous works on \ac{oct} image analysis have focused on the problem of retinal layers segmentation, which is a necessary step for retinal thickness measurements~\cite{Chiu2010,Kafieh2013}.
 However, few have addressed the specific problem of \ac{dme} and its associated features detection from \ac{oct} images.
+Figure\,\ref{fig:dme-normal} shows one normal B-scan and two abnormal B-scans.
 
 A summary of the existing work can be found in Table~\ref{tab:survey-tab}.
 Srinivasan\,\textit{et al.}~\cite{Srinivasan2014} proposed a classification method to distinguish \ac{dme}, \ac{amd} and normal \ac{sdoct} volumes.
@@ -52,8 +52,8 @@ The method achieved good results in detection \ac{oct} scan containing different
 Lema\^{i}tre~\emph{et al.}~\cite{Lemaintre2015miccaiOCT} proposed to use 2D and 3D \ac{lbp} features extracted from denoised volumes and dictionary learning using the \ac{bow} models~\cite{Sivic2003}.
 In the proposed method all the dictionaries are learned with same size of ``visual words'' ($k = 32$) and final descriptors are classified using \ac{rf} classifier.
 %The proposed method by Lemaitre~\emph{et al.}~\cite{Lemaintre2015miccaiOCT} is based on \ac{lbp} features to describe the texture of \ac{oct} images and dictionary learning using the \ac{bow} models~\cite{Sivic2003}.
-The proposed method of this study is an extension of our previous work~\cite{Lemaintre2015miccaiOCT}\footnote{The Document source available on Github~\cite{Lemaitre2015}}.
-In this research, beside the comparison of 2D and 3D features and global and local mapping, we also compare the effects of common pre-processing steps for OCT data (i.e., aligning, flattening beside denoising), study the optimal configuration regarding the \ac{bow} approach and finally performance of different base classifiers.
+The work described in this paper is an extension of our previous work~\cite{Lemaintre2015miccaiOCT}.
+In this research, beside the comparison of 2D and 3D features and global and local mapping, we also compare the effects of common pre-processing steps for OCT data (i.e., aligning, flattening beside denoising), study the optimal configuration regarding the \ac{bow} approach and finally the performance of different classifiers.
  
 %The proposed method, which is an extension of our previous work~\cite{Lemaintre2015miccaiOCT}\footnote{The Document source available on Github~\cite{Lemaitre2015}}, is based on \ac{lbp} features to describe the texture of \ac{oct} images and dictionary learning using the \ac{bow} models~\cite{Sivic2003}. 
 %We propose to extract 2D and 3D \ac{lbp} features from \ac{oct} images and volumes, respectively. 
