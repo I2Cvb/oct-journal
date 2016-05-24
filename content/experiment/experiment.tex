@@ -3,8 +3,6 @@
 \input{content/experiment/experiment-table.tex}
 \section{Experiments}
 \label{sec:exp} 
-%A bundle of experiments composed of three experiments is designed to test the influence of the different blocks composing our framework in comparison to our previous work~\cite{Lemaintre2015miccaiOCT}.
-%A set of three experiments is designed to test the influence of the different blocks composing our framework in comparison to our previous work~\cite{Lemaintre2015miccaiOCT}.
 A set of three experiments is designed to test the influence of the different blocks of the proposed framework in comparison to our previous work~\cite{Lemaintre2015miccaiOCT}.
 These experiments are designed such as: 
 \begin{enumerate}
@@ -12,7 +10,6 @@ These experiments are designed such as:
 \item[(ii)] \emph{Experiment~\#2} evaluates the effects of different pre-processing steps and classifiers on high-level representation.
 \item[(iii)] \emph{Experiment~\#3} evaluates the effects of different pre-processing steps and classifiers on low-level representation.
 \end{enumerate}
-%These experiments are designed in order to investigate the effects of the (i) optimal number of words, (ii) different pre-processing steps, and (iii) different classifiers.
 Table~\ref{tab:experiment_summary} reports the experiments which have been carried out in \cite{Lemaintre2015miccaiOCT} as a baseline and outlines the complementary experimentation here proposed.
 The reminder of this section details the common configuration parameters across the experiments, while the detailed explanations are presented in the following 
 subsections. 
@@ -21,63 +18,59 @@ All the experiments are performed using a private dataset (see Sect.\,\ref{sec:e
 In all the experiments, \ac{lbp} and \ac{lbptop} features are extracted using both \emph{local} and \emph{global}-mapping for different sampling points of 8, 16, and 24 for radius of 1, 2, and 3 pixels, respectively.
 The partitioning for \emph{local}-mapping is set to ($7 \times 7$) pixels patch for 2D \ac{lbp} and ($ 7 \times 7 \times 7$) pixels sub-volume for \ac{lbptop}.
 
-
 \subsection{SERI-Dataset}\label{sec:exp:dataset:seri}
 This dataset was acquired by the Singapore Eye Research Institute (SERI), using CIRRUS TM (Carl Zeiss Meditec, Inc., Dublin, CA) \ac{sdoct} device. The dataset consists of 32 \ac{oct} volumes (16 \ac{dme} and 16 normal cases). Each volume contains 128 B-scan with resolution of 512 $\times$ 1024 pixels.
 All \ac{sdoct} images are read and assessed by trained graders and identified as normal or \ac{dme} cases based on evaluation of retinal thickening, hard exudates, intraretinal cystoid space formation and subretinal fluid.
 
+\subsection{Validation}\label{sec:exp:validation}
+
+\input{./content/experiment/figures/evaluation_corolary_def.tex}
 \begin{figure}
-\begin{center}
-\begin{tikzpicture}[scale=0.4]
-      \node at (1,1){
-      \scriptsize{
+
+  \def\myRadius{.65cm}
+  \def\vennSpace{(0,0) rectangle (2.6cm,1.6cm)}
+  \def\predictedCircle{(.8cm,.8cm) circle (\myRadius)}
+  \def\actualCircle{(1.8cm,.8cm) circle (\myRadius)}
+  \def\myLabelRadius{.450cm}
+
+  \subfigure[][Confusion matrix with truly and falsely positive samples detected (TP, FP) in the first row, from left to right and the falsely and truly negative samples detected (FN, TN) in the second row, from left to right.]{
+    \label{fig:evaluation:confusion_matrix}
+    \begin{tikzpicture}[scale=0.5]
+      \node at (0,0){
         \begin{tabular}{
             >{\centering}m{1em} >{\centering}m{1em} >{\centering}m{1in} >{\centering\arraybackslash}m{1in}}
-          % c>{\centering}m{2em}ccc}
-          & & \multicolumn{2}{c}{ Actual}\\
+          & & \multicolumn{2}{c}{ Actual Class }\\
           & & A+ & A- \\
-          \cline{3-4}
-          & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}\\
-          \multirow{3}{*}{\rotatebox[origin=c]{90}{Predicted}}& \multicolumn{1}{c|}{P+} &  \multicolumn{1}{c|}{True Positive (TP)} & \multicolumn{1}{c|}{False Positive (FP)} \\
-          &\multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}& \multicolumn{1}{c|}{} \\
-          \cline{3-4}
-          & \multicolumn{1}{c|}{} &\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}\\
-
-          & \multicolumn{1}{c|}{P-} &\multicolumn{1}{c|}{False Negative (FN)}  &\multicolumn{1}{c|}{True Negative (TN)}\\
-          & \multicolumn{1}{c|}{} &\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}\\
-          \cline{3-4}
-          \end{tabular}
-      }};
+          \multirow{3}{*}{\rotatebox[origin=c]{90}{Predicted Class}}& P+ &  \tikz{\tp} & \tikz{\fp} \\
+          & P- & \tikz{\fn} & \tikz{\tn}
+        \end{tabular}
+      };
     \end{tikzpicture}
-    \end{center}
-\caption{Confusion matrix with true and false positive detected samples (\acs{tp}, \acs{fp}) in the first row, from left to right and the false and true negative detected samples (\acs{fn}, \acs{tn}) in the second row, from left to right.}
-\label{fig:CM}
+  }\\
+  \centering
+  \subfigure[][\ac{se} and \ac{sp} evaluation, corresponding to the ratio of the doted area over the blue area.]{
+    \label{fig:evaluation:roc_axis}
+    \begin{tikzpicture}[scale=0.5]
+      \def\seEquation{$SE = \frac{TP}{TP+FN}$}
+      \def\spEquation{$SP = \frac{TN}{TN+FP}$}
+      \node[label={[]below:\seEquation}](se){\tikz{\se}};
+      \node[right=5pt of se, label={[]below:\spEquation}]{\tikz{\sp}};
+    \end{tikzpicture}
+  }
+
+  \caption{Evaluation metrics:
+    \protect\subref{fig:evaluation:confusion_matrix} confusion matrix,
+    \protect\subref{fig:evaluation:roc_axis} \ac{se} - \ac{sp}
+  }
+  \label{fig:CM}
 \end{figure}
-\subsection{Validation}\label{sec:exp:validation}
+
 All the experiments are evaluated in terms of \acf{se} and \acf{sp} using the \ac{lopocv} strategy, in line with \cite{Lemaintre2015miccaiOCT}.
-\ac{se} and \ac{sp} are statistics driven from the confusion matrix (see Fig.\,\ref{fig:CM}) as stated in Eq.\,\eqref{eq:sesp}.
+\ac{se} and \ac{sp} are statistics driven from the confusion matrix as depicted in Fig.\,\ref{fig:CM}.
 The \ac{se} evaluates the performance of the classifier with respect to the positive class, while the \ac{sp} evaluates its performance with respect to negative class.
-\begin{align}
- \ac{se}  = \frac{TP}{TP+FN} \qquad \ac{sp} = \frac{TN}{TN+FP}
- \label{eq:sesp}
-\end{align}
 The use of \ac{lopocv} implies that at each round, a pair \ac{dme}-normal volume is selected for testing while the remaining volumes are used for training.
 Subsequently, no \ac{se} or \ac{sp} variance can be reported.
 However, \ac{lopocv} strategy has been adopted despite this limitation due to the reduced size of the dataset.
-
-%The three experiments are evaluated using \ac{lopocv} strategy.
-%At each round, a pair \ac{dme}-normal volume is selected for testing while the remaining volumes are used for training.
-%The use of this method implies that no variance in terms of \acf{se} and \acf{sp} can be reported.
-%Despite this limitation, \ac{lopocv} has been employed due to the small size of the dataset.
-
-
-%Among three, one experiment is carried out using \ac{acc} and \ac{f1} as formulated in Eq.\,\ref{eq:accf1}.
-%%Only in experiment~\#1, beside \ac{se} and \ac{sp} additional metrics such as \ac{acc} and \ac{f1} are applied. 
-%%\ac{acc} is used to have an overall sense of the classifier performance and \ac{f1} is used to see the trade off between \ac{se} and precision.
-%%\begin{align}
-%%\ac{acc} = \frac{TP+TN}{TP+TN+FP+FN} \qquad \ac{f1} = \frac{2TP}{2TP +FP+FN}
-%%\label{eq:accf1}
-%%\end{align}
 
 \input{content/experiment/Exp1.tex}
 \input{content/experiment/Exp2.tex}

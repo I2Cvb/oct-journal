@@ -3,79 +3,33 @@
 \input{latex/filesystem/package_basic.tex}    % contains the latex packages
 \input{latex/filesystem/package_edition.tex}  % packages to facilitate editing
 \input{latex/filesystem/fileSetup.tex}        % contains package and variables init.
-\input{content/acronym_definition.tex}        % contains the acronims
-
-%% Select inputing only one part of the document
-%\includeonly{content/intro/intro}   % the file wihtout .tex
-%\includeonly{content/other/other_content}
-
-% \addbibresource{./content/lit_review.bib}
-% \addbibresource{./content/biblatex-examples.bib}
+\input{content/acronym_definition.tex}        % contains the acronyms
 
 \begin{document}
 
 % Abstract and keywords are in frontmatter in this template
-\input{content/frontmatter.tex}               % contains the Title and Autor info
+\input{content/frontmatter.tex}               % contains the Title and authors info
 \maketitle
 
 \linenumbers
-%% Incldue the content without .tex extension
-%\acresetall  % reset the acronyms from the abstract
-\acresetall  % reset the acronyms from the abstract
-\input{content/intro/intro}          % the file wihtout .tex
-\input{content/survey/background}    % the file wihtout .tex
+\acresetall % reset the acronyms from the abstract
+\input{content/intro/intro}
+\input{content/survey/background}
 \input{content/method/method}
 \input{content/experiment/experiment}
 \input{content/experiment/discussion}
-
-%\input{content/results/results}
-
-\section{Conclusions}\label{sec:con}
-The work presented here addresses automatic classification of \ac{sdoct} volumes as normal or \ac{dme}.
-In this regard, an extensive study is carried out covering the
-(i) effects of different pre-processing steps, 
-(ii) influence of different mapping and feature extraction strategies,
-(iii) impact of the codebook size in \ac{bow}, and
-(iv) comparison of different classification strategies.
-
-While outperforming the previous studies~\cite{Lemaintre2015miccaiOCT,Venhuizen2015}, the obtained results in this research showed the impact and importance of optimal codebook size, the potential of 3D features and high level representation of 2D features while extracted from local patches.
-
-The strength of \ac{svm} while used along \ac{bow} approach and \ac{rf} classifier while used with global mapping were shown.
-In terms of pre-processing steps, although the highest performances are achieved while alignment and flattening were used in the pre-processing, it was shown that the effects of these extra steps are not consistent for all the cases and do not guaranty a better performance.
-
-Several avenues for future directions can be explored. 
-The flattening method proposed by Liu\,\emph{et al.} flattens roughly the \ac{rpe} due to the fact that the \ac{rpe} is not segmented. 
-Thus, in order to have a more accurate flattening pre-processing, the \ac{rpe} layer should be pre-segmented as proposed by Garvin\,\emph{et al.}~\cite{Garvin2009}. 
-In this work, the \ac{lbp} invariant to rotation was used and the number of pattern encoded is reduced. 
-Once the data are flattened, the non-rotation invariant \ac{lbp} could be studied since this descriptor encode more patterns. 
-In addition to \ac{lbp}, other feature descriptors can be included in the framework.
+\input{content/conclusion/conclusion}
 
 \section*{Acknowledgments}\label{sec:acknowledgements}
 
 This project was supported by the Singapore French Institute (IFS) and the Singapore Eye Research Institute (SERI) through the PHC Merlion program (2015-2016) and the Regional Council of Burgundy (grant nb. 2015-9201AAO050S02760).
 Calculations were performed using HPC resources from DSI-CCUB (Universit\'e de Bourgogne).
 
-%The obtained results in this resarch, showed clear improvement with respect to the previous studies\cite{Lemaintre2015miccaiOCT,Venhuizen2015}
-%Table~\ref{tab:results_summary} summarizes the most relevant aspects of all the experimentations, 
-%showing a clear improvement with respect to previous studies~\cite{Lemaintre2015miccaiOCT,Venhuizen2015}.
-%Based on the reported results, the 3D features and high-level representation of 2D features using patches achieve the best results.
-
-%\input{content/experiment/Table5.tex}
-%\section{Future work }
-%TOMORROW THE MOON !!
-
 \section*{Conflict of interest statement}
 
 The authors declare no conflict of interest.
 
-\begin{appendices}
-\section{Complementary results for \emph{Experiment~\#1~\&~\#2~\&~\#3}}\label{app:1}
-\input{content/experiment/Table2}
-\input{content/experiment/Table3}
-\input{content/experiment/Table4}
-\end{appendices}
-
-% Our method is based on \ac{lbp} features to describe the texture of \ac{oct} images and we compare different \ac{lbp} features extraction approaches to compute a single signature for the whole \ac{oct} volume.
+\input{content/appendix/appendix}
 
 \section*{References}
 \bibliography{./content/literature_review}   %>>>> bibliography data in report.bib

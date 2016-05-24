@@ -1,39 +1,12 @@
 \subsection{Experiment \#1}\label{subsec:exp1}
-% Experiment structure
-%
-% Intro:
-%   - background
-%   - goal / experiment intention / why
-%   - data
-%   - evaluation
-%   - reference to result table
-%
-% Procedure (by data if more than one):
-%   - pre-processing
-%   - feature extraction
-%   - mapping
-%   - feature representation
-%   - classifier
-%
-% Remarks (if any)
-%
-% Result highlights:
-%   - (only a description)
-
-%% Experiment intro
 This experiment intends to find the optimal number of words and its effect on the different configurations (i.e., pre-processing and feature representation), on the contrary to~\cite{Lemaintre2015miccaiOCT}, where the codebook size was arbitrarily set to $k = 32$.
 
-%(pre-processing which consists of denoising, flattening, and aligning along different mapping).
-%In order to determine the optimal size of the codebook when using \bow, this experiment evaluates several codebook sizes on SERI dataset.
-
-%% Experiment procedure
 Several pre-processing strategies are used: (i) \ac{nlm}, (ii) a combination of \ac{nlm} and flattening (\ac{nlm}+\f), and (iii) a combination of \ac{nlm}, flattening, and aligning (\ac{nlm}+\fal).
 \lbp and \lbptop descriptors are detected using the default configuration.
 Volumes are represented using \ac{bow}, where the codebook size ranging for $k\in \{10, 20, 30, \cdots, 100, 200, \cdots, 500,$ $1000\}$.
 Finally, the volumes are classified using \lr.
 The choice of this linear classifier avoids that the results get boosted by the classifier.
 In this manner, any improvement would be linked to the pre-processing and the size of the codebook.
-%\input{content/experiment/Table2.tex}
 
 The usual build of the codebook consists of clustering the samples in the feature space using $k$-means (see Sect.\,\ref{subsec:fearep}).
 However, this operation is rather computationally expensive and the convergence of the $k$-means algorithm for all codebook sizes is not granted.
@@ -52,22 +25,3 @@ Appendix~\ref{app:1}~-~Table~\ref{tab:table2} shows the results obtained for the
 According to the obtained results, it is observed that optimum number of words is smaller for \emph{local}-\ac{lbp} features in comparison to \emph{local}-\ac{lbptop} and \emph{global}-\ac{lbp}, respectively.
 Using \ac{lr} classifier, the best performances were achieved using \emph{local}-\ac{lbp} with 70 words (\ac{se} and \ac{sp} of 75.0\%) and \emph{local}-\ac{lbptop} with 500 words (\ac{se} and \ac{sp} of 75.0\% as well).
 These results are highlighted in Appendix~\ref{app:1}~-~Table~\ref{tab:table2}.
-
-
-
-
-
-%In order to illustrate the impact of the dictionary size, Fig.\,\ref{fig:RBOW} illustrates the \ac{acc} and \ac{f1} graph for a particular case.
-%In this figure, the classification performance of \emph{local}-\ac{lbp} features extracted from the \nlm+\f configuration is illustrated. 
-%\begin{figure}
-%\centering
-%\includegraphics[width=0.85\textwidth]{figure2}
-%\caption{The performance of \ac{lr} with NLM+\ac{f} pre-processing for different $P$ and $R$.}
-%\label{fig:RBOW}
-%\end{figure}
-%%% Experiment Result description
-%The obtained results show that commonly less number of words is required when higher number of sampling points and radius ($\{P,R\} = \{24,3\}$) are used.
-%The required number of words decreases for \emph{local}-\ac{lbp} in comparison with \emph{global}-\ac{lbp}.
-%Although it was expected that the use of different pre-processing steps affect the optimal number of words, this influence is not substantial nor consistent over all the obtained results.
-
-

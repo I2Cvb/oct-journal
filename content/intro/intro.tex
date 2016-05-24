@@ -11,7 +11,6 @@ Given this scenario, early detection and treatment of \ac{dr} and \ac{dme} play 
 \ac{dme} is characterized as an increase in retinal thickness within 1 disk diameter of the fovea center with or without hard exudates and sometimes associated with cysts~\cite{ETDRSG1985}.
 Fundus images which have proven to be very useful in revealing most of the eye pathologies~\cite{Mookiah20132136,Trucco2013} are not as good as \ac{oct} images which provide information about cross-sectional retinal morphology~\cite{Wang2015}.  
 
-%Indeed, the new generation of \ac{oct} imaging, namely \ac{sdoct} offers high resolution and fast image acquisition, producing from $27,000$ to $40,000$ A-scans/second with an axial resolution ranging from \SIrange{3.5}{6}{\micro \metre}~\cite{Chen2005}. 
 \begin{figure}
 \begin{center}
 \hspace*{\fill}
@@ -44,23 +43,16 @@ The method was used to classify \ac{oct} volumes between \ac{amd} and normal cas
 Liu\,\textit{et~al.} proposed a methodology for detecting macular pathology in \ac{oct} images using \ac{lbp} and gradient information as attributes~\cite{Liu2011}.
 The method starts by aligning and flattening the images and creating a $3$-level multi-scale spatial pyramid.
 The edge and \ac{lbp} histograms are then extracted from each block of every level of the pyramid.
-%is created and edge and \ac{lbp} histograms are extracted in each block at every level of the pyramid.
 All the obtained histograms are concatenated into a global descriptor whose dimensions are reduced using \ac{pca}.
 Finally a \ac{svm} with an \ac{rbf} kernel is used as classifier.
 The method achieved good results in detection \ac{oct} scan containing different pathology such as \ac{dme} or \ac{amd}, with an \ac{auc} of $0.93$ using a dataset of $326$ \ac{oct} scans.
 
 Lema\^{i}tre~\emph{et~al.}~\cite{Lemaintre2015miccaiOCT} proposed to use 2D and 3D \ac{lbp} features extracted from denoised volumes and dictionary learning using the \ac{bow} models~\cite{Sivic2003}.
 In the proposed method all the dictionaries are learned with same size of ``visual words'' ($k = 32$) and final descriptors are classified using \ac{rf} classifier.
-%The proposed method by Lemaitre~\emph{et~al.}~\cite{Lemaintre2015miccaiOCT} is based on \ac{lbp} features to describe the texture of \ac{oct} images and dictionary learning using the \ac{bow} models~\cite{Sivic2003}.
 
 The work described in this paper is an extension of our previous work~\cite{Lemaintre2015miccaiOCT}.
 In this research, beside the comparison of 2D and 3D features, we explore different possible representations of the features, and different pre-processing steps for OCT data (i.e. aligning, flattening, denoising). 
 We also compare the performances of different classifiers. 
- 
-%The proposed method, which is an extension of our previous work~\cite{Lemaintre2015miccaiOCT}\footnote{The Document source available on Github~\cite{Lemaitre2015}}, is based on \ac{lbp} features to describe the texture of \ac{oct} images and dictionary learning using the \ac{bow} models~\cite{Sivic2003}. 
-%We propose to extract 2D and 3D \ac{lbp} features from \ac{oct} images and volumes, respectively. 
-%The \ac{lbp} descriptors are further extracted from the entire sample or local patches within individual samples. 
-%In this research beside the comparison of 2D and 3D features, we also compare the effects of common pre-processing steps for OCT data (i.e., noise removing, aligning, flattening), study the optimal configuration regarding the \ac{bow} approach in conjunction with different base classifiers.
  
 This paper is organized as follows: the proposed framework is explained in Sect.\,\ref{sec:method}, while the experiments and results are discussed through Sect.\,\ref{sec:exp} and Sect.\,\ref{sec:res-dis}.
 Finally, the conclusion and avenue for future directions are drawn in Sect.\,\ref{sec:con}.
