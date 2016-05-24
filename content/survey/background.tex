@@ -1,51 +1,38 @@
-% include the figures path relative to the master file
-% \graphicspath{ {./content/survey/figures/} }
+\begin{landscape}
+\begin{table}
+\caption{Summary of the state-of-the-art methods.}
+\resizebox{1.05\linewidth}{!}{
+\scriptsize{
+\begin{tabular}{l ccc c cccc	c c c c	c c}
+\toprule
+Ref & \multicolumn{3}{c}{Diseases} & Data  & \multicolumn{4}{c}{Pre-processing} & Features & Representation & Classifier & Evaluation & Results\\
+    &  &  &  & size &  &  &  &  &  &  &  & & &\\
+   \cmidrule(l){2-4}\cmidrule(l){6-9} 
+    & \ac{amd} & \ac{dme} & Normal  &           & De-noise & Flatten & Aligning & Cropping &   & &   &  &   \\
+\midrule
+& & & & & & & & & & & & & &  \\
+%Srinivansan\,\textit{et al.}~
+\cite{Srinivasan2014} & $\checkmark$ & $\checkmark$ & $\checkmark$ &  45 & $\checkmark$ & $\checkmark$ &  & $\checkmark$ & \ac{hog} &  & linear-\ac{svm} & \acs{acc} & 86.7\%,100\%,100\%  \\
+& & & & & & & & & & & & &    \\
+%Venhuizen\,\textit{et al.}~
+\cite{Venhuizen2015} & $\checkmark$ &  & $\checkmark$ & 384 &  & & & &  Texton  &\acs{bow}, \acs{pca}  & \acs{rf} & \acs{auc} & 0.984 \\ 
+& & & & & & & & & & & & &   & \\
+%Liu\,\textit{et al.}~
+\cite{Liu2011} & $\checkmark$ & $\checkmark$ & $\checkmark$  & 326 &  & $\checkmark$ & $\checkmark$ &  &  Edge, \ac{lbp} & \acs{pca}& \acs{svm}-\acs{rbf} &\acs{auc} & 0.93 \\
+& & & & & & & & & & & & & \\
+%Lema\^itre\,\textit{et al.}~
+\cite{Lemaintre2015miccaiOCT} &  & $\checkmark$ & $\checkmark$ & 62  & $\checkmark$ &  &  &  & \acs{lbp}-\acs{lbptop} & \acs{pca}, \acs{bow}, histogram&  \ac{rf} & \acs{se},\acs{sp} & 87.5\%, 75\%  \\
+& & & & & & & & & & & & &  \\
+\bottomrule
+\end{tabular}}}
+\label{tab:survey-tab}
+\end{table}
 
-% \section{Related Work}\label{sec:rw}
-% This section reviews the works straightly addressing the problem of classifying \oct volumes as normal or abnormal. A summary can be found in Table~\ref{tab:survey-tab}.
-% %This section reviews, up to our knowledge, the works straightly addressing the problem of classifying \oct volume as normal or abnormal. A summary can be found in \Cref{tab:survey}.
-
-% Srinivasan\,\textit{et al.}~\cite{Srinivasan2014} proposed a classification method to distinguish \ac{dme}, \ac{amd} and normal \ac{sdoct} volumes.
-% %The authors in~\cite{Srinivasan2014} proposed a classification method for the detection of \ac{dme} versus \ac{amd} and normal \ac{oct} images.
-% The \ac{oct} images are pre-processed by reducing the speckle noise by enhancing the sparsity in a transform-domain and flattening the retinal curvature to reduce the inter-patient variations.
-% %The method is based on pre-processing to reduce the speckle noise in \ac{oct} images and flattening of the images to reduce the variation of retinal curvature among patients.
-% Then, \ac{hog} are extracted for each slice of a volume and a linear \ac{svm} is used for classification.
-% On a dataset of 45 patients equally subdivided into the three aforementioned classes, this method leads to a correct classification rate of $100 \%$, $100 \%$ and $86.67 \%$ for normal, \ac{dme} and \ac{amd} patients, respectively.
-% %On a dataset of 45 patients containing 15 normal subjects, 15 \ac{dme} patients and 15 \ac{amd} patients, the methods achieved a correct classification of $100 \%$, $100 \%$ and $86.67 \%$ for \ac{amd}, \ac{dme} and normal cases respectively.
-
-% Venhuizen\,\textit{et al.} proposed a method for \ac{oct} images classification using the \ac{bow} models~\cite{Venhuizen2015}.
-% The method starts with the detection and selection of keypoints in each individual B-scan, by keeping the most salient points corresponding to the top $3 \%$ of the vertical gradient values. Then, a texton of size $9 \times 9$ pixels is extracted around each keypoint, and \ac{pca} is applied to reduce the dimension of every texton to get a feature vector of size $9$.
-% All extracted feature vectors are used to create a codebook using \textit{k}-means clustering.
-% Then, each \ac{oct} volume is represented in terms of this codebook and is characterized as a histogram that captures the codebook occurrences.
-% These histograms are used as feature vector to train a \ac{rf} with a maximum of $100$ trees.
-% The method was used to classify \ac{oct} volumes between \ac{amd} and normal cases and achieved an \ac{auc} of $0.984$ with a dataset of $384$ \ac{oct} volumes.
-
-% Liu\,\textit{et al.} proposed a methodology for detecting macular pathology in \ac{oct} images using \ac{lbp} and gradient information as attributes~\cite{Liu2011}.
-% The method starts by aligning and flattening the images and creating a $3$-level multi-scale spatial pyramid.
-% The edge and \ac{lbp} histograms are then extracted from each block of every level of the pyramid.
-% %is created and edge and \ac{lbp} histograms are extracted in each block at every level of the pyramid.
-% All the obtained histograms are concatenated into a global descriptor whose dimensions are reduced using \ac{pca}.
-% Finally a \ac{svm} with an \ac{rbf} kernel is used as classifier.
-% The method achieved good results in detection \ac{oct} scan containing different pathology such as \ac{dme} or \ac{amd}, with an \ac{auc} of $0.93$ using a dataset of $326$ \ac{oct} scans.
-
-% % Our later study proposes a standard classification procedure to differentiate between \ac{dme} and normal \ac{sdoct} volumes~\cite{Lemaitre2015}The data is pre-processed using \ac{nlm} filtering.
-% % The volumes are mapped into discrete set of structures namely: local, when these structures correspond to patches; or global, when the structures correspond to volume slices or the whole volume.
-% % These structures are described in terms of texture using \ac{lbp} or \ac{lbptop} and encoded using histogram, \ac{pca} or \ac{bow} to produce a single feature vector in order to present the volumes to a \ac{rf} classifeir.
-% % This methodology was tested against Venhuizen\,\textit{et al.}~\cite{Venhuizen2015} using public and non-public datasets showing an improvement within the results achieving a \ac{se} of 87.5\% and a \ac{sp} of 75\%.
-% % The obtained results of this study is listed in Sect.\,\ref{sec:exp}.
-
-% %As stated in previous section, this research is a continue of our previous work, where we intend to evaluate the influence of different pre-processing, \ac{bow} representation and various classifiers.
-% %Our proposed pipeline with detail description of each step is presented in the following section.
-% As stated in the previous section, our current research is an extension of our previous work~\cite{Lemaitre2015} with further contributions and evaluations at every stages of our classification framework.
-
-% %\DTLloaddb[keys={task,Srinivasan,Venhuizen,Liu,Lemaitre}]
-% %          {survey}{./content/survey/tables/survey.csv}
-% %\begin{table}
-% %  \caption{Other methodologies overview}
-% %  \centering
-% %  \input{./content/survey/tables/survey.tex}
-% %  \label{tab:survey}
-% %\end{table}
-
-
-\input{content/survey/Survey-Table.tex}
+\graphicspath{ {./content/method/figures/ml_schema/} }
+\begin{figure}
+  \centering{
+    \includegraphics[width=1\linewidth]{ml}}
+    \caption{Our proposed classification pipeline.}
+  \label{fig:ML-scheme}
+\end{figure}
+\end{landscape}
